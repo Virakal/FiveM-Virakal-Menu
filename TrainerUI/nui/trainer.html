@@ -1,0 +1,1228 @@
+<html>
+<head>
+    <link href="trainer.css" rel="stylesheet" type="text/css" />
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <script src="trainer.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="trainercontainer" style="display: none;">
+        <!-- Title -->
+        <p class="traineroption trainertitle">Virakal Trainer</p>
+        <!-- Main menu -->
+        <div id="mainmenu">
+            <p class="traineroption" data-sub="playermenu">Player</p>
+            <p class="traineroption" data-sub="teleportmenu">Teleport</p>
+            <p class="traineroption" data-sub="vehiclesmenu">Vehicles</p>
+            <p class="traineroption" data-sub="weaponsmenu">Weapons</p>
+            <p class="traineroption" data-sub="policemenu">Police</p>
+            <p class="traineroption" data-sub="settingsmenu">Settings</p>
+            <p class="traineroption" data-sub="uimenu">UI</p>
+        </div>
+        <!-- Player menu -->
+        <div id="playermenu" data-parent="mainmenu">
+            <p class="traineroption" data-sub="playerskinmenu">Change Skin</p>
+            <p class="traineroption" data-action="player god" data-state="ON">Godmode</p>
+            <p class="traineroption" data-action="player stamina" data-state="ON">Unlimited Stamina</p>
+            <p class="traineroption" data-action="player ammo" data-state="ON">Infinite Ammo</p>
+            <p class="traineroption" data-action="player clip" data-state="OFF">Infinite Clip</p>
+            <p class="traineroption" data-action="player heal">Heal Player</p>
+            <p class="traineroption" data-action="player armor">Add Armor</p>
+            <p class="traineroption" data-action="player suicide">Suicide</p>
+            <p class="traineroption" data-action="player autochute" data-state="ON">Auto Plane Parachute</p>
+            <p class="traineroption" data-action="wepgive GADGET_PARACHUTE">Give Parachute</p>
+        </div>
+        <div id="playerskinmenu" data-parent="playermenu">
+            <p class="traineroption" data-sub="playerskinrecent">Recent</p>
+            <p class="traineroption" data-sub="playerskinanimals">Animals</p>
+            <p class="traineroption" data-sub="playerskincharacters">Characters</p>
+            <p class="traineroption" data-sub="playerskinother">Other</p>
+        </div>
+        <div id="playerskinrecent" data-parent="playerskinmenu">
+            <p class="traineroption">No Recent Skins</p>
+        </div>
+        <div id="playerskincharacters" data-parent="playerskinmenu">
+            <p class="traineroption" data-action="playerskin player_one">Franklin</p>
+            <p class="traineroption" data-action="playerskin player_zero">Michael</p>
+            <p class="traineroption" data-action="playerskin player_two">Trevor</p>
+            <p class="traineroption" data-action="playerskin mp_m_freemode_01">MP Male</p>
+            <p class="traineroption" data-action="playerskin mp_f_freemode_01">MP Female</p>
+        </div>
+        <div id="playerskinanimals" data-parent="playerskinmenu">
+            <!-- Animals that don't seem to work are commented out -->
+            <p class="traineroption" data-action="playerskin A_C_Boar">Boar</p>
+            <p class="traineroption" data-action="playerskin A_C_Cat_01">Cat</p>
+            <p class="traineroption" data-action="playerskin A_C_Chickenhawk">Chickenhawk (Can crash game)</p>
+            <p class="traineroption" data-action="playerskin A_C_Chimp">Chimp</p>
+            <p class="traineroption" data-action="playerskin a_c_chop">Chop</p>
+            <p class="traineroption" data-action="playerskin A_C_Cormorant">Cormorant</p>
+            <p class="traineroption" data-action="playerskin A_C_Cow">Cow</p>
+            <p class="traineroption" data-action="playerskin A_C_Coyote">Coyote</p>
+            <p class="traineroption" data-action="playerskin A_C_Crow">Crow</p>
+            <p class="traineroption" data-action="playerskin A_C_Deer">Deer</p>
+            <p class="traineroption" data-action="playerskin A_C_Dolphin">Dolphin</p>
+            <p class="traineroption" data-action="playerskin A_C_Fish">Fish</p>
+            <p class="traineroption" data-action="playerskin A_C_shepherd">German Shepherd</p>
+            <p class="traineroption" data-action="playerskin A_C_Hen">Hen</p>
+            <p class="traineroption" data-action="playerskin A_C_SharkHammer">Hammerhead Shark</p>
+            <p class="traineroption" data-action="playerskin A_C_HumpBack">Humpback Whale</p>
+            <p class="traineroption" data-action="playerskin A_C_Husky">Husky</p>
+            <p class="traineroption" data-action="playerskin A_C_KillerWhale">Killer Whale</p>
+            <p class="traineroption" data-action="playerskin A_C_MtLion">Mountain Lion</p>
+            <p class="traineroption" data-action="playerskin A_C_Pig">Pig</p>
+            <p class="traineroption" data-action="playerskin A_C_Poodle">Poodle</p>
+            <p class="traineroption" data-action="playerskin A_C_Pug">Pug</p>
+            <p class="traineroption" data-action="playerskin A_C_Pigeon">Pigeon</p>
+            <p class="traineroption" data-action="playerskin a_c_rabbit_01">Rabbit</p>
+            <p class="traineroption" data-action="playerskin A_C_Rat">Rat (Can crash game)</p>
+            <p class="traineroption" data-action="playerskin a_c_retriever">Retriever</p>
+            <p class="traineroption" data-action="playerskin a_c_rhesus">Rhesus Macaque</p>
+            <p class="traineroption" data-action="playerskin a_c_rottweiler">Rottweiler</p>
+            <p class="traineroption" data-action="playerskin A_C_Seagull">Seagull</p>
+            <p class="traineroption" data-action="playerskin A_C_Stingray">Stingray</p>
+            <p class="traineroption" data-action="playerskin A_C_SharkTiger">Tiger Shark</p>
+            <p class="traineroption" data-action="playerskin a_c_westy">Westy</p>
+        </div>
+        <div id="playerskinother" data-parent="playerskinmenu">
+            <p class="traineroption" data-action="playerskin csb_abigail">Abigail Mathers (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_abigail">Abigail Mathers (IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_y_abner">Abner</p>
+            <p class="traineroption" data-action="playerskin a_m_m_afriamer_01">African American Male</p>
+            <p class="traineroption" data-action="playerskin csb_agent">Agent (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_agent">Agent (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_mp_agent14">Agent 14 (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_mp_agent14">Agent 14 (IG)</p>
+            <p class="traineroption" data-action="playerskin s_f_y_airhostess_01">Air Hostess</p>
+            <p class="traineroption" data-action="playerskin s_m_y_airworker">Air Worker Male</p>
+            <p class="traineroption" data-action="playerskin u_m_m_aldinapoli">Al Di Napoli Male</p>
+            <p class="traineroption" data-action="playerskin s_m_m_movalien_01">Alien</p>
+            <p class="traineroption" data-action="playerskin a_m_m_acult_01">Altruist Cult Mid-Age Male</p>
+            <p class="traineroption" data-action="playerskin a_m_o_acult_01">Altruist Cult Old Male</p>
+            <p class="traineroption" data-action="playerskin a_m_o_acult_02">Altruist Cult Old Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_acult_01">Altruist Cult Young Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_acult_02">Altruist Cult Young Male 2</p>
+            <p class="traineroption" data-action="playerskin cs_amandatownley">Amanda De Santa (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_amandatownley">Amanda De Santa (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_ammucity_01">Ammu-Nation City Clerk</p>
+            <p class="traineroption" data-action="playerskin s_m_m_ammucountry">Ammu-Nation Rural Clerk</p>
+            <p class="traineroption" data-action="playerskin cs_andreas">Andreas Sanchez (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_andreas">Andreas Sanchez (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_anita">Anita Mendoza</p>
+            <p class="traineroption" data-action="playerskin csb_anton">Anton Beaudelaire</p>
+            <p class="traineroption" data-action="playerskin u_m_y_antonb">Anton Beaudelaire</p>
+            <p class="traineroption" data-action="playerskin g_m_m_armboss_01">Armenian Boss</p>
+            <p class="traineroption" data-action="playerskin g_m_m_armgoon_01">Armenian Goon</p>
+            <p class="traineroption" data-action="playerskin g_m_y_armgoon_02">Armenian Goon 2</p>
+            <p class="traineroption" data-action="playerskin g_m_m_armlieut_01">Armenian Lieutenant</p>
+            <p class="traineroption" data-action="playerskin mp_s_m_armoured_01">Armoured Van Security</p>
+            <p class="traineroption" data-action="playerskin s_m_m_armoured_01">Armoured Van Security</p>
+            <p class="traineroption" data-action="playerskin s_m_m_armoured_02">Armoured Van Security 2</p>
+            <p class="traineroption" data-action="playerskin s_m_y_armymech_01">Army Mechanic</p>
+            <p class="traineroption" data-action="playerskin cs_ashley">Ashley Butler (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_ashley">Ashley Butler (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_autopsy_01">Autopsy Tech</p>
+            <p class="traineroption" data-action="playerskin s_m_m_autoshop_01">Autoshop Worker</p>
+            <p class="traineroption" data-action="playerskin s_m_m_autoshop_02">Autoshop Worker 2</p>
+            <p class="traineroption" data-action="playerskin g_m_y_azteca_01">Azteca</p>
+            <p class="traineroption" data-action="playerskin u_m_y_babyd">Baby D</p>
+            <p class="traineroption" data-action="playerskin g_m_y_ballaeast_01">Ballas East Male</p>
+            <p class="traineroption" data-action="playerskin g_f_y_ballas_01">Ballas Female</p>
+            <p class="traineroption" data-action="playerskin csb_ballasog">Ballas OG</p>
+            <p class="traineroption" data-action="playerskin ig_ballasog">Ballas OG (IG)</p>
+            <p class="traineroption" data-action="playerskin g_m_y_ballaorig_01">Ballas Original Male (IG)</p>
+            <p class="traineroption" data-action="playerskin g_m_y_ballasout_01">Ballas South Male</p>
+            <p class="traineroption" data-action="playerskin cs_bankman">Bank Manager (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_bankman">Bank Manager (IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_m_bankman">Bank Manager Male</p>
+            <p class="traineroption" data-action="playerskin s_f_m_fembarber">Barber Female</p>
+            <p class="traineroption" data-action="playerskin s_m_y_barman_01">Barman</p>
+            <p class="traineroption" data-action="playerskin cs_barry">Barry (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_barry">Barry (IG)</p>
+            <p class="traineroption" data-action="playerskin s_f_y_bartender_01">Bartender</p>
+            <p class="traineroption" data-action="playerskin s_m_m_cntrybar_01">Bartender (Rural)</p>
+            <p class="traineroption" data-action="playerskin s_f_y_baywatch_01">Baywatch Female</p>
+            <p class="traineroption" data-action="playerskin s_m_y_baywatch_01">Baywatch Male</p>
+            <p class="traineroption" data-action="playerskin a_f_m_beach_01">Beach Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_beach_01">Beach Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_beach_02">Beach Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_musclbeac_01">Beach Muscle Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_musclbeac_02">Beach Muscle Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_o_beach_01">Beach Old Male</p>
+            <p class="traineroption" data-action="playerskin a_f_m_trampbeac_01">Beach Tramp Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_trampbeac_01">Beach Tramp Male</p>
+            <p class="traineroption" data-action="playerskin a_f_y_beach_01">Beach Young Female</p>
+            <p class="traineroption" data-action="playerskin a_m_y_beach_01">Beach Young Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_beach_02">Beach Young Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_beach_03">Beach Young Male 3</p>
+            <p class="traineroption" data-action="playerskin ig_benny">Benny</p>
+            <p class="traineroption" data-action="playerskin ig_bestmen">Best Man (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_beverly">Beverly Felton (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_beverly">Beverly Felton (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_m_bevhills_01">Beverly Hills Female</p>
+            <p class="traineroption" data-action="playerskin a_f_m_bevhills_02">Beverly Hills Female 2</p>
+            <p class="traineroption" data-action="playerskin a_m_m_bevhills_01">Beverly Hills Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_bevhills_02">Beverly Hills Male 2</p>
+            <p class="traineroption" data-action="playerskin a_f_y_bevhills_01">Beverly Hills Young Female</p>
+            <p class="traineroption" data-action="playerskin a_f_y_bevhills_02">Beverly Hills Young Female 2</p>
+            <p class="traineroption" data-action="playerskin a_f_y_bevhills_03">Beverly Hills Young Female 3</p>
+            <p class="traineroption" data-action="playerskin a_f_y_bevhills_04">Beverly Hills Young Female 4</p>
+            <p class="traineroption" data-action="playerskin a_m_y_bevhills_01">Beverly Hills Young Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_bevhills_02">Beverly Hills Young Male 2</p>
+            <p class="traineroption" data-action="playerskin cs_orleans">Bigfoot (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_orleans">Bigfoot (IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_m_bikehire_01">Bike Hire Guy</p>
+            <p class="traineroption" data-action="playerskin u_f_y_bikerchic">Biker Chic Female</p>
+            <p class="traineroption" data-action="playerskin s_m_y_blackops_01">Black Ops Soldier</p>
+            <p class="traineroption" data-action="playerskin s_m_y_blackops_02">Black Ops Soldier 2</p>
+            <p class="traineroption" data-action="playerskin s_m_y_blackops_03">Black Ops Soldier 3</p>
+            <p class="traineroption" data-action="playerskin a_m_y_stbla_01">Black Street Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_stbla_02">Black Street Male 2</p>
+            <p class="traineroption" data-action="playerskin a_f_m_bodybuild_01">Bodybuilder Female</p>
+            <p class="traineroption" data-action="playerskin s_m_m_bouncer_01">Bouncer</p>
+            <p class="traineroption" data-action="playerskin cs_brad">Brad (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_brad">Brad (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_bradcadaver">Brad's Cadaver (CS)</p>
+            <p class="traineroption" data-action="playerskin a_m_y_breakdance_01">Breakdancer Male</p>
+            <p class="traineroption" data-action="playerskin csb_bride">Bride</p>
+            <p class="traineroption" data-action="playerskin ig_bride">Bride (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_burgerdrug">Burger Drug Worker</p>
+            <p class="traineroption" data-action="playerskin u_m_y_burgerdrug_01">Burger Drug Worker</p>
+            <p class="traineroption" data-action="playerskin s_m_y_busboy_01">Busboy</p>
+            <p class="traineroption" data-action="playerskin a_m_y_busicas_01">Business Casual</p>
+            <p class="traineroption" data-action="playerskin a_f_m_business_02">Business Female 2</p>
+            <p class="traineroption" data-action="playerskin a_m_m_business_01">Business Male</p>
+            <p class="traineroption" data-action="playerskin a_f_y_business_01">Business Young Female</p>
+            <p class="traineroption" data-action="playerskin a_f_y_business_02">Business Young Female 2</p>
+            <p class="traineroption" data-action="playerskin a_f_y_business_03">Business Young Female 3</p>
+            <p class="traineroption" data-action="playerskin a_f_y_business_04">Business Young Female 4</p>
+            <p class="traineroption" data-action="playerskin a_m_y_business_01">Business Young Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_business_02">Business Young Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_business_03">Business Young Male 3</p>
+            <p class="traineroption" data-action="playerskin s_m_o_busker_01">Busker</p>
+            <p class="traineroption" data-action="playerskin csb_car3guy1">Car 3 Guy 1</p>
+            <p class="traineroption" data-action="playerskin ig_car3guy1">Car 3 Guy 1 (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_car3guy2">Car 3 Guy 2</p>
+            <p class="traineroption" data-action="playerskin ig_car3guy2">Car 3 Guy 2 (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_carbuyer">Car Buyer (CS)</p>
+            <p class="traineroption" data-action="playerskin cs_casey">Casey (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_casey">Casey (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_chef_01">Chef</p>
+            <p class="traineroption" data-action="playerskin csb_chef">Chef</p>
+            <p class="traineroption" data-action="playerskin csb_chef2">Chef (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_chef">Chef (IG)</p>
+            <p class="traineroption" data-action="playerskin ig_chef2">Chef (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_chemsec_01">Chemical Plant Security</p>
+            <p class="traineroption" data-action="playerskin g_m_m_chemwork_01">Chemical Plant Worker</p>
+            <p class="traineroption" data-action="playerskin g_m_m_chiboss_01">Chinese Boss</p>
+            <p class="traineroption" data-action="playerskin g_m_m_chigoon_01">Chinese Goon</p>
+            <p class="traineroption" data-action="playerskin csb_chin_goon">Chinese Goon</p>
+            <p class="traineroption" data-action="playerskin g_m_m_chigoon_02">Chinese Goon 2</p>
+            <p class="traineroption" data-action="playerskin g_m_m_chicold_01">Chinese Goon Older</p>
+            <p class="traineroption" data-action="playerskin u_m_y_chip">Chip</p>
+            <p class="traineroption" data-action="playerskin mp_m_claude_01">Claude Speed</p>
+            <p class="traineroption" data-action="playerskin ig_claypain">Clay Jackson (The Pain Giver) (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_clay">Clay Simons (The Lost) (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_clay">Clay Simons (The Lost) (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_cletus">Cletus</p>
+            <p class="traineroption" data-action="playerskin ig_cletus">Cletus (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_clown_01">Clown</p>
+            <p class="traineroption" data-action="playerskin s_m_y_construct_01">Construction Worker</p>
+            <p class="traineroption" data-action="playerskin s_m_y_construct_02">Construction Worker 2</p>
+            <p class="traineroption" data-action="playerskin csb_cop">Cop</p>
+            <p class="traineroption" data-action="playerskin s_f_y_cop_01">Cop Female</p>
+            <p class="traineroption" data-action="playerskin s_m_y_cop_01">Cop Male</p>
+            <p class="traineroption" data-action="playerskin u_f_m_corpse_01">Corpse Female</p>
+            <p class="traineroption" data-action="playerskin u_f_y_corpse_01">Corpse Young Female</p>
+            <p class="traineroption" data-action="playerskin u_f_y_corpse_02">Corpse Young Female 2</p>
+            <p class="traineroption" data-action="playerskin s_m_m_ccrew_01">Crew Member</p>
+            <p class="traineroption" data-action="playerskin cs_chrisformage">Cris Formage (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_chrisformage">Cris Formage (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_customer">Customer</p>
+            <p class="traineroption" data-action="playerskin a_m_y_cyclist_01">Cyclist Male</p>
+            <p class="traineroption" data-action="playerskin u_m_y_cyclist_01">Cyclist Male</p>
+            <p class="traineroption" data-action="playerskin cs_dale">Dale (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_dale">Dale (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_davenorton">Dave Norton (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_davenorton">Dave Norton (IG)</p>
+            <p class="traineroption" data-action="playerskin mp_f_deadhooker">Dead Hooker</p>
+            <p class="traineroption" data-action="playerskin s_m_y_dealer_01">Dealer</p>
+            <p class="traineroption" data-action="playerskin cs_debra">Debra (CS)</p>
+            <p class="traineroption" data-action="playerskin cs_denise">Denise (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_denise">Denise (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_denise_friend">Denise's Friend</p>
+            <p class="traineroption" data-action="playerskin cs_devin">Devin (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_devin">Devin (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_devinsec_01">Devin's Security</p>
+            <p class="traineroption" data-action="playerskin csb_popov">Dima Popov (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_popov">Dima Popov (IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_m_doa_01">DOA Man</p>
+            <p class="traineroption" data-action="playerskin s_m_m_dockwork_01">Dock Worker</p>
+            <p class="traineroption" data-action="playerskin s_m_y_dockwork_01">Dock Worker</p>
+            <p class="traineroption" data-action="playerskin s_m_m_doctor_01">Doctor</p>
+            <p class="traineroption" data-action="playerskin cs_dom">Dom Beasley (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_dom">Dom Beasley (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_doorman_01">Doorman</p>
+            <p class="traineroption" data-action="playerskin a_m_y_dhill_01">Downhill Cyclist</p>
+            <p class="traineroption" data-action="playerskin a_f_m_downtown_01">Downtown Female</p>
+            <p class="traineroption" data-action="playerskin a_m_y_downtown_01">Downtown Male</p>
+            <p class="traineroption" data-action="playerskin cs_drfriedlander">Dr. Friedlander (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_drfriedlander">Dr. Friedlander (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_y_scdressy_01">Dressy Female</p>
+            <p class="traineroption" data-action="playerskin s_m_y_dwservice_01">DW Airport Worker</p>
+            <p class="traineroption" data-action="playerskin s_m_y_dwservice_02">DW Airport Worker 2</p>
+            <p class="traineroption" data-action="playerskin a_f_m_eastsa_01">East SA Female</p>
+            <p class="traineroption" data-action="playerskin a_f_m_eastsa_02">East SA Female 2</p>
+            <p class="traineroption" data-action="playerskin a_m_m_eastsa_01">East SA Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_eastsa_02">East SA Male 2</p>
+            <p class="traineroption" data-action="playerskin a_f_y_eastsa_01">East SA Young Female</p>
+            <p class="traineroption" data-action="playerskin a_f_y_eastsa_02">East SA Young Female 2</p>
+            <p class="traineroption" data-action="playerskin a_f_y_eastsa_03">East SA Young Female 3</p>
+            <p class="traineroption" data-action="playerskin a_m_y_eastsa_01">East SA Young Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_eastsa_02">East SA Young Male 2</p>
+            <p class="traineroption" data-action="playerskin u_m_m_edtoh">Ed Toh</p>
+            <p class="traineroption" data-action="playerskin a_f_y_epsilon_01">Epsilon Female</p>
+            <p class="traineroption" data-action="playerskin a_m_y_epsilon_01">Epsilon Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_epsilon_02">Epsilon Male 2</p>
+            <p class="traineroption" data-action="playerskin cs_tomepsilon">Epsilon Tom (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_tomepsilon">Epsilon Tom (IG)</p>
+            <p class="traineroption" data-action="playerskin mp_m_exarmy_01">Ex-Army Male</p>
+            <p class="traineroption" data-action="playerskin u_m_y_militarybum">Ex-Mil Bum</p>
+            <p class="traineroption" data-action="playerskin cs_fabien">Fabien (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_fabien">Fabien (IG)</p>
+            <p class="traineroption" data-action="playerskin s_f_y_factory_01">Factory Worker Female</p>
+            <p class="traineroption" data-action="playerskin s_m_y_factory_01">Factory Worker Male</p>
+            <p class="traineroption" data-action="playerskin g_m_y_famca_01">Families CA Male</p>
+            <p class="traineroption" data-action="playerskin mp_m_famdd_01">Families DD Male</p>
+            <p class="traineroption" data-action="playerskin g_m_y_famdnf_01">Families DNF Male</p>
+            <p class="traineroption" data-action="playerskin g_f_y_families_01">Families Female</p>
+            <p class="traineroption" data-action="playerskin g_m_y_famfor_01">Families FOR Male</p>
+            <p class="traineroption" data-action="playerskin csb_ramp_gang">Families Gang Member?</p>
+            <p class="traineroption" data-action="playerskin ig_ramp_gang">Families Gang Member? (IG)</p>
+            <p class="traineroption" data-action="playerskin a_m_m_farmer_01">Farmer</p>
+            <p class="traineroption" data-action="playerskin a_f_m_fatbla_01">Fat Black Female</p>
+            <p class="traineroption" data-action="playerskin a_f_m_fatcult_01">Fat Cult Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_fatlatin_01">Fat Latino Male</p>
+            <p class="traineroption" data-action="playerskin a_f_m_fatwhite_01">Fat White Female</p>
+            <p class="traineroption" data-action="playerskin a_f_y_femaleagent">Female Agent</p>
+            <p class="traineroption" data-action="playerskin cs_mrk">Ferdinand Kerimov (Mr. K) (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_mrk">Ferdinand Kerimov (Mr. K) (IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_m_fibarchitect">FIB Architect</p>
+            <p class="traineroption" data-action="playerskin u_m_y_fibmugger_01">FIB Mugger</p>
+            <p class="traineroption" data-action="playerskin s_m_m_fiboffice_01">FIB Office Worker</p>
+            <p class="traineroption" data-action="playerskin s_m_m_fiboffice_02">FIB Office Worker 2</p>
+            <p class="traineroption" data-action="playerskin mp_m_fibsec_01">FIB Security</p>
+            <p class="traineroption" data-action="playerskin s_m_m_fibsec_01">FIB Security</p>
+            <p class="traineroption" data-action="playerskin cs_fbisuit_01">FIB Suit (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_fbisuit_01">FIB Suit (IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_o_finguru_01">Financial Guru</p>
+            <p class="traineroption" data-action="playerskin s_m_y_fireman_01">Fireman Male</p>
+            <p class="traineroption" data-action="playerskin a_f_y_fitness_01">Fitness Female</p>
+            <p class="traineroption" data-action="playerskin a_f_y_fitness_02">Fitness Female 2</p>
+            <p class="traineroption" data-action="playerskin cs_floyd">Floyd Hebert (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_floyd">Floyd Hebert (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_fos_rep">FOS Rep?</p>
+            <p class="traineroption" data-action="playerskin s_m_m_gaffer_01">Gaffer</p>
+            <p class="traineroption" data-action="playerskin s_m_y_garbage">Garbage Worker</p>
+            <p class="traineroption" data-action="playerskin s_m_m_gardener_01">Gardener</p>
+            <p class="traineroption" data-action="playerskin a_m_y_gay_01">Gay Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_gay_02">Gay Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_m_genfat_01">General Fat Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_genfat_02">General Fat Male 2</p>
+            <p class="traineroption" data-action="playerskin a_f_y_genhot_01">General Hot Young Female</p>
+            <p class="traineroption" data-action="playerskin a_f_o_genstreet_01">General Street Old Female</p>
+            <p class="traineroption" data-action="playerskin a_m_o_genstreet_01">General Street Old Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_genstreet_01">General Street Young Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_genstreet_02">General Street Young Male 2</p>
+            <p class="traineroption" data-action="playerskin csb_g">Gerald</p>
+            <p class="traineroption" data-action="playerskin u_m_m_glenstank_01">GLENSTANK? Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_golfer_01">Golfer Male</p>
+            <p class="traineroption" data-action="playerskin a_f_y_golfer_01">Golfer Young Female</p>
+            <p class="traineroption" data-action="playerskin a_m_y_golfer_01">Golfer Young Male</p>
+            <p class="traineroption" data-action="playerskin u_m_m_griff_01">Griff</p>
+            <p class="traineroption" data-action="playerskin s_m_y_grip_01">Grip</p>
+            <p class="traineroption" data-action="playerskin csb_groom">Groom</p>
+            <p class="traineroption" data-action="playerskin ig_groom">Groom (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_grove_str_dlr">Grove Street Dealer</p>
+            <p class="traineroption" data-action="playerskin cs_guadalope">Guadalope (CS)</p>
+            <p class="traineroption" data-action="playerskin u_m_y_guido_01">Guido</p>
+            <p class="traineroption" data-action="playerskin u_m_y_gunvend_01">Gun Vendor</p>
+            <p class="traineroption" data-action="playerskin cs_gurk">GURK? (CS)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_hairdress_01">Hairdresser Male</p>
+            <p class="traineroption" data-action="playerskin csb_hao">Hao</p>
+            <p class="traineroption" data-action="playerskin ig_hao">Hao (IG)</p>
+            <p class="traineroption" data-action="playerskin a_m_m_hasjew_01">Hasidic Jew Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_hasjew_01">Hasidic Jew Young Male</p>
+            <p class="traineroption" data-action="playerskin csb_ramp_hic">Hick</p>
+            <p class="traineroption" data-action="playerskin ig_ramp_hic">Hick (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_highsec_01">High Security</p>
+            <p class="traineroption" data-action="playerskin s_m_m_highsec_02">High Security 2</p>
+            <p class="traineroption" data-action="playerskin s_m_y_hwaycop_01">Highway Cop</p>
+            <p class="traineroption" data-action="playerskin a_f_y_hiker_01">Hiker Female</p>
+            <p class="traineroption" data-action="playerskin a_m_y_hiker_01">Hiker Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_hillbilly_01">Hillbilly Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_hillbilly_02">Hillbilly Male 2</p>
+            <p class="traineroption" data-action="playerskin a_f_y_hippie_01">Hippie Female</p>
+            <p class="traineroption" data-action="playerskin u_m_y_hippie_01">Hippie Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_hippy_01">Hippie Male</p>
+            <p class="traineroption" data-action="playerskin csb_ramp_hipster">Hipster</p>
+            <p class="traineroption" data-action="playerskin ig_ramp_hipster">Hipster (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_y_hipster_01">Hipster Female</p>
+            <p class="traineroption" data-action="playerskin a_f_y_hipster_02">Hipster Female 2</p>
+            <p class="traineroption" data-action="playerskin a_f_y_hipster_03">Hipster Female 3</p>
+            <p class="traineroption" data-action="playerskin a_f_y_hipster_04">Hipster Female 4</p>
+            <p class="traineroption" data-action="playerskin a_m_y_hipster_01">Hipster Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_hipster_02">Hipster Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_hipster_03">Hipster Male 3</p>
+            <p class="traineroption" data-action="playerskin s_f_y_hooker_01">Hooker</p>
+            <p class="traineroption" data-action="playerskin s_f_y_hooker_02">Hooker 2</p>
+            <p class="traineroption" data-action="playerskin s_f_y_hooker_03">Hooker 3</p>
+            <p class="traineroption" data-action="playerskin s_f_y_scrubs_01">Hospital Scrubs Female</p>
+            <p class="traineroption" data-action="playerskin u_f_y_hotposh_01">Hot Posh Female</p>
+            <p class="traineroption" data-action="playerskin csb_hugh">Hugh Welsh</p>
+            <p class="traineroption" data-action="playerskin cs_hunter">Hunter (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_hunter">Hunter (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_ciasec_01">IAA Security</p>
+            <p class="traineroption" data-action="playerskin u_m_y_imporage">Impotent Rage</p>
+            <p class="traineroption" data-action="playerskin csb_imran">Imran Shinowa</p>
+            <p class="traineroption" data-action="playerskin a_m_m_indian_01">Indian Male</p>
+            <p class="traineroption" data-action="playerskin a_f_o_indian_01">Indian Old Female</p>
+            <p class="traineroption" data-action="playerskin a_f_y_indian_01">Indian Young Female</p>
+            <p class="traineroption" data-action="playerskin a_m_y_indian_01">Indian Young Male</p>
+            <p class="traineroption" data-action="playerskin u_f_y_comjane">Jane</p>
+            <p class="traineroption" data-action="playerskin cs_janet">Janet (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_janet">Janet (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_janitor">Janitor</p>
+            <p class="traineroption" data-action="playerskin s_m_m_janitor">Janitor</p>
+            <p class="traineroption" data-action="playerskin ig_jay_norris">Jay Norris (IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_o_taphillbilly">Jesco White (Tapdancing Hillbilly)</p>
+            <p class="traineroption" data-action="playerskin u_m_m_jesus_01">Jesus</p>
+            <p class="traineroption" data-action="playerskin a_m_y_jetski_01">Jetskier</p>
+            <p class="traineroption" data-action="playerskin hc_driver">Jewel Heist Driver</p>
+            <p class="traineroption" data-action="playerskin hc_gunman">Jewel Heist Gunman</p>
+            <p class="traineroption" data-action="playerskin hc_hacker">Jewel Heist Hacker</p>
+            <p class="traineroption" data-action="playerskin u_m_m_jewelthief">Jewel Thief</p>
+            <p class="traineroption" data-action="playerskin u_f_y_jewelass_01">Jeweller Assistant</p>
+            <p class="traineroption" data-action="playerskin cs_jewelass">Jeweller Assistant (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_jewelass">Jeweller Assistant (IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_m_jewelsec_01">Jeweller Security</p>
+            <p class="traineroption" data-action="playerskin cs_jimmyboston">Jimmy Boston (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_jimmyboston">Jimmy Boston (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_jimmydisanto">Jimmy De Santa (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_jimmydisanto">Jimmy De Santa (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_y_runner_01">Jogger Female</p>
+            <p class="traineroption" data-action="playerskin a_m_y_runner_01">Jogger Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_runner_02">Jogger Male 2</p>
+            <p class="traineroption" data-action="playerskin mp_m_marston_01">John Marston</p>
+            <p class="traineroption" data-action="playerskin cs_johnnyklebitz">Johnny Klebitz (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_johnnyklebitz">Johnny Klebitz (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_josef">Josef (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_josef">Josef (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_josh">Josh (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_josh">Josh (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_y_juggalo_01">Juggalo Female</p>
+            <p class="traineroption" data-action="playerskin a_m_y_juggalo_01">Juggalo Male</p>
+            <p class="traineroption" data-action="playerskin u_m_y_justin">Justin</p>
+            <p class="traineroption" data-action="playerskin cs_karen_daniels">Karen Daniels (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_karen_daniels">Karen Daniels (IG)</p>
+            <p class="traineroption" data-action="playerskin ig_kerrymcintosh">Kerry McIntosh (IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_y_baygor">Kifflom Guy</p>
+            <p class="traineroption" data-action="playerskin g_m_m_korboss_01">Korean Boss</p>
+            <p class="traineroption" data-action="playerskin a_f_m_ktown_01">Korean Female</p>
+            <p class="traineroption" data-action="playerskin a_f_m_ktown_02">Korean Female 2</p>
+            <p class="traineroption" data-action="playerskin g_m_y_korlieut_01">Korean Lieutenant</p>
+            <p class="traineroption" data-action="playerskin a_m_m_ktown_01">Korean Male</p>
+            <p class="traineroption" data-action="playerskin a_f_o_ktown_01">Korean Old Female</p>
+            <p class="traineroption" data-action="playerskin a_m_o_ktown_01">Korean Old Male</p>
+            <p class="traineroption" data-action="playerskin g_m_y_korean_01">Korean Young Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_ktown_01">Korean Young Male</p>
+            <p class="traineroption" data-action="playerskin g_m_y_korean_02">Korean Young Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_ktown_02">Korean Young Male 2</p>
+            <p class="traineroption" data-action="playerskin cs_lamardavis">Lamar Davis (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_lamardavis">Lamar Davis (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_lathandy_01">Latino Handyman Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_stlat_02">Latino Street Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_stlat_01">Latino Street Young Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_latino_01">Latino Young Male</p>
+            <p class="traineroption" data-action="playerskin cs_lazlow">Lazlow (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_lazlow">Lazlow (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_lestercrest">Lester Crest (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_lestercrest">Lester Crest (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_lifeinvad_01">Life Invader (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_lifeinvad_01">Life Invader (IG)</p>
+            <p class="traineroption" data-action="playerskin ig_lifeinvad_02">Life Invader 2 (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_lifeinvad_01">Life Invader Male</p>
+            <p class="traineroption" data-action="playerskin s_m_m_linecook">Line Cook</p>
+            <p class="traineroption" data-action="playerskin u_m_m_willyfist">Love Fist Willy</p>
+            <p class="traineroption" data-action="playerskin s_m_m_lsmetro_01">LS Metro Worker Male</p>
+            <p class="traineroption" data-action="playerskin cs_magenta">Magenta (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_magenta">Magenta (IG)</p>
+            <p class="traineroption" data-action="playerskin s_f_m_maid_01">Maid</p>
+            <p class="traineroption" data-action="playerskin a_m_m_malibu_01">Malibu Male</p>
+            <p class="traineroption" data-action="playerskin u_m_y_mani">Mani</p>
+            <p class="traineroption" data-action="playerskin cs_manuel">Manuel (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_manuel">Manuel (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_mariachi_01">Mariachi</p>
+            <p class="traineroption" data-action="playerskin csb_ramp_marine">Marine</p>
+            <p class="traineroption" data-action="playerskin s_m_m_marine_01">Marine</p>
+            <p class="traineroption" data-action="playerskin s_m_m_marine_02">Marine 2</p>
+            <p class="traineroption" data-action="playerskin s_m_y_marine_01">Marine Young</p>
+            <p class="traineroption" data-action="playerskin s_m_y_marine_02">Marine Young 2</p>
+            <p class="traineroption" data-action="playerskin s_m_y_marine_03">Marine Young 3</p>
+            <p class="traineroption" data-action="playerskin u_m_m_markfost">Mark Fostenburg</p>
+            <p class="traineroption" data-action="playerskin cs_marnie">Marnie Allen (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_marnie">Marnie Allen (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_martinmadrazo">Martin Madrazo (CS)</p>
+            <p class="traineroption" data-action="playerskin cs_maryann">Mary-Ann Quinn (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_maryann">Mary-Ann Quinn (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_maude">Maude</p>
+            <p class="traineroption" data-action="playerskin ig_maude">Maude (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_rashcosvki">Maxim Rashkovsky (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_rashcosvki">Maxim Rashkovsky (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_xmech_01">Mechanic</p>
+            <p class="traineroption" data-action="playerskin s_m_y_xmech_02">Mechanic 2</p>
+            <p class="traineroption" data-action="playerskin csb_mweather">Merryweather Merc</p>
+            <p class="traineroption" data-action="playerskin a_m_y_methhead_01">Meth Addict</p>
+            <p class="traineroption" data-action="playerskin csb_ramp_mex">Mexican</p>
+            <p class="traineroption" data-action="playerskin ig_ramp_mex">Mexican (IG)</p>
+            <p class="traineroption" data-action="playerskin g_m_m_mexboss_01">Mexican Boss</p>
+            <p class="traineroption" data-action="playerskin g_m_m_mexboss_02">Mexican Boss 2</p>
+            <p class="traineroption" data-action="playerskin g_m_y_mexgang_01">Mexican Gang Member</p>
+            <p class="traineroption" data-action="playerskin g_m_y_mexgoon_01">Mexican Goon</p>
+            <p class="traineroption" data-action="playerskin g_m_y_mexgoon_02">Mexican Goon 2</p>
+            <p class="traineroption" data-action="playerskin g_m_y_mexgoon_03">Mexican Goon 3</p>
+            <p class="traineroption" data-action="playerskin a_m_m_mexlabor_01">Mexican Labourer</p>
+            <p class="traineroption" data-action="playerskin a_m_m_mexcntry_01">Mexican Rural</p>
+            <p class="traineroption" data-action="playerskin a_m_y_mexthug_01">Mexican Thug</p>
+            <p class="traineroption" data-action="playerskin cs_michelle">Michelle (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_michelle">Michelle (IG)</p>
+            <p class="traineroption" data-action="playerskin s_f_y_migrant_01">Migrant Female</p>
+            <p class="traineroption" data-action="playerskin s_m_m_migrant_01">Migrant Male</p>
+            <p class="traineroption" data-action="playerskin cs_milton">Milton McIlroy (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_milton">Milton McIlroy (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_mime">Mime Artist</p>
+            <p class="traineroption" data-action="playerskin cs_joeminuteman">Minuteman Joe (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_joeminuteman">Minuteman Joe (IG)</p>
+            <p class="traineroption" data-action="playerskin u_f_m_miranda">Miranda</p>
+            <p class="traineroption" data-action="playerskin u_f_y_mistress">Mistress</p>
+            <p class="traineroption" data-action="playerskin mp_f_misty_01">Misty</p>
+            <p class="traineroption" data-action="playerskin cs_molly">Molly (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_molly">Molly (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_money">Money Man (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_money">Money Man (IG)</p>
+            <p class="traineroption" data-action="playerskin a_m_y_motox_01">Motocross Biker</p>
+            <p class="traineroption" data-action="playerskin a_m_y_motox_02">Motocross Biker 2</p>
+            <p class="traineroption" data-action="playerskin s_m_m_movspace_01">Movie Astronaut</p>
+            <p class="traineroption" data-action="playerskin u_m_m_filmdirector">Movie Director</p>
+            <p class="traineroption" data-action="playerskin s_f_y_movprem_01">Movie Premiere Female</p>
+            <p class="traineroption" data-action="playerskin cs_movpremf_01">Movie Premiere Female (CS)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_movprem_01">Movie Premiere Male</p>
+            <p class="traineroption" data-action="playerskin cs_movpremmale">Movie Premiere Male (CS)</p>
+            <p class="traineroption" data-action="playerskin u_f_o_moviestar">Movie Star Female</p>
+            <p class="traineroption" data-action="playerskin cs_mrsphillips">Mrs. Phillips (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_mrsphillips">Mrs. Phillips (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_mrs_thornhill">Mrs. Thornhill (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_mrs_thornhill">Mrs. Thornhill (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_natalia">Natalia (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_natalia">Natalia (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_nervousron">Nervous Ron (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_nervousron">Nervous Ron (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_nigel">Nigel (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_nigel">Nigel (IG)</p>
+            <p class="traineroption" data-action="playerskin mp_m_niko_01">Niko Bellic</p>
+            <p class="traineroption" data-action="playerskin a_m_m_og_boss_01">OG Boss</p>
+            <p class="traineroption" data-action="playerskin cs_old_man1a">Old Man 1 (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_old_man1a">Old Man 1 (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_old_man2">Old Man 2 (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_old_man2">Old Man 2 (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_omega">Omega (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_omega">Omega (IG)</p>
+            <p class="traineroption" data-action="playerskin ig_oneil">O'Neil Brothers (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_ortega">Ortega</p>
+            <p class="traineroption" data-action="playerskin ig_ortega">Ortega (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_oscar">Oscar</p>
+            <p class="traineroption" data-action="playerskin csb_paige">Paige Harris (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_paige">Paige Harris (IG)</p>
+            <p class="traineroption" data-action="playerskin a_m_m_paparazzi_01">Paparazzi Male</p>
+            <p class="traineroption" data-action="playerskin u_m_y_paparazzi">Paparazzi Young Male</p>
+            <p class="traineroption" data-action="playerskin s_m_m_paramedic_01">Paramedic</p>
+            <p class="traineroption" data-action="playerskin u_m_m_partytarget">Party Target</p>
+            <p class="traineroption" data-action="playerskin u_m_y_party_01">Partygoer</p>
+            <p class="traineroption" data-action="playerskin cs_patricia">Patricia (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_patricia">Patricia (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_pestcont_01">Pest Control</p>
+            <p class="traineroption" data-action="playerskin cs_dreyfuss">Peter Dreyfuss (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_dreyfuss">Peter Dreyfuss (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_pilot_01">Pilot</p>
+            <p class="traineroption" data-action="playerskin s_m_y_pilot_01">Pilot</p>
+            <p class="traineroption" data-action="playerskin s_m_m_pilot_02">Pilot 2</p>
+            <p class="traineroption" data-action="playerskin u_m_y_pogo_01">Pogo the Monkey</p>
+            <p class="traineroption" data-action="playerskin a_m_m_polynesian_01">Polynesian</p>
+            <p class="traineroption" data-action="playerskin g_m_y_pologoon_01">Polynesian Goon</p>
+            <p class="traineroption" data-action="playerskin g_m_y_pologoon_02">Polynesian Goon 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_polynesian_01">Polynesian Young</p>
+            <p class="traineroption" data-action="playerskin u_f_y_poppymich">Poppy Mitchell</p>
+            <p class="traineroption" data-action="playerskin csb_porndudes">Porn Dude</p>
+            <p class="traineroption" data-action="playerskin s_m_m_postal_01">Postal Worker Male</p>
+            <p class="traineroption" data-action="playerskin s_m_m_postal_02">Postal Worker Male 2</p>
+            <p class="traineroption" data-action="playerskin cs_priest">Priest (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_priest">Priest (IG)</p>
+            <p class="traineroption" data-action="playerskin u_f_y_princess">Princess</p>
+            <p class="traineroption" data-action="playerskin s_m_m_prisguard_01">Prison Guard</p>
+            <p class="traineroption" data-action="playerskin s_m_y_prisoner_01">Prisoner</p>
+            <p class="traineroption" data-action="playerskin u_m_y_prisoner_01">Prisoner</p>
+            <p class="traineroption" data-action="playerskin s_m_y_prismuscl_01">Prisoner (Muscular)</p>
+            <p class="traineroption" data-action="playerskin u_m_y_proldriver_01">Prologue Driver</p>
+            <p class="traineroption" data-action="playerskin csb_prologuedriver">Prologue Driver</p>
+            <p class="traineroption" data-action="playerskin a_f_m_prolhost_01">Prologue Host Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_prolhost_01">Prologue Host Male</p>
+            <p class="traineroption" data-action="playerskin u_f_o_prolhost_01">Prologue Host Old Female</p>
+            <p class="traineroption" data-action="playerskin u_f_m_promourn_01">Prologue Mourner Female</p>
+            <p class="traineroption" data-action="playerskin u_m_m_promourn_01">Prologue Mourner Male</p>
+            <p class="traineroption" data-action="playerskin csb_prolsec">Prologue Security</p>
+            <p class="traineroption" data-action="playerskin u_m_m_prolsec_01">Prologue Security</p>
+            <p class="traineroption" data-action="playerskin cs_prolsec_02">Prologue Security 2 (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_prolsec_02">Prologue Security 2 (IG)</p>
+            <p class="traineroption" data-action="playerskin mp_g_m_pros_01">PROS?</p>
+            <p class="traineroption" data-action="playerskin s_f_y_ranger_01">Ranger Female</p>
+            <p class="traineroption" data-action="playerskin s_m_y_ranger_01">Ranger Male</p>
+            <p class="traineroption" data-action="playerskin csb_reporter">Reporter</p>
+            <p class="traineroption" data-action="playerskin u_m_y_rsranger_01">Republican Space Ranger</p>
+            <p class="traineroption" data-action="playerskin u_m_m_rivalpap">Rival Paparazzo</p>
+            <p class="traineroption" data-action="playerskin a_m_y_roadcyc_01">Road Cyclist</p>
+            <p class="traineroption" data-action="playerskin s_m_y_robber_01">Robber</p>
+            <p class="traineroption" data-action="playerskin csb_roccopelosi">Rocco Pelosi</p>
+            <p class="traineroption" data-action="playerskin ig_roccopelosi">Rocco Pelosi (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_y_rurmeth_01">Rural Meth Addict Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_rurmeth_01">Rural Meth Addict Male</p>
+            <p class="traineroption" data-action="playerskin cs_russiandrunk">Russian Drunk (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_russiandrunk">Russian Drunk (IG)</p>
+            <p class="traineroption" data-action="playerskin s_f_m_shop_high">Sales Assistant (High-End)</p>
+            <p class="traineroption" data-action="playerskin s_f_y_shop_low">Sales Assistant (Low-End)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_shop_mask">Sales Assistant (Mask Stall)</p>
+            <p class="traineroption" data-action="playerskin s_f_y_shop_mid">Sales Assistant (Mid-Price)</p>
+            <p class="traineroption" data-action="playerskin a_f_m_salton_01">Salton Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_salton_01">Salton Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_salton_02">Salton Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_m_salton_03">Salton Male 3</p>
+            <p class="traineroption" data-action="playerskin a_m_m_salton_04">Salton Male 4</p>
+            <p class="traineroption" data-action="playerskin a_f_o_salton_01">Salton Old Female</p>
+            <p class="traineroption" data-action="playerskin a_m_o_salton_01">Salton Old Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_salton_01">Salton Young Male</p>
+            <p class="traineroption" data-action="playerskin g_m_y_salvaboss_01">Salvadoran Boss</p>
+            <p class="traineroption" data-action="playerskin g_m_y_salvagoon_01">Salvadoran Goon</p>
+            <p class="traineroption" data-action="playerskin g_m_y_salvagoon_02">Salvadoran Goon 2</p>
+            <p class="traineroption" data-action="playerskin g_m_y_salvagoon_03">Salvadoran Goon 3</p>
+            <p class="traineroption" data-action="playerskin s_m_m_scientist_01">Scientist</p>
+            <p class="traineroption" data-action="playerskin csb_screen_writer">Screenwriter</p>
+            <p class="traineroption" data-action="playerskin ig_screen_writer">Screenwriter (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_security_01">Security Guard</p>
+            <p class="traineroption" data-action="playerskin s_f_y_sheriff_01">Sheriff Female</p>
+            <p class="traineroption" data-action="playerskin s_m_y_sheriff_01">Sheriff Male</p>
+            <p class="traineroption" data-action="playerskin mp_m_shopkeep_01">Shopkeeper</p>
+            <p class="traineroption" data-action="playerskin cs_siemonyetarian">Simeon Yetarian (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_siemonyetarian">Simeon Yetarian (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_y_skater_01">Skater Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_skater_01">Skater Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_skater_01">Skater Young Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_skater_02">Skater Young Male 2</p>
+            <p class="traineroption" data-action="playerskin a_f_m_skidrow_01">Skid Row Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_skidrow_01">Skid Row Male</p>
+            <p class="traineroption" data-action="playerskin s_m_m_snowcop_01">Snow Cop Male</p>
+            <p class="traineroption" data-action="playerskin cs_solomon">Solomon Richards (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_solomon">Solomon Richards (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_m_soucent_01">South Central Female</p>
+            <p class="traineroption" data-action="playerskin a_f_m_soucent_02">South Central Female 2</p>
+            <p class="traineroption" data-action="playerskin a_m_m_socenlat_01">South Central Latino Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_soucent_01">South Central Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_soucent_02">South Central Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_m_soucent_03">South Central Male 3</p>
+            <p class="traineroption" data-action="playerskin a_m_m_soucent_04">South Central Male 4</p>
+            <p class="traineroption" data-action="playerskin a_f_m_soucentmc_01">South Central MC Female</p>
+            <p class="traineroption" data-action="playerskin a_f_o_soucent_01">South Central Old Female</p>
+            <p class="traineroption" data-action="playerskin a_f_o_soucent_02">South Central Old Female 2</p>
+            <p class="traineroption" data-action="playerskin a_m_o_soucent_01">South Central Old Male</p>
+            <p class="traineroption" data-action="playerskin a_m_o_soucent_02">South Central Old Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_o_soucent_03">South Central Old Male 3</p>
+            <p class="traineroption" data-action="playerskin a_f_y_soucent_01">South Central Young Female</p>
+            <p class="traineroption" data-action="playerskin a_f_y_soucent_02">South Central Young Female 2</p>
+            <p class="traineroption" data-action="playerskin a_f_y_soucent_03">South Central Young Female 3</p>
+            <p class="traineroption" data-action="playerskin a_m_y_soucent_01">South Central Young Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_soucent_02">South Central Young Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_soucent_03">South Central Young Male 3</p>
+            <p class="traineroption" data-action="playerskin a_m_y_soucent_04">South Central Young Male 4</p>
+            <p class="traineroption" data-action="playerskin u_m_y_sbike">Sports Biker</p>
+            <p class="traineroption" data-action="playerskin u_m_m_spyactor">Spy Actor</p>
+            <p class="traineroption" data-action="playerskin u_f_y_spyactress">Spy Actress</p>
+            <p class="traineroption" data-action="playerskin u_m_y_staggrm_01">Stag Party Groom</p>
+            <p class="traineroption" data-action="playerskin cs_stevehains">Steve Haines (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_stevehains">Steve Haines (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_strperf_01">Street Performer</p>
+            <p class="traineroption" data-action="playerskin s_m_m_strpreach_01">Street Preacher</p>
+            <p class="traineroption" data-action="playerskin g_m_y_strpunk_01">Street Punk</p>
+            <p class="traineroption" data-action="playerskin g_m_y_strpunk_02">Street Punk 2</p>
+            <p class="traineroption" data-action="playerskin s_m_m_strvend_01">Street Vendor</p>
+            <p class="traineroption" data-action="playerskin s_m_y_strvend_01">Street Vendor Young</p>
+            <p class="traineroption" data-action="playerskin cs_stretch">Stretch (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_stretch">Stretch (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_stripper_01">Stripper</p>
+            <p class="traineroption" data-action="playerskin s_f_y_stripper_01">Stripper</p>
+            <p class="traineroption" data-action="playerskin csb_stripper_02">Stripper 2</p>
+            <p class="traineroption" data-action="playerskin s_f_y_stripper_02">Stripper 2</p>
+            <p class="traineroption" data-action="playerskin s_f_y_stripperlite">Stripper Lite</p>
+            <p class="traineroption" data-action="playerskin mp_f_stripperlite">Stripper Lite</p>
+            <p class="traineroption" data-action="playerskin a_m_y_sunbathe_01">Sunbather Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_surfer_01">Surfer</p>
+            <p class="traineroption" data-action="playerskin s_m_y_swat_01">SWAT</p>
+            <p class="traineroption" data-action="playerskin s_f_m_sweatshop_01">Sweatshop Worker</p>
+            <p class="traineroption" data-action="playerskin s_f_y_sweatshop_01">Sweatshop Worker Young</p>
+            <p class="traineroption" data-action="playerskin ig_talina">Talina (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_tanisha">Tanisha (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_tanisha">Tanisha (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_taocheng">Tao Cheng (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_taocheng">Tao Cheng (IG)</p>
+            <p class="traineroption" data-action="playerskin cs_taostranslator">Tao's Translator (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_taostranslator">Tao's Translator (IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_y_tattoo_01">Tattoo Artist</p>
+            <p class="traineroption" data-action="playerskin cs_tenniscoach">Tennis Coach (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_tenniscoach">Tennis Coach (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_y_tennis_01">Tennis Player Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_tennis_01">Tennis Player Male</p>
+            <p class="traineroption" data-action="playerskin cs_terry">Terry (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_terry">Terry (IG)</p>
+            <p class="traineroption" data-action="playerskin g_f_y_lost_01">The Lost MC Female</p>
+            <p class="traineroption" data-action="playerskin g_m_y_lost_01">The Lost MC Male</p>
+            <p class="traineroption" data-action="playerskin g_m_y_lost_02">The Lost MC Male 2</p>
+            <p class="traineroption" data-action="playerskin g_m_y_lost_03">The Lost MC Male 3</p>
+            <p class="traineroption" data-action="playerskin cs_tom">Tom (CS)</p>
+            <p class="traineroption" data-action="playerskin csb_tonya">Tonya</p>
+            <p class="traineroption" data-action="playerskin ig_tonya">Tonya (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_y_topless_01">Topless</p>
+            <p class="traineroption" data-action="playerskin a_f_m_tourist_01">Tourist Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_tourist_01">Tourist Male</p>
+            <p class="traineroption" data-action="playerskin a_f_y_tourist_01">Tourist Young Female</p>
+            <p class="traineroption" data-action="playerskin a_f_y_tourist_02">Tourist Young Female 2</p>
+            <p class="traineroption" data-action="playerskin cs_tracydisanto">Tracey De Santa (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_tracydisanto">Tracey De Santa (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_trafficwarden">Traffic Warden</p>
+            <p class="traineroption" data-action="playerskin ig_trafficwarden">Traffic Warden (IG)</p>
+            <p class="traineroption" data-action="playerskin a_f_m_tramp_01">Tramp Female</p>
+            <p class="traineroption" data-action="playerskin a_m_m_tramp_01">Tramp Male</p>
+            <p class="traineroption" data-action="playerskin u_m_o_tramp_01">Tramp Old Male</p>
+            <p class="traineroption" data-action="playerskin a_m_o_tramp_01">Tramp Old Male</p>
+            <p class="traineroption" data-action="playerskin s_m_m_gentransport">Transport Worker Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_tranvest_01">Transvestite Male</p>
+            <p class="traineroption" data-action="playerskin a_m_m_tranvest_02">Transvestite Male 2</p>
+            <p class="traineroption" data-action="playerskin s_m_m_trucker_01">Trucker Male</p>
+            <p class="traineroption" data-action="playerskin ig_tylerdix">Tyler Dixon (IG)</p>
+            <p class="traineroption" data-action="playerskin csb_undercover">Undercover Cop</p>
+            <p class="traineroption" data-action="playerskin cs_paper">United Paper Man (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_paper">United Paper Man (IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_m_ups_01">UPS Driver</p>
+            <p class="traineroption" data-action="playerskin s_m_m_ups_02">UPS Driver 2</p>
+            <p class="traineroption" data-action="playerskin s_m_y_uscg_01">US Coastguard</p>
+            <p class="traineroption" data-action="playerskin g_f_y_vagos_01">Vagos Female</p>
+            <p class="traineroption" data-action="playerskin csb_vagspeak">Vagos Male (CS)</p>
+            <p class="traineroption" data-action="playerskin ig_vagspeak">Vagos Male (IG)</p>
+            <p class="traineroption" data-action="playerskin mp_m_g_vagfun_01">Vagos Male 2</p>
+            <p class="traineroption" data-action="playerskin s_m_y_valet_01">Valet</p>
+            <p class="traineroption" data-action="playerskin a_m_y_beachvesp_01">Vespucci Beach Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_beachvesp_02">Vespucci Beach Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_vindouche_01">Vinewood Douche</p>
+            <p class="traineroption" data-action="playerskin a_f_y_vinewood_01">Vinewood Female</p>
+            <p class="traineroption" data-action="playerskin a_f_y_vinewood_02">Vinewood Female 2</p>
+            <p class="traineroption" data-action="playerskin a_f_y_vinewood_03">Vinewood Female 3</p>
+            <p class="traineroption" data-action="playerskin a_f_y_vinewood_04">Vinewood Female 4</p>
+            <p class="traineroption" data-action="playerskin a_m_y_vinewood_01">Vinewood Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_vinewood_02">Vinewood Male 2</p>
+            <p class="traineroption" data-action="playerskin a_m_y_vinewood_03">Vinewood Male 3</p>
+            <p class="traineroption" data-action="playerskin a_m_y_vinewood_04">Vinewood Male 4</p>
+            <p class="traineroption" data-action="playerskin cs_wade">Wade(CS)</p>
+            <p class="traineroption" data-action="playerskin ig_wade">Wade(IG)</p>
+            <p class="traineroption" data-action="playerskin s_m_y_waiter_01">Waiter</p>
+            <p class="traineroption" data-action="playerskin cs_chengsr">Wei Cheng(CS)</p>
+            <p class="traineroption" data-action="playerskin ig_chengsr">Wei Cheng(IG)</p>
+            <p class="traineroption" data-action="playerskin a_m_y_stwhi_01">White Street Male</p>
+            <p class="traineroption" data-action="playerskin a_m_y_stwhi_02">White Street Male 2</p>
+            <p class="traineroption" data-action="playerskin s_m_y_winclean_01">Window Cleaner</p>
+            <p class="traineroption" data-action="playerskin a_f_y_yoga_01">Yoga Female</p>
+            <p class="traineroption" data-action="playerskin a_m_y_yoga_01">Yoga Male</p>
+            <p class="traineroption" data-action="playerskin cs_zimbor">Zimbor(CS)</p>
+            <p class="traineroption" data-action="playerskin ig_zimbor">Zimbor(IG)</p>
+            <p class="traineroption" data-action="playerskin u_m_y_zombie_01">Zombie</p>
+        </div>
+        <!-- Teleport menu -->
+        <div id="teleportmenu" data-parent="mainmenu">
+            <p class="traineroption" data-action="coords">Show Coords</p>
+            <p class="traineroption" data-sub="teleportplayermenu">To Player</p>
+            <p class="traineroption" data-action="telelastcar">To Last Vehicle</p>
+            <p class="traineroption" data-action="teleport -1075,-2915,15">LSIA Airport</p>
+        </div>
+        <!-- Teleport to Player menu -->
+        <div id="teleportplayermenu" data-parent="teleportmenu">
+            <p class="traineroption" data-action="teleplayer 1">Player 1</p>
+            <p class="traineroption" data-action="teleplayer 2">Player 2</p>
+            <p class="traineroption" data-action="teleplayer 3">Player 3</p>
+            <p class="traineroption" data-action="teleplayer 4">Player 4</p>
+            <p class="traineroption" data-action="teleplayer 5">Player 5</p>
+            <p class="traineroption" data-action="teleplayer 6">Player 6</p>
+            <p class="traineroption" data-action="teleplayer 7">Player 7</p>
+            <p class="traineroption" data-action="teleplayer 8">Player 8</p>
+            <p class="traineroption" data-action="teleplayer 9">Player 9</p>
+            <p class="traineroption" data-action="teleplayer 10">Player 10</p>
+            <p class="traineroption" data-action="teleplayer 11">Player 11</p>
+            <p class="traineroption" data-action="teleplayer 12">Player 12</p>
+            <p class="traineroption" data-action="teleplayer 13">Player 13</p>
+            <p class="traineroption" data-action="teleplayer 14">Player 14</p>
+            <p class="traineroption" data-action="teleplayer 15">Player 15</p>
+            <p class="traineroption" data-action="teleplayer 16">Player 16</p>
+            <p class="traineroption" data-action="teleplayer 17">Player 17</p>
+            <p class="traineroption" data-action="teleplayer 18">Player 18</p>
+            <p class="traineroption" data-action="teleplayer 19">Player 19</p>
+            <p class="traineroption" data-action="teleplayer 20">Player 20</p>
+            <p class="traineroption" data-action="teleplayer 21">Player 21</p>
+            <p class="traineroption" data-action="teleplayer 22">Player 22</p>
+            <p class="traineroption" data-action="teleplayer 23">Player 23</p>
+            <p class="traineroption" data-action="teleplayer 24">Player 24</p>
+            <p class="traineroption" data-action="teleplayer 25">Player 25</p>
+            <p class="traineroption" data-action="teleplayer 26">Player 26</p>
+            <p class="traineroption" data-action="teleplayer 27">Player 27</p>
+            <p class="traineroption" data-action="teleplayer 28">Player 28</p>
+            <p class="traineroption" data-action="teleplayer 29">Player 29</p>
+            <p class="traineroption" data-action="teleplayer 30">Player 30</p>
+            <p class="traineroption" data-action="teleplayer 31">Player 31</p>
+            <p class="traineroption" data-action="teleplayer 32">Player 32</p>
+            <p class="traineroption" data-action="teleplayer 33">Player 33</p>
+            <p class="traineroption" data-action="teleplayer 34">Player 34</p>
+            <p class="traineroption" data-action="teleplayer 35">Player 35</p>
+            <p class="traineroption" data-action="teleplayer 36">Player 36</p>
+            <p class="traineroption" data-action="teleplayer 37">Player 37</p>
+            <p class="traineroption" data-action="teleplayer 38">Player 38</p>
+            <p class="traineroption" data-action="teleplayer 39">Player 39</p>
+            <p class="traineroption" data-action="teleplayer 40">Player 40</p>
+            <p class="traineroption" data-action="teleplayer 41">Player 41</p>
+            <p class="traineroption" data-action="teleplayer 42">Player 42</p>
+            <p class="traineroption" data-action="teleplayer 43">Player 43</p>
+            <p class="traineroption" data-action="teleplayer 44">Player 44</p>
+            <p class="traineroption" data-action="teleplayer 45">Player 45</p>
+            <p class="traineroption" data-action="teleplayer 46">Player 46</p>
+            <p class="traineroption" data-action="teleplayer 47">Player 47</p>
+            <p class="traineroption" data-action="teleplayer 48">Player 48</p>
+            <p class="traineroption" data-action="teleplayer 49">Player 49</p>
+            <p class="traineroption" data-action="teleplayer 50">Player 50</p>
+            <p class="traineroption" data-action="teleplayer 51">Player 51</p>
+            <p class="traineroption" data-action="teleplayer 52">Player 52</p>
+            <p class="traineroption" data-action="teleplayer 53">Player 53</p>
+            <p class="traineroption" data-action="teleplayer 54">Player 54</p>
+            <p class="traineroption" data-action="teleplayer 55">Player 55</p>
+            <p class="traineroption" data-action="teleplayer 56">Player 56</p>
+            <p class="traineroption" data-action="teleplayer 57">Player 57</p>
+            <p class="traineroption" data-action="teleplayer 58">Player 58</p>
+            <p class="traineroption" data-action="teleplayer 59">Player 59</p>
+            <p class="traineroption" data-action="teleplayer 60">Player 60</p>
+            <p class="traineroption" data-action="teleplayer 61">Player 61</p>
+            <p class="traineroption" data-action="teleplayer 62">Player 62</p>
+            <p class="traineroption" data-action="teleplayer 63">Player 63</p>
+            <p class="traineroption" data-action="teleplayer 64">Player 64</p>
+        </div>
+        <!-- Vehicles menu -->
+        <div id="vehiclesmenu" data-parent="mainmenu">
+            <p class="traineroption" data-sub="vehiclesspawnmenu">Spawn Vehicle</p>
+            <p class="traineroption" data-sub="vehiclescolormenu">Vehicle Color</p>
+            <p class="traineroption" data-action="veh fix">Fix Vehicle</p>
+            <p class="traineroption" data-action="veh clean">Clean Vehicle</p>
+            <p class="traineroption" data-action="veh flip">Flip Vehicle Onto Wheels</p>
+            <p class="traineroption" data-action="veh neonon">Neons On</p>
+            <p class="traineroption" data-action="veh neonoff">Neons Off</p>
+            <p class="traineroption" data-action="veh invincible" data-state="ON">Invincible Vehicle</p>
+            <p class="traineroption" data-action="veh boosthorn" data-state="OFF">Boost on Horn</p>
+        </div>
+        <div id="vehiclesspawnmenu" data-parent="vehiclesmenu">
+            <p class="traineroption" data-action="vehspawn despawn" data-state="ON">Automatic Despawn</p>
+            <p class="traineroption" data-action="vehspawn spawninveh" data-state="OFF">Spawn Inside Vehicle</p>
+            <p class="traineroption" data-action="vehspawn input">Spawn Vehicle by Name</p>
+            <p class="traineroption" data-sub="bikespawnmenu">Spawn Bike</p>
+            <p class="traineroption" data-sub="boatspawnmenu">Spawn Boat</p>
+            <p class="traineroption" data-sub="funspawnmenu">Spawn Fun Stuff</p>
+            <p class="traineroption" data-sub="helispawnmenu">Spawn Helicopter</p>
+            <p class="traineroption" data-sub="planespawnmenu">Spawn Plane</p>
+            <p class="traineroption" data-action="vehspawn ADDER">Adder</p>
+            <p class="traineroption" data-action="vehspawn BATI">Bati</p>
+            <p class="traineroption" data-action="vehspawn FAGGIO">Faggio</p>
+            <p class="traineroption" data-action="vehspawn FUTO">Futo</p>
+            <p class="traineroption" data-action="vehspawn INGOT">Ingot</p>
+            <p class="traineroption" data-action="vehspawn SANCHEZ">Sanchez</p>
+            <p class="traineroption" data-action="vehspawn SULTAN">Sultan</p>
+        </div>
+        <div id="boatspawnmenu" data-parent="vehiclesspawnmenu">
+            <p class="traineroption" data-action="vehspawn dinghy">Dinghy</p>
+            <p class="traineroption" data-action="vehspawn dinghy2">Dinghy 2</p>
+            <p class="traineroption" data-action="vehspawn submersible">Kraken Submarine</p>
+            <p class="traineroption" data-action="vehspawn jetmax">Jetmax</p>
+            <p class="traineroption" data-action="vehspawn marquis">Marquis</p>
+            <p class="traineroption" data-action="vehspawn predator">Predator</p>
+            <p class="traineroption" data-action="vehspawn seashark">Seashark</p>
+            <p class="traineroption" data-action="vehspawn seashark2">Seashark 2</p>
+            <p class="traineroption" data-action="vehspawn squalo">Squalo</p>
+            <p class="traineroption" data-action="vehspawn tropic">Tropic</p>
+            <p class="traineroption" data-action="vehspawn tug">Tug</p>
+        </div>
+        <div id="helispawnmenu" data-parent="vehiclesspawnmenu">
+            <p class="traineroption" data-action="vehspawn annihilator">Annihilator</p>
+            <p class="traineroption" data-action="vehspawn buzzard">Buzzard</p>
+            <p class="traineroption" data-action="vehspawn buzzard2">Buzzard 2</p>
+            <p class="traineroption" data-action="vehspawn cargobob">Cargobob</p>
+            <p class="traineroption" data-action="vehspawn cargobob2">Cargobob 2</p>
+            <p class="traineroption" data-action="vehspawn cargobob3">Cargobob 3</p>
+            <p class="traineroption" data-action="vehspawn frogger">Frogger</p>
+            <p class="traineroption" data-action="vehspawn frogger2">Frogger 2</p>
+            <p class="traineroption" data-action="vehspawn maverick">Maverick</p>
+            <p class="traineroption" data-action="vehspawn polmav">Police Maverick</p>
+            <p class="traineroption" data-action="vehspawn skylift">Skylift</p>
+            <p class="traineroption" data-action="vehspawn volatus">Volatus</p>
+        </div>
+        <div id="planespawnmenu" data-parent="vehiclesspawnmenu">
+            <p class="traineroption" data-action="vehspawn cargoplane">Cargo Plane</p>
+            <p class="traineroption" data-action="vehspawn cuban800">Cuban 800</p>
+            <p class="traineroption" data-action="vehspawn duster">Duster</p>
+            <p class="traineroption" data-action="vehspawn hydra">Hydra</p>
+            <p class="traineroption" data-action="vehspawn jet">Jet</p>
+            <p class="traineroption" data-action="vehspawn lazer">Lazer</p>
+            <p class="traineroption" data-action="vehspawn luxor">Luxor</p>
+            <p class="traineroption" data-action="vehspawn mammatus">Mammatus</p>
+            <p class="traineroption" data-action="vehspawn shamal">Shamal</p>
+            <p class="traineroption" data-action="vehspawn stunt">Stunt Plane</p>
+            <p class="traineroption" data-action="vehspawn titan">Titan</p>
+        </div>
+        <div id="bikespawnmenu" data-parent="vehiclesspawnmenu">
+            <p class="traineroption" data-action="vehspawn akuma">Akuma</p>
+            <p class="traineroption" data-action="vehspawn bagger">Bagger</p>
+            <p class="traineroption" data-action="vehspawn bati">Bati</p>
+            <p class="traineroption" data-action="vehspawn bati2">Bati 2</p>
+            <p class="traineroption" data-action="vehspawn BMX">BMX</p>
+            <p class="traineroption" data-action="vehspawn carbonrs">Carbon RS</p>
+            <p class="traineroption" data-action="vehspawn cruiser">Cruiser</p>
+            <p class="traineroption" data-action="vehspawn daemon">Daemon</p>
+            <p class="traineroption" data-action="vehspawn double">Double-T</p>
+            <p class="traineroption" data-action="vehspawn tribike2">Endurex</p>
+            <p class="traineroption" data-action="vehspawn faggio">Faggio</p>
+            <p class="traineroption" data-action="vehspawn faggio2">Faggio 2</p>
+            <p class="traineroption" data-action="vehspawn fixter">Fixter</p>
+            <p class="traineroption" data-action="vehspawn hexer">Hexer</p>
+            <p class="traineroption" data-action="vehspawn pcj">PCJ</p>
+            <p class="traineroption" data-action="vehspawn policeb">Police Bike</p>
+            <p class="traineroption" data-action="vehspawn ruffian">Ruffian</p>
+            <p class="traineroption" data-action="vehspawn sanchez">Sanchez</p>
+            <p class="traineroption" data-action="vehspawn sanchez2">Sanchez 2</p>
+            <p class="traineroption" data-action="vehspawn scorcher">Scorcher</p>
+            <p class="traineroption" data-action="vehspawn tribike3">Tri-bike</p>
+            <p class="traineroption" data-action="vehspawn vader">Vader</p>
+            <p class="traineroption" data-action="vehspawn vigero">Vigero</p>
+            <p class="traineroption" data-action="vehspawn tribike">Whippet</p>
+        </div>
+        <div id="funspawnmenu" data-parent="vehiclesspawnmenu">
+            <p class="traineroption" data-action="vehspawn boxville5">Armoured Boxville</p>
+            <p class="traineroption" data-action="vehspawn blimp">Atomic Blimp</p>
+            <p class="traineroption" data-action="vehspawn dump">Dump Truck</p>
+            <p class="traineroption" data-action="vehspawn caddy">Golf Cart</p>
+            <p class="traineroption" data-action="vehspawn mower">Lawnmower</p>
+            <p class="traineroption" data-action="vehspawn oppressor">Oppressor</p>
+            <p class="traineroption" data-action="vehspawn phantom2">Phantom Wedge</p>
+            <p class="traineroption" data-action="vehspawn dune5">Ramp Buggy</p>
+            <p class="traineroption" data-action="vehspawn dune4">Ramp Buggy (Custom)</p>
+            <p class="traineroption" data-action="vehspawn rhino">Rhino Tank</p>
+            <p class="traineroption" data-action="vehspawn voltic2">Rocket Voltic</p>
+            <p class="traineroption" data-action="vehspawn ruiner2">Ruiner 2000</p>
+            <p class="traineroption" data-action="vehspawn stretch">Stretch Limo</p>
+            <p class="traineroption" data-action="vehspawn taco">Taco Truck</p>
+            <p class="traineroption" data-action="vehspawn technical2">Technical Aqua</p>
+        </div>
+        <div id="vehiclescolormenu" data-parent="vehiclesmenu">
+            <p class="traineroption" data-sub="vehiclescolorcustommenu">Custom Colour</p>
+            <p class="traineroption" data-sub="vehiclescolorprimarymenu">Primary Colour</p>
+            <p class="traineroption" data-sub="vehiclescolorpearlescentmenu">Pearlescent Colour</p>
+            <p class="traineroption" data-action="veh rainbowcar" data-state="OFF">Rainbow Car</p>
+            <p class="traineroption" data-action="veh rainbowchrome" data-state="OFF">Rainbow Chrome Car</p>
+            <p class="traineroption" data-action="veh rainbowneon" data-state="OFF">Rainbow Neons</p>
+            <p class="traineroption" data-action="veh rainbowneoninverse" data-state="OFF">Rainbow Neons (Inverse)</p>
+        </div>
+        <div id="vehiclescolorcustommenu" data-parent="vehiclescolormenu">
+            <p class="traineroption" data-action="vehcolor 0,0,0">Black</p>
+            <p class="traineroption" data-action="vehcolor 0,0,255">Blue</p>
+            <p class="traineroption" data-action="vehcolor 0,255,0">Green</p>
+            <p class="traineroption" data-action="vehcolor 255,0,0">Red</p>
+            <p class="traineroption" data-action="vehcolor 255,0,255">Fuchsia</p>
+            <p class="traineroption" data-action="vehcolor 255,255,0">Yellow</p>
+            <p class="traineroption" data-action="vehcolor 0,255,255">Cyan</p>
+            <p class="traineroption" data-action="vehcolor 255,255,255">White</p>
+        </div>
+        <div id="vehiclescolorprimarymenu" data-parent="vehiclescolormenu">
+            <p class="traineroption" data-action="vehprimary 120">Chrome</p>
+            <p class="traineroption" data-action="vehprimary 0">Black</p>
+            <p class="traineroption" data-action="vehprimary 147">Carbon Black</p>
+            <p class="traineroption" data-action="vehprimary 1">Graphite</p>
+            <p class="traineroption" data-action="vehprimary 11">Anhracite Black</p>
+            <p class="traineroption" data-action="vehprimary 2">Black Steel</p>
+            <p class="traineroption" data-action="vehprimary 3">Dark Steel</p>
+            <p class="traineroption" data-action="vehprimary 4">Silver</p>
+            <p class="traineroption" data-action="vehprimary 5">Bluish Silver</p>
+            <p class="traineroption" data-action="vehprimary 6">Rolled Steel</p>
+            <p class="traineroption" data-action="vehprimary 7">Shadow Silver</p>
+            <p class="traineroption" data-action="vehprimary 8">Stone Silver</p>
+            <p class="traineroption" data-action="vehprimary 9">Midnight Silver</p>
+            <p class="traineroption" data-action="vehprimary 10">Cast Iron Silver</p>
+            <p class="traineroption" data-action="vehprimary 27">Red</p>
+            <p class="traineroption" data-action="vehprimary 28">Torino Red</p>
+            <p class="traineroption" data-action="vehprimary 29">Formula Red</p>
+            <p class="traineroption" data-action="vehprimary 150">Lava Red</p>
+            <p class="traineroption" data-action="vehprimary 30">Blaze Red</p>
+            <p class="traineroption" data-action="vehprimary 31">Grace Red</p>
+            <p class="traineroption" data-action="vehprimary 32">Garnet Red</p>
+            <p class="traineroption" data-action="vehprimary 33">Sunset Red</p>
+            <p class="traineroption" data-action="vehprimary 34">Cabernet Red</p>
+            <p class="traineroption" data-action="vehprimary 143">Wine Red</p>
+            <p class="traineroption" data-action="vehprimary 35">Candy Red</p>
+            <p class="traineroption" data-action="vehprimary 135">Hot Pink</p>
+            <p class="traineroption" data-action="vehprimary 137">Pfsiter Pink</p>
+            <p class="traineroption" data-action="vehprimary 136">Salmon Pink</p>
+            <p class="traineroption" data-action="vehprimary 36">Sunrise Orange</p>
+            <p class="traineroption" data-action="vehprimary 38">Orange</p>
+            <p class="traineroption" data-action="vehprimary 138">Bright Orange</p>
+            <p class="traineroption" data-action="vehprimary 99">Gold</p>
+            <p class="traineroption" data-action="vehprimary 90">Bronze</p>
+            <p class="traineroption" data-action="vehprimary 88">Yellow</p>
+            <p class="traineroption" data-action="vehprimary 89">Race Yellow</p>
+            <p class="traineroption" data-action="vehprimary 91">Dew Yellow</p>
+            <p class="traineroption" data-action="vehprimary 49">Dark Green</p>
+            <p class="traineroption" data-action="vehprimary 50">Racing Green</p>
+            <p class="traineroption" data-action="vehprimary 51">Sea Green</p>
+            <p class="traineroption" data-action="vehprimary 52">Olive Green</p>
+            <p class="traineroption" data-action="vehprimary 53">Bright Green</p>
+            <p class="traineroption" data-action="vehprimary 54">Gasoline Green</p>
+            <p class="traineroption" data-action="vehprimary 92">Lime Green</p>
+            <p class="traineroption" data-action="vehprimary 141">Midnight Blue</p>
+            <p class="traineroption" data-action="vehprimary 61">Galaxy Blue</p>
+            <p class="traineroption" data-action="vehprimary 62">Dark Blue</p>
+            <p class="traineroption" data-action="vehprimary 63">Saxon Blue</p>
+            <p class="traineroption" data-action="vehprimary 64">Blue</p>
+            <p class="traineroption" data-action="vehprimary 65">Mariner Blue</p>
+            <p class="traineroption" data-action="vehprimary 66">Harbor Blue</p>
+            <p class="traineroption" data-action="vehprimary 67">Diamond Blue</p>
+            <p class="traineroption" data-action="vehprimary 68">Surf Blue</p>
+            <p class="traineroption" data-action="vehprimary 69">Nautical Blue</p>
+            <p class="traineroption" data-action="vehprimary 73">Racing Blue</p>
+            <p class="traineroption" data-action="vehprimary 70">Ultra Blue</p>
+            <p class="traineroption" data-action="vehprimary 74">Light Blue</p>
+            <p class="traineroption" data-action="vehprimary 96">Chocolate Brown</p>
+            <p class="traineroption" data-action="vehprimary 101">Bison Brown</p>
+            <p class="traineroption" data-action="vehprimary 95">Creeen Brown</p>
+            <p class="traineroption" data-action="vehprimary 94">Feltzer Brown</p>
+            <p class="traineroption" data-action="vehprimary 97">Maple Brown</p>
+            <p class="traineroption" data-action="vehprimary 103">Beechwood Brown</p>
+            <p class="traineroption" data-action="vehprimary 104">Sienna Brown</p>
+            <p class="traineroption" data-action="vehprimary 98">Saddle Brown</p>
+            <p class="traineroption" data-action="vehprimary 100">Moss Brown</p>
+            <p class="traineroption" data-action="vehprimary 102">Woodbeech Brown</p>
+            <p class="traineroption" data-action="vehprimary 99">Straw Brown</p>
+            <p class="traineroption" data-action="vehprimary 105">Sandy Brown</p>
+            <p class="traineroption" data-action="vehprimary 106">Bleached Brown</p>
+            <p class="traineroption" data-action="vehprimary 71">Schafter Purple</p>
+            <p class="traineroption" data-action="vehprimary 72">Spinnaker Purple</p>
+            <p class="traineroption" data-action="vehprimary 142">Midnight Purple</p>
+            <p class="traineroption" data-action="vehprimary 145">Bright Purple</p>
+            <p class="traineroption" data-action="vehprimary 107">Cream</p>
+            <p class="traineroption" data-action="vehprimary 111">Ice White</p>
+            <p class="traineroption" data-action="vehprimary 112">Frost White</p>
+            <p class="traineroption" data-action="vehprimary 12">Matte Black</p>
+            <p class="traineroption" data-action="vehprimary 13">Matte Gray</p>
+            <p class="traineroption" data-action="vehprimary 14">Matte Light Gray</p>
+            <p class="traineroption" data-action="vehprimary 131">Matte Ice White</p>
+            <p class="traineroption" data-action="vehprimary 83">Matte Blue</p>
+            <p class="traineroption" data-action="vehprimary 82">Matte Dark Blue</p>
+            <p class="traineroption" data-action="vehprimary 84">Matte Midnight Blue</p>
+            <p class="traineroption" data-action="vehprimary 149">Matte Midnight Purple</p>
+            <p class="traineroption" data-action="vehprimary 148">Matte Schafter Purple</p>
+            <p class="traineroption" data-action="vehprimary 39">Matte Red</p>
+            <p class="traineroption" data-action="vehprimary 40">Matte Dark Red</p>
+            <p class="traineroption" data-action="vehprimary 41">Matte Orange</p>
+            <p class="traineroption" data-action="vehprimary 42">Matte Yellow</p>
+            <p class="traineroption" data-action="vehprimary 55">Matte Lime Green</p>
+            <p class="traineroption" data-action="vehprimary 128">Matte Green</p>
+            <p class="traineroption" data-action="vehprimary 151">Matte Forest Green</p>
+            <p class="traineroption" data-action="vehprimary 155">Matte Foliage Green</p>
+            <p class="traineroption" data-action="vehprimary 152">Matte Olive Darb</p>
+            <p class="traineroption" data-action="vehprimary 153">Matte Dark Earth</p>
+            <p class="traineroption" data-action="vehprimary 154">Matte Desert Tan</p>
+            <p class="traineroption" data-action="vehprimary 117">Brushed Steel</p>
+            <p class="traineroption" data-action="vehprimary 118">Brushed Black Steel</p>
+            <p class="traineroption" data-action="vehprimary 119">Brushed Aluminum</p>
+            <p class="traineroption" data-action="vehprimary 158">Pure Gold</p>
+            <p class="traineroption" data-action="vehprimary 159">Brushed Gold</p>
+        </div>
+        <div id="vehiclescolorpearlescentmenu" data-parent="vehiclescolormenu">
+            <p class="traineroption" data-action="vehpearl 120">Chrome</p>
+            <p class="traineroption" data-action="vehpearl 0">Black</p>
+            <p class="traineroption" data-action="vehpearl 147">Carbon Black</p>
+            <p class="traineroption" data-action="vehpearl 1">Graphite</p>
+            <p class="traineroption" data-action="vehpearl 11">Anhracite Black</p>
+            <p class="traineroption" data-action="vehpearl 2">Black Steel</p>
+            <p class="traineroption" data-action="vehpearl 3">Dark Steel</p>
+            <p class="traineroption" data-action="vehpearl 4">Silver</p>
+            <p class="traineroption" data-action="vehpearl 5">Bluish Silver</p>
+            <p class="traineroption" data-action="vehpearl 6">Rolled Steel</p>
+            <p class="traineroption" data-action="vehpearl 7">Shadow Silver</p>
+            <p class="traineroption" data-action="vehpearl 8">Stone Silver</p>
+            <p class="traineroption" data-action="vehpearl 9">Midnight Silver</p>
+            <p class="traineroption" data-action="vehpearl 10">Cast Iron Silver</p>
+            <p class="traineroption" data-action="vehpearl 27">Red</p>
+            <p class="traineroption" data-action="vehpearl 28">Torino Red</p>
+            <p class="traineroption" data-action="vehpearl 29">Formula Red</p>
+            <p class="traineroption" data-action="vehpearl 150">Lava Red</p>
+            <p class="traineroption" data-action="vehpearl 30">Blaze Red</p>
+            <p class="traineroption" data-action="vehpearl 31">Grace Red</p>
+            <p class="traineroption" data-action="vehpearl 32">Garnet Red</p>
+            <p class="traineroption" data-action="vehpearl 33">Sunset Red</p>
+            <p class="traineroption" data-action="vehpearl 34">Cabernet Red</p>
+            <p class="traineroption" data-action="vehpearl 143">Wine Red</p>
+            <p class="traineroption" data-action="vehpearl 35">Candy Red</p>
+            <p class="traineroption" data-action="vehpearl 135">Hot Pink</p>
+            <p class="traineroption" data-action="vehpearl 137">Pfsiter Pink</p>
+            <p class="traineroption" data-action="vehpearl 136">Salmon Pink</p>
+            <p class="traineroption" data-action="vehpearl 36">Sunrise Orange</p>
+            <p class="traineroption" data-action="vehpearl 38">Orange</p>
+            <p class="traineroption" data-action="vehpearl 138">Bright Orange</p>
+            <p class="traineroption" data-action="vehpearl 99">Gold</p>
+            <p class="traineroption" data-action="vehpearl 90">Bronze</p>
+            <p class="traineroption" data-action="vehpearl 88">Yellow</p>
+            <p class="traineroption" data-action="vehpearl 89">Race Yellow</p>
+            <p class="traineroption" data-action="vehpearl 91">Dew Yellow</p>
+            <p class="traineroption" data-action="vehpearl 49">Dark Green</p>
+            <p class="traineroption" data-action="vehpearl 50">Racing Green</p>
+            <p class="traineroption" data-action="vehpearl 51">Sea Green</p>
+            <p class="traineroption" data-action="vehpearl 52">Olive Green</p>
+            <p class="traineroption" data-action="vehpearl 53">Bright Green</p>
+            <p class="traineroption" data-action="vehpearl 54">Gasoline Green</p>
+            <p class="traineroption" data-action="vehpearl 92">Lime Green</p>
+            <p class="traineroption" data-action="vehpearl 141">Midnight Blue</p>
+            <p class="traineroption" data-action="vehpearl 61">Galaxy Blue</p>
+            <p class="traineroption" data-action="vehpearl 62">Dark Blue</p>
+            <p class="traineroption" data-action="vehpearl 63">Saxon Blue</p>
+            <p class="traineroption" data-action="vehpearl 64">Blue</p>
+            <p class="traineroption" data-action="vehpearl 65">Mariner Blue</p>
+            <p class="traineroption" data-action="vehpearl 66">Harbor Blue</p>
+            <p class="traineroption" data-action="vehpearl 67">Diamond Blue</p>
+            <p class="traineroption" data-action="vehpearl 68">Surf Blue</p>
+            <p class="traineroption" data-action="vehpearl 69">Nautical Blue</p>
+            <p class="traineroption" data-action="vehpearl 73">Racing Blue</p>
+            <p class="traineroption" data-action="vehpearl 70">Ultra Blue</p>
+            <p class="traineroption" data-action="vehpearl 74">Light Blue</p>
+            <p class="traineroption" data-action="vehpearl 96">Chocolate Brown</p>
+            <p class="traineroption" data-action="vehpearl 101">Bison Brown</p>
+            <p class="traineroption" data-action="vehpearl 95">Creeen Brown</p>
+            <p class="traineroption" data-action="vehpearl 94">Feltzer Brown</p>
+            <p class="traineroption" data-action="vehpearl 97">Maple Brown</p>
+            <p class="traineroption" data-action="vehpearl 103">Beechwood Brown</p>
+            <p class="traineroption" data-action="vehpearl 104">Sienna Brown</p>
+            <p class="traineroption" data-action="vehpearl 98">Saddle Brown</p>
+            <p class="traineroption" data-action="vehpearl 100">Moss Brown</p>
+            <p class="traineroption" data-action="vehpearl 102">Woodbeech Brown</p>
+            <p class="traineroption" data-action="vehpearl 99">Straw Brown</p>
+            <p class="traineroption" data-action="vehpearl 105">Sandy Brown</p>
+            <p class="traineroption" data-action="vehpearl 106">Bleached Brown</p>
+            <p class="traineroption" data-action="vehpearl 71">Schafter Purple</p>
+            <p class="traineroption" data-action="vehpearl 72">Spinnaker Purple</p>
+            <p class="traineroption" data-action="vehpearl 142">Midnight Purple</p>
+            <p class="traineroption" data-action="vehpearl 145">Bright Purple</p>
+            <p class="traineroption" data-action="vehpearl 107">Cream</p>
+            <p class="traineroption" data-action="vehpearl 111">Ice White</p>
+            <p class="traineroption" data-action="vehpearl 112">Frost White</p>
+            <p class="traineroption" data-action="vehpearl 12">Matte Black</p>
+            <p class="traineroption" data-action="vehpearl 13">Matte Gray</p>
+            <p class="traineroption" data-action="vehpearl 14">Matte Light Gray</p>
+            <p class="traineroption" data-action="vehpearl 131">Matte Ice White</p>
+            <p class="traineroption" data-action="vehpearl 83">Matte Blue</p>
+            <p class="traineroption" data-action="vehpearl 82">Matte Dark Blue</p>
+            <p class="traineroption" data-action="vehpearl 84">Matte Midnight Blue</p>
+            <p class="traineroption" data-action="vehpearl 149">Matte Midnight Purple</p>
+            <p class="traineroption" data-action="vehpearl 148">Matte Schafter Purple</p>
+            <p class="traineroption" data-action="vehpearl 39">Matte Red</p>
+            <p class="traineroption" data-action="vehpearl 40">Matte Dark Red</p>
+            <p class="traineroption" data-action="vehpearl 41">Matte Orange</p>
+            <p class="traineroption" data-action="vehpearl 42">Matte Yellow</p>
+            <p class="traineroption" data-action="vehpearl 55">Matte Lime Green</p>
+            <p class="traineroption" data-action="vehpearl 128">Matte Green</p>
+            <p class="traineroption" data-action="vehpearl 151">Matte Forest Green</p>
+            <p class="traineroption" data-action="vehpearl 155">Matte Foliage Green</p>
+            <p class="traineroption" data-action="vehpearl 152">Matte Olive Darb</p>
+            <p class="traineroption" data-action="vehpearl 153">Matte Dark Earth</p>
+            <p class="traineroption" data-action="vehpearl 154">Matte Desert Tan</p>
+            <p class="traineroption" data-action="vehpearl 117">Brushed Steel</p>
+            <p class="traineroption" data-action="vehpearl 118">Brushed Black Steel</p>
+            <p class="traineroption" data-action="vehpearl 119">Brushed Aluminum</p>
+            <p class="traineroption" data-action="vehpearl 158">Pure Gold</p>
+            <p class="traineroption" data-action="vehpearl 159">Brushed Gold</p>
+        </div>
+        <!-- Weapons menu -->
+        <div id="weaponsmenu" data-parent="mainmenu">
+            <p class="traineroption" data-action="explosiveammo" data-state="OFF">Explosive Ammo</p>
+            <p class="traineroption" data-action="fireammo" data-state="OFF">Fire Ammo</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_KNIFE">Knife</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_BAT">Baseball Bat</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_STUNGUN">Stun Gun</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_PISTOL">Pistol</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_ASSAULTRIFLE">Assault Rifle</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_STICKYBOMB">Sticky Bomb</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_FLASHLIGHT">Flashlight</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_BALL">Ball</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_MOLOTOV">Molotov</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_FIREEXTINGUISHER">Fire Extinguisher</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_FLARE">Flare</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_MINIGUN">Minigun</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_STINGER">Stinger</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_GRENADELAUNCHER">Grenade Launcher</p>
+            <p class="traineroption" data-sub="weaponitemmenu" data-subdata="WEAPON_FIREWORK">Firework Launcher</p>
+        </div>
+        <div id="weaponitemmenu" data-parent="weaponsmenu">
+            <p class="traineroption" data-action="wepgive *">Give</p>
+            <p class="traineroption" data-action="wepremove *">Remove</p>
+        </div>
+        <!-- Wanted menu -->
+        <div id="policemenu" data-parent="mainmenu">
+            <p class="traineroption" data-action="policedisable" data-state="OFF">Disable Police For You</p>
+            <p class="traineroption" data-action="policeignore" data-state="OFF">Police Ignore You</p>
+            <p class="traineroption" data-action="wantedlevel 0">Wanted Level 0</p>
+            <p class="traineroption" data-action="wantedlevel 1">Wanted Level 1</p>
+            <p class="traineroption" data-action="wantedlevel 2">Wanted Level 2</p>
+            <p class="traineroption" data-action="wantedlevel 3">Wanted Level 3</p>
+            <p class="traineroption" data-action="wantedlevel 4">Wanted Level 4</p>
+            <p class="traineroption" data-action="wantedlevel 5">Wanted Level 5</p>
+        </div>
+        <!-- Settings menu -->
+        <div id="settingsmenu" data-parent="mainmenu">
+            <p class="traineroption" data-sub="settingsweathermenu">Change Weather</p>
+            <p class="traineroption" data-sub="settingstimemenu">Change Time</p>
+        </div>
+        <div id="settingsweathermenu" data-parent="settingsmenu">
+            <p class="traineroption" data-action="weather EXTRASUNNY">Extra Sunny</p>
+            <p class="traineroption" data-action="weather CLEAR">Clear</p>
+            <p class="traineroption" data-action="weather CLOUDS">Clouds</p>
+            <p class="traineroption" data-action="weather OVERCAST">Overcast</p>
+            <p class="traineroption" data-action="weather RAIN">Rain</p>
+            <p class="traineroption" data-action="weather CLEARING">Clearing</p>
+            <p class="traineroption" data-action="weather THUNDER">Thunder</p>
+            <p class="traineroption" data-action="weather SMOG">Smog</p>
+            <p class="traineroption" data-action="weather FOGGY">Foggy</p>
+            <p class="traineroption" data-action="weather XMAS">Xmas</p>
+            <p class="traineroption" data-action="weather SNOWLIGHT">Light Snow</p>
+            <p class="traineroption" data-action="weather BLIZZARD">Blizzard</p>
+        </div>
+        <div id="settingstimemenu" data-parent="settingsmenu">
+            <p class="traineroption" data-action="time 6">Morning</p>
+            <p class="traineroption" data-action="time 12">Midday</p>
+            <p class="traineroption" data-action="time 18">Evening</p>
+            <p class="traineroption" data-action="time 0">Midnight</p>
+        </div>
+        <div id="uimenu" data-parent="mainmenu">
+            <p class="traineroption" data-action="bigmap" data-state="OFF">Large Minimap</p>
+        </div>
+    </div>
+</body>
+</html>
