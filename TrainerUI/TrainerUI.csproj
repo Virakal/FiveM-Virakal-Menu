@@ -82,7 +82,6 @@
   <ItemGroup>
     <Content Include="nui\trainer.css" />
     <Content Include="nui\trainer.html" />
-    <Content Include="nui\trainer.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

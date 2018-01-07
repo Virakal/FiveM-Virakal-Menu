@@ -4,7 +4,7 @@ declare const $: any;
 /** CONFIG **/
 
 // !! Change this to your current resource name !!
-var resourceName: string = "trainer";
+var resourceName: string = "virakal-trainer";
 
 // Max amount of items in 1 menu (before autopaging kicks in)
 var maxVisibleItems = 12;

@@ -11,21 +11,22 @@ using Newtonsoft.Json;
 
 namespace Virakal.FiveM.Trainer.TrainerClient
 {
-    public class Main : BaseScript
+    public class Trainer : BaseScript
     {
-        public Control MenuKey { get; } = Control.SelectCharacterMichael; // F5
+        public Control MenuKey { get; } = Control.SelectCharacterFranklin; // F6
         public bool ShowTrainer { get; private set; } = false;
+        public Config Config { get; } = new Config();
 
-        public Main()
+        public Trainer()
         {
             Tick += OnLoad;
             Tick += HandleMenuKeys;
         }
 
-        private bool SendUIMessage(dynamic message)
+        public bool SendUIMessage(dynamic message)
         {
             string converted = JsonConvert.SerializeObject(message);
-            Debug.Write($"Sending message '{converted}'.");
+            // Debug.Write($"Sending message '{converted}'.");
             return API.SendNuiMessage(converted);
         }
 
@@ -34,6 +35,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             // Unsubscribe this event immediately so the event only runs once
             Tick -= OnLoad;
 
+            new Section.UISection(this);
+
             RegisterNUICallback("trainerclose", TrainerClose);
 
             return Task.FromResult(0);
@@ -41,7 +44,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
         private Task HandleMenuKeys()
         {
-            // Check if the show key is pressed (F5, will change to F6)
+            // Check if the show key is pressed (F6)
             if (Game.IsControlJustReleased(1, MenuKey))
             {
                 ShowTrainer = !ShowTrainer;
@@ -95,7 +98,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             return Task.FromResult(0);
         }
 
-        private void RegisterNUICallback(string name, Func<IDictionary<string, object>, CallbackDelegate, CallbackDelegate> callback)
+        public void RegisterNUICallback(string name, Func<IDictionary<string, object>, CallbackDelegate, CallbackDelegate> callback)
         {
             API.RegisterNuiCallbackType(name);
 

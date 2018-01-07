@@ -48,11 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Trainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Section\BaseSection.cs" />
+    <Compile Include="Section\ISection.cs" />
+    <Compile Include="Section\UISection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="static\config.lua" />
+    <None Include="static\main.lua" />
+    <None Include="static\player.lua" />
+    <None Include="static\settings.lua" />
+    <None Include="static\teleport.lua" />
+    <None Include="static\vehicles.lua" />
+    <None Include="static\wanted.lua" />
+    <None Include="static\weapons.lua" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

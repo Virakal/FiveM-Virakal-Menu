@@ -2,6 +2,8 @@ resource_manifest_version '05cfa83c-a124-4cfa-a768-c24a5811d8f9'
 
 ui_page "nui/trainer.html"
 
+server_script '@mysql-async/lib/MySQL.lua'
+
 files {
 	"nui/trainer.html",
 	"nui/trainer.js",
@@ -12,10 +14,19 @@ files {
 
 client_script {
 	'TrainerShared.net.dll',
-	'TrainerClient.net.dll'
+	'TrainerClient.net.dll',
+	'main.lua',
+	'config.lua',
+	'player.lua',
+	'settings.lua',
+	'teleport.lua',
+	'vehicles.lua',
+	'wanted.lua',
+	'weapons.lua'
 }
 
 server_script {
 	'TrainerShared.net.dll',
-	'TrainerServer.net.dll'
+	'TrainerServer.net.dll',
+	'server.lua''
 }
