@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CitizenFX.Core;
-using static CitizenFX.Core.Native.API;
+using CitizenFX.Core.Native;
 using Newtonsoft.Json;
 
 
@@ -17,6 +18,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
         public Main()
         {
+            Tick += OnLoad;
             Tick += HandleMenuKeys;
         }
 
@@ -24,10 +26,20 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             string converted = JsonConvert.SerializeObject(message);
             Debug.Write($"Sending message '{converted}'.");
-            return SendNuiMessage(converted);
+            return API.SendNuiMessage(converted);
         }
 
-        private async Task HandleMenuKeys()
+        private Task OnLoad()
+        {
+            // Unsubscribe this event immediately so the event only runs once
+            Tick -= OnLoad;
+
+            RegisterNUICallback("trainerclose", TrainerClose);
+
+            return Task.FromResult(0);
+        }
+
+        private Task HandleMenuKeys()
         {
             // Check if the show key is pressed (F5, will change to F6)
             if (Game.IsControlJustReleased(1, MenuKey))
@@ -47,7 +59,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             // If the trainer is hidden, no point parsing anything else
             if (!ShowTrainer)
             {
-                return;
+                return Task.FromResult(0);
             }
 
             // Enter / Back
@@ -79,6 +91,25 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 SendUIMessage(new { trainerright = true });
             }
+
+            return Task.FromResult(0);
+        }
+
+        private void RegisterNUICallback(string name, Func<IDictionary<string, object>, CallbackDelegate, CallbackDelegate> callback)
+        {
+            API.RegisterNuiCallbackType(name);
+
+            EventHandlers[$"__cfx_nui:{name}"] += new Action<ExpandoObject, CallbackDelegate>((body, resultCallback) =>
+            {
+                CallbackDelegate err = callback.Invoke(body, resultCallback);
+            });
+        }
+
+        private CallbackDelegate TrainerClose(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            ShowTrainer = false;
+            callback("ok");
+            return callback;
         }
     }
 }
