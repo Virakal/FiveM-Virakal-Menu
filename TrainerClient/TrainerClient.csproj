@@ -65,7 +65,6 @@
     <None Include="static\player.lua" />
     <None Include="static\settings.lua" />
     <None Include="static\vehicles.lua" />
-    <None Include="static\weapons.lua" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -19,8 +19,7 @@ client_script {
 	'config.lua',
 	'player.lua',
 	'settings.lua',
-	'vehicles.lua',
-	'weapons.lua'
+	'vehicles.lua'
 }
 
 server_script {

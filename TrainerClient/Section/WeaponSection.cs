@@ -12,10 +12,32 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
     {
         public WeaponSection(Trainer trainer) : base(trainer)
         {
+            Trainer.RegisterNUICallback("wepgive", GiveWeapon);
+            Trainer.RegisterNUICallback("wepremove", RemoveWeapon);
             Trainer.RegisterNUICallback("explosiveammo", ToggleExplosiveAmmo);
             Trainer.RegisterNUICallback("fireammo", ToggleFireAmmo);
 
             Trainer.AddTick(OnTick);
+        }
+
+        private CallbackDelegate GiveWeapon(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            string weapon = (string)data["action"];
+
+            Game.Player.Character.Weapons.Give((WeaponHash)API.GetHashKey(weapon), 9999, true, true);
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate RemoveWeapon(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            string weapon = (string)data["action"];
+
+            Game.Player.Character.Weapons.Remove((WeaponHash)API.GetHashKey(weapon));
+
+            callback("ok");
+            return callback;
         }
 
         private CallbackDelegate ToggleExplosiveAmmo(IDictionary<string, object> data, CallbackDelegate callback)
