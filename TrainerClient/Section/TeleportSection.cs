@@ -60,8 +60,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.AddNotification($"Teleporting to {otherPlayer.Name} (Player {otherPlayerId})...");
 
             // Put them on the ground
-            float ground = World.GetGroundHeight(otherPos);
-            Vector3 newPosition = new Vector3(otherPos.X, otherPos.Y, ground + 2);
+            Vector3 newPosition = new Vector3(otherPos.X, otherPos.Y, otherPos.Z + 2.5f);
             playerPed.Position = newPosition;
 
             Vehicle otherVehicle = otherPed.CurrentVehicle;
