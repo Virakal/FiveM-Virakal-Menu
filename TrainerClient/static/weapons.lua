@@ -26,7 +26,7 @@ RegisterNUICallback("explosiveammo", function(data, cb)
 
 	cb("ok")
 end)
-]]
+
 
 RegisterNUICallback("fireammo", function(data, cb)
 	config.set('fireAmmo', data.newstate)
@@ -49,3 +49,4 @@ Citizen.CreateThread(function ()
 		end
 	end
 end)
+]]

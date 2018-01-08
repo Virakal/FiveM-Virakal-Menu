@@ -13,6 +13,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         public WeaponSection(Trainer trainer) : base(trainer)
         {
             Trainer.RegisterNUICallback("explosiveammo", ToggleExplosiveAmmo);
+            Trainer.RegisterNUICallback("fireammo", ToggleFireAmmo);
 
             Trainer.AddTick(OnTick);
         }
@@ -26,11 +27,25 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
+        private CallbackDelegate ToggleFireAmmo(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            bool state = (bool)data["newstate"];
+            Config["FireAmmo"] = state ? "true" : "false";
+
+            callback("ok");
+            return callback;
+        }
+
         private async Task OnTick()
         {
             if (Config.ContainsKey("ExplosiveAmmo") && Config["ExplosiveAmmo"] == "true")
             {
                 API.SetExplosiveAmmoThisFrame(Game.Player.Handle);
+            }
+
+            if (Config.ContainsKey("FireAmmo") && Config["FireAmmo"] == "true")
+            {
+                API.SetFireAmmoThisFrame(Game.Player.Handle);
             }
 
             await Trainer.Delay(1);
