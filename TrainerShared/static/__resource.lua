@@ -28,5 +28,5 @@ client_script {
 server_script {
 	'TrainerShared.net.dll',
 	'TrainerServer.net.dll',
-	'server.lua''
+	'server.lua'
 }

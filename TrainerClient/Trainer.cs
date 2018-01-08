@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
@@ -26,8 +24,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public bool SendUIMessage(dynamic message)
         {
             string converted = JsonConvert.SerializeObject(message);
-            // Debug.Write($"Sending message '{converted}'.");
             return API.SendNuiMessage(converted);
+        }
+
+        public void AddNotification(string message)
+        {
+            API.SetNotificationTextEntry("STRING");
+            API.AddTextComponentString(message);
+            API.DrawNotification(false, false);
         }
 
         private Task OnLoad()
@@ -36,6 +40,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             Tick -= OnLoad;
 
             new Section.UISection(this);
+            new Section.PoliceSection(this);
 
             RegisterNUICallback("trainerclose", TrainerClose);
 

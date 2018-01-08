@@ -14,11 +14,13 @@ RegisterNUICallback("wantedlevel", function(data, cb)
 	cb("ok")
 end)
 
+--[[
 RegisterNUICallback("policeignore", function(data, cb)
 	SetPoliceIgnorePlayer(PlayerId(), data.newstate)
 
 	cb("ok")
 end)
+]]
 
 RegisterNUICallback("policedisable", function(data, cb)
 	config.set('disablePolice', data.newstate)
