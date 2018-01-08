@@ -25,5 +25,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             store[key] = value;
         }
+
+        public bool ContainsKey(string key)
+        {
+            return store.ContainsKey(key);
+        }
     }
 }
