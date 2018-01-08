@@ -71,9 +71,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         private CallbackDelegate TeleportToLastCar(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Player player = Game.Player;
+            Ped playerPed = player.Character;
             Vehicle lastVehicle = player.LastVehicle;
 
-            if (player.Character.IsInVehicle())
+            if (playerPed.IsInVehicle())
             {
                 Trainer.AddNotification("~r~Can't teleport to last vehicle whilst already in a vehicle.");
                 callback("ok");
@@ -87,18 +88,18 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     lastVehicle.PlaceOnGround();
 
                     // Attempt to drive
-                    player.Character.SetIntoVehicle(lastVehicle, VehicleSeat.Driver);
+                    playerPed.SetIntoVehicle(lastVehicle, VehicleSeat.Driver);
 
-                    if (!player.Character.IsInVehicle(lastVehicle))
+                    if (!playerPed.IsInVehicle(lastVehicle))
                     {
                         // If that didn't work, try any seat
-                        player.Character.SetIntoVehicle(lastVehicle, VehicleSeat.Any);
+                        playerPed.SetIntoVehicle(lastVehicle, VehicleSeat.Any);
                     }
                 }
                 else
                 {
                     // No seats free, just teleport to the vehicle
-                    player.Character.Position = lastVehicle.Position;
+                    playerPed.Position = lastVehicle.Position;
                 }
             }
             else
