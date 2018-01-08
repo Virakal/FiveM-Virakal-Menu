@@ -52,19 +52,25 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             Ped playerPed = Game.Player.Character;
             Ped otherPed = otherPlayer.Character;
-            Vehicle otherVehicle = otherPed.CurrentVehicle;
+            Vector3 otherPos = otherPed.Position;
+
+            // Request a collision to try to load the area
+            API.RequestCollisionAtCoord(otherPos.X, otherPos.Y, otherPos.Z);
 
             Trainer.AddNotification($"Teleporting to {otherPlayer.Name} (Player {otherPlayerId})...");
 
+            // Put them on the ground
+            float ground = World.GetGroundHeight(otherPos);
+            Vector3 newPosition = new Vector3(otherPos.X, otherPos.Y, ground + 2);
+            playerPed.Position = newPosition;
+
+            Vehicle otherVehicle = otherPed.CurrentVehicle;
+
             if (otherVehicle != null && API.AreAnyVehicleSeatsFree(otherVehicle.Handle))
             {
-                otherPed.SetIntoVehicle(otherVehicle, VehicleSeat.Any);
+                playerPed.SetIntoVehicle(otherVehicle, VehicleSeat.Passenger);
             }
-            else
-            {
-                playerPed.Position = otherPed.Position;
-            }
-
+            
             callback("ok");
             return callback;
         }
@@ -88,9 +94,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 {
                     lastVehicle.PlaceOnGround();
 
+                    Debug.Write("Trying to drive");
                     // Attempt to drive
                     playerPed.SetIntoVehicle(lastVehicle, VehicleSeat.Driver);
 
+                    Debug.Write("Trying to passenger");
                     if (!playerPed.IsInVehicle(lastVehicle))
                     {
                         // If that didn't work, try any seat
@@ -99,6 +107,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 }
                 else
                 {
+                    Debug.Write("No seats free, moving to location");
                     // No seats free, just teleport to the vehicle
                     playerPed.Position = lastVehicle.Position;
                 }
