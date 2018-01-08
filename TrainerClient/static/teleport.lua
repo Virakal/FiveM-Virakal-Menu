@@ -24,7 +24,7 @@ RegisterNUICallback("coords", function(data, cb)
 
 	cb("ok")
 end)
-]]
+
 RegisterNUICallback("teleplayer", function(data, cb)
 	local otherServerId = tonumber(data.action)
 	local other = GetPlayerFromServerId(otherServerId)
@@ -63,7 +63,7 @@ RegisterNUICallback("teleplayer", function(data, cb)
 
 	cb("ok")
 end)
-
+]]
 RegisterNUICallback("telelastcar", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local lastVeh = GetPlayersLastVehicle()
