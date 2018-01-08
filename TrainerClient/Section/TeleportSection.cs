@@ -14,6 +14,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             Trainer.RegisterNUICallback("coords", DisplayCoords);
             Trainer.RegisterNUICallback("teleplayer", TeleportToPlayer);
+            Trainer.RegisterNUICallback("telelastcar", TeleportToLastCar);
         }
 
         private CallbackDelegate DisplayCoords(IDictionary<string, object> data, CallbackDelegate callback)
@@ -61,6 +62,48 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             else
             {
                 playerPed.Position = otherPed.Position;
+            }
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate TeleportToLastCar(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Player player = Game.Player;
+            Vehicle lastVehicle = player.LastVehicle;
+
+            if (player.Character.IsInVehicle())
+            {
+                Trainer.AddNotification("~r~Can't teleport to last vehicle whilst already in a vehicle.");
+                callback("ok");
+                return callback;
+            }
+
+            if (lastVehicle != null && !lastVehicle.IsDead)
+            {
+                if (API.AreAnyVehicleSeatsFree(lastVehicle.Handle))
+                {
+                    lastVehicle.PlaceOnGround();
+
+                    // Attempt to drive
+                    player.Character.SetIntoVehicle(lastVehicle, VehicleSeat.Driver);
+
+                    if (!player.Character.IsInVehicle(lastVehicle))
+                    {
+                        // If that didn't work, try any seat
+                        player.Character.SetIntoVehicle(lastVehicle, VehicleSeat.Any);
+                    }
+                }
+                else
+                {
+                    // No seats free, just teleport to the vehicle
+                    player.Character.Position = lastVehicle.Position;
+                }
+            }
+            else
+            {
+                Trainer.AddNotification("~r~Could not find your last vehicle.");
             }
 
             callback("ok");

@@ -63,7 +63,7 @@ RegisterNUICallback("teleplayer", function(data, cb)
 
 	cb("ok")
 end)
-]]
+
 RegisterNUICallback("telelastcar", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local lastVeh = GetPlayersLastVehicle()
@@ -95,3 +95,4 @@ RegisterNUICallback("telelastcar", function(data, cb)
 		SetPedIntoVehicle(playerPed, lastVeh, seat)
 	end
 end)
+]]
