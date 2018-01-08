@@ -20,12 +20,13 @@ RegisterNUICallback("wepremove", function(data, cb)
 
 	cb("ok")
 end)
-
+--[[
 RegisterNUICallback("explosiveammo", function(data, cb)
 	config.set('explosiveAmmo', data.newstate)
 
 	cb("ok")
 end)
+]]
 
 RegisterNUICallback("fireammo", function(data, cb)
 	config.set('fireAmmo', data.newstate)
