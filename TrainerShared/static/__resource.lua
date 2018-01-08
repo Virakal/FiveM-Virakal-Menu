@@ -21,7 +21,6 @@ client_script {
 	'settings.lua',
 	'teleport.lua',
 	'vehicles.lua',
-	'wanted.lua',
 	'weapons.lua'
 }
 

@@ -64,7 +64,6 @@
     <None Include="static\settings.lua" />
     <None Include="static\teleport.lua" />
     <None Include="static\vehicles.lua" />
-    <None Include="static\wanted.lua" />
     <None Include="static\weapons.lua" />
   </ItemGroup>
   <ItemGroup />

@@ -14,6 +14,18 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             Trainer.RegisterNUICallback("policeignore", TogglePoliceIgnore);
             Trainer.RegisterNUICallback("wantedlevel", SetWantedLevel);
+            Trainer.RegisterNUICallback("policedisable", TogglePoliceDisable);
+
+            Trainer.AddTick(DisablePolice);
+        }
+
+        private CallbackDelegate TogglePoliceDisable(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            bool state = (bool)data["newstate"];
+            Config["PoliceDisable"] = state ? "true" : "false";
+
+            callback("ok");
+            return callback;
         }
 
         private CallbackDelegate SetWantedLevel(IDictionary<string, object> data, CallbackDelegate callback)
@@ -21,8 +33,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             int level = Convert.ToInt32(data["action"]);
             int playerId = Game.Player.Handle;
 
-            API.SetPlayerWantedLevel(playerId, level, false);
-            API.SetPlayerWantedLevelNow(playerId, false);
+            SetWanted(playerId, level);
 
             Trainer.AddNotification($"~g~Changed wanted level to {level}.");
 
@@ -39,6 +50,33 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             callback("ok");
             return callback;
+        }
+
+        public async Task DisablePolice()
+        {
+            bool disabled = false;
+
+            try
+            {
+                disabled = Config["PoliceDisable"] == "true";
+            }
+            catch (KeyNotFoundException)
+            {
+                disabled = false;
+            }
+
+            if (disabled)
+            {
+                SetWanted(Game.Player.Handle, 0);
+            }
+            
+            await BaseScript.Delay(1);
+        }
+
+        private void SetWanted(int playerId, int level)
+        {
+            API.SetPlayerWantedLevel(playerId, level, false);
+            API.SetPlayerWantedLevelNow(playerId, false);
         }
     }
 }

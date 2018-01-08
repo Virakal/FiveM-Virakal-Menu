@@ -34,11 +34,17 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             API.DrawNotification(false, false);
         }
 
+        public void AddTick(Func<Task> tickFunction)
+        {
+            Tick += tickFunction;
+        }
+
         private Task OnLoad()
         {
             // Unsubscribe this event immediately so the event only runs once
             Tick -= OnLoad;
 
+            // Add handlers for the menu sections
             new Section.UISection(this);
             new Section.PoliceSection(this);
 
