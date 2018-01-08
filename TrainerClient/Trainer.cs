@@ -47,6 +47,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             // Add handlers for the menu sections
             new Section.UISection(this);
             new Section.PoliceSection(this);
+            new Section.TeleportSection(this);
 
             RegisterNUICallback("trainerclose", TrainerClose);
 

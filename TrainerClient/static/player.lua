@@ -1,8 +1,6 @@
 local config = Virakal.Config
 local justRunSpawnHandler
 
-Citizen.Trace("JG ------------------------- LOADED SCRIPT")
-
 config.setDefaults({
 	godmode = false,
 	infiniteStamina = true,

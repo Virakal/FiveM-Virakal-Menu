@@ -15,7 +15,7 @@ RegisterNUICallback("teleport", function(data, cb)
 
 	cb("ok")
 end)
-
+--[[
 RegisterNUICallback("coords", function(data, cb)
 	local loc = GetEntityCoords(GetPlayerPed(PlayerId()))
 	local coords = string.format("~g~%0.2f, %0.2f, %0.2f", loc.x, loc.y, loc.z)
@@ -24,7 +24,7 @@ RegisterNUICallback("coords", function(data, cb)
 
 	cb("ok")
 end)
-
+]]
 RegisterNUICallback("teleplayer", function(data, cb)
 	local otherServerId = tonumber(data.action)
 	local other = GetPlayerFromServerId(otherServerId)
