@@ -13,6 +13,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         public PoliceSection(Trainer trainer) : base(trainer)
         {
             Trainer.RegisterNUICallback("policeignore", TogglePoliceIgnore);
+            Trainer.RegisterNUICallback("wantedlevel", SetWantedLevel);
+        }
+
+        private CallbackDelegate SetWantedLevel(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            int level = Convert.ToInt32(data["action"]);
+            int playerId = Game.Player.Handle;
+
+            API.SetPlayerWantedLevel(playerId, level, false);
+            API.SetPlayerWantedLevelNow(playerId, false);
+
+            Trainer.AddNotification($"~g~Changed wanted level to {level}.");
+
+            callback("ok");
+            return callback;
         }
 
         private CallbackDelegate TogglePoliceIgnore(IDictionary<string, object> data, CallbackDelegate callback)

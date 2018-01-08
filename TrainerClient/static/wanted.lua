@@ -2,6 +2,7 @@ local config = Virakal.Config
 
 config.setDefault('disablePolice', false)
 
+--[[
 RegisterNUICallback("wantedlevel", function(data, cb)
 	local wanted = tonumber(data.action)
 	local player = PlayerId()
@@ -14,7 +15,7 @@ RegisterNUICallback("wantedlevel", function(data, cb)
 	cb("ok")
 end)
 
---[[
+
 RegisterNUICallback("policeignore", function(data, cb)
 	SetPoliceIgnorePlayer(PlayerId(), data.newstate)
 
