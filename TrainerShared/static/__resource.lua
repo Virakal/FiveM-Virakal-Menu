@@ -19,7 +19,6 @@ client_script {
 	'config.lua',
 	'player.lua',
 	'settings.lua',
-	'teleport.lua',
 	'vehicles.lua',
 	'weapons.lua'
 }

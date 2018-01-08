@@ -15,6 +15,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("coords", DisplayCoords);
             Trainer.RegisterNUICallback("teleplayer", TeleportToPlayer);
             Trainer.RegisterNUICallback("telelastcar", TeleportToLastCar);
+            Trainer.RegisterNUICallback("teleport", TeleportToCoords);
         }
 
         private CallbackDelegate DisplayCoords(IDictionary<string, object> data, CallbackDelegate callback)
@@ -106,6 +107,31 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             {
                 Trainer.AddNotification("~r~Could not find your last vehicle.");
             }
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate TeleportToCoords(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            var coords = (string)data["action"];
+            string[] splitCoords = coords.Split(',');
+            var position = new Vector3(
+                float.Parse(splitCoords[0]),
+                float.Parse(splitCoords[1]),
+                float.Parse(splitCoords[2])
+            );
+
+            Ped playerPed = Game.Player.Character;
+            Entity entity = playerPed;
+
+            // If the player is driving a vehicle, take it with them
+            if (playerPed.IsInVehicle() && playerPed.CurrentVehicle.Driver == playerPed)
+            {
+                entity = playerPed.CurrentVehicle;
+            }
+
+            entity.Position = position;
 
             callback("ok");
             return callback;
