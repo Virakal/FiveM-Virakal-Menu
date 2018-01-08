@@ -12,6 +12,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
     {
         public WeaponSection(Trainer trainer) : base(trainer)
         {
+            Config.SetDefault("ExplosiveAmmo", "false");
+            Config.SetDefault("FireAmmo", "false");
+
             Trainer.RegisterNUICallback("wepgive", GiveWeapon);
             Trainer.RegisterNUICallback("wepremove", RemoveWeapon);
             Trainer.RegisterNUICallback("explosiveammo", ToggleExplosiveAmmo);
@@ -60,12 +63,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task OnTick()
         {
-            if (Config.ContainsKey("ExplosiveAmmo") && Config["ExplosiveAmmo"] == "true")
+            if (Config["ExplosiveAmmo"] == "true")
             {
                 API.SetExplosiveAmmoThisFrame(Game.Player.Handle);
             }
 
-            if (Config.ContainsKey("FireAmmo") && Config["FireAmmo"] == "true")
+            if (Config["FireAmmo"] == "true")
             {
                 API.SetFireAmmoThisFrame(Game.Player.Handle);
             }

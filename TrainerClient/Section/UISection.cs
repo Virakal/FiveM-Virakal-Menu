@@ -8,6 +8,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
     {
         public UISection(Trainer trainer) : base(trainer)
         {
+            Config.SetDefault("BigMap", "false");
             Trainer.RegisterNUICallback("bigmap", ToggleBigMap);
         }
 

@@ -12,6 +12,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
     {
         public PoliceSection(Trainer trainer) : base(trainer)
         {
+            Config.SetDefault("PoliceDisable", "false");
+            Config.SetDefault("PoliceIgnore", "false");
+
             Trainer.RegisterNUICallback("policeignore", TogglePoliceIgnore);
             Trainer.RegisterNUICallback("wantedlevel", SetWantedLevel);
             Trainer.RegisterNUICallback("policedisable", TogglePoliceDisable);
@@ -54,18 +57,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         public async Task DisablePolice()
         {
-            bool disabled = false;
-
-            try
-            {
-                disabled = Config["PoliceDisable"] == "true";
-            }
-            catch (KeyNotFoundException)
-            {
-                disabled = false;
-            }
-
-            if (disabled)
+            if (Config["PoliceDisable"] == "true")
             {
                 SetWanted(Game.Player.Handle, 0);
             }
