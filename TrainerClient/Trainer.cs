@@ -14,6 +14,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public Control MenuKey { get; } = Control.SelectCharacterFranklin; // F6
         public bool ShowTrainer { get; private set; } = false;
         public Config Config { get; } = new Config();
+        public EventHandlerDictionary _EventHandlers { get { return EventHandlers; } }
 
         public Trainer()
         {
