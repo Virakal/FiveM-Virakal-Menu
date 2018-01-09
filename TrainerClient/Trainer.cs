@@ -50,6 +50,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             new Section.PoliceSection(this);
             new Section.TeleportSection(this);
             new Section.WeaponSection(this);
+            new Section.SettingsSection(this);
 
             RegisterNUICallback("trainerclose", TrainerClose);
 

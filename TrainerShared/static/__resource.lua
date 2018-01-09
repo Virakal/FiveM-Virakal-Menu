@@ -18,7 +18,6 @@ client_script {
 	'main.lua',
 	'config.lua',
 	'player.lua',
-	'settings.lua',
 	'vehicles.lua'
 }
 
