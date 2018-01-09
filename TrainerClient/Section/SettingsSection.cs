@@ -2,6 +2,7 @@
 using CitizenFX.Core.Native;
 using System;
 using System.Collections.Generic;
+using Virakal.FiveM.Trainer.TrainerShared;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,22 +12,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
     class SettingsSection : BaseSection
     {
         private bool firstSpawn = true;
-        internal static readonly string[] _weatherNames = {
-            "EXTRASUNNY",
-            "CLEAR",
-            "CLOUDS",
-            "SMOG",
-            "FOGGY",
-            "OVERCAST",
-            "RAIN",
-            "THUNDER",
-            "CLEARING",
-            "NEUTRAL",
-            "SNOW",
-            "BLIZZARD",
-            "SNOWLIGHT",
-            "XMAS"
-        };
 
         public SettingsSection(Trainer trainer) : base(trainer)
         {
@@ -40,7 +25,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private void ChangeWeather(Weather weatherType)
         {
-            string weather = _weatherNames[(int)weatherType];
+            string weather = WeatherList.GetInternalName((int)weatherType);
             API.SetWeatherTypePersist(weather);
             API.SetWeatherTypeNowPersist(weather);
             API.SetWeatherTypeNow(weather);
@@ -77,7 +62,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (!string.IsNullOrWhiteSpace(name))
             {
-                Trainer.AddNotification($"~g~Weather changed to {Enum.GetName(typeof(Weather), weather)} by {name}.");
+                Trainer.AddNotification($"~g~Weather changed to {WeatherList.GetNiceName(weather)} by {name}.");
             }
         }
 
