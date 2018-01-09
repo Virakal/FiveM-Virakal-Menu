@@ -54,6 +54,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             new Section.PlayerSection(this);
 
             RegisterNUICallback("trainerclose", TrainerClose);
+            RegisterNUICallback("playsound", PlaySound);
 
             return Task.FromResult(0);
         }
@@ -127,6 +128,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         private CallbackDelegate TrainerClose(IDictionary<string, object> data, CallbackDelegate callback)
         {
             ShowTrainer = false;
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate PlaySound(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Game.PlaySound((string)data["name"], "HUD_FRONTEND_DEFAULT_SOUNDSET");
             callback("ok");
             return callback;
         }

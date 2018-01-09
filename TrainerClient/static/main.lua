@@ -1,9 +1,3 @@
-RegisterNUICallback("playsound", function(data, cb)
-	PlaySoundFrontend(-1, data.name, "HUD_FRONTEND_DEFAULT_SOUNDSET",  true)
-
-	cb("ok")
-end)
-
 function drawNotification(text)
 	SetNotificationTextEntry("STRING")
 	AddTextComponentString(text)
