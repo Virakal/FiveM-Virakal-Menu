@@ -1,3 +1,4 @@
+--[[
 local current_weather
 local current_time
 local dbReady = false
@@ -9,7 +10,7 @@ RegisterServerEvent("virakal:requestWeather")
 RegisterServerEvent("virakal:requestTime")
 RegisterServerEvent("virakal:requestConfig")
 
---[[
+
 AddEventHandler("virakal:changeWeather", function(weather)
 	local name = GetPlayerName(source)
 
@@ -18,7 +19,7 @@ AddEventHandler("virakal:changeWeather", function(weather)
 	current_weather = weather
 	TriggerClientEvent('virakal:setWeather', -1, weather, name)
 end)
-]]
+
 
 AddEventHandler("virakal:changeTime", function(h, m, s)
 	local name = GetPlayerName(source)
@@ -35,7 +36,7 @@ AddEventHandler("virakal:requestWeather", function()
 		TriggerClientEvent('virakal:setWeather', source, current_weather, nil)
 	end
 end)
-]]
+
 
 AddEventHandler("virakal:requestTime", function()
 	if current_time then
