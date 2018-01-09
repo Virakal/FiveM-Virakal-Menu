@@ -15,6 +15,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public bool ShowTrainer { get; private set; } = false;
         public Config Config { get; } = new Config();
         public EventHandlerDictionary _EventHandlers { get { return EventHandlers; } }
+        public bool BlockInput { get; internal set; } = false;
 
         public Trainer()
         {
@@ -52,6 +53,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             new Section.WeaponSection(this);
             new Section.SettingsSection(this);
             new Section.PlayerSection(this);
+            new Section.VehicleSection(this);
 
             RegisterNUICallback("trainerclose", TrainerClose);
             RegisterNUICallback("playsound", PlaySound);
@@ -61,6 +63,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
         private Task HandleMenuKeys()
         {
+            // Make sure input is enabled
+            if (BlockInput)
+            {
+                return Task.FromResult(0);
+            }
+
             // Check if the show key is pressed (F6)
             if (Game.IsControlJustReleased(1, MenuKey))
             {

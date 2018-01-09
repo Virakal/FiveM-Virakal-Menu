@@ -53,6 +53,7 @@
     <Compile Include="Section\PoliceSection.cs" />
     <Compile Include="Section\SettingsSection.cs" />
     <Compile Include="Section\TeleportSection.cs" />
+    <Compile Include="Section\VehicleSection.cs" />
     <Compile Include="Section\WeaponSection.cs" />
     <Compile Include="Trainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

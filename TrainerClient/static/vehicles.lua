@@ -116,6 +116,7 @@ RegisterNUICallback("veh", function(data, cb)
 	cb("ok")
 end)
 
+--[[
 RegisterNUICallback("vehspawn", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local x, y, z = table.unpack(GetEntityCoords(playerPed, true))
@@ -149,7 +150,7 @@ RegisterNUICallback("vehspawn", function(data, cb)
 
 	cb("ok")
 end)
-
+]]
 RegisterNUICallback("vehcolor", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local playerVeh = GetVehiclePedIsIn(playerPed, false)
