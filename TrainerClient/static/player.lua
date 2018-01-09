@@ -6,7 +6,7 @@ config.setDefaults({
 	infiniteStamina = true,
 	currentSkin = nil,
 })
-
+--[[
 RegisterNUICallback("player", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local action = data.action
@@ -35,7 +35,7 @@ RegisterNUICallback("player", function(data, cb)
 
 	cb("ok")
 end)
-
+]]
 RegisterNUICallback("playerskin", function(data, cb)
 	local model = GetHashKey(data.action)
 	local playerPed = GetPlayerPed(-1)
@@ -78,6 +78,7 @@ RegisterNUICallback("playerskin", function(data, cb)
 	cb("ok")
 end)
 
+--[[
 Citizen.CreateThread(function()
 	while true do
 		Wait(1)
@@ -92,7 +93,7 @@ Citizen.CreateThread(function()
 		end
 	end
 end)
-
+]]
 AddEventHandler("playerSpawned", function()
 	Citizen.Wait(0)
 
