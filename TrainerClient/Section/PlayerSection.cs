@@ -21,6 +21,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             Trainer.RegisterNUICallback("player", OnPlayer);
             Trainer.RegisterNUICallback("playerskin", OnPlayerSkinChange);
+            
+            EventHandlers["virakal:skinChange"] += new Action<int>(OnVirakalSkinChange);
 
             Trainer.AddTick(OnTick);
         }
@@ -130,6 +132,44 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
+        private async void OnVirakalSkinChange(int modelHash)
+        {
+            // Awaiting 0 fixes the game trying to load things too quickly
+            await BaseScript.Delay(0);
+
+            Ped playerPed = Game.Player.Character;
+            Model model = new Model(modelHash);
+
+            if (!playerPed.IsHuman)
+            {
+                // This fixes crashes on some animal skins
+                API.SetPedComponentVariation(playerPed.Handle, 0, 0, 0, 0);
+            }
+            else if (model.Hash == Game.GenerateHash(@"mp_m_freemode_01"))
+            {
+                // Generic MP Male setup
+                API.SetPedHeadBlendData(playerPed.Handle, 4, 4, 0, 4, 4, 0, 1.0f, 1.0f, 0.0f, false);
+                API.SetPedComponentVariation(playerPed.Handle, 2, 2, 4, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 3, 1, 0, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 4, 33, 0, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 5, 45, 0, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 6, 25, 0, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 8, 56, 1, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 11, 49, 0, 0);
+            }
+            else if (model.Hash == Game.GenerateHash(@"mp_f_freemode_01"))
+            {
+                // Generic MP Female setup
+                API.SetPedHeadBlendData(playerPed.Handle, 25, 25, 0, 25, 25, 0, 1.0f, 1.0f, 0.0f, false);
+                API.SetPedComponentVariation(playerPed.Handle, 2, 13, 3, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 3, 3, 0, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 5, 45, 0, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 6, 25, 0, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 8, 33, 1, 0);
+                API.SetPedComponentVariation(playerPed.Handle, 11, 42, 0, 0);
+            }
+        }
+
         private async Task<bool> ChangePlayerSkin(Ped playerPed, Model model)
         {
             Vehicle vehicle = playerPed.CurrentVehicle;
@@ -161,7 +201,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             BaseScript.TriggerEvent("playerSpawned");
-            BaseScript.TriggerEvent("virakal:skinChange", model);
+            BaseScript.TriggerEvent("virakal:skinChange", model.GetHashCode());
 
             if (playerSeat != VehicleSeat.None)
             {

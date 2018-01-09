@@ -114,6 +114,7 @@ AddEventHandler("playerSpawned", function()
 	end
 end)
 
+--[[
 AddEventHandler("virakal:skinChange", function(model)
 	Citizen.Wait(0)
 
@@ -144,6 +145,7 @@ AddEventHandler("virakal:skinChange", function(model)
 		SetPedComponentVariation(playerPed, 11, 42, 0, 0)
 	end
 end)
+]]
 
 function SetCharModel(playerId, model)
 	RequestModel(model)
