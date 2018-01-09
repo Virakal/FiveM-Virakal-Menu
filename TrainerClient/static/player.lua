@@ -35,7 +35,7 @@ RegisterNUICallback("player", function(data, cb)
 
 	cb("ok")
 end)
-]]
+
 RegisterNUICallback("playerskin", function(data, cb)
 	local model = GetHashKey(data.action)
 	local playerPed = GetPlayerPed(-1)

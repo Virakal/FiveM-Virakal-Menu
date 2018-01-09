@@ -20,6 +20,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("AutoGiveParachute", "true");
 
             Trainer.RegisterNUICallback("player", OnPlayer);
+            Trainer.RegisterNUICallback("playerskin", OnPlayerSkinChange);
 
             Trainer.AddTick(OnTick);
         }
@@ -117,6 +118,62 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
+        private CallbackDelegate OnPlayerSkinChange(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Model model = new Model((string)data["action"]);
+            Ped playerPed = Game.Player.Character;
+
+            _ = ChangePlayerSkin(playerPed, model);
+            Config["CurrentSkin"] = (string)data["action"];
+
+            callback("ok");
+            return callback;
+        }
+
+        private async Task<bool> ChangePlayerSkin(Ped playerPed, Model model)
+        {
+            Vehicle vehicle = playerPed.CurrentVehicle;
+            VehicleSeat playerSeat = VehicleSeat.None;
+
+            // If in a vehicle, remember their seat so we can put them back in it
+            if (vehicle != null)
+            {
+                int seatCount = API.GetVehicleModelNumberOfSeats((uint)vehicle.Model.Hash);
+
+                for (var i = -1; i < seatCount; i++)
+                {
+                    VehicleSeat iSeat = (VehicleSeat)i;
+
+                    if (vehicle.GetPedOnSeat(iSeat) == playerPed)
+                    {
+                        playerSeat = iSeat;
+                        break;
+                    }
+                }
+            }
+
+            bool success = await Game.Player.ChangeModel(model);
+
+            if (!success)
+            {
+                Trainer.AddNotification("~r~Failed to load skin!");
+                return false;
+            }
+
+            BaseScript.TriggerEvent("playerSpawned");
+            BaseScript.TriggerEvent("virakal:skinChange", model);
+
+            if (playerSeat != VehicleSeat.None)
+            {
+                playerPed = Game.Player.Character;
+                playerPed.SetIntoVehicle(vehicle, playerSeat);
+            }
+
+            Trainer.AddNotification("~g~Changed player skin.");
+
+            return true;
+        }
+
         private Task OnTick()
         {
             Ped playerPed = Game.Player.Character;
@@ -127,7 +184,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             playerPed.IsInvincible = Config["GodMode"] == "true";
-            
+
             if (Config["InfiniteStamina"] == "true")
             {
                 API.RestorePlayerStamina(Game.Player.Handle, 1.0f);
