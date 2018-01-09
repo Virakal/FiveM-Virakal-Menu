@@ -25,7 +25,7 @@ Virakal.Config = (function ()
 
 	rObj.set = function (key, val)
 		self.config[key] = val
-		TriggerEvent('virakal:config:set', key, val)
+		-- TriggerEvent('virakal:config:set', key, val)
 	end
 
 	rObj.setDefaults = function (table)
@@ -48,7 +48,7 @@ Virakal.Config = (function ()
 
 	return rObj
 end)()
-
+--[[
 AddEventHandler('virakal:dbReady', function ()
 	Citizen.Trace('Requesting config')
 	TriggerServerEvent('virakal:requestConfig')
@@ -75,3 +75,4 @@ Citizen.CreateThread(function() -- Update DB every 10 secs
 		Citizen.Wait(10000)
 	end
 end)
+]]

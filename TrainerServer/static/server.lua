@@ -27,18 +27,20 @@ AddEventHandler("virakal:changeTime", function(h, m, s)
 	TriggerClientEvent('virakal:setTime', -1, h, m, s, name)
 end)
 
+--[[
 AddEventHandler("virakal:requestWeather", function()
 	if current_weather then
 		TriggerClientEvent('virakal:setWeather', source, current_weather, nil)
 	end
 end)
+]]
 
 AddEventHandler("virakal:requestTime", function()
 	if current_time then
 		TriggerClientEvent('virakal:setTime', source, current_time[0], current_time[1], current_time[2], nil)
 	end
 end)
-
+--[[
 AddEventHandler('virakal:setConfig', function (key, val)
 	Citizen.Trace("Setting config - K:" .. tostring(key) .. ", V: " .. tostring(val) .. ", type: " .. type(val) .. "\n")
 
@@ -61,7 +63,7 @@ AddEventHandler('virakal:setConfig', function (key, val)
 				@value,
 				@type
 			)
-		]], {
+		]]--[[, {
 			id = getSteamID(source),
 			key = key,
 			value = stringVal,
@@ -101,3 +103,4 @@ function getSteamID(source)
 		end
 	end
 end
+]]
