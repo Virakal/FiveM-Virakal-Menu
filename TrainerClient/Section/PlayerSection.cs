@@ -10,6 +10,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 {
     class PlayerSection : BaseSection
     {
+        private bool justRunSpawnHandler = false;
+
         public PlayerSection(Trainer trainer) : base(trainer)
         {
             Config.SetDefault("GodMode", "false");
@@ -23,6 +25,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("playerskin", OnPlayerSkinChange);
             
             EventHandlers["virakal:skinChange"] += new Action<int>(OnVirakalSkinChange);
+            EventHandlers["playerSpawned"] += new Action(OnPlayerSpawnedRestoreSkin);
 
             Trainer.AddTick(OnTick);
         }
@@ -167,6 +170,38 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 API.SetPedComponentVariation(playerPed.Handle, 6, 25, 0, 0);
                 API.SetPedComponentVariation(playerPed.Handle, 8, 33, 1, 0);
                 API.SetPedComponentVariation(playerPed.Handle, 11, 42, 0, 0);
+            }
+        }
+
+        private async void OnPlayerSpawnedRestoreSkin()
+        {
+            // Fixes some awkward bugs due to timing
+            await BaseScript.Delay(0);
+
+            // Guard against infinite recursion
+            if (justRunSpawnHandler)
+            {
+                justRunSpawnHandler = false;
+                return;
+            }
+
+            // Check if config has a skin stored
+            string currentSkinHash = Config["CurrentSkin"];
+
+            if (string.IsNullOrWhiteSpace(currentSkinHash))
+            {
+                return;
+            }
+
+            // Set skin to config skin if it is incorrect
+            Model actualSkin = Game.PlayerPed.Model;
+            Model configSkin = new Model(currentSkinHash);
+
+            if (actualSkin != configSkin)
+            {
+                await Game.Player.ChangeModel(configSkin);
+                justRunSpawnHandler = true;
+                BaseScript.TriggerEvent("playerSpawned", configSkin.Hash);
             }
         }
 

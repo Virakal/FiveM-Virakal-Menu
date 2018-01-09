@@ -64,7 +64,6 @@
     <None Include="packages.config" />
     <None Include="static\config.lua" />
     <None Include="static\main.lua" />
-    <None Include="static\player.lua" />
     <None Include="static\vehicles.lua" />
   </ItemGroup>
   <ItemGroup />

@@ -17,7 +17,6 @@ client_script {
 	'TrainerClient.net.dll',
 	'main.lua',
 	'config.lua',
-	'player.lua',
 	'vehicles.lua'
 }
 
