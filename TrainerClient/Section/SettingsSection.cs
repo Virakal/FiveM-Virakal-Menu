@@ -34,7 +34,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate WeatherCallback(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Debug.Write($"Changing weather, {data["action"]}");
             BaseScript.TriggerServerEvent("virakal:changeWeather", data["action"]);
 
             callback("ok");
@@ -43,7 +42,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate TimeCallback(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Debug.Write($"Changing time, {data["action"]}");
             int hour = Convert.ToInt32(data["action"]);
             BaseScript.TriggerServerEvent("virakal:changeTime", hour, 0, 0);
 
