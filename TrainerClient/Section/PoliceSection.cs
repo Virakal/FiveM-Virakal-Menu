@@ -55,14 +55,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        public async Task DisablePolice()
+        public Task DisablePolice()
         {
             if (Config["PoliceDisable"] == "true")
             {
                 SetWanted(Game.Player.Handle, 0);
             }
             
-            await BaseScript.Delay(1);
+            return Task.FromResult(0);
         }
 
         private void SetWanted(int playerId, int level)

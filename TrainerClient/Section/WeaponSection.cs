@@ -61,7 +61,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private async Task OnTick()
+        private Task OnTick()
         {
             if (Config["ExplosiveAmmo"] == "true")
             {
@@ -73,7 +73,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 API.SetFireAmmoThisFrame(Game.Player.Handle);
             }
 
-            await Trainer.Delay(1);
+            return Task.FromResult(0);
         }
     }
 }
