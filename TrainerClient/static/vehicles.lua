@@ -171,6 +171,7 @@ RegisterNUICallback("vehcolor", function(data, cb)
 	cb("ok")
 end)
 
+--[[
 RegisterNUICallback("vehprimary", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local playerVeh = GetVehiclePedIsIn(playerPed, false)
@@ -192,6 +193,7 @@ RegisterNUICallback("vehprimary", function(data, cb)
 	cb("ok")
 end)
 
+
 RegisterNUICallback("vehpearl", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local playerVeh = GetVehiclePedIsIn(playerPed, false)
@@ -209,7 +211,6 @@ RegisterNUICallback("vehpearl", function(data, cb)
 	cb("ok")
 end)
 
---[[
 Citizen.CreateThread(function() --Boost On Horn
 	while true do
 		local playerVeh, playerPed

@@ -23,9 +23,58 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             Trainer.RegisterNUICallback("veh", OnVeh);
             Trainer.RegisterNUICallback("vehspawn", OnVehSpawn);
+            Trainer.RegisterNUICallback("vehprimary", OnVehPrimary);
+            Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
 
             Trainer.AddTick(RainbowTick);
             Trainer.AddTick(BoostTick);
+        }
+
+        private CallbackDelegate OnVehPrimary(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            int colour = Convert.ToInt32(data["action"]);
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+            }
+            else
+            {
+                // TODO: Rewrite using VehicleModCollection
+                int handle = vehicle.Handle;
+                API.ClearVehicleCustomPrimaryColour(handle);
+                API.ClearVehicleCustomSecondaryColour(handle);
+
+                API.SetVehicleColours(handle, colour, colour);
+            }
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate OnVehPearl(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            int colour = Convert.ToInt32(data["action"]);
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+            }
+            else
+            {
+                // TODO: Rewrite using VehicleModCollection
+                int handle = vehicle.Handle;
+                int oldPearl = 0;
+                int wheelColour = 0;
+
+                API.GetVehicleExtraColours(handle, ref oldPearl, ref wheelColour);
+                API.SetVehicleExtraColours(handle, colour, wheelColour);
+            }
+
+            callback("ok");
+            return callback;
         }
 
         private CallbackDelegate OnVeh(IDictionary<string, object> data, CallbackDelegate callback)
@@ -123,10 +172,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 case "rainbowchrome":
                     Config["RainbowChrome"] = state ? "true" : "false";
 
+                    // TODO: Rewrite as VehicleModCollection
                     API.ClearVehicleCustomPrimaryColour(veh.Handle);
                     API.ClearVehicleCustomSecondaryColour(veh.Handle);
                     API.SetVehicleColours(veh.Handle, (int)VehicleColor.Chrome, (int)VehicleColor.Chrome);
-                    
+
                     if (state)
                     {
                         Trainer.AddNotification("~g~Rainbow chrome enabled.");
@@ -264,6 +314,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task RainbowTick()
         {
+            // TODO: Rewrite as VehicleModCollection
             await BaseScript.Delay(100);
 
             if (!(
