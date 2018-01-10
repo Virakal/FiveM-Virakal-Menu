@@ -125,8 +125,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
                     API.ClearVehicleCustomPrimaryColour(veh.Handle);
                     API.ClearVehicleCustomSecondaryColour(veh.Handle);
-                    API.SetVehicleColours(veh.Handle, 120, 120);
-
+                    API.SetVehicleColours(veh.Handle, (int)VehicleColor.Chrome, (int)VehicleColor.Chrome);
+                    
                     if (state)
                     {
                         Trainer.AddNotification("~g~Rainbow chrome enabled.");
