@@ -14,10 +14,7 @@ files {
 
 client_script {
 	'TrainerShared.net.dll',
-	'TrainerClient.net.dll',
-	'main.lua',
-	'config.lua',
-	'vehicles.lua'
+	'TrainerClient.net.dll'
 }
 
 server_script {
