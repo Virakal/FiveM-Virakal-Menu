@@ -96,6 +96,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     }
 
                     veh.HealthFloat = 1.0f;
+                    API.SetVehicleFixed(veh.Handle);
                     Trainer.AddNotification("~g~Vehicle repaired.");
                     break;
                 case "clean":
@@ -105,7 +106,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                         break;
                     }
 
-                    veh.DirtLevel = 0;
+                    veh.DirtLevel = 0f;
                     Trainer.AddNotification("~g~Vehicle cleaned.");
                     break;
                 case "flip":

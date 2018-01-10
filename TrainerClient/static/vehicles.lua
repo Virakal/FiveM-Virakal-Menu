@@ -266,7 +266,7 @@ Citizen.CreateThread(function() --Rainbow Car
 		end
 	end
 end)
-]]
+
 
 Citizen.CreateThread(function() -- Invincible Car
 	local lastVeh
@@ -302,7 +302,6 @@ Citizen.CreateThread(function() -- Invincible Car
 	end
 end)
 
---[[
 function RGBRainbow(frequency) -- Get a progressing rainbow colour based on game time
 	local result = {}
 	local gameTimer = GetGameTimer()
