@@ -10,6 +10,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 {
     class VehicleSection : BaseSection
     {
+        private Vehicle LastPlayerVehicle { get; set; }
+
         public VehicleSection(Trainer trainer) : base(trainer)
         {
             Config.SetDefault("AutoDespawnVehicle", "true");
@@ -394,6 +396,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (vehicle == null)
             {
+                LastPlayerVehicle = null;
                 return Task.FromResult(0);
             }
 
@@ -406,6 +409,15 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             vehicle.IsFireProof = invincible;
             vehicle.IsMeleeProof = invincible;
             vehicle.CanWheelsBreak = !invincible;
+
+            if (invincible && vehicle != LastPlayerVehicle)
+            {
+                Debug.Write("New vehicle! Fixing...");
+                LastPlayerVehicle = vehicle;
+                vehicle.Health = vehicle.MaxHealth;
+                vehicle.DirtLevel = 0;
+                vehicle.EngineHealth = 1000f;
+            }
 
             return Task.FromResult(0);
         }
