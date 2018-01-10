@@ -28,6 +28,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             Trainer.AddTick(RainbowTick);
             Trainer.AddTick(BoostTick);
+            Trainer.AddTick(InvincibleCarTick);
         }
 
         private CallbackDelegate OnVehPrimary(IDictionary<string, object> data, CallbackDelegate callback)
@@ -384,6 +385,29 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             await BaseScript.Delay(0);
+        }
+
+        private Task InvincibleCarTick()
+        {
+            bool invincible = Config["InvincibleVehicle"] == "true";
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                return Task.FromResult(0);
+            }
+
+            vehicle.CanBeVisiblyDamaged = !invincible;
+            vehicle.CanTiresBurst = !invincible;
+            vehicle.IsInvincible = invincible;
+            vehicle.IsBulletProof = invincible;
+            vehicle.IsCollisionProof = invincible;
+            vehicle.IsExplosionProof = invincible;
+            vehicle.IsFireProof = invincible;
+            vehicle.IsMeleeProof = invincible;
+            vehicle.CanWheelsBreak = !invincible;
+
+            return Task.FromResult(0);
         }
 
         /// <summary>

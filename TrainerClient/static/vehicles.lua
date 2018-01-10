@@ -10,7 +10,7 @@ config.setDefaults({
 	invinciblecar = true,
 	spawninveh = false,
 })
-
+--[[
 local function _SetEntityAsNoLongerNeeded(entity)
 	Citizen.InvokeNative(0xB736A491E64A32CF, Citizen.PointerValueIntInitialized(entity))
 end
@@ -63,7 +63,7 @@ local function SpawnVehicle(model, x, y, z)
 		drawNotification("~r~Invalid Model!")
 	end
 end
---[[
+
 RegisterNUICallback("veh", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local playerVeh = GetVehiclePedIsIn(playerPed, false)
@@ -272,6 +272,7 @@ Citizen.CreateThread(function() -- Invincible Car
 	local lastVeh
 
 	while true do
+	return
 		Citizen.Wait(0)
 
 		local playerPed = GetPlayerPed(-1)
