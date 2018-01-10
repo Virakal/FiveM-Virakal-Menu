@@ -150,7 +150,7 @@ RegisterNUICallback("vehspawn", function(data, cb)
 
 	cb("ok")
 end)
-]]
+
 RegisterNUICallback("vehcolor", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local playerVeh = GetVehiclePedIsIn(playerPed, false)
@@ -171,7 +171,6 @@ RegisterNUICallback("vehcolor", function(data, cb)
 	cb("ok")
 end)
 
---[[
 RegisterNUICallback("vehprimary", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local playerVeh = GetVehiclePedIsIn(playerPed, false)

@@ -27,10 +27,35 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehspawn", OnVehSpawn);
             Trainer.RegisterNUICallback("vehprimary", OnVehPrimary);
             Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
+            Trainer.RegisterNUICallback("vehcolor", OnVehColor);
 
             Trainer.AddTick(RainbowTick);
             Trainer.AddTick(BoostTick);
             Trainer.AddTick(InvincibleCarTick);
+        }
+
+        private CallbackDelegate OnVehColor(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+                callback("ok");
+                return callback;
+            }
+
+            string colour = (string)data["action"];
+            string[] rgb = colour.Split(',');
+            int r = Int32.Parse(rgb[0]);
+            int g = Int32.Parse(rgb[1]);
+            int b = Int32.Parse(rgb[2]);
+
+            API.SetVehicleCustomPrimaryColour(vehicle.Handle, r, g, b);
+            API.SetVehicleCustomSecondaryColour(vehicle.Handle, r, g, b);
+
+            callback("ok");
+            return callback;
         }
 
         private CallbackDelegate OnVehPrimary(IDictionary<string, object> data, CallbackDelegate callback)
