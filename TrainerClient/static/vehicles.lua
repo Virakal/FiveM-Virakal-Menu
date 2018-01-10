@@ -209,6 +209,7 @@ RegisterNUICallback("vehpearl", function(data, cb)
 	cb("ok")
 end)
 
+--[[
 Citizen.CreateThread(function() --Boost On Horn
 	while true do
 		local playerVeh, playerPed
@@ -234,7 +235,6 @@ Citizen.CreateThread(function() --Boost On Horn
 	end
 end)
 
---[[
 Citizen.CreateThread(function() --Rainbow Car
 	while true do
 		Citizen.Wait(100)

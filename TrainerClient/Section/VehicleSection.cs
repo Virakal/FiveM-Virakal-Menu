@@ -25,6 +25,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehspawn", OnVehSpawn);
 
             Trainer.AddTick(RainbowTick);
+            Trainer.AddTick(BoostTick);
         }
 
         private CallbackDelegate OnVeh(IDictionary<string, object> data, CallbackDelegate callback)
@@ -302,6 +303,36 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             await BaseScript.Delay(150);
+        }
+
+        private async Task BoostTick()
+        {
+            if (Config["BoostOnHorn"] == "true")
+            {
+                Ped playerPed = Game.PlayerPed;
+                Vehicle vehicle = playerPed.CurrentVehicle;
+
+                if (vehicle != null)
+                {
+                    if (Game.IsControlPressed(1, Control.VehicleHorn))
+                    {
+                        if (Game.IsControlPressed(1, Control.VehicleAccelerate))
+                        {
+                            API.SetVehicleBoostActive(vehicle.Handle, true);
+                            API.SetVehicleForwardSpeed(vehicle.Handle, 75f);
+                        }
+                        else if (Game.IsControlPressed(1, Control.VehicleBrake))
+                        {
+                            API.SetVehicleBoostActive(vehicle.Handle, true);
+                            API.SetVehicleForwardSpeed(vehicle.Handle, -75f);
+                        }
+                    }
+
+                    API.SetVehicleBoostActive(vehicle.Handle, false);
+                }
+            }
+
+            await BaseScript.Delay(0);
         }
 
         /// <summary>
