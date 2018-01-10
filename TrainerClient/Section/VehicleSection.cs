@@ -400,6 +400,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 return Task.FromResult(0);
             }
 
+            int handle = vehicle.Handle;
+
             vehicle.CanBeVisiblyDamaged = !invincible;
             vehicle.CanTiresBurst = !invincible;
             vehicle.IsInvincible = invincible;
@@ -410,13 +412,17 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             vehicle.IsMeleeProof = invincible;
             vehicle.CanWheelsBreak = !invincible;
 
+            API.SetEntityCanBeDamaged(handle, !invincible);
+            API.SetVehicleExplodesOnHighExplosionDamage(handle, !invincible);
+
             if (invincible && vehicle != LastPlayerVehicle)
             {
-                Debug.Write("New vehicle! Fixing...");
                 LastPlayerVehicle = vehicle;
                 vehicle.Health = vehicle.MaxHealth;
-                vehicle.DirtLevel = 0;
+                vehicle.DirtLevel = 0f;
                 vehicle.EngineHealth = 1000f;
+
+                API.SetVehicleFixed(handle);
             }
 
             return Task.FromResult(0);
