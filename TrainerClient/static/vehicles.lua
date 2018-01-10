@@ -63,7 +63,7 @@ local function SpawnVehicle(model, x, y, z)
 		drawNotification("~r~Invalid Model!")
 	end
 end
-
+--[[
 RegisterNUICallback("veh", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local playerVeh = GetVehiclePedIsIn(playerPed, false)
@@ -116,7 +116,7 @@ RegisterNUICallback("veh", function(data, cb)
 	cb("ok")
 end)
 
---[[
+
 RegisterNUICallback("vehspawn", function(data, cb)
 	local playerPed = GetPlayerPed(-1)
 	local x, y, z = table.unpack(GetEntityCoords(playerPed, true))
@@ -234,6 +234,7 @@ Citizen.CreateThread(function() --Boost On Horn
 	end
 end)
 
+--[[
 Citizen.CreateThread(function() --Rainbow Car
 	while true do
 		Citizen.Wait(100)
@@ -264,6 +265,7 @@ Citizen.CreateThread(function() --Rainbow Car
 		end
 	end
 end)
+]]
 
 Citizen.CreateThread(function() -- Invincible Car
 	local lastVeh
@@ -298,6 +300,7 @@ Citizen.CreateThread(function() -- Invincible Car
 	end
 end)
 
+--[[
 function RGBRainbow(frequency) -- Get a progressing rainbow colour based on game time
 	local result = {}
 	local gameTimer = GetGameTimer()
@@ -318,3 +321,4 @@ function InvertRGB(rgb)
 
 	return result
 end
+]]
