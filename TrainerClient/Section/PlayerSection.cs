@@ -14,7 +14,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         public PlayerSection(Trainer trainer) : base(trainer)
         {
-            Config.SetDefault("GodMode", "false");
+            Config.SetDefault("GodMode", "true");
             Config.SetDefault("InfiniteStamina", "false");
             Config.SetDefault("CurrentSkin", "");
             Config.SetDefault("InfiniteAmmo", "true");
