@@ -32,7 +32,7 @@ namespace TrainerServer
 
         private void OnRequestWeather([FromSource]Player source)
         {
-            Debug.WriteLine($"Weather requested by {source.Name}. Weather is {CurrentWeather}");
+            Debug.WriteLine($"Weather requested by {source.Name}. Weather is {WeatherList.GetNiceName(CurrentWeather)}");
             if (CurrentWeather != -1)
             {
                 TriggerClientEvent(source, "virakal:setWeather", CurrentWeather);
@@ -41,15 +41,16 @@ namespace TrainerServer
 
         private void OnChangeTime([FromSource]Player source, int hours, int minutes, int seconds)
         {
-            Debug.WriteLine($"Time changed to {hours:00}:{minutes:00}:{seconds:00} by {source.Name}.");
             CurrentTime = new Time(hours, minutes, seconds);
+            Debug.WriteLine($"Time changed to {CurrentTime} by {source.Name}.");
 
             TriggerClientEvent("virakal:setTime", hours, minutes, seconds, source.Name);
         }
 
         private void OnRequestTime([FromSource]Player source)
         {
-            Debug.WriteLine($"Weather requested by {source.Name}. Weather is {CurrentWeather}");
+            Debug.WriteLine($"Time requested by {source.Name}. Time is {CurrentTime}");
+
             if (CurrentTime != null)
             {
                 TriggerClientEvent(
@@ -73,6 +74,11 @@ namespace TrainerServer
                 Hours = hours;
                 Minutes = minutes;
                 Seconds = seconds;
+            }
+
+            public override string ToString()
+            {
+                return $"{Hours:00}:{Minutes:00}:{Seconds:00}";
             }
         }
     }
