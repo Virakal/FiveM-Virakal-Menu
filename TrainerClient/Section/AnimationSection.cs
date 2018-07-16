@@ -12,10 +12,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
     {
         public AnimationSection(Trainer trainer) : base(trainer)
         {
-            Trainer.RegisterNUICallback("animate", OnAnimate);
+            Trainer.RegisterAsyncNUICallback("animate", OnAnimate);
         }
 
-        private CallbackDelegate OnAnimate(IDictionary<string, object> data, CallbackDelegate callback)
+        private async Task<CallbackDelegate> OnAnimate(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Ped playerPed = Game.PlayerPed;
 
@@ -28,7 +28,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             while (!API.HasAnimDictLoaded("random@arrests@busted") && DateTime.Now < timeout)
             {
                 Debug.WriteLine("Waitin'");
-                BaseScript.Delay(1);
+                await BaseScript.Delay(1);
             }
 
             Debug.WriteLine(API.DoesAnimDictExist("random@arrests@busted") ? "exists" : "no existo");
