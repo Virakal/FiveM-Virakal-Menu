@@ -6,7 +6,6 @@ using CitizenFX.Core;
 using CitizenFX.Core.Native;
 using Newtonsoft.Json;
 
-
 namespace Virakal.FiveM.Trainer.TrainerClient
 {
     public class Trainer : BaseScript
@@ -57,6 +56,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
             RegisterNUICallback("trainerclose", TrainerClose);
             RegisterNUICallback("playsound", PlaySound);
+
+            AddNotification("~y~Trainer loaded!");
 
             return Task.FromResult(0);
         }
