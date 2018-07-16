@@ -65,12 +65,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             if (Config["ExplosiveAmmo"] == "true")
             {
-                API.SetExplosiveAmmoThisFrame(Game.Player.Handle);
+                Game.Player.SetExplosiveAmmoThisFrame();
             }
 
             if (Config["FireAmmo"] == "true")
             {
-                API.SetFireAmmoThisFrame(Game.Player.Handle);
+                Game.Player.SetFireAmmoThisFrame();
             }
 
             return Task.FromResult(0);
