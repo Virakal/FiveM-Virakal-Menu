@@ -22,7 +22,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("AutoGiveParachute", "true");
 
             Trainer.RegisterNUICallback("player", OnPlayer);
-            Trainer.RegisterNUICallback("playerskin", OnPlayerSkinChange);
+            Trainer.RegisterAsyncNUICallback("playerskin", OnPlayerSkinChange);
             
             EventHandlers["virakal:skinChange"] += new Action<int>(OnVirakalSkinChange);
             EventHandlers["playerSpawned"] += new Action(OnPlayerSpawnedRestoreSkin);
@@ -123,12 +123,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private CallbackDelegate OnPlayerSkinChange(IDictionary<string, object> data, CallbackDelegate callback)
+        private async Task<CallbackDelegate> OnPlayerSkinChange(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Model model = new Model((string)data["action"]);
             Ped playerPed = Game.Player.Character;
 
-            _ = ChangePlayerSkin(playerPed, model);
+            await ChangePlayerSkin(playerPed, model);
             Config["CurrentSkin"] = (string)data["action"];
 
             callback("ok");
