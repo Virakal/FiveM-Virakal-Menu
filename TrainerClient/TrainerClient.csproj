@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Section\AnimationSection.cs" />
     <Compile Include="Section\PlayerSection.cs" />
     <Compile Include="Section\PoliceSection.cs" />
     <Compile Include="Section\SettingsSection.cs" />

@@ -53,6 +53,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             new Section.SettingsSection(this);
             new Section.PlayerSection(this);
             new Section.VehicleSection(this);
+            new Section.AnimationSection(this);
 
             RegisterNUICallback("trainerclose", TrainerClose);
             RegisterNUICallback("playsound", PlaySound);
