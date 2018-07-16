@@ -45,12 +45,12 @@ namespace Virakal.FiveM.Trainer.TrainerShared
 
         public static string GetInternalName(int weather)
         {
-            return internalNames[weather];
+            return internalNames.ElementAtOrDefault(weather);
         }
 
         public static string GetNiceName(int weather)
         {
-            return niceNames[weather];
+            return niceNames.ElementAtOrDefault(weather);
         }
     }
 }
