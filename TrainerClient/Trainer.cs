@@ -135,6 +135,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             });
         }
 
+        public void RegisterAsyncNUICallback(string name, Func<IDictionary<string, object>, CallbackDelegate, Task<CallbackDelegate>> callback)
+        {
+            API.RegisterNuiCallbackType(name);
+
+            EventHandlers[$"__cfx_nui:{name}"] += new Action<ExpandoObject, CallbackDelegate>(async (body, resultCallback) =>
+            {
+                CallbackDelegate err = await callback.Invoke(body, resultCallback);
+            });
+        }
+
         private CallbackDelegate TrainerClose(IDictionary<string, object> data, CallbackDelegate callback)
         {
             ShowTrainer = false;
