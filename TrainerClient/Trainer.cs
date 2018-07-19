@@ -18,6 +18,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
         public Trainer()
         {
+            // Forcibly load the JSON DLL early
+            JsonConvert.SerializeObject(new object());
+
             Tick += OnLoad;
             Tick += HandleMenuKeys;
         }
