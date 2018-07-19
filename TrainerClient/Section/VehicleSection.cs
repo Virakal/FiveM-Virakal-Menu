@@ -15,7 +15,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         public VehicleSection(Trainer trainer) : base(trainer)
         {
             Config.SetDefault("AutoDespawnVehicle", "true");
-            Config.SetDefault("BoostOnHorn", "false");
+            Config.SetDefault("BoostOnHorn", "true");
             Config.SetDefault("RainbowPaint", "false");
             Config.SetDefault("RainbowChrome", "false");
             Config.SetDefault("RainbowNeon", "false");

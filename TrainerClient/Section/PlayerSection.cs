@@ -18,7 +18,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("InfiniteStamina", "false");
             Config.SetDefault("CurrentSkin", "");
             Config.SetDefault("InfiniteAmmo", "true");
-            Config.SetDefault("InfiniteClip", "false");
+            Config.SetDefault("InfiniteClip", "true");
             Config.SetDefault("AutoGiveParachute", "true");
 
             Trainer.RegisterNUICallback("player", OnPlayer);
