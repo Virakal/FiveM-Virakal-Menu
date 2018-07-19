@@ -58,9 +58,22 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             RegisterNUICallback("trainerclose", TrainerClose);
             RegisterNUICallback("playsound", PlaySound);
 
+            MaxPlayerStats();
+
             AddNotification("~y~Trainer loaded!");
 
             return Task.FromResult(0);
+        }
+
+        private void MaxPlayerStats()
+        {
+            API.StatSetInt((uint)API.GetHashKey("MP0_STAMINA"), 100, true);
+            API.StatSetInt((uint)API.GetHashKey("MP0_STRENGTH"), 100, true);
+            API.StatSetInt((uint)API.GetHashKey("MP0_LUNG_CAPACITY"), 100, true);
+            API.StatSetInt((uint)API.GetHashKey("MP0_WHEELIE_ABILITY"), 100, true);
+            API.StatSetInt((uint)API.GetHashKey("MP0_FLYING_ABILITY"), 100, true);
+            API.StatSetInt((uint)API.GetHashKey("MP0_SHOOTING_ABILITY"), 100, true);
+            API.StatSetInt((uint)API.GetHashKey("MP0_STEALTH_ABILITY"), 100, true);
         }
 
         private Task HandleMenuKeys()
