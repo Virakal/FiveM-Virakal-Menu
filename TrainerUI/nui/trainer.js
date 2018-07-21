@@ -74,25 +74,25 @@ function init() {
     });
 }
 function trainerUp() {
-    $('.traineroption').eq(counter).attr('class', 'traineroption');
+    deselectItem($('.traineroption').eq(counter));
     if (counter > 1) {
         counter -= 1;
     }
     else {
         counter = maxPerPage;
     }
-    $('.traineroption').eq(counter).attr('class', 'traineroption selected');
+    selectItem($('.traineroption').eq(counter));
     playSound('NAV_UP_DOWN');
 }
 function trainerDown() {
-    $('.traineroption').eq(counter).attr('class', 'traineroption');
+    deselectItem($('.traineroption').eq(counter));
     if (counter < maxPerPage) {
         counter += 1;
     }
     else {
         counter = 1;
     }
-    $('.traineroption').eq(counter).attr('class', 'traineroption selected');
+    selectItem($('.traineroption').eq(counter));
     playSound('NAV_UP_DOWN');
 }
 function trainerPrevPage() {
@@ -105,6 +105,16 @@ function trainerPrevPage() {
     }
     showPage(newPage);
     playSound('NAV_UP_DOWN');
+}
+function selectItem(item) {
+    //item.attr('class', 'traineroption selected');
+    item.addClass('selected');
+    return item;
+}
+function deselectItem(item) {
+    //item.attr('class', 'traineroption');
+    item.removeClass('selected');
+    return item;
 }
 function trainerNextPage() {
     let newPage;
@@ -165,12 +175,12 @@ function handleSelectedOption() {
 function resetSelected() {
     $('.traineroption').each(function (i, obj) {
         if ($(this).attr('class') == 'traineroption selected') {
-            $(this).attr('class', 'traineroption');
+            deselectItem($(this));
         }
     });
     counter = 1;
     maxPerPage = $('.traineroption').length - 1;
-    $('.traineroption').eq(1).attr('class', 'traineroption selected');
+    selectItem($('.traineroption').eq(1));
 }
 function resetTrainer() {
     showMenu(menus.mainmenu);
