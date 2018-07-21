@@ -23,12 +23,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("InvincibleVehicle", "true");
             Config.SetDefault("SpawnInVehicle", "true");
             Config.SetDefault("MaintainVehicleVelocityOnSwitch", "true");
+            Config.SetDefault("BoostPower", "75");
 
             Trainer.RegisterNUICallback("veh", OnVeh);
             Trainer.RegisterNUICallback("vehspawn", OnVehSpawn);
             Trainer.RegisterNUICallback("vehprimary", OnVehPrimary);
             Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
             Trainer.RegisterNUICallback("vehcolor", OnVehColor);
+            Trainer.RegisterNUICallback("boostpower", OnBoostPower);
 
             Trainer.AddTick(RainbowTick);
             Trainer.AddTick(BoostTick);
@@ -285,6 +287,17 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
+
+        private CallbackDelegate OnBoostPower(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Config["BoostPower"] = (string)data["action"];
+
+            Trainer.AddNotification($"~g~Boost power set to {Config["BoostPower"]}");
+
+            callback("ok");
+            return callback;
+        }
+
         private async Task<Vehicle> SpawnUserInputVehicle()
         {
             Trainer.BlockInput = true;
@@ -416,15 +429,23 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 {
                     if (Game.IsControlPressed(1, Control.VehicleHorn))
                     {
+                        var success = float.TryParse(Config["BoostPower"], out float power);
+
+                        if (!success)
+                        {
+                            Debug.WriteLine("Failed to parse boost power config variable.");
+                            power = 75;
+                        }
+
                         if (Game.IsControlPressed(1, Control.VehicleAccelerate))
                         {
                             API.SetVehicleBoostActive(vehicle.Handle, true);
-                            API.SetVehicleForwardSpeed(vehicle.Handle, 75f);
+                            API.SetVehicleForwardSpeed(vehicle.Handle, power);
                         }
                         else if (Game.IsControlPressed(1, Control.VehicleBrake))
                         {
                             API.SetVehicleBoostActive(vehicle.Handle, true);
-                            API.SetVehicleForwardSpeed(vehicle.Handle, -75f);
+                            API.SetVehicleForwardSpeed(vehicle.Handle, -1 * power);
                         }
                     }
 
