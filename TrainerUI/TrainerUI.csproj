@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="js_refs\index.d.ts" />
+    <TypeScriptCompile Include="js_refs\jquery.d.ts" />
     <TypeScriptCompile Include="js_refs\natives_universal.d.ts" />
     <TypeScriptCompile Include="trainer.ts" />
   </ItemGroup>
