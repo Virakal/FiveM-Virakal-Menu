@@ -13,6 +13,7 @@ var container;
 var content;
 var maxPerPage;
 var pageIndicator = '<p id="pageindicator"></p>';
+var imageContainer = $('<div id="imagecontainer">').hide();
 var recentSkins = [];
 $(function () {
     container = $('#trainercontainer');
@@ -26,6 +27,7 @@ $(function () {
         }
         else if (item.hidetrainer) {
             container.hide();
+            hideImageContainer();
             playSound('NO');
         }
         if (item.trainerenter) {
@@ -72,6 +74,7 @@ function init() {
             menus[$(this).attr("id")] = data;
         }
     });
+    imageContainer.appendTo('body');
 }
 function trainerUp() {
     deselectItem($('.traineroption').eq(counter));
@@ -107,14 +110,28 @@ function trainerPrevPage() {
     playSound('NAV_UP_DOWN');
 }
 function selectItem(item) {
-    //item.attr('class', 'traineroption selected');
     item.addClass('selected');
+    let imgSrc = item.data('image');
+    if (imgSrc) {
+        showImageContainer(imgSrc);
+    }
     return item;
 }
 function deselectItem(item) {
-    //item.attr('class', 'traineroption');
     item.removeClass('selected');
+    hideImageContainer();
     return item;
+}
+function showImageContainer(imgSrc) {
+    let img = $('<img>')
+        .attr('src', imgSrc);
+    imageContainer.empty().append(img);
+    imageContainer.show();
+    return imageContainer;
+}
+function hideImageContainer() {
+    imageContainer.hide();
+    return imageContainer;
 }
 function trainerNextPage() {
     let newPage;
@@ -129,6 +146,7 @@ function trainerNextPage() {
 }
 function trainerBack() {
     if (content.menu == menus.mainmenu.menu) {
+        hideImageContainer();
         container.hide();
         sendData('trainerclose', {});
     }

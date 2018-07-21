@@ -26,7 +26,8 @@ var container: JQuery;
 var content: PageData;
 var maxPerPage: number;
 
-var pageIndicator: string = '<p id="pageindicator"></p>';
+var pageIndicator = '<p id="pageindicator"></p>';
+var imageContainer = $('<div id="imagecontainer">').hide();
 
 var recentSkins: [string, JQuery][] = [];
 
@@ -44,6 +45,7 @@ $(function () {
 			playSound('YES');
 		} else if (item.hidetrainer) {
 			container.hide();
+			hideImageContainer();
 			playSound('NO');
 		}
 
@@ -96,6 +98,8 @@ function init() {
 			menus[$(this).attr("id")] = data;
 		}
 	});
+
+	imageContainer.appendTo('body');
 }
 
 function trainerUp(): void {
@@ -138,17 +142,38 @@ function trainerPrevPage(): void {
 }
 
 function selectItem(item: JQuery): JQuery {
-	//item.attr('class', 'traineroption selected');
 	item.addClass('selected');
+
+	let imgSrc: string = item.data('image');
+
+	if (imgSrc) {
+		showImageContainer(imgSrc);
+	}
 
 	return item;
 }
 
 function deselectItem(item: JQuery): JQuery {
-	//item.attr('class', 'traineroption');
 	item.removeClass('selected');
+	hideImageContainer();
 
 	return item;
+}
+
+function showImageContainer(imgSrc: string): JQuery {
+	let img = $('<img>')
+		.attr('src', imgSrc);
+
+	imageContainer.empty().append(img);
+	imageContainer.show();
+
+	return imageContainer;
+}
+
+function hideImageContainer(): JQuery {
+	imageContainer.hide();
+
+	return imageContainer;
 }
 
 function trainerNextPage(): void {
@@ -166,6 +191,7 @@ function trainerNextPage(): void {
 
 function trainerBack(): void {
 	if (content.menu == menus.mainmenu.menu) {
+		hideImageContainer();
 		container.hide();
 		sendData('trainerclose', {});
 	} else {
