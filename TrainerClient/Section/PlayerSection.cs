@@ -23,11 +23,45 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             Trainer.RegisterNUICallback("player", OnPlayer);
             Trainer.RegisterAsyncNUICallback("playerskin", OnPlayerSkinChange);
-            
+            Trainer.RegisterNUICallback("savedefaultskin", OnSaveDefaultSkin);
+
             EventHandlers["virakal:skinChange"] += new Action<int>(OnVirakalSkinChange);
             EventHandlers["playerSpawned"] += new Action(OnPlayerSpawnedRestoreSkin);
+            EventHandlers["virakal:configFetched"] += new Action(OnConfigFetched);
 
             Trainer.AddTick(OnTick);
+        }
+
+        private CallbackDelegate OnSaveDefaultSkin(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Config["DefaultSkin"] = Config["CurrentSkin"];
+
+            Trainer.AddNotification($"~g~Saved {Config["DefaultSkin"]} as your default skin.");
+
+            callback("ok");
+            return callback;
+        }
+
+        private async void OnConfigFetched()
+        {
+            if (Config.ContainsKey("DefaultSkin"))
+            {
+                var skin = new Model(Config["DefaultSkin"]);
+                skin.Request();
+
+                while (!skin.IsLoaded)
+                {
+                    await BaseScript.Delay(1);
+                }
+
+                var playerPed = Game.PlayerPed;
+
+                if (skin != playerPed.Model)
+                {
+                    justRunSpawnHandler = true;
+                    await ChangePlayerSkin(playerPed, skin);
+                }
+            }
         }
 
         private CallbackDelegate OnPlayer(IDictionary<string, object> data, CallbackDelegate callback)
