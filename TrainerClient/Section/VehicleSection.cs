@@ -22,6 +22,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("RainbowNeonInverse", "false");
             Config.SetDefault("InvincibleVehicle", "true");
             Config.SetDefault("SpawnInVehicle", "true");
+            Config.SetDefault("MaintainVehicleVelocityOnSwitch", "true");
 
             Trainer.RegisterNUICallback("veh", OnVeh);
             Trainer.RegisterNUICallback("vehspawn", OnVehSpawn);
@@ -302,8 +303,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return vehicle;
         }
 
-        private async Task<Vehicle> SpawnVehicle(Model model, Vector3 position, int heading = 0)
+        private async Task<Vehicle> SpawnVehicle(Model model, Vector3 position)
         {
+            var playerPed = Game.PlayerPed;
+            var playerVeh = playerPed.CurrentVehicle;
+
             if (Config["SpawnInVehicle"] == "false")
             {
                 position = new Vector3(position.X + 2.5f, position.Y + 2.5f, position.Z + 1.0f);
@@ -319,14 +323,30 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (Config["SpawnInVehicle"] == "true")
             {
-                Ped playerPed = Game.PlayerPed;
-                Vehicle playerVeh = playerPed.CurrentVehicle;
-
                 // Move the player to the new vehicle
                 playerPed.SetIntoVehicle(vehicle, VehicleSeat.Driver);
 
                 if (playerVeh != null)
                 {
+                    // Maintain old velocity if applicable
+                    if (Config["MaintainVehicleVelocityOnSwitch"] == "true")
+                    {
+                        vehicle.IsEngineRunning = true;
+                        vehicle.SteeringAngle = playerVeh.SteeringAngle;
+                        Debug.Write($"Setting steering angle to {playerVeh.SteeringAngle}");
+                        vehicle.Velocity = playerVeh.Velocity;
+                        Debug.Write($"Setting velocity to {playerVeh.Velocity}");
+                        vehicle.CurrentRPM = playerVeh.CurrentRPM;
+                        Debug.Write($"Setting RPM to {playerVeh.CurrentRPM}");
+                        vehicle.Heading = playerVeh.Heading;
+                        Debug.Write($"Setting heading to {playerVeh.Heading}");
+                        vehicle.HighGear = playerVeh.HighGear;
+                        Debug.Write($"Setting highgear to {playerVeh.HighGear}");
+                        vehicle.Rotation = playerVeh.Rotation;
+                        Debug.Write($"Setting rotation to {playerVeh.Rotation}");
+                        API.SetVehicleEngineOn(vehicle.Handle, true, true, true);
+                    }
+
                     // Try to move other passengers over
                     foreach (var passenger in playerVeh.Passengers)
                     {
