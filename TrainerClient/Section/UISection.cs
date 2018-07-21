@@ -17,7 +17,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("BigMapOnDown", "true");
 
             Trainer.RegisterNUICallback("bigmap", ToggleBigMap);
-            Trainer.RegisterNUICallback("bigmap", ToggleBigMapOnDown);
+            Trainer.RegisterNUICallback("bigmapondown", ToggleBigMapOnDown);
 
             Trainer.AddTick(MapOnDownTick);
         }
