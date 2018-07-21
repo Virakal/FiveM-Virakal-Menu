@@ -122,10 +122,6 @@ function updateFromConfig(json: string): void {
 						} else {
 							console.log(`Unexpected value for a config key: ${value}!`);
 						}
-
-						console.log(key);
-						console.log(value);
-						console.log(trainerOption.html());
 					}
 				});
 			});
