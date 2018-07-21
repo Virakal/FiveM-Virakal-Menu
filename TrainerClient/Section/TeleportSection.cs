@@ -20,10 +20,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate DisplayCoords(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vector3 location = Game.Player.Character.Position;
-            string coords = $"~g~{location.X:#.##}, {location.Y:#.##}, {location.Z:#.##}";
+            Vector3 location = Game.PlayerPed.Position;
+            string coords = $"{location.X:#.##}, {location.Y:#.##}, {location.Z:#.##}";
 
-            Trainer.AddNotification(coords);
+            Trainer.AddNotification($"~g~{coords}");
+            BaseScript.TriggerServerEvent("_chat:messageEntered", Game.Player.Name, new[] { 255, 255, 255 }, coords);
 
             callback("ok");
             return callback;
