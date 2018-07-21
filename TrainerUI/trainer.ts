@@ -1,5 +1,5 @@
 ﻿/// <reference path="./js_refs/index.d.ts"/>
-declare const $: any;
+/// <reference path="./js_refs/jquery.d.ts"/>
 
 /** CONFIG **/
 
