@@ -24,7 +24,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task MapOnDownTick()
         {
-            if (Config["BigMapOnDown"] == "true" && Config["BigMap"] == "false")
+            if (!Trainer.ShowTrainer && Config["BigMapOnDown"] == "true" && Config["BigMap"] == "false")
             {
                 if (Game.IsControlJustPressed(0, MapKey))
                 {
