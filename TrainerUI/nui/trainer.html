@@ -22,14 +22,14 @@
         <!-- Player menu -->
         <div id="playermenu" data-parent="mainmenu">
             <p class="traineroption" data-sub="playerskinmenu">Change Skin</p>
-            <p class="traineroption" data-action="player god" data-state="ON">Godmode</p>
-            <p class="traineroption" data-action="player stamina" data-state="ON">Unlimited Stamina</p>
-            <p class="traineroption" data-action="player ammo" data-state="ON">Infinite Ammo</p>
-            <p class="traineroption" data-action="player clip" data-state="ON">Infinite Clip</p>
+            <p class="traineroption" data-action="player god" data-state="ON" data-config-key="GodMode">Godmode</p>
+            <p class="traineroption" data-action="player stamina" data-state="ON" data-config-key="InfiniteStamina">Unlimited Stamina</p>
+            <p class="traineroption" data-action="player ammo" data-state="ON" data-config-key="InfiniteAmmo">Infinite Ammo</p>
+            <p class="traineroption" data-action="player clip" data-state="ON" data-config-key="InfiniteClip">Infinite Clip</p>
             <p class="traineroption" data-action="player heal">Heal Player</p>
             <p class="traineroption" data-action="player armor">Add Armor</p>
             <p class="traineroption" data-action="player suicide">Suicide</p>
-            <p class="traineroption" data-action="player autochute" data-state="ON">Auto Plane Parachute</p>
+            <p class="traineroption" data-action="player autochute" data-state="ON" data-config-key="AutoGiveParachute">Auto Plane Parachute</p>
             <p class="traineroption" data-action="wepgive GADGET_PARACHUTE">Give Parachute</p>
         </div>
         <div id="playerskinmenu" data-parent="playermenu">
@@ -833,13 +833,13 @@
             <p class="traineroption" data-action="veh flip">Flip Vehicle Onto Wheels</p>
             <p class="traineroption" data-action="veh neonon">Neons On</p>
             <p class="traineroption" data-action="veh neonoff">Neons Off</p>
-            <p class="traineroption" data-action="veh invincible" data-state="ON">Invincible Vehicle</p>
-            <p class="traineroption" data-action="veh boosthorn" data-state="ON">Boost on Horn</p>
+            <p class="traineroption" data-action="veh invincible" data-state="ON" data-config-key="InvincibleVehicle">Invincible Vehicle</p>
+            <p class="traineroption" data-action="veh boosthorn" data-state="ON" data-config-key="BoostOnHorn">Boost on Horn</p>
             <p class="traineroption" data-sub="boostpowermenu">Boost Power</p>
         </div>
         <div id="vehiclesspawnmenu" data-parent="vehiclesmenu">
-            <p class="traineroption" data-action="vehspawn despawn" data-state="ON">Automatic Despawn</p>
-            <p class="traineroption" data-action="vehspawn spawninveh" data-state="ON">Spawn Inside Vehicle</p>
+            <p class="traineroption" data-action="vehspawn despawn" data-state="ON" data-config-key="AutoDespawnVehicle">Automatic Despawn</p>
+            <p class="traineroption" data-action="vehspawn spawninveh" data-state="ON" data-config-key="SpawnInVehicle">Spawn Inside Vehicle</p>
             <p class="traineroption" data-action="vehspawn input">Spawn Vehicle by Name</p>
             <p class="traineroption" data-sub="bikespawnmenu">Spawn Bike</p>
             <p class="traineroption" data-sub="boatspawnmenu">Spawn Boat</p>
@@ -974,10 +974,10 @@
             <p class="traineroption" data-sub="vehiclescolorcustommenu">Custom Colour</p>
             <p class="traineroption" data-sub="vehiclescolorprimarymenu">Primary Colour</p>
             <p class="traineroption" data-sub="vehiclescolorpearlescentmenu">Pearlescent Colour</p>
-            <p class="traineroption" data-action="veh rainbowcar" data-state="OFF">Rainbow Car</p>
-            <p class="traineroption" data-action="veh rainbowchrome" data-state="OFF">Rainbow Chrome Car</p>
-            <p class="traineroption" data-action="veh rainbowneon" data-state="OFF">Rainbow Neons</p>
-            <p class="traineroption" data-action="veh rainbowneoninverse" data-state="OFF">Rainbow Neons (Inverse)</p>
+            <p class="traineroption" data-action="veh rainbowcar" data-state="OFF" data-config-key="RainbowPaint">Rainbow Car</p>
+            <p class="traineroption" data-action="veh rainbowchrome" data-state="OFF" data-config-key="RainbowChrome">Rainbow Chrome Car</p>
+            <p class="traineroption" data-action="veh rainbowneon" data-state="OFF" data-config-key="RainbowNeon">Rainbow Neons</p>
+            <p class="traineroption" data-action="veh rainbowneoninverse" data-state="OFF" data-config-key="RainbowNeonInverse">Rainbow Neons (Inverse)</p>
         </div>
         <div id="vehiclescolorcustommenu" data-parent="vehiclescolormenu">
             <p class="traineroption" data-action="vehcolor 0,0,0">Black</p>
@@ -1229,8 +1229,8 @@
         </div>
         <!-- Wanted menu -->
         <div id="policemenu" data-parent="mainmenu">
-            <p class="traineroption" data-action="policedisable" data-state="OFF">Disable Police For You</p>
-            <p class="traineroption" data-action="policeignore" data-state="OFF">Police Ignore You</p>
+            <p class="traineroption" data-action="policedisable" data-state="OFF" data-config-key="PoliceDisable">Disable Police For You</p>
+            <p class="traineroption" data-action="policeignore" data-state="OFF" data-config-key="PoliceIgnore">Police Ignore You</p>
             <p class="traineroption" data-action="wantedlevel 0">Wanted Level 0</p>
             <p class="traineroption" data-action="wantedlevel 1">Wanted Level 1</p>
             <p class="traineroption" data-action="wantedlevel 2">Wanted Level 2</p>
@@ -1293,8 +1293,8 @@
             <p class="traineroption" data-action="animate busted">Arrested</p>
         </div>
         <div id="uimenu" data-parent="mainmenu">
-            <p class="traineroption" data-action="bigmap" data-state="OFF">Large Minimap</p>
-            <p class="traineroption" data-action="bigmapondown" data-state="ON">Large Minimap on Down Arrow</p>
+            <p class="traineroption" data-action="bigmap" data-state="OFF" data-config-key="BigMap">Large Minimap</p>
+            <p class="traineroption" data-action="bigmapondown" data-state="ON" data-config-key="BigMapOnDown">Large Minimap on Down Arrow</p>
         </div>
     </div>
 </body>
