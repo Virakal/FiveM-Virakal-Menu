@@ -249,23 +249,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return true;
         }
 
-        private Task OnTick()
+        private async Task OnTick()
         {
             Ped playerPed = Game.Player.Character;
 
-            if (playerPed == null)
+            if (playerPed != null)
             {
-                return Task.FromResult(0);
+                playerPed.IsInvincible = Config["GodMode"] == "true";
+
+                if (Config["InfiniteStamina"] == "true")
+                {
+                    API.RestorePlayerStamina(Game.Player.Handle, 1.0f);
+                }
             }
 
-            playerPed.IsInvincible = Config["GodMode"] == "true";
-
-            if (Config["InfiniteStamina"] == "true")
-            {
-                API.RestorePlayerStamina(Game.Player.Handle, 1.0f);
-            }
-
-            return Task.FromResult(0);
+            await BaseScript.Delay(500);
         }
     }
 }
