@@ -4,41 +4,47 @@
 /** CONFIG **/
 
 // !! Change this to your current resource name !!
-var resourceName: string = "virakal-trainer";
+const resourceName: string = 'virakal-trainer';
 
 // Max amount of items in 1 menu (before autopaging kicks in)
-var maxVisibleItems = 12;
+const maxVisibleItems: number = 12;
 
 /** CODE **/
 
-var counter;
-var currentpage;
+interface PageData {
+	menu: JQuery,
+	pages: JQuery[][],
+	maxPages: number,
+};
 
-var menus = <any>[];
+var counter: number;
+var currentPage: number;
 
-var container;
-var content;
-var maxamount;
+var menus: { [menuName: string]: PageData } = {};
 
-var pageindicator = "<p id='pageindicator'></p>";
+var container: JQuery;
+var content: PageData;
+var maxPerPage: number;
 
-var recentSkins = [];
+var pageIndicator: string = '<p id="pageindicator"></p>';
+
+var recentSkins: [string, JQuery][] = [];
 
 $(function () {
-	container = $("#trainercontainer");
+	container = $('#trainercontainer');
 
 	init();
 
-	window.addEventListener("message", function (event) {
-		var item = event.data;
+	window.addEventListener('message', function (event) {
+		let item = event.data;
 
 		if (item.showtrainer) {
 			resetTrainer();
 			container.show();
-			playSound("YES");
+			playSound('YES');
 		} else if (item.hidetrainer) {
 			container.hide();
-			playSound("NO");
+			playSound('NO');
 		}
 
 		if (item.trainerenter) {
@@ -62,26 +68,29 @@ $(function () {
 });
 
 function init() {
-	$("div").each(function (i, obj) {
-		if ($(this).attr("id") != "trainercontainer") {
-			var data = <any>{};
-			data.menu = $(this).detach();
+	$('div').each(function (i, obj) {
+		if ($(this).attr('id') !== 'trainercontainer') {
+			const data: PageData = {
+				menu: $(this).detach(),
+				pages: [],
+				maxPages: 0,
+			};
 
-			data.pages = [];
 			$(this).children().each(function (i, obj) {
 				// send true state if it exists
-				if ($(this).data("state") == "ON") {
-					var statedata = $(this).data("action").split(" ");
-					sendData(statedata[0], { action: statedata[1], newstate: true });
+				if ($(this).data('state') === 'ON') {
+					const stateData: string[] = $(this).data('action').split(' ');
+					sendData(stateData[0], { action: stateData[1], newstate: true });
 				}
 
-				var page = Math.floor(i / maxVisibleItems);
+				const page = Math.floor(i / maxVisibleItems);
+
 				if (data.pages[page] == null) {
 					data.pages[page] = [];
 				}
 
 				data.pages[page].push($(this).detach());
-				data.maxpages = page;
+				data.maxPages = page;
 			});
 
 			menus[$(this).attr("id")] = data;
@@ -89,124 +98,129 @@ function init() {
 	});
 }
 
-function trainerUp() {
-	$(".traineroption").eq(counter).attr("class", "traineroption");
+function trainerUp(): void {
+	$('.traineroption').eq(counter).attr('class', 'traineroption');
 
 	if (counter > 1) {
 		counter -= 1;
 	} else {
-		counter = maxamount;
+		counter = maxPerPage;
 	}
 
-	$(".traineroption").eq(counter).attr("class", "traineroption selected");
-	playSound("NAV_UP_DOWN");
+	$('.traineroption').eq(counter).attr('class', 'traineroption selected');
+	playSound('NAV_UP_DOWN');
 }
 
-function trainerDown() {
-	$(".traineroption").eq(counter).attr("class", "traineroption");
+function trainerDown(): void {
+	$('.traineroption').eq(counter).attr('class', 'traineroption');
 
-	if (counter < maxamount) {
+	if (counter < maxPerPage) {
 		counter += 1;
 	} else {
 		counter = 1;
 	}
 
-	$(".traineroption").eq(counter).attr("class", "traineroption selected");
-	playSound("NAV_UP_DOWN");
+	$('.traineroption').eq(counter).attr('class', 'traineroption selected');
+	playSound('NAV_UP_DOWN');
 }
 
-function trainerPrevPage() {
-	var newpage;
-	if (pageExists(currentpage - 1)) {
-		newpage = currentpage - 1;
+function trainerPrevPage(): void {
+	let newPage: number;
+
+	if (pageExists(currentPage - 1)) {
+		newPage = currentPage - 1;
 	} else {
-		newpage = content.maxpages;
+		newPage = content.maxPages;
 	}
 
-	showPage(newpage);
-	playSound("NAV_UP_DOWN");
+	showPage(newPage);
+	playSound('NAV_UP_DOWN');
 }
 
-function trainerNextPage() {
-	var newpage;
-	if (pageExists(currentpage + 1)) {
-		newpage = currentpage + 1;
+function trainerNextPage(): void {
+	let newPage: number;
+
+	if (pageExists(currentPage + 1)) {
+		newPage = currentPage + 1;
 	} else {
-		newpage = 0;
+		newPage = 0;
 	}
 
-	showPage(newpage);
-	playSound("NAV_UP_DOWN");
+	showPage(newPage);
+	playSound('NAV_UP_DOWN');
 }
 
-function trainerBack() {
-	if (content.menu == menus["mainmenu"].menu) {
+function trainerBack(): void {
+	if (content.menu == menus.mainmenu.menu) {
 		container.hide();
-		sendData("trainerclose", {});
+		sendData('trainerclose', {});
 	} else {
-		showMenu(menus[content.menu.data("parent")]);
+		showMenu(menus[content.menu.data('parent')]);
 	}
 
-	playSound("BACK");
+	playSound('BACK');
 }
 
-function handleSelectedOption() {
-	var item = $(".traineroption").eq(counter);
+function handleSelectedOption(): void {
+	let item = $('.traineroption').eq(counter);
 
-	if (item.data("sub")) {
-		var submenu = menus[item.data("sub")];
-		if (item.data("subdata")) {
-			submenu.menu.attr("data-subdata", item.data("subdata"));
+	if (item.data('sub')) {
+		let submenu = menus[item.data('sub')];
+
+		if (item.data('subdata')) {
+			submenu.menu.attr('data-subdata', item.data('subdata'));
 		} else {
-			submenu.menu.attr("data-subdata", "");
+			submenu.menu.attr('data-subdata', '');
 		}
 
 		showMenu(submenu);
-	} else if (item.data("action")) {
-		var newstate = true;
-		if (item.data("state")) {
+	} else if (item.data('action')) {
+		let newState: boolean = true;
+
+		if (item.data('state')) {
 			// .attr() because .data() gives original values
-			if (item.attr("data-state") == "ON") {
-				newstate = false;
-				item.attr("data-state", "OFF");
-			} else if (item.attr("data-state") == "OFF") {
-				item.attr("data-state", "ON");
+			if (item.attr('data-state') === 'ON') {
+				newState = false;
+				item.attr('data-state', 'OFF');
+			} else if (item.attr('data-state') === 'OFF') {
+				item.attr('data-state', 'ON');
 			}
 		}
 
-		var data = item.data("action").split(" ");
-		if (data[1] == "*") {
-			data[1] = item.parent().attr("data-subdata");
+		let data: string[] = item.data('action').split(' ');
+
+		if (data[1] === '*') {
+			data[1] = item.parent().attr('data-subdata');
 		}
 
 		if (data[0] === 'playerskin') {
 			addToRecentSkins(data[1], item);
 		}
 
-		sendData(data[0], { action: data[1], newstate: newstate });
+		sendData(data[0], { action: data[1], newstate: newState });
 
 	}
 
-	playSound("SELECT");
+	playSound('SELECT');
 }
 
-function resetSelected() {
-	$(".traineroption").each(function (i, obj) {
-		if ($(this).attr("class") == "traineroption selected") {
-			$(this).attr("class", "traineroption");
+function resetSelected(): void {
+	$('.traineroption').each(function (i, obj) {
+		if ($(this).attr('class') == 'traineroption selected') {
+			$(this).attr('class', 'traineroption');
 		}
 	});
 
 	counter = 1;
-	maxamount = $(".traineroption").length - 1;
-	$(".traineroption").eq(1).attr("class", "traineroption selected");
+	maxPerPage = $('.traineroption').length - 1;
+	$('.traineroption').eq(1).attr('class', 'traineroption selected');
 }
 
-function resetTrainer() {
-	showMenu(menus["mainmenu"]);
+function resetTrainer(): void {
+	showMenu(menus.mainmenu);
 }
 
-function showMenu(menu) {
+function showMenu(menu): void {
 	if (content != null) {
 		content.menu.detach();
 	}
@@ -217,41 +231,41 @@ function showMenu(menu) {
 	showPage(0);
 }
 
-function showPage(page) {
-	if (currentpage != null) {
+function showPage(page: number): void {
+	if (currentPage != null) {
 		content.menu.children().detach();
 	}
 
-	currentpage = page;
+	currentPage = page;
 
-	for (var i = 0; i < content.pages[currentpage].length; ++i) {
-		content.menu.append(content.pages[currentpage][i]);
+	for (let i = 0; i < content.pages[currentPage].length; ++i) {
+		content.menu.append(content.pages[currentPage][i]);
 	}
 
-	content.menu.append(pageindicator);
+	content.menu.append(pageIndicator);
 
-	if (content.maxpages > 0) {
-		$("#pageindicator").text("Page " + (currentpage + 1) + " / " + (content.maxpages + 1));
+	if (content.maxPages > 0) {
+		$('#pageindicator').text(`Page ${currentPage + 1} / ${content.maxPages + 1}`);
 	}
 
 	resetSelected();
 }
 
-function pageExists(page) {
+function pageExists(page: number): boolean {
 	return content.pages[page] != null;
 }
 
-function sendData(name, data) {
-	$.post("http://" + resourceName + "/" + name, JSON.stringify(data), function (datab) {
-		// console.log('Data response: ' + datab);
+function sendData(name: string, data: any): JQueryXHR {
+	return $.post(`http://${resourceName}/${name}`, JSON.stringify(data), function (response) {
+		// console.log('Data response: ' + response);
 	});
 }
 
-function playSound(sound) {
-	sendData("playsound", { name: sound });
+function playSound(sound: string): void {
+	sendData('playsound', { name: sound });
 }
 
-function addToRecentSkins(skin, item) {
+function addToRecentSkins(skin: string, item: JQuery): boolean {
 	// Remove this skin from the recent skins list
 	recentSkins = recentSkins.filter(function (data) {
 		return data[0] !== skin;
@@ -270,4 +284,6 @@ function addToRecentSkins(skin, item) {
 	$.each(recentSkins, function (id, ele) {
 		menus.playerskinrecent.pages[0].push(ele[1].clone());
 	});
+
+	return true;
 }
