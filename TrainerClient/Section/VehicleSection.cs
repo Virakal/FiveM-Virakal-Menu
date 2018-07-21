@@ -26,7 +26,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("BoostPower", "75");
 
             Trainer.RegisterNUICallback("veh", OnVeh);
-            Trainer.RegisterNUICallback("vehspawn", OnVehSpawn);
+            Trainer.RegisterAsyncNUICallback("vehspawn", OnVehSpawn);
             Trainer.RegisterNUICallback("vehprimary", OnVehPrimary);
             Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
             Trainer.RegisterNUICallback("vehcolor", OnVehColor);
@@ -264,8 +264,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private CallbackDelegate OnVehSpawn(IDictionary<string, object> data, CallbackDelegate callback)
+        private async Task<CallbackDelegate> OnVehSpawn(IDictionary<string, object> data, CallbackDelegate callback)
         {
+            // Callback first to allow async
+            callback("ok");
+
             switch ((string)data["action"])
             {
                 case "despawn":
@@ -275,18 +278,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     Config["SpawnInVehicle"] = (bool)data["newstate"] ? "true" : "false";
                     break;
                 case "input":
-                    _ = SpawnUserInputVehicle();
+                    await SpawnUserInputVehicle();
                     break;
                 default:
                     Model model = new Model((string)data["action"]);
-                    _ = SpawnVehicle(model, Game.PlayerPed.Position);
+                    await SpawnVehicle(model, Game.PlayerPed.Position);
                     break;
             }
 
-            callback("ok");
             return callback;
         }
-
 
         private CallbackDelegate OnBoostPower(IDictionary<string, object> data, CallbackDelegate callback)
         {
