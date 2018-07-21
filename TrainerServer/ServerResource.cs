@@ -32,7 +32,7 @@ namespace TrainerServer
 
         private string GetConfigPathForPlayer(Player player)
         {
-            var handle = player.Identifiers.First();
+            var handle = player.Identifiers.Where((identifier) => identifier.StartsWith("license:")).First();
             handle = handle.Replace(':', '_');
 
             return $"{ConfigPath}{handle}.json";
