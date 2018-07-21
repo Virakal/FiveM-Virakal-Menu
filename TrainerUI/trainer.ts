@@ -20,7 +20,7 @@ interface PageData {
 var counter: number;
 var currentPage: number;
 
-var menus: { [menuName: string]: PageData } = {};
+var menus: { [menuName: string]: PageData; } = {};
 
 var container: JQuery;
 var content: PageData;
@@ -66,6 +66,10 @@ $(function () {
 		} else if (item.trainerright) {
 			trainerNextPage();
 		}
+
+		if (item.configupdate) {
+			updateFromConfig(item.config);
+		}
 	});
 });
 
@@ -94,6 +98,39 @@ function init() {
 	});
 
 	imageContainer.appendTo('body');
+}
+
+function updateFromConfig(json: string): void {
+	const config: { [key: string]: string; } = JSON.parse(json);
+
+	// Hunt for menu items with config-key data set, then update them
+	for (const menuName in menus) {
+		let menuData = menus[menuName];
+
+		for (const key in config) {
+			menuData.pages.forEach(function (page) {
+				page.forEach(function (trainerOption) {
+					const match = trainerOption.is(`.traineroption[data-state][data-config-key="${key}"]`)
+
+					if (match) {
+						let value = config[key];
+
+						if (value === "true") {
+							trainerOption.attr('data-state', 'ON');
+						} else if (value === "false") {
+							trainerOption.attr('data-state', 'OFF');
+						} else {
+							console.log(`Unexpected value for a config key: ${value}!`);
+						}
+
+						console.log(key);
+						console.log(value);
+						console.log(trainerOption.html());
+					}
+				});
+			});
+		}
+	}
 }
 
 function trainerUp(): void {
