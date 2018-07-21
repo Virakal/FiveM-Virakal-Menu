@@ -19,6 +19,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("bigmap", ToggleBigMap);
             Trainer.RegisterNUICallback("bigmapondown", ToggleBigMapOnDown);
 
+            EventHandlers["virakal:configFetched"] += new Action(OnConfigFetched);
+
             Trainer.AddTick(MapOnDownTick);
         }
 
@@ -46,7 +48,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             bool state = (bool) data["newstate"];
             Config["BigMap"] = state ? "true" : "false";
 
-            API.SetRadarBigmapEnabled(state, false);
+            SetBigMap(state);
 
             callback("ok");
             return callback;
@@ -59,6 +61,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             callback("ok");
             return callback;
+        }
+
+        private void OnConfigFetched()
+        {
+            SetBigMap(Config["BigMap"] == "true");
+        }
+
+        private void SetBigMap(bool state, bool showFullMap = false)
+        {
+            API.SetRadarBigmapEnabled(state, false);
         }
     }
 }
