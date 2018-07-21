@@ -59,11 +59,6 @@ function init() {
                 maxPages: 0,
             };
             $(this).children().each(function (i, obj) {
-                // send true state if it exists
-                if ($(this).data('state') === 'ON') {
-                    const stateData = $(this).data('action').split(' ');
-                    sendData(stateData[0], { action: stateData[1], newstate: true });
-                }
                 const page = Math.floor(i / maxVisibleItems);
                 if (data.pages[page] == null) {
                     data.pages[page] = [];
