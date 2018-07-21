@@ -1,11 +1,17 @@
-﻿using System;
+﻿using CitizenFX.Core;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Virakal.FiveM.Trainer.TrainerClient
 {
+    /// <summary>
+    /// Encapsulates the trainer configuration.
+    /// </summary>
     public class Config
     {
         private IDictionary<string, string> store = new Dictionary<string, string>();
@@ -36,6 +42,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public void Set(string key, string value)
         {
             store[key] = value;
+
+            // Maybe this should be handled by the comms manager somehow, but making this observable broke things
+            BaseScript.TriggerServerEvent("virakal:setConfig", ToJson());
         }
 
         public void SetDefault(string key, string value)
@@ -51,6 +60,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public bool ContainsKeyOrHasDefault(string key)
         {
             return ContainsKey(key) || defaults.ContainsKey(key);
+        }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(store);
+        }
+
+        public void FromJson(string json)
+        {
+            store = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
         }
     }
 }

@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using Virakal.FiveM.Trainer.TrainerShared;
 
 namespace TrainerServer
 {
     public class ServerResource : BaseScript
     {
+        public string ConfigPath { get; private set; } = @"virakal-configs/";
         private int CurrentWeather { get; set; } = -1;
         private Time CurrentTime { get; set; }
 
@@ -20,6 +22,54 @@ namespace TrainerServer
 
             EventHandlers["virakal:changeTime"] += new Action<Player, int, int, int>(OnChangeTime);
             EventHandlers["virakal:requestTime"] += new Action<Player>(OnRequestTime);
+
+            EventHandlers["virakal:setConfig"] += new Action<Player, string>(OnSetConfig);
+            EventHandlers["virakal:getConfig"] += new Action<Player>(OnGetConfig);
+
+            Directory.CreateDirectory(ConfigPath);
+            Debug.WriteLine($"Virakal Trainer configs at {Path.GetFullPath(ConfigPath)}");
+        }
+
+        private string GetConfigPathForPlayer(Player player)
+        {
+            var handle = player.Identifiers.First();
+            handle = handle.Replace(':', '_');
+
+            return $"{ConfigPath}{handle}.json";
+        }
+
+        private async void OnGetConfig([FromSource]Player source)
+        {
+            var path = GetConfigPathForPlayer(source);
+
+            if (!File.Exists(path))
+            {
+                Debug.WriteLine($"{source.Name} requested a config from file {path} but it doesn't exist yet.");
+                return;
+            }
+
+            using (var reader = File.OpenText(path))
+            {
+                var contents = await reader.ReadToEndAsync();
+                Debug.WriteLine($"Sending config from {path} to player {source.Name}");
+                TriggerClientEvent(source, "virakal:returnConfig", contents);
+            }
+        }
+
+        private async void OnSetConfig([FromSource]Player source, string config)
+        {
+            var path = GetConfigPathForPlayer(source);
+
+            if (!File.Exists(path))
+            {
+                Debug.WriteLine($"No config for user {source.Name} yet. Making one at {path}.");
+            }
+
+            using (var writer = new StreamWriter(path))
+            {
+                await writer.WriteAsync(config);
+                Debug.WriteLine($"Sent config to {source.Name}. Config length: {config.Length}");
+            }
         }
 
         private void OnChangeWeather([FromSource]Player source, int weather)

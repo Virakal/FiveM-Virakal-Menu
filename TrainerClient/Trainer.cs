@@ -48,6 +48,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             // Unsubscribe this event immediately so the event only runs once
             Tick -= OnLoad;
 
+            new ConfigCommsManager(this);
+
             // Add handlers for the menu sections
             new Section.UISection(this);
             new Section.PoliceSection(this);
