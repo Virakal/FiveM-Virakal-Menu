@@ -57,7 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="static\server.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="static\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
