@@ -505,7 +505,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (vehicle == null)
             {
-                LastPlayerVehicle = null;
                 return Task.FromResult(0);
             }
 
@@ -526,7 +525,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (invincible && vehicle != LastPlayerVehicle)
             {
-                LastPlayerVehicle = vehicle;
                 vehicle.Health = vehicle.MaxHealth;
                 vehicle.DirtLevel = 0f;
                 vehicle.EngineHealth = 1000f;
