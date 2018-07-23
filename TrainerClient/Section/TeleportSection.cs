@@ -36,7 +36,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             var playerList = new PlayerList();
             Player otherPlayer = playerList[otherPlayerId];
 
-
             if (otherPlayer == null)
             {
                 Trainer.AddNotification($"~r~Player {otherPlayerId} is not in the game.");

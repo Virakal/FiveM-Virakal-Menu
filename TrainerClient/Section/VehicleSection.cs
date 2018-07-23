@@ -32,9 +32,42 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehcolor", OnVehColor);
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
 
+            EventHandlers["virakal:newVehicle"] += new Action<int, int?>(OnNewVehicle);
+
             Trainer.AddTick(RainbowTick);
             Trainer.AddTick(BoostTick);
             Trainer.AddTick(InvincibleCarTick);
+            Trainer.AddTick(CheckChangedCar);
+        }
+
+        private async void OnNewVehicle(int vehicleHandle, int? oldVehicleHandle)
+        {
+            Debug.WriteLine("Caught a vehicle change.");
+            Vehicle vehicle = new Vehicle(vehicleHandle);
+
+            if (Config["RainbowChrome"] == "true")
+            {
+                SetChrome(vehicle);
+            }
+
+            await Task.FromResult(0);
+        }
+
+        private async Task CheckChangedCar()
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                LastPlayerVehicle = null;
+            }
+            else if (vehicle != LastPlayerVehicle)
+            {
+                BaseScript.TriggerEvent("virakal:newVehicle", vehicle.Handle, LastPlayerVehicle?.Handle);
+                LastPlayerVehicle = vehicle;
+            }
+
+            await Task.FromResult(0);
         }
 
         private CallbackDelegate OnVehColor(IDictionary<string, object> data, CallbackDelegate callback)
@@ -205,9 +238,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     Config["RainbowChrome"] = state ? "true" : "false";
 
                     // TODO: Rewrite as VehicleModCollection
-                    API.ClearVehicleCustomPrimaryColour(veh.Handle);
-                    API.ClearVehicleCustomSecondaryColour(veh.Handle);
-                    API.SetVehicleColours(veh.Handle, (int)VehicleColor.Chrome, (int)VehicleColor.Chrome);
+                    SetChrome(veh);
 
                     if (state)
                     {
@@ -262,6 +293,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             callback("ok");
             return callback;
+        }
+
+        private void SetChrome(Vehicle vehicle)
+        {
+            int handle = vehicle.Handle;
+            int chromeHandle = (int)VehicleColor.Chrome;
+
+            API.ClearVehicleCustomPrimaryColour(handle);
+            API.ClearVehicleCustomSecondaryColour(handle);
+            API.SetVehicleColours(handle, chromeHandle, chromeHandle);
         }
 
         private async Task<CallbackDelegate> OnVehSpawn(IDictionary<string, object> data, CallbackDelegate callback)
