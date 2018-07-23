@@ -507,32 +507,30 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             await BaseScript.Delay(0);
         }
 
-        private Task InvincibleCarTick()
+        private async Task InvincibleCarTick()
         {
             bool invincible = Config["InvincibleVehicle"] == "true";
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
 
-            if (vehicle == null)
+            if (vehicle != null)
             {
-                return Task.FromResult(0);
+                int handle = vehicle.Handle;
+
+                vehicle.CanBeVisiblyDamaged = !invincible;
+                vehicle.CanTiresBurst = !invincible;
+                vehicle.IsInvincible = invincible;
+                vehicle.IsBulletProof = invincible;
+                vehicle.IsCollisionProof = invincible;
+                vehicle.IsExplosionProof = invincible;
+                vehicle.IsFireProof = invincible;
+                vehicle.IsMeleeProof = invincible;
+                vehicle.CanWheelsBreak = !invincible;
+
+                API.SetEntityCanBeDamaged(handle, !invincible);
+                API.SetVehicleExplodesOnHighExplosionDamage(handle, !invincible);
             }
 
-            int handle = vehicle.Handle;
-
-            vehicle.CanBeVisiblyDamaged = !invincible;
-            vehicle.CanTiresBurst = !invincible;
-            vehicle.IsInvincible = invincible;
-            vehicle.IsBulletProof = invincible;
-            vehicle.IsCollisionProof = invincible;
-            vehicle.IsExplosionProof = invincible;
-            vehicle.IsFireProof = invincible;
-            vehicle.IsMeleeProof = invincible;
-            vehicle.CanWheelsBreak = !invincible;
-
-            API.SetEntityCanBeDamaged(handle, !invincible);
-            API.SetVehicleExplodesOnHighExplosionDamage(handle, !invincible);
-
-            return Task.FromResult(0);
+            await Task.FromResult(0);
         }
 
         /// <summary>
