@@ -50,6 +50,15 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 SetChrome(vehicle);
             }
 
+            if (Config["InvincibleVehicle"] == "true")
+            {
+                vehicle.Health = vehicle.MaxHealth;
+                vehicle.DirtLevel = 0f;
+                vehicle.EngineHealth = 1000f;
+
+                API.SetVehicleFixed(vehicleHandle);
+            }
+
             await Task.FromResult(0);
         }
 
@@ -522,15 +531,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             API.SetEntityCanBeDamaged(handle, !invincible);
             API.SetVehicleExplodesOnHighExplosionDamage(handle, !invincible);
-
-            if (invincible && vehicle != LastPlayerVehicle)
-            {
-                vehicle.Health = vehicle.MaxHealth;
-                vehicle.DirtLevel = 0f;
-                vehicle.EngineHealth = 1000f;
-
-                API.SetVehicleFixed(handle);
-            }
 
             return Task.FromResult(0);
         }
