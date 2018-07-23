@@ -504,7 +504,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 }
             }
 
-            await BaseScript.Delay(0);
+            await Task.FromResult(0);
         }
 
         private async Task InvincibleCarTick()
