@@ -60,6 +60,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 {
                     justRunSpawnHandler = true;
                     await ChangePlayerSkin(playerPed, skin);
+                    Config["CurrentSkin"] = Config["DefaultSkin"];
                 }
             }
         }
