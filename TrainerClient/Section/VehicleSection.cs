@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Virakal.FiveM.Trainer.TrainerClient.Section
 {
@@ -29,6 +30,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("RainbowSpeed", "0.5");
 
             Trainer.RegisterNUICallback("veh", OnVeh);
+            Trainer.RegisterNUICallback("vehsave", OnVehSave);
+            Trainer.RegisterAsyncNUICallback("vehload", OnVehLoad);
             Trainer.RegisterAsyncNUICallback("vehspawn", OnVehSpawn);
             Trainer.RegisterNUICallback("vehprimary", OnVehPrimary);
             Trainer.RegisterNUICallback("vehsecondary", OnVehSecondary);
@@ -474,6 +477,34 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
+        private CallbackDelegate OnVehSave(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            var slot = (string)data["action"];
+
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+            }
+            else
+            {
+                SaveVehicle(slot, vehicle);
+            }
+
+            callback("ok");
+            return callback;
+        }
+
+        private async Task<CallbackDelegate> OnVehLoad(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            var slot = (string)data["action"];
+
+            callback("ok");
+            await LoadVehicle(slot);
+            return callback;
+        }
+
         private CallbackDelegate OnBoostPower(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Config["BoostPower"] = (string)data["action"];
@@ -691,6 +722,58 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             await Task.FromResult(0);
+        }
+
+        private void SaveVehicle(string slot, Vehicle vehicle)
+        {
+            string sep = "<||>";
+            string configName = $"VehicleSlot{slot}";
+            string modString = ToModString(vehicle.Mods);
+            Config[configName] = $"{vehicle.Model.Hash}{sep}{modString}";
+            Debug.WriteLine($"Saved to {configName}: {Config[configName]}");
+        }
+
+        private async Task<Vehicle> LoadVehicle(string slot)
+        {
+            string sep = "<||>";
+            string configName = $"VehicleSlot{slot}";
+            string loaded = Config[configName];
+            string[] split = loaded.Split(new string[] { sep }, StringSplitOptions.None);
+            string model = split[0];
+            string modString = split[1];
+
+            var vehicle = await SpawnVehicle(new Model(int.Parse(model)), Game.PlayerPed.Position);
+
+            // ApplyModString(vehicle, modString);
+
+            Debug.WriteLine($"Loaded from {configName}: Model: {model} Mods: {modString}");
+
+            return vehicle;
+        }
+
+        private string ToModString(VehicleModCollection mods)
+        {
+            var modList = new Dictionary<string, string>();
+
+            if (mods.IsPrimaryColorCustom)
+            {
+                modList["CustomPrimary"] = $"{mods.CustomPrimaryColor.R},{mods.CustomPrimaryColor.G},{mods.CustomPrimaryColor.B}";
+            }
+            else
+            {
+                modList["PrimaryColour"] = Convert.ToString((int)mods.PrimaryColor);
+            }
+
+            if (mods.IsSecondaryColorCustom)
+            {
+                modList["CustomSecondary"] = $"{mods.CustomSecondaryColor.R},{mods.CustomSecondaryColor.G},{mods.CustomSecondaryColor.B}";
+            }
+            else
+            {
+                modList["SecondaryColour"] = Convert.ToString((int)mods.SecondaryColor);
+            }
+
+            return JsonConvert.SerializeObject(modList);
         }
 
         /// <summary>
