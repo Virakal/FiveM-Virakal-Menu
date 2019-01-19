@@ -266,7 +266,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (!success)
             {
-                Trainer.AddNotification("~r~Failed to load skin!");
+                Trainer.AddNotification($"~r~Failed to load skin '{model}'!");
                 return false;
             }
 
@@ -279,7 +279,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 playerPed.SetIntoVehicle(vehicle, playerSeat);
             }
 
-            Trainer.AddNotification("~g~Changed player skin.");
+            Trainer.AddNotification($"~g~Changed player skin to '{model}'.");
 
             return true;
         }
