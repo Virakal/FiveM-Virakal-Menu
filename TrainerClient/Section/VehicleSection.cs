@@ -11,6 +11,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
     class VehicleSection : BaseSection
     {
         private Vehicle LastPlayerVehicle { get; set; }
+        private double RainbowSpeed { get; set; }
 
         public VehicleSection(Trainer trainer) : base(trainer)
         {
@@ -24,6 +25,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("SpawnInVehicle", "true");
             Config.SetDefault("MaintainVehicleVelocityOnSwitch", "true");
             Config.SetDefault("BoostPower", "75");
+            Config.SetDefault("RainbowSpeed", "0.5");
 
             Trainer.RegisterNUICallback("veh", OnVeh);
             Trainer.RegisterAsyncNUICallback("vehspawn", OnVehSpawn);
@@ -33,6 +35,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
             Trainer.RegisterNUICallback("vehcolor", OnVehColor);
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
+            Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
 
             EventHandlers["virakal:newVehicle"] += new Action<int, int?>(OnNewVehicle);
 
@@ -40,6 +43,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.AddTick(BoostTick);
             Trainer.AddTick(InvincibleCarTick);
             Trainer.AddTick(CheckChangedCar);
+
+            var success = Double.TryParse(Config["RainbowSpeed"], out double rainbowSpeed);
+            RainbowSpeed = success ? rainbowSpeed : 0.5;
         }
 
         private async void OnNewVehicle(int vehicleHandle, int? oldVehicleHandle)
@@ -405,6 +411,27 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
+        private CallbackDelegate OnRainbowSpeed(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Config["RainbowSpeed"] = (string)data["action"];
+
+            var success = Double.TryParse(Config["RainbowSpeed"], out double rainbowSpeed);
+
+            if (success)
+            {
+                RainbowSpeed = rainbowSpeed;
+                Trainer.AddNotification($"~g~Rainbow speed set to {RainbowSpeed * 100}%");
+            }
+            else
+            {
+                RainbowSpeed = 0.5;
+                Trainer.AddNotification($"~r~Failed to set rainbow speed! Set to {RainbowSpeed * 100}%");
+            }
+
+            callback("ok");
+            return callback;
+        }
+
         private async Task<Vehicle> SpawnUserInputVehicle()
         {
             Trainer.BlockInput = true;
@@ -508,7 +535,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 return;
             }
 
-            RGB rgb = RainbowRGB(0.5);
+            RGB rgb = RainbowRGB(RainbowSpeed);
 
             if (Config["RainbowPaint"] == "true" || Config["RainbowChrome"] == "true")
             {
