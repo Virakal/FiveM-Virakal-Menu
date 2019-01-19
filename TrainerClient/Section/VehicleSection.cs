@@ -34,6 +34,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehboth", OnVehBoth);
             Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
             Trainer.RegisterNUICallback("vehcolor", OnVehColor);
+            Trainer.RegisterNUICallback("vehlivery", OnVehLivery);
+            Trainer.RegisterNUICallback("vehrooflivery", OnVehRoofLivery);
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
 
@@ -106,6 +108,82 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             API.SetVehicleCustomPrimaryColour(vehicle.Handle, r, g, b);
             API.SetVehicleCustomSecondaryColour(vehicle.Handle, r, g, b);
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate OnVehLivery(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+                callback("ok");
+                return callback;
+            }
+
+            int handle = vehicle.Handle;
+            string livery = (string)data["action"];
+            bool success = Int32.TryParse(livery, out int iLivery);
+
+            if (!success)
+            {
+                Trainer.AddNotification($"~r~Invalid livery number: {livery}!");
+                callback("ok");
+                return callback;
+            }
+
+            API.SetVehicleLivery(handle, iLivery);
+            int maxLivery = API.GetVehicleLiveryCount(handle);
+
+            if (maxLivery == -1)
+            {
+                Trainer.AddNotification($"~r~{vehicle.LocalizedName} does not support liveries!");
+                callback("ok");
+                return callback;
+            }
+
+            if (iLivery > maxLivery)
+            {
+                Trainer.AddNotification($"~r~{vehicle.LocalizedName} does not have enough liveries to set to {iLivery}!");
+                callback("ok");
+                return callback;
+            }
+
+            Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {iLivery}/{maxLivery}!");
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate OnVehRoofLivery(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+                callback("ok");
+                return callback;
+            }
+
+            int handle = vehicle.Handle;
+            string livery = (string)data["action"];
+            bool success = Int32.TryParse(livery, out int iLivery);
+
+            if (!success)
+            {
+                Trainer.AddNotification($"~r~Invalid livery number: {livery}!");
+                callback("ok");
+                return callback;
+            }
+
+            API.SetVehicleRoofLivery(handle, iLivery);
+
+            Trainer.AddNotification($"~y~Note that very few vehicles support roof livery.");
+            Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} roof livery to {iLivery}!");
 
             callback("ok");
             return callback;
