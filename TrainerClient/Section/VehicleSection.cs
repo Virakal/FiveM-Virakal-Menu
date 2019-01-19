@@ -156,7 +156,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 return callback;
             }
 
-            Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {iLivery}/{maxLivery}!");
+            if (mods.LocalizedLiveryName != "")
+            {
+                Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {mods.LocalizedLiveryName} ({iLivery}/{maxLivery})!");
+            }
+            else
+            {
+                Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {iLivery}/{maxLivery}!");
+            }
 
             callback("ok");
             return callback;
