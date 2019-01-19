@@ -437,7 +437,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (vehicle == null)
             {
-                Trainer.AddNotification("~r~Failed to load vehicle model.");
+                Trainer.AddNotification($"~r~Failed to load vehicle model '{model}'.");
                 return null;
             }
 
@@ -477,6 +477,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     playerVeh.Delete();
                 }
             }
+
+            string vehName = vehicle.LocalizedName;
+
+            Trainer.AddNotification($"~g~Spawned vehicle '{vehName}'.");
 
             return vehicle;
         }
