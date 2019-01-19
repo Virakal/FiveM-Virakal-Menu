@@ -431,12 +431,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private void SetChrome(Vehicle vehicle)
         {
-            int handle = vehicle.Handle;
-            int chromeHandle = (int)VehicleColor.Chrome;
+            var chrome = VehicleColor.Chrome;
+            VehicleModCollection mods = vehicle.Mods;
 
-            API.ClearVehicleCustomPrimaryColour(handle);
-            API.ClearVehicleCustomSecondaryColour(handle);
-            API.SetVehicleColours(handle, chromeHandle, chromeHandle);
+            mods.ClearCustomPrimaryColor();
+            mods.ClearCustomSecondaryColor();
+            mods.PrimaryColor = chrome;
+            mods.SecondaryColor = chrome;
         }
 
         private async Task<CallbackDelegate> OnVehSpawn(IDictionary<string, object> data, CallbackDelegate callback)
