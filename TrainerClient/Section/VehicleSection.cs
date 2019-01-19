@@ -433,7 +433,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 position = new Vector3(position.X + 2.5f, position.Y + 2.5f, position.Z + 1.0f);
             }
 
-            Vehicle vehicle = await World.CreateVehicle(model, position);
+            Vehicle vehicle = await World.CreateVehicle(model, position, playerPed.Heading);
 
             if (vehicle == null)
             {
