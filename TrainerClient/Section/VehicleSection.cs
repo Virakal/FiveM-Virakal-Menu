@@ -258,7 +258,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         private CallbackDelegate OnVehPearl(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
-            int colour = Convert.ToInt32(data["action"]);
+            int iColour = Convert.ToInt32(data["action"]);
+            var colour = (VehicleColor)iColour;
 
             if (vehicle == null)
             {
@@ -266,13 +267,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
             else
             {
-                // TODO: Rewrite using VehicleModCollection
-                int handle = vehicle.Handle;
-                int oldPearl = 0;
-                int wheelColour = 0;
-
-                API.GetVehicleExtraColours(handle, ref oldPearl, ref wheelColour);
-                API.SetVehicleExtraColours(handle, colour, wheelColour);
+                VehicleModCollection mods = vehicle.Mods;
+                mods.PearlescentColor = colour;
             }
 
             callback("ok");
