@@ -135,8 +135,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 return callback;
             }
 
-            API.SetVehicleLivery(handle, iLivery);
-            int maxLivery = API.GetVehicleLiveryCount(handle);
+            VehicleModCollection mods = vehicle.Mods;
+            mods.Livery = iLivery;
+            var maxLivery = mods.LiveryCount;
 
             if (maxLivery == -1)
             {
@@ -192,7 +193,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         private CallbackDelegate OnVehBoth(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
-            int colour = Convert.ToInt32(data["action"]);
+            int iColour = Convert.ToInt32(data["action"]);
+            var colour = (VehicleColor)iColour;
 
             if (vehicle == null)
             {
@@ -200,12 +202,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
             else
             {
-                // TODO: Rewrite using VehicleModCollection
-                int handle = vehicle.Handle;
-                API.ClearVehicleCustomPrimaryColour(handle);
-                API.ClearVehicleCustomSecondaryColour(handle);
-
-                API.SetVehicleColours(handle, colour, colour);
+                VehicleModCollection mods = vehicle.Mods;
+                mods.ClearCustomPrimaryColor();
+                mods.ClearCustomSecondaryColor();
+                mods.PrimaryColor = colour;
+                mods.SecondaryColor = colour;
             }
 
             callback("ok");
@@ -215,7 +216,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         private CallbackDelegate OnVehPrimary(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
-            int colour = Convert.ToInt32(data["action"]);
+            int iColour = Convert.ToInt32(data["action"]);
+            var colour = (VehicleColor)iColour;
 
             if (vehicle == null)
             {
@@ -223,16 +225,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
             else
             {
-                // TODO: Rewrite using VehicleModCollection
-                int handle = vehicle.Handle;
-                int _ = 0;
-                int origSecondary = 0;
-
-                API.GetVehicleColours(handle, ref _, ref origSecondary);
-                API.ClearVehicleCustomPrimaryColour(handle);
-                API.ClearVehicleCustomSecondaryColour(handle);
-
-                API.SetVehicleColours(handle, colour, origSecondary);
+                VehicleModCollection mods = vehicle.Mods;
+                mods.ClearCustomPrimaryColor();
+                mods.PrimaryColor = colour;
             }
 
             callback("ok");
@@ -242,7 +237,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         private CallbackDelegate OnVehSecondary(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
-            int colour = Convert.ToInt32(data["action"]);
+            int iColour = Convert.ToInt32(data["action"]);
+            var colour = (VehicleColor)iColour;
 
             if (vehicle == null)
             {
@@ -250,16 +246,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
             else
             {
-                // TODO: Rewrite using VehicleModCollection
-                int handle = vehicle.Handle;
-                int _ = 0;
-                int origPrimary = 0;
-
-                API.GetVehicleColours(handle, ref origPrimary, ref _);
-                API.ClearVehicleCustomPrimaryColour(handle);
-                API.ClearVehicleCustomSecondaryColour(handle);
-
-                API.SetVehicleColours(handle, origPrimary, colour);
+                VehicleModCollection mods = vehicle.Mods;
+                mods.ClearCustomSecondaryColor();
+                mods.SecondaryColor = colour;
             }
 
             callback("ok");
