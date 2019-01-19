@@ -105,12 +105,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             VehicleModCollection mods = vehicle.Mods;
-            string colourString = (string)data["action"];
-            string[] rgb = colourString.Split(',');
-            int r = int.Parse(rgb[0]);
-            int g = int.Parse(rgb[1]);
-            int b = int.Parse(rgb[2]);
-            var colour = Color.FromArgb(r, g, b);
+            Color colour = StringToColor((string)data["action"]);
 
             mods.CustomPrimaryColor = colour;
             mods.CustomSecondaryColor = colour;
@@ -744,7 +739,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             var vehicle = await SpawnVehicle(new Model(int.Parse(model)), Game.PlayerPed.Position);
 
-            // ApplyModString(vehicle, modString);
+            ApplyModString(vehicle, modString);
 
             Debug.WriteLine($"Loaded from {configName}: Model: {model} Mods: {modString}");
 
@@ -774,6 +769,46 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             return JsonConvert.SerializeObject(modList);
+        }
+
+        private void ApplyModString(Vehicle vehicle, string modString)
+        {
+            var modList = JsonConvert.DeserializeObject<Dictionary<string, string>>(modString);
+            VehicleModCollection mods = vehicle.Mods;
+
+            if (modList.ContainsKey("CustomPrimary"))
+            {
+                var colour = StringToColor(modList["CustomPrimary"]);
+                mods.CustomPrimaryColor = colour;
+            }
+
+            if (modList.ContainsKey("PrimaryColour"))
+            {
+                var primary = int.Parse(modList["PrimaryColour"]);
+                mods.PrimaryColor = (VehicleColor)primary;
+            }
+
+            if (modList.ContainsKey("CustomSecondary"))
+            {
+                var colour = StringToColor(modList["CustomSecondary"]);
+                mods.CustomSecondaryColor = colour;
+            }
+
+            if (modList.ContainsKey("SecondaryColour"))
+            {
+                var secondary = int.Parse(modList["SecondaryColour"]);
+                mods.SecondaryColor = (VehicleColor)secondary;
+            }
+        }
+
+        private Color StringToColor(string colourString)
+        {
+            string[] rgb = colourString.Split(',');
+            int r = int.Parse(rgb[0]);
+            int g = int.Parse(rgb[1]);
+            int b = int.Parse(rgb[2]);
+
+            return Color.FromArgb(r, g, b);
         }
 
         /// <summary>
