@@ -47,7 +47,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.AddTick(InvincibleCarTick);
             Trainer.AddTick(CheckChangedCar);
 
-            var success = Double.TryParse(Config["RainbowSpeed"], out double rainbowSpeed);
+            var success = double.TryParse(Config["RainbowSpeed"], out double rainbowSpeed);
             RainbowSpeed = success ? rainbowSpeed : 0.5;
         }
 

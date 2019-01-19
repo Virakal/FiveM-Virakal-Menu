@@ -19,7 +19,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         private void OnReturnConfig(string config)
         {
             Config.FromJson(config);
-            Trainer.SendUIMessage(new { configupdate = true, config = config });
+            Trainer.SendUIMessage(new { configupdate = true, config });
             BaseScript.TriggerEvent("virakal:configFetched");
         }
     }
