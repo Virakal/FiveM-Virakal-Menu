@@ -2,6 +2,7 @@
 using CitizenFX.Core.Native;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -578,7 +579,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task RainbowTick()
         {
-            // TODO: Rewrite as VehicleModCollection
             await BaseScript.Delay(100);
 
             if (!(
@@ -599,22 +599,23 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 return;
             }
 
-            RGB rgb = RainbowRGB(RainbowSpeed);
+            Color rgb = RainbowRGB(RainbowSpeed);
+            VehicleModCollection mods = vehicle.Mods;
 
             if (Config["RainbowPaint"] == "true" || Config["RainbowChrome"] == "true")
             {
-                API.SetVehicleCustomPrimaryColour(vehicle.Handle, rgb.R, rgb.G, rgb.B);
-                API.SetVehicleCustomSecondaryColour(vehicle.Handle, rgb.R, rgb.G, rgb.B);
+                mods.CustomPrimaryColor = rgb;
+                mods.CustomSecondaryColor = rgb;
             }
 
             if (Config["RainbowNeonInverse"] == "true")
             {
-                rgb = rgb.Inverted();
-                API.SetVehicleNeonLightsColour(vehicle.Handle, rgb.R, rgb.G, rgb.B);
+                rgb = InvertColour(rgb);
+                mods.NeonLightsColor = rgb;
             }
             else if (Config["RainbowNeon"] == "true")
             {
-                API.SetVehicleNeonLightsColour(vehicle.Handle, rgb.R, rgb.G, rgb.B);
+                mods.NeonLightsColor = rgb;
             }
 
             await BaseScript.Delay(150);
@@ -689,39 +690,25 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         /// </summary>
         /// <param name="frequency">The speed at which the colours cycle</param>
         /// <returns>An RGB object for the colour</returns>
-        private RGB RainbowRGB(double frequency)
+        private Color RainbowRGB(double frequency)
         {
             int time = Game.GameTime;
 
-            return new RGB(
+            return Color.FromArgb(
                 (int)(Math.Sin((time / 5000d) * frequency + 0) * 127 + 128),
                 (int)(Math.Sin((time / 5000d) * frequency + 2) * 127 + 128),
                 (int)(Math.Sin((time / 5000d) * frequency + 4) * 127 + 128)
             );
         }
 
-        private struct RGB
+        /// <summary>
+        /// Provides the inverse colour for a given Color object. Pure red becomes cyan, for example.
+        /// </summary>
+        /// <param name="colour">the colour to invert</param>
+        /// <returns>the inverted colour</returns>
+        private Color InvertColour(Color colour)
         {
-            public int R { get; }
-            public int G { get; }
-            public int B { get; }
-
-            public RGB(int r, int g, int b)
-            {
-                R = r;
-                G = g;
-                B = b;
-            }
-
-            public RGB Inverted()
-            {
-                return new RGB(255 - R, 255 - G, 255 - B);
-            }
-
-            public override string ToString()
-            {
-                return $"R: {R} G: {G} B: {B}";
-            }
+            return Color.FromArgb(255 - colour.R, 255 - colour.G, 255 - colour.B);
         }
     }
 }
