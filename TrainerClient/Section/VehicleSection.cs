@@ -104,9 +104,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             VehicleModCollection mods = vehicle.Mods;
             string colourString = (string)data["action"];
             string[] rgb = colourString.Split(',');
-            int r = Int32.Parse(rgb[0]);
-            int g = Int32.Parse(rgb[1]);
-            int b = Int32.Parse(rgb[2]);
+            int r = int.Parse(rgb[0]);
+            int g = int.Parse(rgb[1]);
+            int b = int.Parse(rgb[2]);
             var colour = Color.FromArgb(r, g, b);
 
             mods.CustomPrimaryColor = colour;
@@ -129,7 +129,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             int handle = vehicle.Handle;
             string livery = (string)data["action"];
-            bool success = Int32.TryParse(livery, out int iLivery);
+            bool success = int.TryParse(livery, out int iLivery);
 
             if (!success)
             {
@@ -175,7 +175,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             int handle = vehicle.Handle;
             string livery = (string)data["action"];
-            bool success = Int32.TryParse(livery, out int iLivery);
+            bool success = int.TryParse(livery, out int iLivery);
 
             if (!success)
             {
@@ -481,7 +481,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             Config["RainbowSpeed"] = (string)data["action"];
 
-            var success = Double.TryParse(Config["RainbowSpeed"], out double rainbowSpeed);
+            var success = double.TryParse(Config["RainbowSpeed"], out double rainbowSpeed);
 
             if (success)
             {
