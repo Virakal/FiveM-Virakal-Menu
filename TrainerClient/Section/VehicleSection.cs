@@ -326,7 +326,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
                     for (var i = 0; i < 4; i++)
                     {
-                        API.SetVehicleNeonLightEnabled(veh.Handle, i, true);
+                        veh.Mods.SetNeonLightsOn((VehicleNeonLight)i, true);
                     }
 
                     Trainer.AddNotification("~g~Neons on.");
@@ -340,7 +340,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
                     for (var i = 0; i < 4; i++)
                     {
-                        API.SetVehicleNeonLightEnabled(veh.Handle, i, false);
+                        veh.Mods.SetNeonLightsOn((VehicleNeonLight)i, false);
                     }
 
                     Trainer.AddNotification("~g~Neons off.");
