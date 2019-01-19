@@ -101,14 +101,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 return callback;
             }
 
-            string colour = (string)data["action"];
-            string[] rgb = colour.Split(',');
+            VehicleModCollection mods = vehicle.Mods;
+            string colourString = (string)data["action"];
+            string[] rgb = colourString.Split(',');
             int r = Int32.Parse(rgb[0]);
             int g = Int32.Parse(rgb[1]);
             int b = Int32.Parse(rgb[2]);
+            var colour = Color.FromArgb(r, g, b);
 
-            API.SetVehicleCustomPrimaryColour(vehicle.Handle, r, g, b);
-            API.SetVehicleCustomSecondaryColour(vehicle.Handle, r, g, b);
+            mods.CustomPrimaryColor = colour;
+            mods.CustomSecondaryColor = colour;
 
             callback("ok");
             return callback;
@@ -372,7 +374,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 case "rainbowchrome":
                     Config["RainbowChrome"] = state ? "true" : "false";
 
-                    // TODO: Rewrite as VehicleModCollection
                     SetChrome(veh);
 
                     if (state)
