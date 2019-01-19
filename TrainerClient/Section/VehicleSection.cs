@@ -28,6 +28,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("veh", OnVeh);
             Trainer.RegisterAsyncNUICallback("vehspawn", OnVehSpawn);
             Trainer.RegisterNUICallback("vehprimary", OnVehPrimary);
+            Trainer.RegisterNUICallback("vehsecondary", OnVehSecondary);
+            Trainer.RegisterNUICallback("vehboth", OnVehBoth);
             Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
             Trainer.RegisterNUICallback("vehcolor", OnVehColor);
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
@@ -103,7 +105,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private CallbackDelegate OnVehPrimary(IDictionary<string, object> data, CallbackDelegate callback)
+        private CallbackDelegate OnVehBoth(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
             int colour = Convert.ToInt32(data["action"]);
@@ -120,6 +122,60 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 API.ClearVehicleCustomSecondaryColour(handle);
 
                 API.SetVehicleColours(handle, colour, colour);
+            }
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate OnVehPrimary(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            int colour = Convert.ToInt32(data["action"]);
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+            }
+            else
+            {
+                // TODO: Rewrite using VehicleModCollection
+                int handle = vehicle.Handle;
+                int _ = 0;
+                int origSecondary = 0;
+
+                API.GetVehicleColours(handle, ref _, ref origSecondary);
+                API.ClearVehicleCustomPrimaryColour(handle);
+                API.ClearVehicleCustomSecondaryColour(handle);
+
+                API.SetVehicleColours(handle, colour, origSecondary);
+            }
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate OnVehSecondary(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            int colour = Convert.ToInt32(data["action"]);
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+            }
+            else
+            {
+                // TODO: Rewrite using VehicleModCollection
+                int handle = vehicle.Handle;
+                int _ = 0;
+                int origPrimary = 0;
+
+                API.GetVehicleColours(handle, ref origPrimary, ref _);
+                API.ClearVehicleCustomPrimaryColour(handle);
+                API.ClearVehicleCustomSecondaryColour(handle);
+
+                API.SetVehicleColours(handle, origPrimary, colour);
             }
 
             callback("ok");
