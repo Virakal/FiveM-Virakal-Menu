@@ -47,6 +47,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehrooflivery", OnVehRoofLivery);
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
             Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
+            Trainer.RegisterNUICallback("vehplatesyle", OnVehPlateStyle);
 
             // Boost
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
@@ -578,6 +579,24 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             Trainer.AddNotification($"~g~Set number plate to '{vehicle.Mods.LicensePlate}'.");
 
+            return callback;
+        }
+
+        private CallbackDelegate OnVehPlateStyle(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            var vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+            }
+            else
+            {
+                var style = int.Parse((string)data["action"]);
+                vehicle.Mods.LicensePlateStyle = (LicensePlateStyle)style;
+            }
+
+            callback("ok");
             return callback;
         }
 
