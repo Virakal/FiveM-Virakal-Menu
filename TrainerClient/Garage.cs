@@ -77,6 +77,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             modList["PlateText"] = mods.LicensePlate;
             modList["PlateStyle"] = Convert.ToString((int)mods.LicensePlateStyle);
             modList["RimColour"] = Convert.ToString((int)mods.RimColor);
+            modList["WindowTint"] = Convert.ToString((int)mods.WindowTint);
 
             return JsonConvert.SerializeObject(modList);
         }
@@ -137,6 +138,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 var rimColour = int.Parse(modList["RimColour"]);
                 mods.RimColor = (VehicleColor)rimColour;
+            }
+
+            if (modList.ContainsKey("WindowTint"))
+            {
+                var windowTint = int.Parse(modList["WindowTint"]);
+                mods.WindowTint = (VehicleWindowTint)windowTint;
             }
         }
     }
