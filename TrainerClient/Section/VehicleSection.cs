@@ -46,6 +46,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterAsyncNUICallback("vehlivery", OnVehLivery);
             Trainer.RegisterNUICallback("vehrooflivery", OnVehRoofLivery);
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
+            Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
 
             // Boost
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
@@ -547,6 +548,36 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             callback("ok");
+            return callback;
+        }
+
+        private async Task<CallbackDelegate> OnVehPlateText(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            var vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+                callback("ok");
+                return callback;
+            }
+
+            callback("ok");
+            Trainer.BlockInput = true;
+
+            string plateText = await Game.GetUserInput(
+                WindowTitle.FMMC_KEY_TIP8,
+                64
+            );
+
+            vehicle.Mods.LicensePlate = plateText;
+
+            // Wait a few frames so that the messagebox doesn't start again immediately
+            await BaseScript.Delay(10);
+            Trainer.BlockInput = false;
+
+            Trainer.AddNotification($"~g~Set number plate to '{vehicle.Mods.LicensePlate}'.");
+
             return callback;
         }
 
