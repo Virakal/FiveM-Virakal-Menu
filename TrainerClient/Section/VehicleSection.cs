@@ -823,6 +823,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             modList["PearlescentColour"] = Convert.ToString((int)mods.PearlescentColor);
             modList["Livery"] = Convert.ToString(mods.Livery);
+            modList["PlateText"] = mods.LicensePlate;
 
             return JsonConvert.SerializeObject(modList);
         }
@@ -866,6 +867,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             {
                 var livery = int.Parse(modList["Livery"]);
                 mods.Livery = livery;
+            }
+
+            if (modList.ContainsKey("PlateText"))
+            {
+                mods.LicensePlate = modList["PlateText"];
             }
         }
 
