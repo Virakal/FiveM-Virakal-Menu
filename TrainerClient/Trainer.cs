@@ -61,6 +61,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
             if (vehicle == null)
             {
+                // Newer DLC has a tendency to time out first time, so try again
+                vehicle = await World.CreateVehicle(model, position, playerPed.Heading);
+            }
+
+            if (vehicle == null)
+            {
                 AddNotification($"~r~Failed to load vehicle model '{model}'.");
                 return null;
             }
