@@ -24,6 +24,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("player", OnPlayer);
             Trainer.RegisterAsyncNUICallback("playerskin", OnPlayerSkinChange);
             Trainer.RegisterNUICallback("savedefaultskin", OnSaveDefaultSkin);
+            Trainer.RegisterNUICallback("loaddefaultskin", OnLoadDefaultSkin);
 
             EventHandlers["virakal:skinChange"] += new Action<int>(OnVirakalSkinChange);
             EventHandlers["playerSpawned"] += new Action(OnPlayerSpawnedRestoreSkin);
@@ -42,37 +43,57 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
+        private CallbackDelegate OnLoadDefaultSkin(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            if (Config.ContainsKey("DefaultSkin"))
+            {
+                LoadDefaultSkin();
+                Trainer.AddNotification($"~g~Switched back to {Config["DefaultSkin"]}.");
+            }
+            else
+            {
+                Trainer.AddNotification($"~r~You don't have a default skin saved.");
+            }
+
+            callback("ok");
+            return callback;
+        }
+
         private async void OnConfigFetched()
         {
             if (Config.ContainsKey("DefaultSkin"))
             {
-                // Wait to allow the game to load
-                await BaseScript.Delay(10000);
+                // Wait to allow the game to load more fully
+                await BaseScript.Delay(5000);
+                LoadDefaultSkin();
+            }
+        }
 
-                Trainer.DebugLine($"Changing to default skin {Config["DefaultSkin"]}.");
-                var skin = new Model(Config["DefaultSkin"]);
-                skin.Request();
+        private async void LoadDefaultSkin()
+        {
+            Trainer.DebugLine($"Changing to default skin {Config["DefaultSkin"]}.");
+            var skin = new Model(Config["DefaultSkin"]);
+            skin.Request();
 
-                while (!skin.IsLoaded)
-                {
-                    Trainer.DebugLine("Waiting for skin to load.");
-                    await BaseScript.Delay(1);
-                }
+            while (!skin.IsLoaded)
+            {
+                Trainer.DebugLine("Waiting for skin to load.");
+                await BaseScript.Delay(1);
+            }
 
-                var playerPed = Game.PlayerPed;
+            var playerPed = Game.PlayerPed;
 
-                if (skin == playerPed.Model)
-                {
-                    Trainer.DebugLine("Same as current skin. Doing nothing.");
-                }
-                else
-                {
-                    Trainer.DebugLine("Changing skin...");
-                    justRunSpawnHandler = true;
-                    await ChangePlayerSkin(playerPed, skin);
-                    Config["CurrentSkin"] = Config["DefaultSkin"];
-                    Trainer.DebugLine("Skin changed!");
-                }
+            if (skin == playerPed.Model)
+            {
+                Trainer.DebugLine("Same as current skin. Doing nothing.");
+            }
+            else
+            {
+                Trainer.DebugLine("Changing skin...");
+                justRunSpawnHandler = true;
+                await ChangePlayerSkin(playerPed, skin);
+                Config["CurrentSkin"] = Config["DefaultSkin"];
+                Trainer.DebugLine("Skin changed!");
             }
         }
 
