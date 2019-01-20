@@ -147,7 +147,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 return callback;
             }
 
-            if (iLivery > maxLivery)
+            if (iLivery >= maxLivery)
             {
                 Trainer.AddNotification($"~r~{vehicle.LocalizedName} does not have enough liveries to set to {iLivery}!");
                 callback("ok");
@@ -156,11 +156,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (mods.LocalizedLiveryName != "")
             {
-                Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {mods.LocalizedLiveryName} ({iLivery}/{maxLivery})!");
+                Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {mods.LocalizedLiveryName} ({iLivery}/{maxLivery - 1})!");
             }
             else
             {
-                Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {iLivery}/{maxLivery}!");
+                Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {iLivery}/{maxLivery - 1}!");
             }
 
             callback("ok");
