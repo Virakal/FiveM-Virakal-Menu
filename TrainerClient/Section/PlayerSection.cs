@@ -46,21 +46,32 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             if (Config.ContainsKey("DefaultSkin"))
             {
+                // Wait to allow the game to load
+                await BaseScript.Delay(10000);
+
+                Trainer.DebugLine($"Changing to default skin {Config["DefaultSkin"]}.");
                 var skin = new Model(Config["DefaultSkin"]);
                 skin.Request();
 
                 while (!skin.IsLoaded)
                 {
+                    Trainer.DebugLine("Waiting for skin to load.");
                     await BaseScript.Delay(1);
                 }
 
                 var playerPed = Game.PlayerPed;
 
-                if (skin != playerPed.Model)
+                if (skin == playerPed.Model)
                 {
+                    Trainer.DebugLine("Same as current skin. Doing nothing.");
+                }
+                else
+                {
+                    Trainer.DebugLine("Changing skin...");
                     justRunSpawnHandler = true;
                     await ChangePlayerSkin(playerPed, skin);
                     Config["CurrentSkin"] = Config["DefaultSkin"];
+                    Trainer.DebugLine("Skin changed!");
                 }
             }
         }
