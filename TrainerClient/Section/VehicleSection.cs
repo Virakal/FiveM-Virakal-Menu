@@ -29,10 +29,15 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("BoostPower", "75");
             Config.SetDefault("RainbowSpeed", "0.5");
 
+            // General
             Trainer.RegisterNUICallback("veh", OnVeh);
+            Trainer.RegisterAsyncNUICallback("vehspawn", OnVehSpawn);
+
+            // Garage
             Trainer.RegisterNUICallback("vehsave", OnVehSave);
             Trainer.RegisterAsyncNUICallback("vehload", OnVehLoad);
-            Trainer.RegisterAsyncNUICallback("vehspawn", OnVehSpawn);
+
+            // Colours
             Trainer.RegisterNUICallback("vehprimary", OnVehPrimary);
             Trainer.RegisterNUICallback("vehsecondary", OnVehSecondary);
             Trainer.RegisterNUICallback("vehboth", OnVehBoth);
@@ -40,8 +45,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehcolor", OnVehColor);
             Trainer.RegisterAsyncNUICallback("vehlivery", OnVehLivery);
             Trainer.RegisterNUICallback("vehrooflivery", OnVehRoofLivery);
-            Trainer.RegisterNUICallback("boostpower", OnBoostPower);
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
+
+            // Boost
+            Trainer.RegisterNUICallback("boostpower", OnBoostPower);
 
             EventHandlers["virakal:newVehicle"] += new Action<int, int?>(OnNewVehicle);
 
@@ -442,7 +449,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             var chrome = VehicleColor.Chrome;
             VehicleModCollection mods = vehicle.Mods;
-
+            
             mods.ClearCustomPrimaryColor();
             mods.ClearCustomSecondaryColor();
             mods.PrimaryColor = chrome;
