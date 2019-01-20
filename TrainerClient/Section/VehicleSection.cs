@@ -71,7 +71,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async void OnNewVehicle(int vehicleHandle, int? oldVehicleHandle)
         {
-            Debug.WriteLine("Caught a vehicle change.");
+            Trainer.DebugLine("Caught a vehicle change.");
             Vehicle vehicle = new Vehicle(vehicleHandle);
 
             if (Config["RainbowChrome"] == "true")
@@ -364,7 +364,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
             else
             {
-                Debug.WriteLine($"Setting tint to {tint} / {iTint}");
+                Trainer.DebugLine($"Setting tint to {tint} / {iTint}");
                 VehicleModCollection mods = vehicle.Mods;
                 mods.WindowTint = tint;
                 API.SetVehicleWindowTint(vehicle.Handle, iTint);
@@ -794,7 +794,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
                         if (!success)
                         {
-                            Debug.WriteLine("Failed to parse boost power config variable.");
+                            Trainer.DebugLine("Failed to parse boost power config variable.");
                             power = 75;
                         }
 

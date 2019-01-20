@@ -27,11 +27,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             while (!API.HasAnimDictLoaded("random@arrests@busted") && DateTime.Now < timeout)
             {
-                Debug.WriteLine("Waitin'");
+                Trainer.DebugLine("Waiting for animation to load");
                 await BaseScript.Delay(1);
             }
 
-            Debug.WriteLine(API.DoesAnimDictExist("random@arrests@busted") ? "exists" : "no existo");
+            Trainer.DebugLine(API.DoesAnimDictExist("random@arrests@busted") ? "Animation exists" : "Animation doesn't exist");
 
             if (!API.HasAnimDictLoaded("random@arrests@busted"))
             {
@@ -41,7 +41,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             API.TaskPlayAnim(playerPed.Handle, "random@arrests", "idle_2_hands_up", 8, -1, 10000, 0, 1, true, true, true);
 
-            Debug.WriteLine("Animatin'");
+            Trainer.DebugLine("Animating");
 
             callback("ok");
             return callback;

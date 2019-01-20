@@ -83,18 +83,19 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                     {
                         vehicle.IsEngineRunning = true;
                         vehicle.SteeringAngle = playerVeh.SteeringAngle;
-                        Debug.Write($"Setting steering angle to {playerVeh.SteeringAngle}");
+                        DebugLine($"Setting steering angle to {playerVeh.SteeringAngle}");
                         vehicle.Velocity = playerVeh.Velocity;
-                        Debug.Write($"Setting velocity to {playerVeh.Velocity}");
+                        DebugLine($"Setting velocity to {playerVeh.Velocity}");
                         vehicle.CurrentRPM = playerVeh.CurrentRPM;
-                        Debug.Write($"Setting RPM to {playerVeh.CurrentRPM}");
+                        DebugLine($"Setting RPM to {playerVeh.CurrentRPM}");
                         vehicle.Heading = playerVeh.Heading;
-                        Debug.Write($"Setting heading to {playerVeh.Heading}");
+                        DebugLine($"Setting heading to {playerVeh.Heading}");
                         vehicle.HighGear = playerVeh.HighGear;
-                        Debug.Write($"Setting highgear to {playerVeh.HighGear}");
+                        DebugLine($"Setting highgear to {playerVeh.HighGear}");
                         vehicle.Rotation = playerVeh.Rotation;
-                        Debug.Write($"Setting rotation to {playerVeh.Rotation}");
+                        DebugLine($"Setting rotation to {playerVeh.Rotation}");
                         API.SetVehicleEngineOn(vehicle.Handle, true, true, true);
+                        DebugLine("Enabling vehicle engine");
                     }
 
                     // Try to move other passengers over
@@ -265,6 +266,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 CallbackDelegate err = await callback.Invoke(body, resultCallback);
             });
+        }
+
+        public void DebugLine(string format, params object[] args)
+        {
+            Debug.WriteLine($"[VT] {format}", args);
+        }
+
+        public void DebugLine(string format)
+        {
+            DebugLine(format, new object[] { });
         }
 
         private CallbackDelegate TrainerClose(IDictionary<string, object> data, CallbackDelegate callback)

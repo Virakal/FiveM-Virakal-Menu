@@ -28,17 +28,17 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             int height = 20;
             int heightVariance = 5;
 
-            Debug.WriteLine($"Loading model {modelName}");
+            Trainer.DebugLine($"Loading model {modelName}");
 
             model.Request();
 
             while (!model.IsLoaded)
             {
-                Debug.WriteLine("Waiting...");
+                Trainer.DebugLine("Waiting...");
                 await BaseScript.Delay(1);
             }
 
-            Debug.WriteLine("Loaded.");
+            Trainer.DebugLine("Loaded.");
 
             for (var i = 0; i < bombCount; ++i)
             {
@@ -49,7 +49,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 position.Y += halfVariance - rand.Next(variance);
                 position.Z += height + (heightVariance * (float)rand.NextDouble());
 
-                Debug.WriteLine($"Dropping animal #{1 + i} at {position}, heading {heading}");
+                Trainer.DebugLine($"Dropping animal #{1 + i} at {position}, heading {heading}");
 
                 // Stagger spawns
                 await BaseScript.Delay(rand.Next(15));

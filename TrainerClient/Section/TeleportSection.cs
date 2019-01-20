@@ -93,11 +93,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 {
                     lastVehicle.PlaceOnGround();
 
-                    Debug.Write("Trying to drive");
+                    Trainer.DebugLine("Trying to drive");
                     // Attempt to drive
                     playerPed.SetIntoVehicle(lastVehicle, VehicleSeat.Driver);
 
-                    Debug.Write("Trying to passenger");
+                    Trainer.DebugLine("Trying to passenger");
                     if (!playerPed.IsInVehicle(lastVehicle))
                     {
                         // If that didn't work, try any seat
@@ -106,7 +106,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 }
                 else
                 {
-                    Debug.Write("No seats free, moving to location");
+                    Trainer.DebugLine("No seats free, moving to location");
                     // No seats free, just teleport to the vehicle
                     playerPed.Position = lastVehicle.Position;
                 }

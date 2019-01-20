@@ -29,7 +29,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             string configName = GetGarageSlotName(slot);
             string modString = ToModString(vehicle.Mods);
             Config[configName] = $"{vehicle.Model.Hash}{Sep}{modString}";
-            Debug.WriteLine($"Saved to {configName}: {Config[configName]}");
+            Trainer.DebugLine($"Saved to {configName}: {Config[configName]}");
         }
 
         public async Task<Vehicle> LoadVehicle(string slot)
@@ -45,7 +45,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
             ApplyModString(vehicle, modString);
 
-            Debug.WriteLine($"Loaded from {configName}: Model: {model} Mods: {modString}");
+            Trainer.DebugLine($"Loaded from {configName}: Model: {model} Mods: {modString}");
 
             return vehicle;
         }
