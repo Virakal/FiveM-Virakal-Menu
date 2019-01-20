@@ -38,7 +38,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehboth", OnVehBoth);
             Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
             Trainer.RegisterNUICallback("vehcolor", OnVehColor);
-            Trainer.RegisterNUICallback("vehlivery", OnVehLivery);
+            Trainer.RegisterAsyncNUICallback("vehlivery", OnVehLivery);
             Trainer.RegisterNUICallback("vehrooflivery", OnVehRoofLivery);
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
@@ -114,7 +114,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private CallbackDelegate OnVehLivery(IDictionary<string, object> data, CallbackDelegate callback)
+        private async Task<CallbackDelegate> OnVehLivery(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
 
@@ -154,6 +154,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 return callback;
             }
 
+            callback("ok");
+            await mods.RequestAdditionTextFile();
+
             if (mods.LocalizedLiveryName != "")
             {
                 Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {mods.LocalizedLiveryName} ({iLivery}/{maxLivery - 1})!");
@@ -163,7 +166,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {iLivery}/{maxLivery - 1}!");
             }
 
-            callback("ok");
             return callback;
         }
 
