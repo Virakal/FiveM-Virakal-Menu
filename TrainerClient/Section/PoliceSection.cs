@@ -33,10 +33,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate SetWantedLevel(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            int level = Convert.ToInt32(data["action"]);
-            int playerId = Game.Player.Handle;
+            int level = int.Parse((string)data["action"]);
 
-            SetWanted(playerId, level);
+            Game.Player.WantedLevel = level;
 
             Trainer.AddNotification($"~g~Changed wanted level to {level}.");
 
@@ -49,8 +48,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             bool state = (bool)data["newstate"];
             Config["PoliceIgnore"] = state ? "true" : "false";
 
-            API.SetPoliceIgnorePlayer(Game.Player.Handle, state);
-
             callback("ok");
             return callback;
         }
@@ -59,16 +56,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             if (Config["PoliceDisable"] == "true")
             {
-                SetWanted(Game.Player.Handle, 0);
+                Game.Player.WantedLevel = 0;
             }
-            
-            await Task.FromResult(0);
-        }
 
-        private void SetWanted(int playerId, int level)
-        {
-            API.SetPlayerWantedLevel(playerId, level, false);
-            API.SetPlayerWantedLevelNow(playerId, false);
+            Game.Player.IgnoredByPolice = Config["PoliceIgnore"] == "true";
+
+            await Task.FromResult(10);
         }
     }
 }
