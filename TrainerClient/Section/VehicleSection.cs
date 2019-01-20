@@ -768,6 +768,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 modList["SecondaryColour"] = Convert.ToString((int)mods.SecondaryColor);
             }
 
+            modList["PearlescentColour"] = Convert.ToString((int)mods.PearlescentColor);
+            modList["Livery"] = Convert.ToString(mods.Livery);
+
             return JsonConvert.SerializeObject(modList);
         }
 
@@ -798,6 +801,18 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             {
                 var secondary = int.Parse(modList["SecondaryColour"]);
                 mods.SecondaryColor = (VehicleColor)secondary;
+            }
+
+            if (modList.ContainsKey("PearlescentColour"))
+            {
+                var pearlescent = int.Parse(modList["PearlescentColour"]);
+                mods.PearlescentColor = (VehicleColor)pearlescent;
+            }
+
+            if (modList.ContainsKey("Livery"))
+            {
+                var livery = int.Parse(modList["Livery"]);
+                mods.Livery = livery;
             }
         }
 
