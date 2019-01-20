@@ -824,6 +824,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             modList["PearlescentColour"] = Convert.ToString((int)mods.PearlescentColor);
             modList["Livery"] = Convert.ToString(mods.Livery);
             modList["PlateText"] = mods.LicensePlate;
+            modList["PlateStyle"] = Convert.ToString((int)mods.LicensePlateStyle);
 
             return JsonConvert.SerializeObject(modList);
         }
@@ -872,6 +873,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             if (modList.ContainsKey("PlateText"))
             {
                 mods.LicensePlate = modList["PlateText"];
+            }
+
+            if (modList.ContainsKey("PlateStyle"))
+            {
+                var plateStyle = int.Parse(modList["PlateStyle"]);
+                mods.LicensePlateStyle= (LicensePlateStyle)plateStyle;
             }
         }
 
