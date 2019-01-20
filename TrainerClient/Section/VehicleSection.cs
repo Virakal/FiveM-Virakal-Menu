@@ -487,6 +487,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             else
             {
                 SaveVehicle(slot, vehicle);
+                Trainer.AddNotification($"~g~Saved {vehicle.LocalizedName} to slot {slot}!");
             }
 
             callback("ok");
@@ -498,7 +499,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             var slot = (string)data["action"];
 
             callback("ok");
-            await LoadVehicle(slot);
+
+            if (HasSavedVehicle(slot))
+            {
+                await LoadVehicle(slot);
+            }
+            else
+            {
+                Trainer.AddNotification($"~r~No vehicle saved in slot {slot}!");
+            }
+
             return callback;
         }
 
@@ -721,10 +731,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             await Task.FromResult(0);
         }
 
+        private string GetGarageSlotName(string slot) => $"VehicleSlot{slot}";
+        private bool HasSavedVehicle(string slot) => Config.ContainsKey(GetGarageSlotName(slot));
+
         private void SaveVehicle(string slot, Vehicle vehicle)
         {
             string sep = "<||>";
-            string configName = $"VehicleSlot{slot}";
+            string configName = GetGarageSlotName(slot);
             string modString = ToModString(vehicle.Mods);
             Config[configName] = $"{vehicle.Model.Hash}{sep}{modString}";
             Debug.WriteLine($"Saved to {configName}: {Config[configName]}");
@@ -733,7 +746,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         private async Task<Vehicle> LoadVehicle(string slot)
         {
             string sep = "<||>";
-            string configName = $"VehicleSlot{slot}";
+            string configName = GetGarageSlotName(slot);
             string loaded = Config[configName];
             string[] split = loaded.Split(new string[] { sep }, StringSplitOptions.None);
             string model = split[0];
