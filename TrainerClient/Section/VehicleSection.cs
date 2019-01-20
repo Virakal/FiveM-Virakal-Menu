@@ -12,11 +12,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 {
     class VehicleSection : BaseSection
     {
+        private Trainer Trainer { get; }
+        private Garage Garage { get; }
         private Vehicle LastPlayerVehicle { get; set; }
         private double RainbowSpeed { get; set; }
 
         public VehicleSection(Trainer trainer) : base(trainer)
         {
+            Trainer = trainer;
+            Garage = trainer.Garage;
+
             Config.SetDefault("AutoDespawnVehicle", "true");
             Config.SetDefault("BoostOnHorn", "true");
             Config.SetDefault("RainbowPaint", "false");
@@ -114,7 +119,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             VehicleModCollection mods = vehicle.Mods;
-            Color colour = CommaSeparatedStringToColor((string)data["action"]);
+            Color colour = Trainer.CommaSeparatedStringToColor((string)data["action"]);
 
             mods.CustomPrimaryColor = colour;
             mods.CustomSecondaryColor = colour;
@@ -476,7 +481,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     break;
                 default:
                     Model model = new Model((string)data["action"]);
-                    await SpawnVehicle(model, Game.PlayerPed.Position);
+                    await Trainer.SpawnVehicle(model, Game.PlayerPed.Position);
                     break;
             }
 
@@ -495,7 +500,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
             else
             {
-                SaveVehicle(slot, vehicle);
+                Garage.SaveVehicle(slot, vehicle);
                 Trainer.AddNotification($"~g~Saved {vehicle.LocalizedName} to slot {slot}!");
             }
 
@@ -509,9 +514,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             callback("ok");
 
-            if (HasSavedVehicle(slot))
+            if (Garage.HasSavedVehicle(slot))
             {
-                await LoadVehicle(slot);
+                await Garage.LoadVehicle(slot);
             }
             else
             {
@@ -609,73 +614,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 64
             );
 
-            Vehicle vehicle = await SpawnVehicle(new Model(modelName), Game.PlayerPed.Position);
+            Vehicle vehicle = await Trainer.SpawnVehicle(new Model(modelName), Game.PlayerPed.Position);
 
             // Wait a few frames so that the messagebox doesn't start again immediately
             await BaseScript.Delay(10);
             Trainer.BlockInput = false;
-
-            return vehicle;
-        }
-
-        private async Task<Vehicle> SpawnVehicle(Model model, Vector3 position)
-        {
-            var playerPed = Game.PlayerPed;
-            var playerVeh = playerPed.CurrentVehicle;
-
-            if (Config["SpawnInVehicle"] == "false")
-            {
-                position = new Vector3(position.X + 2.5f, position.Y + 2.5f, position.Z + 1.0f);
-            }
-
-            Vehicle vehicle = await World.CreateVehicle(model, position, playerPed.Heading);
-
-            if (vehicle == null)
-            {
-                Trainer.AddNotification($"~r~Failed to load vehicle model '{model}'.");
-                return null;
-            }
-
-            if (Config["SpawnInVehicle"] == "true")
-            {
-                // Move the player to the new vehicle
-                playerPed.SetIntoVehicle(vehicle, VehicleSeat.Driver);
-
-                if (playerVeh != null)
-                {
-                    // Maintain old velocity if applicable
-                    if (Config["MaintainVehicleVelocityOnSwitch"] == "true")
-                    {
-                        vehicle.IsEngineRunning = true;
-                        vehicle.SteeringAngle = playerVeh.SteeringAngle;
-                        Debug.Write($"Setting steering angle to {playerVeh.SteeringAngle}");
-                        vehicle.Velocity = playerVeh.Velocity;
-                        Debug.Write($"Setting velocity to {playerVeh.Velocity}");
-                        vehicle.CurrentRPM = playerVeh.CurrentRPM;
-                        Debug.Write($"Setting RPM to {playerVeh.CurrentRPM}");
-                        vehicle.Heading = playerVeh.Heading;
-                        Debug.Write($"Setting heading to {playerVeh.Heading}");
-                        vehicle.HighGear = playerVeh.HighGear;
-                        Debug.Write($"Setting highgear to {playerVeh.HighGear}");
-                        vehicle.Rotation = playerVeh.Rotation;
-                        Debug.Write($"Setting rotation to {playerVeh.Rotation}");
-                        API.SetVehicleEngineOn(vehicle.Handle, true, true, true);
-                    }
-
-                    // Try to move other passengers over
-                    foreach (var passenger in playerVeh.Passengers)
-                    {
-                        passenger.SetIntoVehicle(vehicle, VehicleSeat.Any);
-                    }
-
-                    // Remove the old vehicle
-                    playerVeh.Delete();
-                }
-            }
-
-            string vehName = vehicle.LocalizedName;
-
-            Trainer.AddNotification($"~g~Spawned vehicle '{vehName}'.");
 
             return vehicle;
         }
@@ -786,134 +729,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             await Task.FromResult(0);
-        }
-
-        private string GetGarageSlotName(string slot) => $"VehicleSlot{slot}";
-        private bool HasSavedVehicle(string slot) => Config.ContainsKey(GetGarageSlotName(slot));
-
-        private void SaveVehicle(string slot, Vehicle vehicle)
-        {
-            string sep = "<||>";
-            string configName = GetGarageSlotName(slot);
-            string modString = ToModString(vehicle.Mods);
-            Config[configName] = $"{vehicle.Model.Hash}{sep}{modString}";
-            Debug.WriteLine($"Saved to {configName}: {Config[configName]}");
-        }
-
-        private async Task<Vehicle> LoadVehicle(string slot)
-        {
-            string sep = "<||>";
-            string configName = GetGarageSlotName(slot);
-            string loaded = Config[configName];
-            string[] split = loaded.Split(new string[] { sep }, StringSplitOptions.None);
-            string model = split[0];
-            string modString = split[1];
-
-            var vehicle = await SpawnVehicle(new Model(int.Parse(model)), Game.PlayerPed.Position);
-
-            ApplyModString(vehicle, modString);
-
-            Debug.WriteLine($"Loaded from {configName}: Model: {model} Mods: {modString}");
-
-            return vehicle;
-        }
-
-        private string ToModString(VehicleModCollection mods)
-        {
-            var modList = new Dictionary<string, string>();
-
-            if (mods.IsPrimaryColorCustom)
-            {
-                modList["CustomPrimary"] = $"{mods.CustomPrimaryColor.R},{mods.CustomPrimaryColor.G},{mods.CustomPrimaryColor.B}";
-            }
-            else
-            {
-                modList["PrimaryColour"] = Convert.ToString((int)mods.PrimaryColor);
-            }
-
-            if (mods.IsSecondaryColorCustom)
-            {
-                modList["CustomSecondary"] = $"{mods.CustomSecondaryColor.R},{mods.CustomSecondaryColor.G},{mods.CustomSecondaryColor.B}";
-            }
-            else
-            {
-                modList["SecondaryColour"] = Convert.ToString((int)mods.SecondaryColor);
-            }
-
-            modList["PearlescentColour"] = Convert.ToString((int)mods.PearlescentColor);
-            modList["Livery"] = Convert.ToString(mods.Livery);
-            modList["PlateText"] = mods.LicensePlate;
-            modList["PlateStyle"] = Convert.ToString((int)mods.LicensePlateStyle);
-
-            return JsonConvert.SerializeObject(modList);
-        }
-
-        private void ApplyModString(Vehicle vehicle, string modString)
-        {
-            var modList = JsonConvert.DeserializeObject<Dictionary<string, string>>(modString);
-            VehicleModCollection mods = vehicle.Mods;
-
-            if (modList.ContainsKey("CustomPrimary"))
-            {
-                var colour = CommaSeparatedStringToColor(modList["CustomPrimary"]);
-                mods.CustomPrimaryColor = colour;
-            }
-
-            if (modList.ContainsKey("PrimaryColour"))
-            {
-                var primary = int.Parse(modList["PrimaryColour"]);
-                mods.PrimaryColor = (VehicleColor)primary;
-            }
-
-            if (modList.ContainsKey("CustomSecondary"))
-            {
-                var colour = CommaSeparatedStringToColor(modList["CustomSecondary"]);
-                mods.CustomSecondaryColor = colour;
-            }
-
-            if (modList.ContainsKey("SecondaryColour"))
-            {
-                var secondary = int.Parse(modList["SecondaryColour"]);
-                mods.SecondaryColor = (VehicleColor)secondary;
-            }
-
-            if (modList.ContainsKey("PearlescentColour"))
-            {
-                var pearlescent = int.Parse(modList["PearlescentColour"]);
-                mods.PearlescentColor = (VehicleColor)pearlescent;
-            }
-
-            if (modList.ContainsKey("Livery"))
-            {
-                var livery = int.Parse(modList["Livery"]);
-                mods.Livery = livery;
-            }
-
-            if (modList.ContainsKey("PlateText"))
-            {
-                mods.LicensePlate = modList["PlateText"];
-            }
-
-            if (modList.ContainsKey("PlateStyle"))
-            {
-                var plateStyle = int.Parse(modList["PlateStyle"]);
-                mods.LicensePlateStyle= (LicensePlateStyle)plateStyle;
-            }
-        }
-
-        /// <summary>
-        /// Convert a comma-separated string of numbers (e.g. 255,128,0) to a Color object
-        /// </summary>
-        /// <param name="colourString">the string representing the colour</param>
-        /// <returns>the colour object</returns>
-        private Color CommaSeparatedStringToColor(string colourString)
-        {
-            string[] rgb = colourString.Split(',');
-            int r = int.Parse(rgb[0]);
-            int g = int.Parse(rgb[1]);
-            int b = int.Parse(rgb[2]);
-
-            return Color.FromArgb(r, g, b);
         }
 
         /// <summary>

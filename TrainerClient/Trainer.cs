@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Dynamic;
 using System.Threading.Tasks;
 using CitizenFX.Core;
@@ -13,6 +14,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public Control MenuKey { get; } = Control.SelectCharacterFranklin; // F6
         public bool ShowTrainer { get; private set; } = false;
         public Config Config { get; } = new Config();
+        public Garage Garage { get; }
         public EventHandlerDictionary _EventHandlers { get { return EventHandlers; } }
         public bool BlockInput { get; internal set; } = false;
 
@@ -20,6 +22,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             // Forcibly load the JSON DLL early
             JsonConvert.SerializeObject(new object());
+
+            Garage = new Garage(this);
 
             Tick += OnLoad;
             Tick += HandleMenuKeys;
@@ -41,6 +45,83 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public void AddTick(Func<Task> tickFunction)
         {
             Tick += tickFunction;
+        }
+
+        public async Task<Vehicle> SpawnVehicle(Model model, Vector3 position)
+        {
+            var playerPed = Game.PlayerPed;
+            var playerVeh = playerPed.CurrentVehicle;
+
+            if (Config["SpawnInVehicle"] == "false")
+            {
+                position = new Vector3(position.X + 2.5f, position.Y + 2.5f, position.Z + 1.0f);
+            }
+
+            Vehicle vehicle = await World.CreateVehicle(model, position, playerPed.Heading);
+
+            if (vehicle == null)
+            {
+                AddNotification($"~r~Failed to load vehicle model '{model}'.");
+                return null;
+            }
+
+            if (Config["SpawnInVehicle"] == "true")
+            {
+                // Move the player to the new vehicle
+                playerPed.SetIntoVehicle(vehicle, VehicleSeat.Driver);
+
+                if (playerVeh != null)
+                {
+                    // Maintain old velocity if applicable
+                    if (Config["MaintainVehicleVelocityOnSwitch"] == "true")
+                    {
+                        vehicle.IsEngineRunning = true;
+                        vehicle.SteeringAngle = playerVeh.SteeringAngle;
+                        Debug.Write($"Setting steering angle to {playerVeh.SteeringAngle}");
+                        vehicle.Velocity = playerVeh.Velocity;
+                        Debug.Write($"Setting velocity to {playerVeh.Velocity}");
+                        vehicle.CurrentRPM = playerVeh.CurrentRPM;
+                        Debug.Write($"Setting RPM to {playerVeh.CurrentRPM}");
+                        vehicle.Heading = playerVeh.Heading;
+                        Debug.Write($"Setting heading to {playerVeh.Heading}");
+                        vehicle.HighGear = playerVeh.HighGear;
+                        Debug.Write($"Setting highgear to {playerVeh.HighGear}");
+                        vehicle.Rotation = playerVeh.Rotation;
+                        Debug.Write($"Setting rotation to {playerVeh.Rotation}");
+                        API.SetVehicleEngineOn(vehicle.Handle, true, true, true);
+                    }
+
+                    // Try to move other passengers over
+                    foreach (var passenger in playerVeh.Passengers)
+                    {
+                        passenger.SetIntoVehicle(vehicle, VehicleSeat.Any);
+                    }
+
+                    // Remove the old vehicle
+                    playerVeh.Delete();
+                }
+            }
+
+            string vehName = vehicle.LocalizedName;
+
+            AddNotification($"~g~Spawned vehicle '{vehName}'.");
+
+            return vehicle;
+        }
+
+        /// <summary>
+        /// Convert a comma-separated string of numbers (e.g. 255,128,0) to a Color object
+        /// </summary>
+        /// <param name="colourString">the string representing the colour</param>
+        /// <returns>the colour object</returns>
+        public Color CommaSeparatedStringToColor(string colourString)
+        {
+            string[] rgb = colourString.Split(',');
+            int r = int.Parse(rgb[0]);
+            int g = int.Parse(rgb[1]);
+            int b = int.Parse(rgb[2]);
+
+            return Color.FromArgb(r, g, b);
         }
 
         private Task OnLoad()
