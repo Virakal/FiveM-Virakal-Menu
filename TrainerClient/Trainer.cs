@@ -124,6 +124,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             return Color.FromArgb(r, g, b);
         }
 
+        /// <summary>
+        /// Convert a six-letter hexadecimal string to a Color
+        ///
+        /// Does not strip any prefixes
+        /// </summary>
+        /// <param name="hex">the hex string</param>
+        /// <returns>the colour object</returns>
         public Color HexToColor(string hex)
         {
             int r = Convert.ToInt32(hex.Substring(0, 2), 16);
