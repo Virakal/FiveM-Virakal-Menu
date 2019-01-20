@@ -124,6 +124,15 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             return Color.FromArgb(r, g, b);
         }
 
+        public Color HexToColor(string hex)
+        {
+            int r = Convert.ToInt32(hex.Substring(0, 2), 16);
+            int g = Convert.ToInt32(hex.Substring(2, 2), 16);
+            int b = Convert.ToInt32(hex.Substring(4, 2), 16);
+
+            return Color.FromArgb(r, g, b);
+        }
+
         private Task OnLoad()
         {
             // Unsubscribe this event immediately so the event only runs once

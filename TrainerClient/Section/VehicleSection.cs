@@ -12,15 +12,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 {
     class VehicleSection : BaseSection
     {
-        private Trainer Trainer { get; }
         private Garage Garage { get; }
         private Vehicle LastPlayerVehicle { get; set; }
         private double RainbowSpeed { get; set; }
 
         public VehicleSection(Trainer trainer) : base(trainer)
         {
-            Trainer = trainer;
-            Garage = trainer.Garage;
+            Garage = Trainer.Garage;
 
             Config.SetDefault("AutoDespawnVehicle", "true");
             Config.SetDefault("BoostOnHorn", "true");
@@ -47,7 +45,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehsecondary", OnVehSecondary);
             Trainer.RegisterNUICallback("vehboth", OnVehBoth);
             Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
-            Trainer.RegisterNUICallback("vehcolor", OnVehColor);
+            Trainer.RegisterAsyncNUICallback("vehcolor", OnVehColor);
             Trainer.RegisterAsyncNUICallback("vehlivery", OnVehLivery);
             Trainer.RegisterNUICallback("vehrooflivery", OnVehRoofLivery);
             Trainer.RegisterNUICallback("vehrim", OnVehRim);
@@ -110,7 +108,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             await Task.FromResult(0);
         }
 
-        private CallbackDelegate OnVehColor(IDictionary<string, object> data, CallbackDelegate callback)
+        private async Task<CallbackDelegate> OnVehColor(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
 
@@ -121,13 +119,25 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 return callback;
             }
 
+            var action = (string)data["action"];
             VehicleModCollection mods = vehicle.Mods;
-            Color colour = Trainer.CommaSeparatedStringToColor((string)data["action"]);
+            Color colour;
+
+            callback("ok");
+
+            if (action == "input")
+            {
+                colour = await GetInputColour();
+            }
+            else
+            {
+                colour = Trainer.CommaSeparatedStringToColor(action);
+                await Task.FromResult(0);
+            }
 
             mods.CustomPrimaryColor = colour;
             mods.CustomSecondaryColor = colour;
 
-            callback("ok");
             return callback;
         }
 
@@ -686,6 +696,43 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.BlockInput = false;
 
             return vehicle;
+        }
+
+        private async Task<Color> GetInputColour()
+        {
+            Trainer.BlockInput = true;
+
+            string colourText = await Game.GetUserInput(
+                WindowTitle.FMMC_KEY_TIP8,
+                64
+            );
+
+            Color colour;
+
+            if (colourText.Contains(','))
+            {
+                // Assume it's a comma-separated colour
+                // Remove any whitespace
+                colourText = colourText.Replace(" ", "");
+                colour = Trainer.CommaSeparatedStringToColor(colourText);
+            }
+            else if (colourText.StartsWith("#") || colourText.StartsWith("0x") || colourText.Length == 6)
+            {
+                // HTML-style hex colour?
+                colourText = colourText.Substring(colourText.Length - 6);
+                colour = Trainer.HexToColor(colourText);
+            }
+            else
+            {
+                Trainer.AddNotification($"~r~Invalid colour {colourText}");
+                return Color.FromArgb(0);
+            }
+
+            // Wait a few frames so that the messagebox doesn't start again immediately
+            await BaseScript.Delay(10);
+            Trainer.BlockInput = false;
+
+            return colour;
         }
 
         private async Task RainbowTick()
