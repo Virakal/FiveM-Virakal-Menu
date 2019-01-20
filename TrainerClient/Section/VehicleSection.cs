@@ -113,7 +113,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             VehicleModCollection mods = vehicle.Mods;
-            Color colour = StringToColor((string)data["action"]);
+            Color colour = CommaSeparatedStringToColor((string)data["action"]);
 
             mods.CustomPrimaryColor = colour;
             mods.CustomSecondaryColor = colour;
@@ -835,7 +835,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (modList.ContainsKey("CustomPrimary"))
             {
-                var colour = StringToColor(modList["CustomPrimary"]);
+                var colour = CommaSeparatedStringToColor(modList["CustomPrimary"]);
                 mods.CustomPrimaryColor = colour;
             }
 
@@ -847,7 +847,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (modList.ContainsKey("CustomSecondary"))
             {
-                var colour = StringToColor(modList["CustomSecondary"]);
+                var colour = CommaSeparatedStringToColor(modList["CustomSecondary"]);
                 mods.CustomSecondaryColor = colour;
             }
 
@@ -875,7 +875,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
         }
 
-        private Color StringToColor(string colourString)
+        /// <summary>
+        /// Convert a comma-separated string of numbers (e.g. 255,128,0) to a Color object
+        /// </summary>
+        /// <param name="colourString">the string representing the colour</param>
+        /// <returns>the colour object</returns>
+        private Color CommaSeparatedStringToColor(string colourString)
         {
             string[] rgb = colourString.Split(',');
             int r = int.Parse(rgb[0]);
