@@ -50,6 +50,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehcolor", OnVehColor);
             Trainer.RegisterAsyncNUICallback("vehlivery", OnVehLivery);
             Trainer.RegisterNUICallback("vehrooflivery", OnVehRoofLivery);
+            Trainer.RegisterNUICallback("vehrim", OnVehRim);
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
             Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
             Trainer.RegisterNUICallback("vehplatesyle", OnVehPlateStyle);
@@ -293,6 +294,26 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             {
                 VehicleModCollection mods = vehicle.Mods;
                 mods.PearlescentColor = colour;
+            }
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate OnVehRim(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            int iColour = Convert.ToInt32(data["action"]);
+            var colour = (VehicleColor)iColour;
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+            }
+            else
+            {
+                VehicleModCollection mods = vehicle.Mods;
+                mods.RimColor = colour;
             }
 
             callback("ok");
