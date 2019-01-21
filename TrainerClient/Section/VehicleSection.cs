@@ -666,12 +666,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             else
             {
                 var action = (string)data["action"];
+                var mods = vehicle.Mods;
 
                 if (action == "allon")
                 {
                     for (var i = 0; i < 4; i++)
                     {
-                        vehicle.Mods.SetNeonLightsOn((VehicleNeonLight)i, true);
+                        mods.SetNeonLightsOn((VehicleNeonLight)i, true);
                     }
 
                     Trainer.AddNotification("~g~Neons on.");
@@ -680,16 +681,29 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 {
                     for (var i = 0; i < 4; i++)
                     {
-                        vehicle.Mods.SetNeonLightsOn((VehicleNeonLight)i, false);
+                        mods.SetNeonLightsOn((VehicleNeonLight)i, false);
                     }
 
                     Trainer.AddNotification("~g~Neons off.");
                 }
                 else if (action == "input")
                 {
-                    vehicle.Mods.NeonLightsColor = await GetInputColour();
-
+                    mods.NeonLightsColor = await GetInputColour();
                     Trainer.AddNotification("~g~Neon colour changed.");
+                }
+                else if (action.StartsWith("on") && action.Length == 3)
+                {
+                    var i = int.Parse(action.Substring(2, 1));
+                    var light = (VehicleNeonLight)i;
+                    mods.SetNeonLightsOn(light, true);
+                    Trainer.AddNotification($"~g~Enabled {light} neon.");
+                }
+                else if (action.StartsWith("off") && action.Length == 4)
+                {
+                    var i = int.Parse(action.Substring(3, 1));
+                    var light = (VehicleNeonLight)i;
+                    mods.SetNeonLightsOn(light, false);
+                    Trainer.AddNotification($"~g~Disabled {light} neon.");
                 }
             }
 
