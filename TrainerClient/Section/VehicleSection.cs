@@ -633,7 +633,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             string plateText = await Game.GetUserInput(
                 WindowTitle.FMMC_KEY_TIP8,
-                64
+                7 // Numberplates max out at 8 chars but this seems to be off by one
             );
 
             vehicle.Mods.LicensePlate = plateText;
