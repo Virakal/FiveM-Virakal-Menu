@@ -166,33 +166,43 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             VehicleModCollection mods = vehicle.Mods;
-            mods.Livery = iLivery;
             var maxLivery = mods.LiveryCount;
+
+            callback("ok");
 
             if (maxLivery == -1)
             {
-                Trainer.AddNotification($"~r~{vehicle.LocalizedName} does not support liveries!");
-                callback("ok");
-                return callback;
-            }
+                Trainer.DebugLine($"No basic liveries supported, {mods[VehicleModType.Livery].ModCount} mod liveries instead.");
+                mods.InstallModKit();
 
-            if (iLivery >= maxLivery)
+                if (mods[VehicleModType.Livery].ModCount > 0)
+                {
+                    mods[VehicleModType.Livery].Index = iLivery;
+                }
+                else
+                {
+                    Trainer.AddNotification($"~r~{vehicle.LocalizedName} does not support liveries!");
+                }
+            }
+            else if (iLivery >= maxLivery)
             {
                 Trainer.AddNotification($"~r~{vehicle.LocalizedName} does not have enough liveries to set to {iLivery}!");
-                callback("ok");
-                return callback;
-            }
-
-            callback("ok");
-            await mods.RequestAdditionTextFile();
-
-            if (mods.LocalizedLiveryName != "")
-            {
-                Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {mods.LocalizedLiveryName} ({iLivery}/{maxLivery - 1})!");
             }
             else
             {
-                Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {iLivery}/{maxLivery - 1}!");
+                mods.Livery = iLivery;
+
+                await mods.RequestAdditionTextFile();
+
+                if (mods.LocalizedLiveryName != "")
+                {
+                    Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {mods.LocalizedLiveryName} ({iLivery}/{maxLivery - 1})!");
+                }
+                else
+                {
+                    Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} livery to {iLivery}/{maxLivery - 1}!");
+                }
+
             }
 
             return callback;
@@ -728,7 +738,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
                 if (action == "quickupgrade")
                 {
-                    mods.InstallModKit(); // Not sure if this works at all?
+                    mods.InstallModKit();
                     mods[VehicleToggleModType.Turbo].IsInstalled = true;
                     mods[VehicleToggleModType.XenonHeadlights].IsInstalled = true;
                     mods[VehicleToggleModType.TireSmoke].IsInstalled = true;
