@@ -58,7 +58,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             // Boost
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
 
-            EventHandlers["virakal:newVehicle"] += new Action<int, int?>(OnNewVehicle);
+            EventHandlers["virakal:newVehicle"] += new Action<int, int>(OnNewVehicle);
 
             Trainer.AddTick(RainbowTick);
             Trainer.AddTick(BoostTick);
@@ -69,7 +69,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             RainbowSpeed = success ? rainbowSpeed : 0.5;
         }
 
-        private async void OnNewVehicle(int vehicleHandle, int? oldVehicleHandle)
+        private async void OnNewVehicle(int vehicleHandle, int oldVehicleHandle)
         {
             Trainer.DebugLine("Caught a vehicle change.");
             Vehicle vehicle = new Vehicle(vehicleHandle);
@@ -101,11 +101,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
             else if (vehicle != LastPlayerVehicle)
             {
-                BaseScript.TriggerEvent("virakal:newVehicle", vehicle.Handle, LastPlayerVehicle?.Handle);
+                BaseScript.TriggerEvent("virakal:newVehicle", vehicle.Handle, LastPlayerVehicle == null ? -1 : LastPlayerVehicle.Handle);
                 LastPlayerVehicle = vehicle;
             }
 
-            await Task.FromResult(0);
+            await BaseScript.Delay(50);
         }
 
         private async Task<CallbackDelegate> OnVehColor(IDictionary<string, object> data, CallbackDelegate callback)
