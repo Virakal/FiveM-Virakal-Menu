@@ -55,7 +55,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
             Trainer.RegisterNUICallback("vehplatesyle", OnVehPlateStyle);
             Trainer.RegisterAsyncNUICallback("vehneon", OnVehNeon);
-            Trainer.RegisterNUICallback("vehmod", OnVehMod);
+            Trainer.RegisterAsyncNUICallback("vehmod", OnVehMod);
 
             // Boost
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
@@ -711,7 +711,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private CallbackDelegate OnVehMod(IDictionary<string, object> data, CallbackDelegate callback)
+        private async Task<CallbackDelegate> OnVehMod(IDictionary<string, object> data, CallbackDelegate callback)
         {
             var vehicle = Game.PlayerPed.CurrentVehicle;
 
@@ -745,6 +745,20 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 {
                     mods[VehicleToggleModType.XenonHeadlights].IsInstalled = false;
                     Trainer.AddNotification("~g~Disabled Xenon headlights.");
+                }
+                else if (action == "tyresmokeon")
+                {
+                    mods[VehicleToggleModType.TireSmoke].IsInstalled = true;
+                    Trainer.AddNotification("~g~Enabled tyre smoke.");
+                }
+                else if (action == "tyresmokeoff")
+                {
+                    mods[VehicleToggleModType.TireSmoke].IsInstalled = false;
+                    Trainer.AddNotification("~g~Disabled tyre smoke.");
+                }
+                else if (action == "tyresmokecolour")
+                {
+                    mods.TireSmokeColor = await GetInputColour();
                 }
             }
 
