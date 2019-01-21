@@ -80,6 +80,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             modList["WindowTint"] = Convert.ToString((int)mods.WindowTint);
             modList["DashboardColour"] = Convert.ToString((int)mods.DashboardColor);
             modList["NeonColour"] = Trainer.ColorToRgbString(mods.NeonLightsColor);
+            modList["TyreSmokeColour"] = Trainer.ColorToRgbString(mods.TireSmokeColor);
             modList["TyreSmoke"] = mods[VehicleToggleModType.TireSmoke].IsInstalled ? "true" : "false";
             modList["Turbo"] = mods[VehicleToggleModType.Turbo].IsInstalled ? "true" : "false";
             modList["XenonHeadlights"] = mods[VehicleToggleModType.XenonHeadlights].IsInstalled ? "true" : "false";
@@ -166,6 +167,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 var colour = Trainer.CommaSeparatedStringToColor(modList["NeonColour"]);
                 mods.NeonLightsColor = colour;
+            }
+
+            if (modList.ContainsKey("TyreSmokeColour"))
+            {
+                var colour = Trainer.CommaSeparatedStringToColor(modList["TyreSmokeColour"]);
+                mods.TireSmokeColor = colour;
             }
 
             for (var i = 0; i < 4; i++)
