@@ -726,7 +726,22 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 var action = (string)data["action"];
                 var mods = vehicle.Mods;
 
-                if (action == "turboon")
+                if (action == "quickupgrade")
+                {
+                    mods.InstallModKit(); // Not sure if this works at all?
+                    mods[VehicleToggleModType.Turbo].IsInstalled = true;
+                    mods[VehicleToggleModType.XenonHeadlights].IsInstalled = true;
+                    mods[VehicleToggleModType.TireSmoke].IsInstalled = true;
+                    mods[VehicleModType.Suspension].Index = 3;
+                    mods[VehicleModType.Transmission].Index = 2;
+                    mods[VehicleModType.Armor].Index = 4;
+                    mods[VehicleModType.Brakes].Index = 2;
+                    mods[VehicleModType.Engine].Index = 2;
+                    mods.TireSmokeColor = Color.FromArgb(0, 0, 0);
+
+                    Trainer.AddNotification("~g~Quick upgrade complete!");
+                }
+                else if (action == "turboon")
                 {
                     mods[VehicleToggleModType.Turbo].IsInstalled = true;
                     Trainer.AddNotification("~g~Enabled turbo.");
