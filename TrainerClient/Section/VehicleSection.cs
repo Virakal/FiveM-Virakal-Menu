@@ -54,6 +54,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
             Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
             Trainer.RegisterNUICallback("vehplatesyle", OnVehPlateStyle);
+            Trainer.RegisterNUICallback("vehneon", OnVehNeon);
 
             // Boost
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
@@ -413,34 +414,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     veh.PlaceOnGround();
                     Trainer.AddNotification("~g~Vehicle placed on ground.");
                     break;
-                case "neonon":
-                    if (veh == null)
-                    {
-                        Trainer.AddNotification("~r~Not in a vehicle!");
-                        break;
-                    }
-
-                    for (var i = 0; i < 4; i++)
-                    {
-                        veh.Mods.SetNeonLightsOn((VehicleNeonLight)i, true);
-                    }
-
-                    Trainer.AddNotification("~g~Neons on.");
-                    break;
-                case "neonoff":
-                    if (veh == null)
-                    {
-                        Trainer.AddNotification("~r~Not in a vehicle!");
-                        break;
-                    }
-
-                    for (var i = 0; i < 4; i++)
-                    {
-                        veh.Mods.SetNeonLightsOn((VehicleNeonLight)i, false);
-                    }
-
-                    Trainer.AddNotification("~g~Neons off.");
-                    break;
                 case "boosthorn":
                     Config["BoostOnHorn"] = state ? "true" : "false";
 
@@ -674,6 +647,42 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             {
                 var style = int.Parse((string)data["action"]);
                 vehicle.Mods.LicensePlateStyle = (LicensePlateStyle)style;
+            }
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate OnVehNeon(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            var vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+            }
+            else
+            {
+                var action = (string)data["action"];
+
+                if (action == "allon")
+                {
+                    for (var i = 0; i < 4; i++)
+                    {
+                        vehicle.Mods.SetNeonLightsOn((VehicleNeonLight)i, true);
+                    }
+
+                    Trainer.AddNotification("~g~Neons on.");
+                }
+                else if (action == "alloff")
+                {
+                    for (var i = 0; i < 4; i++)
+                    {
+                        vehicle.Mods.SetNeonLightsOn((VehicleNeonLight)i, false);
+                    }
+
+                    Trainer.AddNotification("~g~Neons off.");
+                }
             }
 
             callback("ok");

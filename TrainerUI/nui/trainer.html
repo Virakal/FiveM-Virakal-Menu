@@ -844,14 +844,13 @@
         <!-- Vehicles menu -->
         <div id="vehiclesmenu" data-parent="mainmenu">
             <p class="traineroption" data-sub="vehiclesspawnmenu">Spawn Vehicle</p>
-            <p class="traineroption" data-sub="vehiclescolourmenu">Vehicle Colour</p>
             <p class="traineroption" data-sub="vehiclesloadmenu">Load Vehicle</p>
             <p class="traineroption" data-sub="vehiclessavemenu">Save Vehicle</p>
+            <p class="traineroption" data-sub="vehiclescolourmenu">Vehicle Colour</p>
+            <p class="traineroption" data-sub="vehiclesmodsmenu">Vehicle Mods</p>
             <p class="traineroption" data-action="veh fix">Fix Vehicle</p>
             <p class="traineroption" data-action="veh clean">Clean Vehicle</p>
             <p class="traineroption" data-action="veh flip">Flip Vehicle Onto Wheels</p>
-            <p class="traineroption" data-action="veh neonon">Neons On</p>
-            <p class="traineroption" data-action="veh neonoff">Neons Off</p>
             <p class="traineroption" data-action="veh invincible" data-state="ON" data-config-key="InvincibleVehicle">Invincible Vehicle</p>
             <p class="traineroption" data-action="veh boosthorn" data-state="ON" data-config-key="BoostOnHorn">Boost on Horn</p>
             <p class="traineroption" data-sub="boostpowermenu">Boost Power</p>
@@ -880,6 +879,13 @@
             <p class="traineroption" data-action="vehload 8">Load Slot 8</p>
             <p class="traineroption" data-action="vehload 9">Load Slot 9</p>
             <p class="traineroption" data-action="vehload 10">Load Slot 10</p>
+        </div>
+        <div id="vehiclesmodsmenu" data-parent="vehiclesmenu">
+            <p class="traineroption" data-sub="vehiclesmodsneonsmenu">Neons</p>
+        </div>
+        <div id="vehiclesmodsneonsmenu" data-parent="vehiclesmodsmenu">
+            <p class="traineroption" data-action="vehneon allon">All Neons On</p>
+            <p class="traineroption" data-action="vehneon alloff">All Neons Off</p>
         </div>
         <div id="vehiclesspawnmenu" data-parent="vehiclesmenu">
             <p class="traineroption" data-sub="funspawnmenu">Spawn Fun Stuff</p>
