@@ -43,8 +43,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
             var vehicle = await Trainer.SpawnVehicle(new Model(int.Parse(model)), Game.PlayerPed.Position);
 
-            await BaseScript.Delay(0);
-
             ApplyModString(vehicle, modString);
 
             Trainer.DebugLine($"Loaded from {configName}: Model: {model}");
@@ -101,7 +99,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             return JsonConvert.SerializeObject(modList);
         }
 
-        private void ApplyModString(Vehicle vehicle, string modString)
+        private async void ApplyModString(Vehicle vehicle, string modString)
         {
             var modList = JsonConvert.DeserializeObject<Dictionary<string, string>>(modString);
             VehicleModCollection mods = vehicle.Mods;
@@ -167,6 +165,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 var rimColour = int.Parse(modList["RimColour"]);
                 mods.RimColor = (VehicleColor)rimColour;
             }
+
+            // Installing the modkit allows additional mods
+            mods.InstallModKit();
+
+            await BaseScript.Delay(0);
 
             if (modList.ContainsKey("WindowTint"))
             {
