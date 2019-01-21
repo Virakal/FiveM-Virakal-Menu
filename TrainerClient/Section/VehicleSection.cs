@@ -357,6 +357,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             else
             {
                 VehicleModCollection mods = vehicle.Mods;
+                mods.InstallModKit();
                 mods.DashboardColor = colour;
             }
 
@@ -378,8 +379,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             {
                 Trainer.DebugLine($"Setting tint to {tint} / {iTint}");
                 VehicleModCollection mods = vehicle.Mods;
+                mods.InstallModKit();
                 mods.WindowTint = tint;
-                API.SetVehicleWindowTint(vehicle.Handle, iTint);
             }
 
             callback("ok");
