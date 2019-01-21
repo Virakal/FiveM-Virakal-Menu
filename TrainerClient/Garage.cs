@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 {
     public class Garage
     {
-
         private string Sep { get; } = "<||>";
         private Trainer Trainer{ get; }
         private Config Config { get; }
@@ -29,7 +29,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             string configName = GetGarageSlotName(slot);
             string modString = ToModString(vehicle.Mods);
             Config[configName] = $"{vehicle.Model.Hash}{Sep}{modString}";
-            Trainer.DebugLine($"Saved to {configName}: {Config[configName]}");
+            Trainer.DebugLine($"Saved to car to {configName}");
         }
 
         public async Task<Vehicle> LoadVehicle(string slot)
@@ -56,7 +56,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
             if (mods.IsPrimaryColorCustom)
             {
-                modList["CustomPrimary"] = $"{mods.CustomPrimaryColor.R},{mods.CustomPrimaryColor.G},{mods.CustomPrimaryColor.B}";
+                modList["CustomPrimary"] = Trainer.ColorToRgbString(mods.CustomPrimaryColor);
             }
             else
             {
@@ -65,7 +65,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
             if (mods.IsSecondaryColorCustom)
             {
-                modList["CustomSecondary"] = $"{mods.CustomSecondaryColor.R},{mods.CustomSecondaryColor.G},{mods.CustomSecondaryColor.B}";
+                modList["CustomSecondary"] = Trainer.ColorToRgbString(mods.CustomSecondaryColor);
             }
             else
             {
@@ -79,6 +79,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             modList["RimColour"] = Convert.ToString((int)mods.RimColor);
             modList["WindowTint"] = Convert.ToString((int)mods.WindowTint);
             modList["DashboardColour"] = Convert.ToString((int)mods.DashboardColor);
+            modList["NeonColour"] = Trainer.ColorToRgbString(mods.NeonLightsColor);
+
+            for (var i = 0; i < 4; i++)
+            {
+                modList[$"NeonEnabled{i}"] = mods.IsNeonLightsOn((VehicleNeonLight)i) ? "true" : "false";
+            }
 
             return JsonConvert.SerializeObject(modList);
         }
@@ -151,6 +157,25 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 var dashboardColour = int.Parse(modList["DashboardColour"]);
                 mods.DashboardColor = (VehicleColor)dashboardColour;
+            }
+
+            if (modList.ContainsKey("NeonColour"))
+            {
+                var colour = Trainer.CommaSeparatedStringToColor(modList["NeonColour"]);
+                mods.NeonLightsColor = colour;
+            }
+
+            for (var i = 0; i < 4; i++)
+            {
+                if (modList.ContainsKey($"NeonEnabled{i}"))
+                {
+                    mods.SetNeonLightsOn((VehicleNeonLight)i, modList[$"NeonEnabled{i}"] == "true");
+                }
+                else
+                {
+                    // We don't know about this neon so assume it isn't on
+                    mods.SetNeonLightsOn((VehicleNeonLight)i, false);
+                }
             }
         }
     }

@@ -147,6 +147,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             return Color.FromArgb(r, g, b);
         }
 
+        /// <summary>
+        /// Convert a color into an R,G,B string for config storage
+        /// </summary>
+        /// <param name="color">the color to convert</param>
+        /// <returns>the R,G,B string</returns>
+        public string ColorToRgbString(Color color) => $"{color.R},{color.G},{color.B}";
+
         private Task OnLoad()
         {
             // Unsubscribe this event immediately so the event only runs once
