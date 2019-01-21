@@ -736,6 +736,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     mods[VehicleToggleModType.Turbo].IsInstalled = false;
                     Trainer.AddNotification("~g~Disabled turbo.");
                 }
+                else if (action == "xenonon")
+                {
+                    mods[VehicleToggleModType.XenonHeadlights].IsInstalled = true;
+                    Trainer.AddNotification("~g~Enabled Xenon headlights.");
+                }
+                else if (action == "xenonoff")
+                {
+                    mods[VehicleToggleModType.XenonHeadlights].IsInstalled = false;
+                    Trainer.AddNotification("~g~Disabled Xenon headlights.");
+                }
             }
 
             return callback;
