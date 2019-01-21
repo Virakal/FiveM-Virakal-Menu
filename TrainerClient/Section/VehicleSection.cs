@@ -55,6 +55,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
             Trainer.RegisterNUICallback("vehplatesyle", OnVehPlateStyle);
             Trainer.RegisterAsyncNUICallback("vehneon", OnVehNeon);
+            Trainer.RegisterNUICallback("vehmod", OnVehMod);
 
             // Boost
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
@@ -704,6 +705,36 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     var light = (VehicleNeonLight)i;
                     mods.SetNeonLightsOn(light, false);
                     Trainer.AddNotification($"~g~Disabled {light} neon.");
+                }
+            }
+
+            return callback;
+        }
+
+        private CallbackDelegate OnVehMod(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            var vehicle = Game.PlayerPed.CurrentVehicle;
+
+            callback("ok");
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+            }
+            else
+            {
+                var action = (string)data["action"];
+                var mods = vehicle.Mods;
+
+                if (action == "turboon")
+                {
+                    mods[VehicleToggleModType.Turbo].IsInstalled = true;
+                    Trainer.AddNotification("~g~Enabled turbo.");
+                }
+                else if (action == "turbooff")
+                {
+                    mods[VehicleToggleModType.Turbo].IsInstalled = false;
+                    Trainer.AddNotification("~g~Disabled turbo.");
                 }
             }
 

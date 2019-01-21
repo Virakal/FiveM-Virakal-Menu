@@ -80,6 +80,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             modList["WindowTint"] = Convert.ToString((int)mods.WindowTint);
             modList["DashboardColour"] = Convert.ToString((int)mods.DashboardColor);
             modList["NeonColour"] = Trainer.ColorToRgbString(mods.NeonLightsColor);
+            modList["Turbo"] = mods[VehicleToggleModType.Turbo].IsInstalled ? "true" : "false";
 
             for (var i = 0; i < 4; i++)
             {
@@ -176,6 +177,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                     // We don't know about this neon so assume it isn't on
                     mods.SetNeonLightsOn((VehicleNeonLight)i, false);
                 }
+            }
+
+            if (modList.ContainsKey("Turbo"))
+            {
+                mods[VehicleToggleModType.Turbo].IsInstalled = modList["Turbo"] == "true";
             }
         }
     }
