@@ -54,7 +54,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
             Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
             Trainer.RegisterNUICallback("vehplatesyle", OnVehPlateStyle);
-            Trainer.RegisterNUICallback("vehneon", OnVehNeon);
+            Trainer.RegisterAsyncNUICallback("vehneon", OnVehNeon);
 
             // Boost
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
@@ -653,9 +653,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private CallbackDelegate OnVehNeon(IDictionary<string, object> data, CallbackDelegate callback)
+        private async Task<CallbackDelegate> OnVehNeon(IDictionary<string, object> data, CallbackDelegate callback)
         {
             var vehicle = Game.PlayerPed.CurrentVehicle;
+
+            callback("ok");
 
             if (vehicle == null)
             {
@@ -683,9 +685,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
                     Trainer.AddNotification("~g~Neons off.");
                 }
+                else if (action == "input")
+                {
+                    vehicle.Mods.NeonLightsColor = await GetInputColour();
+
+                    Trainer.AddNotification("~g~Neon colour changed.");
+                }
             }
 
-            callback("ok");
             return callback;
         }
 
