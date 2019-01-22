@@ -97,7 +97,7 @@ function handleSelection(): void {
 	if (sel.sub) {
 		this.showMenu(sel.sub);
 	} else if (sel.action) {
-		console.log(`Would do ${sel.action}`);
+		console.log(`Doing ${sel.action}`);
 		let newState: boolean = true;
 
 		if (sel.state) {
@@ -149,6 +149,47 @@ function closeTrainer(): void {
 	this.showTrainer = false;
 	sendData('trainerclose', {});
 	playSound('NO');
+}
+
+function updateFromConfig(json: string): void {
+	console.log("Not yet implemented");
+	const config: { [key: string]: string; } = JSON.parse(json);
+
+	for (const key in config) {
+		let value = config[key];
+		this.configState[key] = value;
+	}
+
+	/*
+	// Hunt for menu items with config-key data set, then update them
+	for (const menuName in menus) {
+		let menuData = menus[menuName];
+
+		for (const key in config) {
+			menuData.pages.forEach(function (page) {
+				page.forEach(function (trainerOption) {
+					const match = trainerOption.is(`.traineroption[data-state][data-config-key="${key}"]`)
+
+					if (match) {
+						let value = config[key];
+
+						if (value === "true") {
+							trainerOption.attr('data-state', 'ON');
+						} else if (value === "false") {
+							trainerOption.attr('data-state', 'OFF');
+						} else {
+							console.log(`Unexpected value for a config key: ${value}!`);
+						}
+					}
+				});
+			});
+		}
+	}
+	*/
+}
+
+function getStateFromConfig(configKey: string): boolean|undefined {
+	return this.configState[configKey];
 }
 
 /**
@@ -223,6 +264,8 @@ let app = new Vue({
 		goBack,
 		openTrainer,
 		closeTrainer,
+		updateFromConfig,
+		getStateFromConfig,
 	},
 });
 
