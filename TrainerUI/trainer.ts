@@ -62,12 +62,12 @@ function previousPage(): void {
 }
 
 function selectUp(): void {
-	this.selected = this.selected ? this.selected - 1 : this.maxPageSize - 1;
+	this.selected = this.selected ? this.selected - 1 : this.menuPage.length - 1;
 	playSound('NAV_UP_DOWN');
 }
 
 function selectDown(): void {
-	this.selected = (this.selected + 1) % this.maxPageSize;
+	this.selected = (this.selected + 1) % this.menuPage.length;
 	playSound('NAV_UP_DOWN');
 }
 
