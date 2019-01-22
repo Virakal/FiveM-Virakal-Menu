@@ -70,7 +70,7 @@
     <TypeScriptSourceRoot />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="nui\new-trainer.htm" />
+    <Content Include="nui\trainer.html" />
     <Content Include="nui\Roboto-Black.ttf" />
     <Content Include="nui\Roboto.ttf" />
     <Content Include="package.json" />
@@ -83,11 +83,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="nui\trainer.css" />
-    <Content Include="nui\trainer.html" />
+    <Content Include="nui\trainer.old.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="new-trainer.ts" />
+    <TypeScriptCompile Include="trainer.ts" />
     <TypeScriptCompile Include="js_refs\index.d.ts" />
     <TypeScriptCompile Include="js_refs\jquery.d.ts" />
     <TypeScriptCompile Include="js_refs\natives_universal.d.ts" />

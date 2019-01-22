@@ -17,6 +17,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public Garage Garage { get; }
         public EventHandlerDictionary _EventHandlers { get { return EventHandlers; } }
         public bool BlockInput { get; internal set; } = false;
+        private MenuManager MenuManager { get; }
 
         public Trainer()
         {
@@ -24,6 +25,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             JsonConvert.SerializeObject(new object());
 
             Garage = new Garage(this);
+            MenuManager = new MenuManager(this);
 
             Tick += OnLoad;
             Tick += HandleMenuKeys;
@@ -171,6 +173,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             new Section.VehicleSection(this);
             new Section.AnimationSection(this);
             new Section.AnimalBombSection(this);
+
+            // Send menus to frontend
+            MenuManager.SendAllMenus();
 
             RegisterNUICallback("trainerclose", TrainerClose);
             RegisterNUICallback("playsound", PlaySound);

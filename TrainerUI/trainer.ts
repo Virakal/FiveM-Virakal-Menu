@@ -8,10 +8,18 @@ declare var Vue: any;
 const resourceName: string = 'virakal-trainer';
 
 /** The maximum number of items on a page */
-const maxPageSize: number = 3;
+const maxPageSize: number = 12;
 
 /** Text to show in the title bar */
 const trainerTitle: string = 'Virakal Trainer';
+
+interface MenuItem {
+	text: string,
+	sub?: string,
+	image?: string,
+	state?: string,
+	action?: string,
+}
 
 function sendData(name: string, data: any): JQueryXHR {
 	return $.post(`http://${resourceName}/${name}`, JSON.stringify(data), function (response) {
@@ -63,9 +71,78 @@ function selectDown(): void {
 }
 
 function resetTrainer(): void {
-	this.selected = 0;
-	this.page = 0;
-	this.currentMenu = menus.mainMenu;
+	this.showMenu('mainmenu');
+}
+
+function setMenu(menuName: string, menuData: MenuItem[]): void {
+	console.log(`Receieved menu ${menuName}: ${JSON.stringify(menuData)}`);
+	this.menus[menuName] = menuData;
+}
+
+function showMenu(menuName: string): void {
+	if (this.menus[menuName]) {
+		this.selected = 0;
+		this.page = 0;
+		this.currentMenu = this.menus[menuName];
+	} else {
+		console.log(`No such menu as '${menuName}'`);
+		this.showMenu('mainmenu');
+	}
+}
+
+function handleSelection(): void {
+	let sel = this.currentItem;
+	
+	if (sel.sub) {
+		this.showMenu(sel.sub);
+	} else if (sel.action) {
+		console.log(`Would do ${sel.action}`);
+		let newState: boolean = true;
+
+		if (sel.state) {
+			console.log("State not yet implemented");
+		}
+
+		let data: string[] = sel.action.split(' ');
+
+		if (data[1] === '*') {
+			console.log("Subdata not implemented");
+			// data[1] = item.parent().attr('data-subdata');
+		}
+
+		if (data[0] === 'playerskin') {
+			console.log("Recent skins not yet implemented");
+			// addToRecentSkins(data[1], item);
+		}
+
+		sendData(data[0], { action: data[1], newstate: newState });
+	}
+
+	playSound('SELECT');
+}
+
+function goBack(): void {
+	let sel = this.currentItem;
+
+	if (sel.parent) {
+		this.showMenu(sel.parent);
+	} else {
+		this.closeTrainer();
+	}
+
+	playSound('BACK');
+}
+
+function openTrainer(): void {
+	this.resetTrainer();
+	this.showTrainer = true;
+	playSound('YES');
+}
+
+function closeTrainer(): void {
+	this.showTrainer = false;
+	sendData('trainerclose', {});
+	playSound('NO');
 }
 
 /**
@@ -93,44 +170,7 @@ Vue.component('preview-image', {
 });
 
 let menus = {
-	mainMenu: [
-		{
-			text: "Player",
-			sub: "playermenu",
-		},
-		{
-			text: "Teleport",
-			sub: "teleportmenu",
-		},
-		{
-			text: "Vehicles",
-			sub: "vehiclesmenu",
-		},
-		{
-			text: "Weapons",
-			sub: "weaponsmenu",
-		},
-		{
-			text: "Police",
-			sub: "policemenu",
-		},
-		{
-			text: "Settings",
-			sub: "settingsmenu",
-		},
-		{
-			text: "Animate",
-			sub: "animationmenu",
-		},
-		{
-			text: "UI",
-			sub: "uimenu",
-		},
-		{
-			text: "Animal Bombs",
-			sub: "animalbombmenu",
-		},
-	],
+	mainmenu: [/* Loading placeholder */],
 };
 
 let app = new Vue({
@@ -140,7 +180,7 @@ let app = new Vue({
 		maxPageSize,
 		showTrainer: false,
 		menus: menus,
-		currentMenu: menus.mainMenu,
+		currentMenu: menus.mainmenu,
 		page: 0,
 		selected: 0,
 	},
@@ -169,6 +209,12 @@ let app = new Vue({
 		selectUp,
 		selectDown,
 		resetTrainer,
+		setMenu,
+		showMenu,
+		handleSelection,
+		goBack,
+		openTrainer,
+		closeTrainer,
 	},
 });
 
@@ -176,12 +222,15 @@ window.addEventListener('message', function (event) {
 	let item = event.data;
 
 	if (item.showtrainer) {
-		app.resetTrainer();
-		app.showTrainer = true;
-		playSound('YES');
+		app.openTrainer();
 	} else if (item.hidetrainer) {
-		app.showTrainer = false;
-		playSound('NO');
+		app.closeTrainer();
+	}
+
+	if (item.trainerenter) {
+		app.handleSelection();
+	} else if (item.trainerback) {
+		app.goBack();
 	}
 
 	if (item.trainerleft) {
@@ -194,5 +243,9 @@ window.addEventListener('message', function (event) {
 		app.selectUp();
 	} else if (item.trainerdown) {
 		app.selectDown();
+	}
+
+	if (item.setmenu) {
+		app.setMenu(item.menuname, item.menudata);
 	}
 });

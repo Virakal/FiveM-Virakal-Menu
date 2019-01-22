@@ -51,6 +51,10 @@
     <Compile Include="Garage.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConfigCommsManager.cs" />
+    <Compile Include="MenuManager.cs" />
+    <Compile Include="Menu\BaseMenuAdder.cs" />
+    <Compile Include="Menu\MainMenuAdder.cs" />
+    <Compile Include="Menu\MenuItem.cs" />
     <Compile Include="Section\AnimalBombSection.cs" />
     <Compile Include="Section\AnimationSection.cs" />
     <Compile Include="Section\PlayerSection.cs" />
@@ -59,6 +63,7 @@
     <Compile Include="Section\TeleportSection.cs" />
     <Compile Include="Section\VehicleSection.cs" />
     <Compile Include="Section\WeaponSection.cs" />
+    <Compile Include="Menu\TeleportMenuAdder.cs" />
     <Compile Include="Trainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Section\BaseSection.cs" />
