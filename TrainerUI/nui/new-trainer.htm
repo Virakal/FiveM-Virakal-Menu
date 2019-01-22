@@ -11,11 +11,16 @@
         <p class="traineroption trainertitle">{{ trainerTitle }}</p>
 
         <trainer-option
-            v-for="item in page"
+            v-for="item in menuPage"
             :sub="item.sub"
             :action="item.action"
             :state="item.state"
-        >{{ item.text }}</trainer-option>
+            :key="item.text"
+        >
+            {{ item.text }}
+        </trainer-option>
+
+        <page-indicator :page="page" :page-count="pageCount"></page-indicator>
     </div>
 
     <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
