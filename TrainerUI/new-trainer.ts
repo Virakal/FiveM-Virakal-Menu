@@ -10,6 +10,9 @@ const resourceName: string = 'virakal-trainer';
 /** The maximum number of items on a page */
 const maxPageSize: number = 3;
 
+/** Text to show in the title bar */
+const trainerTitle: string = 'Virakal Trainer';
+
 function sendData(name: string, data: any): JQueryXHR {
 	return $.post(`http://${resourceName}/${name}`, JSON.stringify(data), function (response) {
 		// console.log('Data response: ' + response);
@@ -49,6 +52,22 @@ function previousPage(): void {
 	playSound('NAV_UP_DOWN');
 }
 
+function selectUp(): void {
+	this.selected = this.selected ? this.selected - 1 : this.maxPageSize - 1;
+	playSound('NAV_UP_DOWN');
+}
+
+function selectDown(): void {
+	this.selected = (this.selected + 1) % this.maxPageSize;
+	playSound('NAV_UP_DOWN');
+}
+
+function resetTrainer(): void {
+	this.selected = 0;
+	this.page = 0;
+	this.currentMenu = menus.mainMenu;
+}
+
 /**
  * An individual menu item
  */
@@ -63,6 +82,14 @@ Vue.component('trainer-option', {
 Vue.component('page-indicator', {
 	props: ['page', 'pageCount'],
 	template: '<p id="pageindicator">Page {{ page + 1 }} / {{ pageCount + 1 }}</p>',
+});
+
+/**
+ * The floating preview image that shows cars, etc.
+ */
+Vue.component('preview-image', {
+	props: ['img'],
+	template: '<div id="imagecontainer" v-if="img"><img :src="img"></div>',
 });
 
 let menus = {
@@ -107,14 +134,15 @@ let menus = {
 };
 
 let app = new Vue({
-	el: '#trainercontainer',
+	el: '#vuecontainer',
 	data: {
-		trainerTitle: 'Virakal Trainer',
+		trainerTitle,
+		maxPageSize,
 		showTrainer: false,
+		menus: menus,
 		currentMenu: menus.mainMenu,
 		page: 0,
 		selected: 0,
-		maxPageSize: maxPageSize,
 	},
 	computed: {
 		pageCount: function () {
@@ -122,13 +150,25 @@ let app = new Vue({
 		},
 		menuPage: function () {
 			return this.currentMenu.slice(this.page * this.maxPageSize, (this.page + 1) * this.maxPageSize);
-		}
+		},
+		currentIndex: function () {
+			return this.page * this.maxPageSize + this.selected;
+		},
+		currentItem: function () {
+			return this.currentMenu[this.currentIndex];
+		},
+		currentImage: function () {
+			return this.currentItem ? this.currentItem.image : null;
+		},
 	},
 	methods: {
 		showPage,
 		nextPage,
 		previousPage,
 		pageExists,
+		selectUp,
+		selectDown,
+		resetTrainer,
 	},
 });
 
@@ -136,14 +176,23 @@ window.addEventListener('message', function (event) {
 	let item = event.data;
 
 	if (item.showtrainer) {
+		app.resetTrainer();
 		app.showTrainer = true;
+		playSound('YES');
 	} else if (item.hidetrainer) {
 		app.showTrainer = false;
+		playSound('NO');
 	}
 
 	if (item.trainerleft) {
 		app.previousPage();
 	} else if (item.trainerright) {
 		app.nextPage();
+	}
+
+	if (item.trainerup) {
+		app.selectUp();
+	} else if (item.trainerdown) {
+		app.selectDown();
 	}
 });

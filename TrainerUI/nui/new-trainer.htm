@@ -7,20 +7,23 @@
     <link href="trainer.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div id="trainercontainer" v-if="showTrainer">
-        <p class="traineroption trainertitle">{{ trainerTitle }}</p>
+    <div id="vuecontainer">
+        <div id="trainercontainer" v-if="showTrainer">
+            <p class="traineroption trainertitle">{{ trainerTitle }}</p>
 
-        <trainer-option
-            v-for="item in menuPage"
-            :sub="item.sub"
-            :action="item.action"
-            :state="item.state"
-            :key="item.text"
-        >
-            {{ item.text }}
-        </trainer-option>
+            <trainer-option v-for="(item, index) in menuPage"
+                            :class="{ selected: index == selected }"
+                            :sub="item.sub"
+                            :action="item.action"
+                            :state="item.state"
+                            :key="item.text">
+                {{ item.text }}
+            </trainer-option>
 
-        <page-indicator :page="page" :page-count="pageCount"></page-indicator>
+            <page-indicator :page="page" :page-count="pageCount"></page-indicator>
+        </div>
+
+        <preview-image :img="currentImage"></preview-image>
     </div>
 
     <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
