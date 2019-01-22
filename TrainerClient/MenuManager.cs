@@ -46,6 +46,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         private void InitialiseMenus()
         {
             Menus = new MainMenuAdder().AddMenus(Menus);
+            Menus = new PlayerMenuAdder().AddMenus(Menus);
             Menus = new TeleportMenuAdder().AddMenus(Menus);
             Menus = new SettingsMenuAdder().AddMenus(Menus);
             Menus = new PoliceMenuAdder().AddMenus(Menus);
