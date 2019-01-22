@@ -56,6 +56,7 @@
     <Compile Include="Menu\MainMenuAdder.cs" />
     <Compile Include="Menu\MenuItem.cs" />
     <Compile Include="Menu\PoliceMenuAdder.cs" />
+    <Compile Include="Menu\UIMenuAdder.cs" />
     <Compile Include="Section\AnimalBombSection.cs" />
     <Compile Include="Section\AnimationSection.cs" />
     <Compile Include="Section\PlayerSection.cs" />
