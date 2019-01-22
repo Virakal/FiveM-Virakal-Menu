@@ -19,6 +19,7 @@ interface MenuItem {
 	image?: string,
 	state?: string,
 	action?: string,
+	configkey?: string,
 }
 
 function sendData(name: string, data: any): JQueryXHR {
@@ -91,7 +92,7 @@ function showMenu(menuName: string): void {
 }
 
 function handleSelection(): void {
-	let sel = this.currentItem;
+	let sel: MenuItem = this.currentItem;
 	
 	if (sel.sub) {
 		this.showMenu(sel.sub);
@@ -100,7 +101,12 @@ function handleSelection(): void {
 		let newState: boolean = true;
 
 		if (sel.state) {
-			console.log("State not yet implemented");
+			if (sel.state === "ON") {
+				newState = false;
+				sel.state = "OFF";
+			} else {
+				sel.state = "ON";
+			}
 		}
 
 		let data: string[] = sel.action.split(' ');
@@ -183,6 +189,8 @@ let app = new Vue({
 		currentMenu: menus.mainmenu,
 		page: 0,
 		selected: 0,
+		recentSkins: [],
+		configState: {},
 	},
 	computed: {
 		pageCount: function () {

@@ -75,7 +75,13 @@ function handleSelection() {
         console.log(`Would do ${sel.action}`);
         let newState = true;
         if (sel.state) {
-            console.log("State not yet implemented");
+            if (sel.state === "ON") {
+                newState = false;
+                sel.state = "OFF";
+            }
+            else {
+                sel.state = "ON";
+            }
         }
         let data = sel.action.split(' ');
         if (data[1] === '*') {
@@ -144,6 +150,8 @@ let app = new Vue({
         currentMenu: menus.mainmenu,
         page: 0,
         selected: 0,
+        recentSkins: [],
+        configState: {},
     },
     computed: {
         pageCount: function () {

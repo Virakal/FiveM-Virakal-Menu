@@ -10,6 +10,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
         public string state;
         public string image;
         public string parent;
+        public string configkey;
 
         public object ToAnonymous()
         {
@@ -19,7 +20,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 action,
                 state,
                 image,
-                parent
+                parent,
+                configkey,
             };
         }
     }
