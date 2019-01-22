@@ -26,7 +26,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     state = "ON",
                     configkey = "BigMapOnDown"
                 },
-
             };
 
             menus["uimenu"] = AddParentField("mainmenu", menus["uimenu"]);

@@ -121,7 +121,7 @@ function handleSelection(): void {
 			// addToRecentSkins(data[1], item);
 		}
 
-		sendData(data[0], { action: data[1], newstate: newState });
+		sendData(data[0], { action: data[1], newstate: newState, itemtext: sel.text });
 	}
 
 	playSound('SELECT');

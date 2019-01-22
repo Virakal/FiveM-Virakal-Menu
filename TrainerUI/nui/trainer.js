@@ -92,7 +92,7 @@ function handleSelection() {
             console.log("Recent skins not yet implemented");
             // addToRecentSkins(data[1], item);
         }
-        sendData(data[0], { action: data[1], newstate: newState });
+        sendData(data[0], { action: data[1], newstate: newState, itemtext: sel.text });
     }
     playSound('SELECT');
 }
