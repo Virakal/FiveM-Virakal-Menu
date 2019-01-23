@@ -27,6 +27,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }
 
             Lists[VehicleClass.Boats] = InitialiseBoats();
+            Lists[VehicleClass.Helicopters] = InitialiseHelicopters();
             initialised = true;
         }
 
@@ -160,6 +161,164 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/44/Tug-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160609144857",
                     Model = "tug",
                 },
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseHelicopters()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Akula",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/29/Akula-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218205054",
+                    Model = "akula",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Annihilator",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/ac/Annihilator-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161111194433",
+                    Model = "annihilator",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Avenger",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fe/Avenger-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218204931",
+                    Model = "avenger",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Buzzard",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/02/Buzzard-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160115184835",
+                    Model = "buzzard",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Buzzard Attack Chopper",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d1/BuzzardAttackChopper-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111194441",
+                    Model = "buzzard2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cargobob",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0e/Cargobob-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111195100",
+                    Model = "cargobob",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cargobob Jetsam",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/68/Cargobob2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111194444",
+                    Model = "cargobob2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cargobob TPE",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e0/Cargobob3-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111195058",
+                    Model = "cargobob3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cargobob Drop Zone",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/84/Cargobob4-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172624",
+                    Model = "cargobob4",
+                },
+                new VehicleListItem()
+                {
+                    Name = "FH-1 Hunter",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/dd/FH1-Hunter-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171121154009",
+                    Model = "hunter",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Frogger",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/05/Frogger-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160116184549",
+                    Model = "frogger",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Frogger TPE Variant",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7b/Frogger2-GTAV-front.png/revision/latest/scale-to-width-down/185?cb=20161111195701",
+                    Model = "frogger2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Havok",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3f/Havok-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902153031",
+                    Model = "havok",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Maverick",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2b/Maverick-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160411164524",
+                    Model = "maverick",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Maverick",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/50/PoliceMaverick-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111195820",
+                    Model = "polmav",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Savage",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/36/Savage-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151212171103",
+                    Model = "savage",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Seasparrow",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5e/SeaSparrow-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180325183202",
+                    Model = "seasparrow",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Skylift",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f9/Skylift-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111200404",
+                    Model = "skylift",
+                },
+                new VehicleListItem()
+                {
+                    Name = "SuperVolito",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4d/SuperVolito-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216173044",
+                    Model = "supervolito",
+                },
+                new VehicleListItem()
+                {
+                    Name = "SuperVolito Carbon",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/91/SuperVolitoCarbon-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172545",
+                    Model = "supervolito2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Swift",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9c/SwiftClassic-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160117175814",
+                    Model = "swift",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Swift Deluxe",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4d/SwiftDeluxe-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160117170332",
+                    Model = "swift2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Valkyrie",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0e/Valkyrie-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151212171243",
+                    Model = "valkyrie",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Valkyrie MOD.0",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/77/ValkyrieMOD0-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172704",
+                    Model = "valkyrie2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Volatus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0e/Volatus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160609144955",
+                    Model = "volatus",
+                },
+
             };
         }
     }
