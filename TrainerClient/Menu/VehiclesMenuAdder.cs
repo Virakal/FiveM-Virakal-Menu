@@ -204,6 +204,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehiclecolourrainbowspeed"] = GetRainbowSpeedMenu();
             menus["boostpowermenu"] = GetBoostPowerMenu();
             menus["vehiclesnumberplatemenu"] = GetPlatesMenu();
+            menus["vehiclewindowtintmenu"] = GetWindowTintMenu();
 
             menus["vehiclescolourcustommenu"] = GetCustomColourMenu("vehcolor");
 
@@ -227,10 +228,27 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehiclescolordashmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolordashmenu"]);
             menus["vehiclerainbowmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclerainbowmenu"]);
             menus["vehiclesnumberplatemenu"] = AddParentField("vehiclescolourmenu", menus["vehiclesnumberplatemenu"]);
+            menus["vehiclewindowtintmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclewindowtintmenu"]);
             menus["vehiclecolourrainbowspeed"] = AddParentField("vehiclerainbowmenu", menus["vehiclecolourrainbowspeed"]);
             menus["boostpowermenu"] = AddParentField("vehiclesmenu", menus["boostpowermenu"]);
 
             return menus;
+        }
+
+        private List<MenuItem> GetWindowTintMenu()
+        {
+            var list = new List<MenuItem>(10);
+
+            foreach (var tint in Enum.GetValues(typeof(VehicleWindowTint)))
+            {
+                list.Add(new MenuItem()
+                {
+                    text = CleanColourName(tint.ToString()),
+                    action = $"vehtint {(int)tint}",
+                });
+            }
+
+            return list;
         }
 
         private List<MenuItem> GetRainbowSpeedMenu()
