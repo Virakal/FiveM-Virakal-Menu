@@ -28,6 +28,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 
             Lists[VehicleClass.Boats] = InitialiseBoats();
             Lists[VehicleClass.Commercial] = InitialiseCommercial();
+            Lists[VehicleClass.Compacts] = InitialiseCompacts();
             Lists[VehicleClass.Cycles] = InitialiseCycles();
             Lists[VehicleClass.Emergency] = InitialiseEmergency();
             Lists[VehicleClass.Helicopters] = InitialiseHelicopters();
@@ -298,6 +299,85 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Terrorbyte",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/96/Terrorbyte-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725175825",
                     Model = "terbyte",
+                },
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseCompacts()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Blista",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c0/Blista-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160409171328",
+                    Model = "blista",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Brioso R/A",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/80/BriosoRA-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160712123349",
+                    Model = "brioso",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dilettante",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/80/Dilettante-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160305172849",
+                    Model = "dilettante",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dilettante (Merryweather)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5b/DilettanteSecurity-GTAV-FrontQuarter.jpg/revision/latest/scale-to-width-down/350?cb=20160312012125",
+                    Model = "dilettante2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Issi",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9c/IssiDown-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160305190500",
+                    Model = "issi2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Issi (Apocalypse)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ea/ApocalypseIssi-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214193634",
+                    Model = "issi4",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Issi (Future Shock)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7a/FutureShockIssi-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214193634",
+                    Model = "issi5",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Issi (Nightmare)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b0/NightmareIssi-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214193635",
+                    Model = "issi6",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Issi Classic",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9f/IssiClassic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180325152715",
+                    Model = "issi3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Panto",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/ad/Panto-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160406180025",
+                    Model = "panto",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Prairie",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/06/Prairie-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160429175108",
+                    Model = "prairie",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rhapsody",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cc/Rhapsody-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302171656",
+                    Model = "rhapsody",
                 },
             };
         }
