@@ -447,22 +447,31 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             {
                 string vehicleName = "Empty";
                 string slot = i.ToString();
+                string image = "";
 
                 if (Garage.HasSavedVehicle(slot))
                 {
-                    vehicleName = Garage.GetVehicleInfo(slot).displayName;
+                    var slotInfo = Garage.GetVehicleInfo(slot);
+                    vehicleName = slotInfo.displayName;
+
+                    VehicleListItem listItem = VehicleList.FindItemByHash(slotInfo.model);
+
+                    if (listItem != null)
+                    {
+                        image = listItem.Image;
+                    }
                 }
 
                 list.Add(new MenuItem()
                 {
                     text = $"{namePrefix} {i} ({vehicleName})",
                     action = $"{actionPrefix} {i}",
+                    image = image,
                 });
             }
 
             return list;
         }
-
 
         public List<MenuItem> GetLiveryMenu()
         {

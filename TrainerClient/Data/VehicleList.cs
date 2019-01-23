@@ -10,6 +10,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
     public static class VehicleList
     {
         private static Dictionary<VehicleClass, List<VehicleListItem>> Lists { get; } = new Dictionary<VehicleClass, List<VehicleListItem>>();
+        private static Dictionary<int, VehicleListItem> modelHashCache = new Dictionary<int, VehicleListItem>();
         private static bool initialised = false;
 
         public static List<VehicleListItem> GetList(VehicleClass listName)
@@ -37,6 +38,32 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             list.Sort((x, y) => x.Name.CompareTo(y.Name));
 
             return list;
+        }
+
+        public static VehicleListItem FindItemByHash(int hash)
+        {
+            if (modelHashCache.ContainsKey(hash))
+            {
+                return modelHashCache[hash];
+            }
+
+            VehicleListItem result = null;
+
+            foreach (var kv in Lists)
+            {
+                foreach (var item in kv.Value)
+                {
+                    if (item.ModelHash == hash)
+                    {
+                        result = item;
+                        break;
+                    }
+                }
+            }
+
+            modelHashCache[hash] = result;
+
+            return result;
         }
 
         private static void Initialise()

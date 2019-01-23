@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CitizenFX.Core.Native;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,22 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
         public string Image { get; set; }
         public string Model { get; set; }
         public HashSet<string> Tags { get; set; }
+        public int ModelHash => lazyHash.Value;
+        private Lazy<int> lazyHash;
+
+        public VehicleListItem()
+        {
+            lazyHash = new Lazy<int>(GetModelHashCode);
+        }
 
         public bool HasTag(string tag)
         {
             return Tags != null && Tags.Contains(tag);
+        }
+
+        private int GetModelHashCode()
+        {
+            return API.GetHashKey(Model);
         }
     }
 }
