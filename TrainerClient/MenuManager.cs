@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CitizenFX.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,13 +22,15 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             InitialiseMenus();
         }
 
-        public void SendAllMenus()
+        public async void SendAllMenus()
         {
             Trainer.DebugLine("Sending all menus");
+
             foreach (var kv in Menus)
             {
                 Trainer.DebugLine($"Sending menu {kv.Key}");
                 SendMenu(kv.Key);
+                await BaseScript.Delay(100);
             }
         }
 
