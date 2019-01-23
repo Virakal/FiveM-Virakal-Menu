@@ -205,6 +205,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["boostpowermenu"] = GetBoostPowerMenu();
             menus["vehiclesnumberplatemenu"] = GetPlatesMenu();
             menus["vehiclewindowtintmenu"] = GetWindowTintMenu();
+            menus["vehiclelivery"] = GetLiveryMenu();
 
             menus["vehiclescolourcustommenu"] = GetCustomColourMenu("vehcolor");
 
@@ -229,10 +230,35 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehiclerainbowmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclerainbowmenu"]);
             menus["vehiclesnumberplatemenu"] = AddParentField("vehiclescolourmenu", menus["vehiclesnumberplatemenu"]);
             menus["vehiclewindowtintmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclewindowtintmenu"]);
+            menus["vehiclelivery"] = AddParentField("vehiclescolourmenu", menus["vehiclelivery"]);
             menus["vehiclecolourrainbowspeed"] = AddParentField("vehiclerainbowmenu", menus["vehiclecolourrainbowspeed"]);
             menus["boostpowermenu"] = AddParentField("vehiclesmenu", menus["boostpowermenu"]);
 
             return menus;
+        }
+
+        private List<MenuItem> GetLiveryMenu()
+        {
+            // Auto-generating this when a car changes would be great
+            var list = new List<MenuItem>(26)
+            {
+                new MenuItem()
+                {
+                    text = "No Livery",
+                    action = $"vehlivery -1",
+                }
+            };
+
+            for (var i = 0; i < 25; i++)
+            {
+                list.Add(new MenuItem()
+                {
+                    text = $"Livery {i}",
+                    action = $"vehlivery {i}",
+                });
+            }
+
+            return list;
         }
 
         private List<MenuItem> GetWindowTintMenu()
