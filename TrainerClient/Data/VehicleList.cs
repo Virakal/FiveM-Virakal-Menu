@@ -40,6 +40,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             Lists[VehicleClass.Planes] = InitialisePlanes();
             Lists[VehicleClass.Service] = InitialiseService();
             Lists[VehicleClass.Super] = InitialiseSuper();
+            Lists[VehicleClass.Utility] = InitialiseUtility();
 
             initialised = true;
         }
@@ -2155,6 +2156,127 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Zentorno",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/60/Zentorno-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302171211",
                     Model = "zentorno",
+                },
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseUtility()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Airtug",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f9/Airtug-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018175626",
+                    Model = "airtug",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Caddy",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0e/Caddy-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018175900",
+                    Model = "caddy",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Caddy (Citizen)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/05/Caddy2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626144109",
+                    Model = "caddy2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Caddy (Bunker)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4f/Caddy3-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143908",
+                    Model = "caddy3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Docktug",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f4/Docktug-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180059",
+                    Model = "docktug",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Fieldmaster",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/11/Fieldmaster-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626144225",
+                    Model = "tractor2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Fieldmaster (Snow-Covered)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f8/Fieldmaster2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160916164933",
+                    Model = "tractor3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Forklift",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/97/Forklift-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160702195405",
+                    Model = "forklift",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Lawnmower",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/20/LawnMower-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180609",
+                    Model = "mower",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Ripley",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/08/Ripley-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180754",
+                    Model = "ripley",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sadler",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/Sadler-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180756",
+                    Model = "sadler",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sadler (Snow-Covered)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e2/Sadler2-GTAV-front.png/revision/latest/scale-to-width-down/270?cb=20160916164931",
+                    Model = "sadler2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Scrap Truck",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3a/ScrapTruck-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160520164314",
+                    Model = "scrap",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Towtruck",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/24/Towtruck2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160625224220",
+                    Model = "towtruck",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Towtruck (Variant)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/be/Towtruck-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160702195216",
+                    Model = "towtruck2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tractor",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f4/Tractor-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018181109",
+                    Model = "tractor",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Utility Truck (Crane)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4d/UtilityTruckCrane-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626153900",
+                    Model = "utillitruck",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Utility Truck (Box)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2d/UtilityTruck2Box-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626153858",
+                    Model = "utillitruck2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Utility Truck (Pickup)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/10/UtilityTruck3-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626155333",
+                    Model = "utillitruck3",
                 },
             };
         }
