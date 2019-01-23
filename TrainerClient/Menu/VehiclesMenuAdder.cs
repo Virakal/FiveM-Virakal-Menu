@@ -164,6 +164,45 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
+            menus["vehiclerainbowmenu"] = new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "Rainbow Car",
+                    action = "veh rainbowcar",
+                    state = "OFF",
+                    configkey = "RainbowPaint"
+                },
+                new MenuItem()
+                {
+                    text = "Rainbow Chrome Car",
+                    action = "veh rainbowchrome",
+                    state = "OFF",
+                    configkey = "RainbowChrome"
+                },
+                new MenuItem()
+                {
+                    text = "Rainbow Neons",
+                    action = "veh rainbowneon",
+                    state = "OFF",
+                    configkey = "RainbowNeon"
+                },
+                new MenuItem()
+                {
+                    text = "Rainbow Neons (Inverse)",
+                    action = "veh rainbowneoninverse",
+                    state = "OFF",
+                    configkey = "RainbowNeonInverse"
+                },
+                new MenuItem()
+                {
+                    text = "Rainbow Speed",
+                    sub = "vehiclecolourrainbowspeed"
+                },
+            };
+
+            menus["vehiclecolourrainbowspeed"] = GetRainbowSpeedMenu();
+
             menus["vehiclescolourbothmenu"] = GetPaintColourMenu("vehboth");
             menus["vehiclescolourprimarymenu"] = GetPaintColourMenu("vehprimary");
             menus["vehiclescoloursecondarymenu"] = GetPaintColourMenu("vehsecondary");
@@ -180,8 +219,68 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehiclescolourpearlescentmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourpearlescentmenu"]);
             menus["vehiclescolourrimmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourrimmenu"]);
             menus["vehiclescolordashmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolordashmenu"]);
+            menus["vehiclerainbowmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclerainbowmenu"]);
+            menus["vehiclecolourrainbowspeed"] = AddParentField("vehiclerainbowmenu", menus["vehiclecolourrainbowspeed"]);
 
             return menus;
+        }
+
+        private List<MenuItem> GetRainbowSpeedMenu()
+        {
+            // We can automate this soon and add a spcifier for the current speed
+            return new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "10% Speed",
+                    action = "rainbowspeed 0.1"
+                },
+                new MenuItem()
+                {
+                    text = "20% Speed",
+                    action = "rainbowspeed 0.2"
+                },
+                new MenuItem()
+                {
+                    text = "30% Speed",
+                    action = "rainbowspeed 0.3"
+                },
+                new MenuItem()
+                {
+                    text = "40% Speed",
+                    action = "rainbowspeed 0.4"
+                },
+                new MenuItem()
+                {
+                    text = "50% Speed (Default)",
+                    action = "rainbowspeed 0.5"
+                },
+                new MenuItem()
+                {
+                    text = "60% Speed",
+                    action = "rainbowspeed 0.6"
+                },
+                new MenuItem()
+                {
+                    text = "70% Speed",
+                    action = "rainbowspeed 0.7"
+                },
+                new MenuItem()
+                {
+                    text = "80% Speed",
+                    action = "rainbowspeed 0.8"
+                },
+                new MenuItem()
+                {
+                    text = "90% Speed",
+                    action = "rainbowspeed 0.9"
+                },
+                new MenuItem()
+                {
+                    text = "100% Speed",
+                    action = "rainbowspeed 1.0"
+                },
+            };
         }
 
         public List<MenuItem> GetPaintColourMenu(string actionPrefix)
