@@ -12,11 +12,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 {
     public class Garage
     {
-        public static int MaxCarSlots { get; } = 10;
-        private string Sep { get; } = "<||>";
-        private Trainer Trainer{ get; }
+        public const string ConfigKeyPrefix = "VehicleSlot";
+        public const int MaxVehicleSlots = 10;
+        private const string Sep = "<||>";
+        private const int CurrentSerialVersion = 2;
+
+        private Trainer Trainer { get; }
         private Config Config { get; }
-        private int CurrentSerialVersion { get; } = 2;
 
         public Garage(Trainer trainer)
         {
@@ -25,7 +27,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         }
 
         public bool HasSavedVehicle(string slot) => Config.ContainsKey(GetGarageSlotName(slot));
-        private string GetGarageSlotName(string slot) => $"VehicleSlot{slot}";
+        private string GetGarageSlotName(string slot) => $"{ConfigKeyPrefix}{slot}";
 
         public void SaveVehicle(string slot, Vehicle vehicle)
         {
