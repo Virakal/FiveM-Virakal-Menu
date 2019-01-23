@@ -29,6 +29,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             Lists[VehicleClass.Boats] = InitialiseBoats();
             Lists[VehicleClass.Cycles] = InitialiseCycles();
             Lists[VehicleClass.Helicopters] = InitialiseHelicopters();
+            Lists[VehicleClass.Industrial] = InitialiseIndustrial();
             Lists[VehicleClass.Military] = InitialiseMilitary();
             Lists[VehicleClass.Motorcycles] = InitialiseMotorcycles();
             Lists[VehicleClass.Planes] = InitialisePlanes();
@@ -373,6 +374,79 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Model = "volatus",
                 },
 
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseIndustrial()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Cutter",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b4/Cutter-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160917180851",
+                    Model = "cutter",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dock Handler",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/51/DockHandler-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160606124706",
+                    Model = "handler",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dozer",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/05/Dozer-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160928192618",
+                    Model = "bulldozer",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dump",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/18/Dump-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180117",
+                    Model = "dump",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Flatbed",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/71/Flatbed-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180424",
+                    Model = "flatbed",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Guardian",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/57/Guardian-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160929163508",
+                    Model = "guardian",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Mixer",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5d/Mixer-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160625231645",
+                    Model = "mixer",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Mixer (Biff Chassis)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/12/Mixer2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626145602",
+                    Model = "mixer2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rubble",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d5/Rubble-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626150707",
+                    Model = "rubble",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tipper",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/Tipper2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018181106",
+                    Model = "tiptruck",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tipper (6 Wheels)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/11/Tipper-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018181108",
+                    Model = "tiptruck2",
+                },
             };
         }
 
