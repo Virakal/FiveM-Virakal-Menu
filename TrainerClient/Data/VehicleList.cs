@@ -29,6 +29,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             Lists[VehicleClass.Boats] = InitialiseBoats();
             Lists[VehicleClass.Commercial] = InitialiseCommercial();
             Lists[VehicleClass.Compacts] = InitialiseCompacts();
+            Lists[VehicleClass.Coupes] = InitialiseCoupes();
             Lists[VehicleClass.Cycles] = InitialiseCycles();
             Lists[VehicleClass.Emergency] = InitialiseEmergency();
             Lists[VehicleClass.Helicopters] = InitialiseHelicopters();
@@ -378,6 +379,97 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Rhapsody",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cc/Rhapsody-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302171656",
                     Model = "rhapsody",
+                },
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseCoupes()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Cognoscenti Cabrio",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/28/CognoscentiCabrioUp-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160917231450",
+                    Model = "cogcabrio",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Exemplar",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/de/Exemplar-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20150530112831",
+                    Model = "exemplar",
+                },
+                new VehicleListItem()
+                {
+                    Name = "F620",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f8/F620-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929162327",
+                    Model = "f620",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Felon",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/de/Felon-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111225437",
+                    Model = "felon",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Felon GT",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0f/FelonGTDown-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180313",
+                    Model = "felon2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Jackal",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/48/Jackal-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160702195507",
+                    Model = "jackal",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Oracle",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a4/Oracle-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160406180530",
+                    Model = "oracle2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Oracle XS",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/22/OracleXS-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160409181541",
+                    Model = "oracle",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sentinel",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/75/SentinelUp-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160702195218",
+                    Model = "sentinel2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sentinel XS",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/22/OracleXS-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160409181541",
+                    Model = "sentinel",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Windsor",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/26/Windsor-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20150614114420",
+                    Model = "windsor",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Windsor Drop",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/31/WindsorDropUp-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160607131007",
+                    Model = "windsor2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Zion",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cc/Zion-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929171027",
+                    Model = "zion",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Zion Cabrio",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cc/Zion-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929171027",
+                    Model = "zion2",
                 },
             };
         }
