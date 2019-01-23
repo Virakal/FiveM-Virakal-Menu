@@ -112,6 +112,7 @@ function openTrainer() {
     playSound('YES');
 }
 function closeTrainer() {
+    this.resetTrainer();
     this.showTrainer = false;
     sendData('trainerclose', {});
     playSound('NO');

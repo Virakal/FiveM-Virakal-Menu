@@ -146,6 +146,7 @@ function openTrainer(): void {
 }
 
 function closeTrainer(): void {
+	this.resetTrainer();
 	this.showTrainer = false;
 	sendData('trainerclose', {});
 	playSound('NO');
