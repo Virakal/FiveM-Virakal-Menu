@@ -39,7 +39,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 setmenu = true,
                 menuname = menuName,
-                menudata = ToAnonymous(menuItems),
+                menudata = menuItems,
             });
         }
 
@@ -53,18 +53,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             Menus = new UIMenuAdder().AddMenus(Menus);
             Menus = new VehiclesMenuAdder().AddMenus(Menus);
             Trainer.DebugLine($"Done adding menus: {Menus.Count} menus.");
-        }
-
-        private List<object> ToAnonymous(List<MenuItem> menu)
-        {
-            List<object> converted = new List<object>(menu.Count);
-
-            foreach (var item in menu)
-            {
-                converted.Add(item.ToAnonymous());
-            }
-
-            return converted;
         }
     }
 }
