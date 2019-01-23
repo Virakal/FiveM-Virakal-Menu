@@ -19,19 +19,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
         public override Dictionary<string, List<MenuItem>> AddMenus(Dictionary<string, List<MenuItem>> menus)
         {
             menus["vehiclesmenu"] = GetVehiclesMenu();
+
+            menus["vehiclesspawnmenu"] = GetSpawnMenu();
+            menus["vehiclessavemenu"] = GetGarageSaveMenu();
+            menus["vehiclesloadmenu"] = GetGarageLoadMenu();
+            menus["vehiclescolourmenu"] = GetAppearanceMenu();
             menus["vehiclesmodsmenu"] = GetModsMenu();
             menus["vehiclescolourmenu"] = GetAppearanceMenu();
-            menus["vehiclerainbowmenu"] = GetRainbowMenu();
 
+            menus["vehiclerainbowmenu"] = GetRainbowMenu();
             menus["vehiclecolourrainbowspeed"] = GetRainbowSpeedMenu();
             menus["boostpowermenu"] = GetBoostPowerMenu();
             menus["vehiclesnumberplatemenu"] = GetPlatesMenu();
             menus["vehiclewindowtintmenu"] = GetWindowTintMenu();
             menus["vehiclelivery"] = GetLiveryMenu();
             menus["vehiclerooflivery"] = GetRoofLiveryMenu();
-
-            menus["vehiclessavemenu"] = GetGarageSaveMenu();
-            menus["vehiclesloadmenu"] = GetGarageLoadMenu();
 
             menus["vehiclescolourcustommenu"] = GetCustomColourMenu("vehcolor");
 
@@ -44,6 +46,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
             // Populate "parent" fields so the back button works.
             menus["vehiclesmenu"] = AddParentField("mainmenu", menus["vehiclesmenu"]);
+            menus["vehiclesspawnmenu"] = AddParentField("vehiclesmenu", menus["vehiclesspawnmenu"]);
             menus["vehiclesmodsmenu"] = AddParentField("vehiclesmenu", menus["vehiclesmodsmenu"]);
             menus["vehiclescolourmenu"] = AddParentField("vehiclesmenu", menus["vehiclescolourmenu"]);
             menus["vehiclescolourcustommenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourcustommenu"]);
@@ -64,6 +67,113 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehiclesloadmenu"] = AddParentField("vehiclesmenu", menus["vehiclesloadmenu"]);
 
             return menus;
+        }
+
+        private List<MenuItem> GetSpawnMenu()
+        {
+            // Another auto-generated one for the future
+            return new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "Spawn Fun Stuff",
+                    sub = "funspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Boat",
+                    sub = "boatspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Commercial Vehicles",
+                    sub = "commercialspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Compact Vehicles",
+                    sub = "compactspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Coupés",
+                    sub = "coupespawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Emergency Vehicles",
+                    sub = "emergencyspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Helicopter",
+                    sub = "helispawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Industrial",
+                    sub = "industrialspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Military",
+                    sub = "militaryspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Motorbike",
+                    sub = "motorbikespawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Off-Road Vehicles",
+                    sub = "offroadspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Plane",
+                    sub = "planespawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Pushbike",
+                    sub = "pushbikespawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Service Vehicles",
+                    sub = "servicespawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Supercar",
+                    sub = "superspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Utility Vehicles",
+                    sub = "utilityspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Vehicle by Name",
+                    action = "vehspawn input"
+                },
+                new MenuItem()
+                {
+                    text = "Automatic Despawn",
+                    action = "vehspawn despawn",
+                    state = "ON",
+                    configkey = "AutoDespawnVehicle"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Inside Vehicle",
+                    action = "vehspawn spawninveh",
+                    state = "ON",
+                    configkey = "SpawnInVehicle"
+                },
+            };
         }
 
         private List<MenuItem> GetRainbowMenu()
