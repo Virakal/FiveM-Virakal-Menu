@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Virakal.FiveM.Trainer.TrainerClient.Data;
 
 namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 {
@@ -26,6 +27,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehiclescolourmenu"] = GetAppearanceMenu();
             menus["vehiclesmodsmenu"] = GetModsMenu();
             menus["vehiclescolourmenu"] = GetAppearanceMenu();
+
+            // Add vehicle spawn menus
+            menus["boatspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Boats);
 
             menus["vehiclerainbowmenu"] = GetRainbowMenu();
             menus["vehiclecolourrainbowspeed"] = GetRainbowSpeedMenu();
@@ -65,8 +69,27 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["boostpowermenu"] = AddParentField("vehiclesmenu", menus["boostpowermenu"]);
             menus["vehiclessavemenu"] = AddParentField("vehiclesmenu", menus["vehiclessavemenu"]);
             menus["vehiclesloadmenu"] = AddParentField("vehiclesmenu", menus["vehiclesloadmenu"]);
+            menus["boatspawnmenu"] = AddParentField("vehiclesmenu", menus["boatspawnmenu"]);
 
             return menus;
+        }
+
+        private List<MenuItem> AddVehicleSpawnMenu(VehicleClass vehicleClass)
+        {
+            List<VehicleListItem> vehicleList = VehicleList.GetList(vehicleClass);
+            List<MenuItem> list = new List<MenuItem>(vehicleList.Count);
+
+            foreach (var item in vehicleList)
+            {
+                list.Add(new MenuItem()
+                {
+                    text = item.Name,
+                    action = $"vehspawn {item.Model}",
+                    image = item.Image,
+                });
+            }
+
+            return list;
         }
 
         private List<MenuItem> GetSpawnMenu()

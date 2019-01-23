@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\VehicleList.cs" />
+    <Compile Include="Data\VehicleListItem.cs" />
     <Compile Include="Garage.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConfigCommsManager.cs" />
