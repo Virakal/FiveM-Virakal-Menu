@@ -33,6 +33,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             Lists[VehicleClass.Military] = InitialiseMilitary();
             Lists[VehicleClass.Motorcycles] = InitialiseMotorcycles();
             Lists[VehicleClass.Planes] = InitialisePlanes();
+            Lists[VehicleClass.Service] = InitialiseService();
             Lists[VehicleClass.Super] = InitialiseSuper();
 
             initialised = true;
@@ -1098,6 +1099,85 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Volatol",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/99/Volatol-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218203050",
                     Model = "volatol",
+                },
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseService()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Airport Bus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/aa/AirportBus-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160917180854",
+                    Model = "airbus",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Brickade",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/65/Brickade-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160607131817",
+                    Model = "brickade",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Bus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/93/Bus-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180331183551",
+                    Model = "bus",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dashound",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/41/Dashound-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180031",
+                    Model = "coach",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dune",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/46/Dune-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160712123223",
+                    Model = "rallytruck",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Festival Bus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/88/FestivalBus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180922",
+                    Model = "pbus2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rental Shuttle Bus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c8/RentalShuttleBus-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160916175326",
+                    Model = "rentalbus",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Taxi",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4f/Taxi2-GTAIV-front.png/revision/latest/scale-to-width-down/350?cb=20170223191809",
+                    Model = "taxi",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tour Bus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/58/Tourbus-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160916175327",
+                    Model = "tourbus",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Trashmaster",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/58/Trashmaster-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160606122714",
+                    Model = "trash",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Trashmaster (Heist)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fa/Trashmaster-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160929163342",
+                    Model = "trash2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Wastelander",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e3/Wastelander-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213203148",
+                    Model = "wastelander",
                 },
             };
         }
