@@ -429,34 +429,34 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             };
         }
 
-        private List<MenuItem> GetGarageSaveMenu()
+        public List<MenuItem> GetGarageSaveMenu()
         {
-            // Big auto-generation candidate
-            var list = new List<MenuItem>(Garage.MaxVehicleSlots);
-
-            for (var i = 1; i <= Garage.MaxVehicleSlots; i++)
-            {
-                list.Add(new MenuItem()
-                {
-                    text = $"Save in Slot {i}",
-                    action = $"vehsave {i}",
-                });
-            }
-
-            return list;
+            return GetGarageMenu("vehsave", "Save in Slot");
         }
 
-        private List<MenuItem> GetGarageLoadMenu()
+        public List<MenuItem> GetGarageLoadMenu()
         {
-            // Big auto-generation candidate
+            return GetGarageMenu("vehload", "Load Slot");
+        }
+
+        private List<MenuItem> GetGarageMenu(string actionPrefix, string namePrefix)
+        {
             var list = new List<MenuItem>(Garage.MaxVehicleSlots);
 
             for (var i = 1; i <= Garage.MaxVehicleSlots; i++)
             {
+                string vehicleName = "Empty";
+                string slot = i.ToString();
+
+                if (Garage.HasSavedVehicle(slot))
+                {
+                    vehicleName = Garage.GetVehicleInfo(slot).displayName;
+                }
+
                 list.Add(new MenuItem()
                 {
-                    text = $"Load Slot {i}",
-                    action = $"vehload {i}",
+                    text = $"{namePrefix} {i} ({vehicleName})",
+                    action = $"{actionPrefix} {i}",
                 });
             }
 

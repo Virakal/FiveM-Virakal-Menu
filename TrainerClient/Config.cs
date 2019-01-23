@@ -45,6 +45,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
             // Maybe this should be handled by the comms manager somehow, but making this observable broke things
             BaseScript.TriggerServerEvent("virakal:setConfig", ToJson());
+            BaseScript.TriggerEvent("virakal:configChanged", key, value);
         }
 
         public void SetDefault(string key, string value)

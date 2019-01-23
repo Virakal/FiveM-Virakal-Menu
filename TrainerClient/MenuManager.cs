@@ -44,6 +44,28 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             Trainer._EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
             Trainer._EventHandlers["virakal:newVehicle"] += new Action<int, int>(OnNewVehicle);
             Trainer._EventHandlers["virakal:exitedVehicle"] += new Action<int, int>(OnNewVehicle);
+            Trainer._EventHandlers["virakal:configChanged"] += new Action<string, string>(OnConfigChanged);
+
+            // This doesn't load properly so early
+            UpdateGarageMenus();
+        }
+
+        private void OnConfigChanged(string key, string value)
+        {
+            if (key.StartsWith(Garage.ConfigKeyPrefix))
+            {
+                UpdateGarageMenus();
+            }
+        }
+
+        private void UpdateGarageMenus()
+        {
+            var vehiclesMenuAdder = GetMenuAdderByType<VehiclesMenuAdder>();
+            Menus["vehiclessavemenu"] = vehiclesMenuAdder.AddParentField("vehiclesmenu", vehiclesMenuAdder.GetGarageSaveMenu());
+            Menus["vehiclesloadmenu"] = vehiclesMenuAdder.AddParentField("vehiclesmenu", vehiclesMenuAdder.GetGarageLoadMenu());
+
+            SendMenu("vehiclessavemenu");
+            SendMenu("vehiclesloadmenu");
         }
 
         private void OnNewVehicle(int vehicleHandle, int oldVehicleHandle)
