@@ -1704,6 +1704,27 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 },
                 new VehicleListItem()
                 {
+                    Name = "Blimp",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a5/Blimp-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180347",
+                    Model = "blimp3",
+                    Tags = new HashSet<string>() { "fun" },
+                },
+                new VehicleListItem()
+                {
+                    Name = "Blimp (Atomic)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c3/AtomicBlimp-LSIA-GTAV.png/revision/latest/scale-to-width-down/350?cb=20141021193529",
+                    Model = "blimp",
+                    Tags = new HashSet<string>() { "fun" },
+                },
+                new VehicleListItem()
+                {
+                    Name = "Blimp (Xero)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5c/Blimp2-GTAV-FrontQuarter.png/revision/latest/scale-to-width-down/350?cb=20180708090330",
+                    Model = "blimp2",
+                    Tags = new HashSet<string>() { "fun" },
+                },
+                new VehicleListItem()
+                {
                     Name = "Bombushka (No Addons)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/20/RM10-Bombushka-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902151115",
                     Model = "bombushka",
