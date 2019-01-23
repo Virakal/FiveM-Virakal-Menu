@@ -31,6 +31,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             // Add vehicle spawn menus
             menus["boatspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Boats);
             menus["pushbikespawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Cycles);
+            menus["emergencyspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Emergency);
             menus["helispawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Helicopters);
             menus["industrialspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Industrial);
             menus["militaryspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Military);
@@ -86,6 +87,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["industrialspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["industrialspawnmenu"]);
             menus["superspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["superspawnmenu"]);
             menus["servicespawnmenu"] = AddParentField("vehiclesspawnmenu", menus["servicespawnmenu"]);
+            menus["emergencyspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["emergencyspawnmenu"]);
 
             return menus;
         }

@@ -28,6 +28,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 
             Lists[VehicleClass.Boats] = InitialiseBoats();
             Lists[VehicleClass.Cycles] = InitialiseCycles();
+            Lists[VehicleClass.Emergency] = InitialiseEmergency();
             Lists[VehicleClass.Helicopters] = InitialiseHelicopters();
             Lists[VehicleClass.Industrial] = InitialiseIndustrial();
             Lists[VehicleClass.Military] = InitialiseMilitary();
@@ -217,6 +218,121 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Whippet Race Bike",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3b/WhippetRaceBike-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018181058",
                     Model = "tribike",
+                },
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseEmergency()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Ambulance",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ee/Ambulance-GTAV-front-LSMC.png/revision/latest/scale-to-width-down/350?cb=20160116221217",
+                    Model = "ambulance",
+                },
+                new VehicleListItem()
+                {
+                    Name = "FIB (Sedan)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/87/FIB-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151222203022",
+                    Model = "fbi",
+                },
+                new VehicleListItem()
+                {
+                    Name = "FIB (SUV)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cf/FIB2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151217204743",
+                    Model = "fbi2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Fire Truck",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6d/Firetruck-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160917180852",
+                    Model = "firetruk",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Lifeguard",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/69/Lifeguard-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160111205940",
+                    Model = "lguard",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Park Ranger",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/92/ParkRanger-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160313204018",
+                    Model = "pranger",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Bike",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/70/PoliceBike-GTAV-front.png/revision/latest?cb=20170524183918",
+                    Model = "policeb",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Cruiser",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/bd/PoliceCruiser-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160311203102",
+                    Model = "police",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Cruiser (Buffalo)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b1/PoliceCruiser2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180331183631",
+                    Model = "police2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Cruiser (Interceptor)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6b/PoliceCruiser3-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20170524182142",
+                    Model = "police3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Rancher",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/66/PoliceRancher-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151212235205",
+                    Model = "policeold1",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Riot",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/16/PoliceRiot-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151231203648",
+                    Model = "riot",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Roadcruiser",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/37/PoliceRoadcruiser-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151212235053",
+                    Model = "policeold2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Prison Bus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/55/PolicePrisonBus-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20170530185420",
+                    Model = "pbus",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Transporter",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/60/PoliceTransporter-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160111211416",
+                    Model = "policet",
+                },
+                new VehicleListItem()
+                {
+                    Name = "RCV",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/db/RCV-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180513190138",
+                    Model = "riot2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sheriff Cruiser",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7e/SheriffCruiser-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160311204301",
+                    Model = "sheriff",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Unmarked Cruiser",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7b/UnmarkedCruiser-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160308181831",
+                    Model = "police4",
                 },
             };
         }
