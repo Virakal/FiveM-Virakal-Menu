@@ -105,7 +105,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Custom Colour",
-                    sub = "vehiclescolorcustommenu"
+                    sub = "vehiclescolourcustommenu"
                 },
                 new MenuItem()
                 {
@@ -205,6 +205,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["boostpowermenu"] = GetBoostPowerMenu();
             menus["vehiclesnumberplatemenu"] = GetPlatesMenu();
 
+            menus["vehiclescolourcustommenu"] = GetCustomColourMenu("vehcolor");
+
             menus["vehiclescolourbothmenu"] = GetPaintColourMenu("vehboth");
             menus["vehiclescolourprimarymenu"] = GetPaintColourMenu("vehprimary");
             menus["vehiclescoloursecondarymenu"] = GetPaintColourMenu("vehsecondary");
@@ -212,9 +214,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehiclescolourrimmenu"] = GetPaintColourMenu("vehrim");
             menus["vehiclescolordashmenu"] = GetPaintColourMenu("vehdashcolour");
 
+            // Populate "parent" fields so the back button works.
             menus["vehiclesmenu"] = AddParentField("mainmenu", menus["vehiclesmenu"]);
             menus["vehiclesmodsmenu"] = AddParentField("vehiclesmenu", menus["vehiclesmodsmenu"]);
             menus["vehiclescolourmenu"] = AddParentField("vehiclesmenu", menus["vehiclescolourmenu"]);
+            menus["vehiclescolourcustommenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourcustommenu"]);
             menus["vehiclescolourbothmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourbothmenu"]);
             menus["vehiclescolourprimarymenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourprimarymenu"]);
             menus["vehiclescoloursecondarymenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescoloursecondarymenu"]);
@@ -385,6 +389,58 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             }
 
             return list;
+        }
+
+        private List<MenuItem> GetCustomColourMenu(string actionPrefix)
+        {
+            return new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "Custom (HTML #RRGGBB or R,G,B)",
+                    action = "vehcolor input"
+                },
+                new MenuItem()
+                {
+                    text = "Black",
+                    action = "vehcolor 0,0,0"
+                },
+                new MenuItem()
+                {
+                    text = "Blue",
+                    action = "vehcolor 0,0,255"
+                },
+                new MenuItem()
+                {
+                    text = "Green",
+                    action = "vehcolor 0,255,0"
+                },
+                new MenuItem()
+                {
+                    text = "Red",
+                    action = "vehcolor 255,0,0"
+                },
+                new MenuItem()
+                {
+                    text = "Fuchsia",
+                    action = "vehcolor 255,0,255"
+                },
+                new MenuItem()
+                {
+                    text = "Yellow",
+                    action = "vehcolor 255,255,0"
+                },
+                new MenuItem()
+                {
+                    text = "Cyan",
+                    action = "vehcolor 0,255,255"
+                },
+                new MenuItem()
+                {
+                    text = "White",
+                    action = "vehcolor 255,255,255"
+                },
+            };
         }
 
         private string CleanColourName(string colourName)
