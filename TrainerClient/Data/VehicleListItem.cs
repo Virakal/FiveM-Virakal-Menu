@@ -11,5 +11,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
         public string Name { get; set; }
         public string Image { get; set; }
         public string Model { get; set; }
+        public HashSet<string> Tags { get; set; }
+
+        public bool HasTag(string tag)
+        {
+            return Tags != null && Tags.Contains(tag);
+        }
     }
 }

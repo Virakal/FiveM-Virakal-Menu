@@ -29,22 +29,25 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehiclescolourmenu"] = GetAppearanceMenu();
 
             // Add vehicle spawn menus
-            menus["boatspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Boats);
-            menus["commercialspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Commercial);
-            menus["compactspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Compacts);
-            menus["coupespawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Coupes);
-            menus["pushbikespawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Cycles);
-            menus["emergencyspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Emergency);
-            menus["helispawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Helicopters);
-            menus["industrialspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Industrial);
-            menus["militaryspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Military);
-            menus["motorbikespawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Motorcycles);
-            menus["offroadspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.OffRoad);
-            menus["planespawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Planes);
-            menus["servicespawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Service);
-            menus["superspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Super);
-            menus["utilityspawnmenu"] = AddVehicleSpawnMenu(VehicleClass.Utility);
+            menus["boatspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Boats));
+            menus["commercialspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Commercial));
+            menus["compactspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Compacts));
+            menus["coupespawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Coupes));
+            menus["pushbikespawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Cycles));
+            menus["emergencyspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Emergency));
+            menus["helispawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Helicopters));
+            menus["industrialspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Industrial));
+            menus["militaryspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Military));
+            menus["motorbikespawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Motorcycles));
+            menus["offroadspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.OffRoad));
+            menus["planespawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Planes));
+            menus["servicespawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Service));
+            menus["superspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Super));
+            menus["utilityspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Utility));
 
+            menus["funspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetByTag("fun"));
+
+            // Add vehicle appearance menus
             menus["vehiclerainbowmenu"] = GetRainbowMenu();
             menus["vehiclecolourrainbowspeed"] = GetRainbowSpeedMenu();
             menus["boostpowermenu"] = GetBoostPowerMenu();
@@ -102,9 +105,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             return menus;
         }
 
-        private List<MenuItem> AddVehicleSpawnMenu(VehicleClass vehicleClass)
+        private List<MenuItem> AddVehicleSpawnMenu(List<VehicleListItem> vehicleList)
         {
-            List<VehicleListItem> vehicleList = VehicleList.GetList(vehicleClass);
             List<MenuItem> list = new List<MenuItem>(vehicleList.Count);
 
             foreach (var item in vehicleList)

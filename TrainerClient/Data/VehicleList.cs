@@ -19,6 +19,26 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             return Lists[listName];
         }
 
+        public static List<VehicleListItem> GetByTag(string tag)
+        {
+            List<VehicleListItem> list = new List<VehicleListItem>();
+
+            foreach (var kv in Lists)
+            {
+                foreach (var item in kv.Value)
+                {
+                    if (item.HasTag(tag))
+                    {
+                        list.Add(item);
+                    }
+                }
+            }
+
+            list.Sort((x, y) => x.Name.CompareTo(y.Name));
+
+            return list;
+        }
+
         private static void Initialise()
         {
             if (initialised)
@@ -223,6 +243,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Hauler Custom",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/54/HaulerCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621151444",
                     Model = "hauler2",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -271,6 +292,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Phantom Wedge",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/1a/PhantomWedge-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202825",
                     Model = "phantom2",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -301,6 +323,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Terrorbyte",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/96/Terrorbyte-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725175825",
                     Model = "terbyte",
+                    Tags = new HashSet<string>() { "fun" },
                 },
             };
         }
@@ -362,6 +385,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Issi Classic",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9f/IssiClassic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180325152715",
                     Model = "issi3",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -623,6 +647,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "RCV",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/db/RCV-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180513190138",
                     Model = "riot2",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -824,6 +849,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Dump",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/18/Dump-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180117",
                     Model = "dump",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -885,6 +911,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "APC",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5d/APC-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614144137",
                     Model = "apc",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -909,12 +936,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Barrage",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/ba/Barrage-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218202613",
                     Model = "barrage",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
                     Name = "Chernobog",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c2/Chernobog-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218202730",
                     Model = "chernobog",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -927,12 +956,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Half-Track",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3f/Halftrack-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621144406",
                     Model = "halftrack",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
                     Name = "Rhino Tank",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/af/RhinoTank-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111195824",
                     Model = "rhino",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -957,12 +988,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Thruster",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a9/Thruster-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218195041",
                     Model = "thruster",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
                     Name = "TM-02 Khanjali",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/97/Khanjali-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218202915",
                     Model = "khanjali",
+                    Tags = new HashSet<string>() { "fun" },
                 },
             };
         }
@@ -1204,12 +1237,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Oppressor",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/16/Oppressor-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143950",
                     Model = "oppressor",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
                     Name = "Oppressor Mk. II",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/85/OppressorMkII-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725181109",
                     Model = "oppressor2",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -1403,6 +1438,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Caracara",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/17/Caracara-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180325152615",
                     Model = "caracara",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -1427,6 +1463,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Dune FAV",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/65/DuneFAV-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143657",
                     Model = "dune3",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -1439,6 +1476,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Freecrawler",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a4/Freecrawler-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180458",
                     Model = "freecrawler",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -1481,18 +1519,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Liberator",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e0/Liberator-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929162837",
                     Model = "monster",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
                     Name = "Marshall",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a2/Marshall-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929162725",
                     Model = "marshall",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
                     Name = "Menacer",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a7/Menacer-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180613",
                     Model = "menacer",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -1523,12 +1564,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Ramp Buggy",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/51/RampBuggy-GTAO-FrontQuarter.png/revision/latest/scale-to-width-down/350?cb=20161215155004",
                     Model = "dune4",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
                     Name = "Ramp Buggy (Spoilerless)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/55/RampBuggy2-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202129",
                     Model = "dune5",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -1577,12 +1620,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Technical Aqua",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/19/TechnicalAqua-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171201201845",
                     Model = "technical2",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
                     Name = "Technical Custom",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/74/TechnicalCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621150631",
                     Model = "technical3",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -1806,6 +1851,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Ultralight",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b1/Ultralight-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902153122",
                     Model = "microlight",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -1879,6 +1925,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Festival Bus",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/88/FestivalBus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180922",
                     Model = "pbus2",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -2060,6 +2107,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Scramjet",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3a/Scramjet-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725181214",
                     Model = "scramjet",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -2120,6 +2168,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Vigilante",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ec/Vigilante-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180331183732",
                     Model = "vigilante",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -2138,6 +2187,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Voltic (Rocket)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/95/RocketVoltic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213203222",
                     Model = "voltic2",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -2175,6 +2225,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Caddy",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0e/Caddy-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018175900",
                     Model = "caddy",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
@@ -2217,6 +2268,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Lawnmower",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/20/LawnMower-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180609",
                     Model = "mower",
+                    Tags = new HashSet<string>() { "fun" },
                 },
                 new VehicleListItem()
                 {
