@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         private string Sep { get; } = "<||>";
         private Trainer Trainer{ get; }
         private Config Config { get; }
+        private int CurrentSerialVersion { get; } = 2;
 
         public Garage(Trainer trainer)
         {
@@ -29,26 +31,58 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             string configName = GetGarageSlotName(slot);
             string modString = ToModString(vehicle.Mods);
-            Config[configName] = $"{vehicle.Model.Hash}{Sep}{modString}";
+            string modelName = vehicle.LocalizedName;
+
+            Config[configName] = $"v{CurrentSerialVersion}{Sep}{vehicle.Model.Hash}{Sep}{modelName}{Sep}{modString}";
+
             Trainer.DebugLine($"Saved to car to {configName}");
+        }
+
+        public GarageSlotInfo GetVehicleInfo(string slot)
+        {
+            string configName = GetGarageSlotName(slot);
+            string loaded = Config[configName];
+
+            return DeserialiseVehicleInfo(loaded);
         }
 
         public async Task<Vehicle> LoadVehicle(string slot)
         {
-            string sep = "<||>";
             string configName = GetGarageSlotName(slot);
-            string loaded = Config[configName];
-            string[] split = loaded.Split(new string[] { sep }, StringSplitOptions.None);
-            string model = split[0];
-            string modString = split[1];
+            GarageSlotInfo info = GetVehicleInfo(slot);
+            var vehicle = await Trainer.SpawnVehicle(new Model(info.model), Game.PlayerPed.Position);
 
-            var vehicle = await Trainer.SpawnVehicle(new Model(int.Parse(model)), Game.PlayerPed.Position);
+            ApplyModString(vehicle, info.modString);
 
-            ApplyModString(vehicle, modString);
-
-            Trainer.DebugLine($"Loaded from {configName}: Model: {model}");
+            Trainer.DebugLine($"Loaded from {configName}. Name: {info.displayName} Model: {info.model}");
 
             return vehicle;
+        }
+
+        private GarageSlotInfo DeserialiseVehicleInfo(string text)
+        {
+            string[] split = text.Split(new string[] { Sep }, StringSplitOptions.None);
+            int version;
+
+            if (split[0].StartsWith("v"))
+            {
+                version = int.Parse(split[0].Substring(1));
+            }
+            else
+            {
+                // First version had no version number
+                version = 1;
+            }
+
+            switch (version)
+            {
+                case 1:
+                    return new GarageSlotInfo(split[0], "Unknown", split[1]);
+                case 2:
+                    return new GarageSlotInfo(split[1], split[2], split[3]);
+                default:
+                    throw new SerializationException("Failed to deserialise garage vehicle - not sure of the version.");
+            }
         }
 
         private string ToModString(VehicleModCollection mods)

@@ -53,6 +53,7 @@
     <Compile Include="Garage.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="ConfigCommsManager.cs" />
+    <Compile Include="GarageSlotInfo.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="Menu\AnimationMenuAdder.cs" />
     <Compile Include="Menu\BaseMenuAdder.cs" />
