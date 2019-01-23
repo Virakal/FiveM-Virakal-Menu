@@ -27,6 +27,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }
 
             Lists[VehicleClass.Boats] = InitialiseBoats();
+            Lists[VehicleClass.Commercial] = InitialiseCommercial();
             Lists[VehicleClass.Cycles] = InitialiseCycles();
             Lists[VehicleClass.Emergency] = InitialiseEmergency();
             Lists[VehicleClass.Helicopters] = InitialiseHelicopters();
@@ -169,6 +170,133 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Tug",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/44/Tug-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160609144857",
                     Model = "tug",
+                },
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseCommercial()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Benson",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e8/Benson-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160918135526",
+                    Model = "benson",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Biff",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/30/Biff-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160429175112",
+                    Model = "biff",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cerberus (Apocalypse)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0c/ApocalypseCerberus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181213171922",
+                    Model = "cerberus",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cerberus (Future Shock)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e1/FutureShockCerberus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181213171922",
+                    Model = "cerberus2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cerberus (Nightmare)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3c/NightmareCerberus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181213171923",
+                    Model = "cerberus3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Hauler",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2d/Hauler-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180550",
+                    Model = "hauler",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Hauler Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/54/HaulerCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621151444",
+                    Model = "hauler2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Mule",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/Mule-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626145603",
+                    Model = "mule",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Mule (Ramp Door)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6d/Mule2-GTAO-RampdoorCloseUp.png/revision/latest/scale-to-width-down/350?cb=20180809102310",
+                    Model = "mule2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Mule (Heist)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6a/Mule3-GTAO-front.png/revision/latest?cb=20160929163213",
+                    Model = "mule3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Mule Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/16/MuleCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180057",
+                    Model = "mule4",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Packer",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/68/Packer-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160308175915",
+                    Model = "packer",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Phantom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/ff/Phantom-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160702200418",
+                    Model = "phantom",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Phantom Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/70/PhantomCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621151532",
+                    Model = "phantom3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Phantom Wedge",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/1a/PhantomWedge-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202825",
+                    Model = "phantom2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Pounder",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/1d/Pounder-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160918143632",
+                    Model = "pounder",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Pounder Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/85/PounderCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180226",
+                    Model = "pounder2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Stockade",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/50/Stockade-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160918143634",
+                    Model = "stockade",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Stockade (Bobcat Snow-Covered)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/65/Stockade3-GTAV-front.png/revision/latest/scale-to-width-down/270?cb=20160918143635",
+                    Model = "stockade3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Terrorbyte",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/96/Terrorbyte-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725175825",
+                    Model = "terbyte",
                 },
             };
         }
