@@ -20,7 +20,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public MenuManager(Trainer trainer)
         {
             Trainer = trainer;
-            InitialiseMenus();
             MenuAdders = new List<BaseMenuAdder>()
             {
                 new MainMenuAdder(),
@@ -33,6 +32,20 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 new AnimationMenuAdder(),
                 new WeaponsMenuAdder(),
             };
+
+            Trainer._EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
+
+            InitialiseMenus();
+        }
+
+        private void OnPlayerSpawn(object spawn)
+        {
+            // Would be nice to just do this on player connect, but we can't.
+            var teleportMenuAdder = GetMenuAdderByType<TeleportMenuAdder>();
+            Menus["teleportplayermenu"] = teleportMenuAdder.AddParentField("teleportmenu", teleportMenuAdder.MakePlayerMenu());
+            SendMenu("teleportplayermenu");
+
+            Trainer.DebugLine("Updated the teleport to player menu because we had a player spawn.");
         }
 
         public async void SendAllMenus()
