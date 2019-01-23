@@ -56,6 +56,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             Menus = new UIMenuAdder().AddMenus(Menus);
             Menus = new VehiclesMenuAdder(Trainer.Garage).AddMenus(Menus);
             Menus = new AnimationMenuAdder().AddMenus(Menus);
+            Menus = new WeaponsMenuAdder().AddMenus(Menus);
             Trainer.DebugLine($"Done adding menus: {Menus.Count} menus.");
         }
     }

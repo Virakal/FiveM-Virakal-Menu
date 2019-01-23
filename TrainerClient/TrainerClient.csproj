@@ -61,6 +61,7 @@
     <Compile Include="Menu\SettingsMenuAdder.cs" />
     <Compile Include="Menu\UIMenuAdder.cs" />
     <Compile Include="Menu\VehiclesMenuAdder.cs" />
+    <Compile Include="Menu\WeaponsMenuAdder.cs" />
     <Compile Include="Section\AnimalBombSection.cs" />
     <Compile Include="Section\AnimationSection.cs" />
     <Compile Include="Section\PlayerSection.cs" />
