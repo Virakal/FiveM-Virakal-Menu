@@ -28,6 +28,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 
             Lists[VehicleClass.Boats] = InitialiseBoats();
             Lists[VehicleClass.Helicopters] = InitialiseHelicopters();
+            Lists[VehicleClass.Military] = InitialiseMilitary();
             Lists[VehicleClass.Motorcycles] = InitialiseMotorcycles();
             Lists[VehicleClass.Planes] = InitialisePlanes();
 
@@ -322,6 +323,103 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Model = "volatus",
                 },
 
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseMilitary()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Anti-Aircraft Trailer",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fb/AntiAircraftTrailer-GTAO-front.png/revision/latest?cb=20170621145352",
+                    Model = "trailersmall2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "APC",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5d/APC-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614144137",
+                    Model = "apc",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Barracks",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d4/Barracks-GTAV-front.png/revision/latest?cb=20160529142937",
+                    Model = "barracks",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Barracks (Semi)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/14/BarracksSemi-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151217203705",
+                    Model = "barracks2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Barracks (Short Canvas)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/91/Barracks3-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160916175322",
+                    Model = "barracks3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Barrage",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/ba/Barrage-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218202613",
+                    Model = "barrage",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Chernobog",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c2/Chernobog-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218202730",
+                    Model = "chernobog",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Crusader",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/37/Crusader-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151214201316",
+                    Model = "crusader",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Half-Track",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3f/Halftrack-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621144406",
+                    Model = "halftrack",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rhino Tank",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/af/RhinoTank-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111195824",
+                    Model = "rhino",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Scarab (Apocalypse)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d5/ApocalypseScarab-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214193632",
+                    Model = "scarab",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Scarab (Future Shock)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d9/FutureShockScarab-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214193633",
+                    Model = "scarab2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Scarab (Nightmare)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7d/NightmareScarab-GTAO-front.png/revision/latest?cb=20181214193633",
+                    Model = "scarab3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Thruster",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a9/Thruster-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218195041",
+                    Model = "thruster",
+                },
+                new VehicleListItem()
+                {
+                    Name = "TM-02 Khanjali",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/97/Khanjali-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218202915",
+                    Model = "khanjali",
+                },
             };
         }
 
