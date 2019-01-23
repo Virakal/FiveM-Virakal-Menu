@@ -52,6 +52,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="ConfigCommsManager.cs" />
     <Compile Include="MenuManager.cs" />
+    <Compile Include="Menu\AnimationMenuAdder.cs" />
     <Compile Include="Menu\BaseMenuAdder.cs" />
     <Compile Include="Menu\MainMenuAdder.cs" />
     <Compile Include="Menu\MenuItem.cs" />
