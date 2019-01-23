@@ -9,98 +9,106 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 {
     class VehiclesMenuAdder : BaseMenuAdder
     {
+        private Garage Garage { get; set; }
+
+        public VehiclesMenuAdder(Garage garage) : base()
+        {
+            Garage = garage;
+        }
+
         public override Dictionary<string, List<MenuItem>> AddMenus(Dictionary<string, List<MenuItem>> menus)
         {
-            menus["vehiclesmenu"] = new List<MenuItem>()
+            menus["vehiclesmenu"] = GetVehiclesMenu();
+            menus["vehiclesmodsmenu"] = GetModsMenu();
+            menus["vehiclescolourmenu"] = GetAppearanceMenu();
+            menus["vehiclerainbowmenu"] = GetRainbowMenu();
+
+            menus["vehiclecolourrainbowspeed"] = GetRainbowSpeedMenu();
+            menus["boostpowermenu"] = GetBoostPowerMenu();
+            menus["vehiclesnumberplatemenu"] = GetPlatesMenu();
+            menus["vehiclewindowtintmenu"] = GetWindowTintMenu();
+            menus["vehiclelivery"] = GetLiveryMenu();
+            menus["vehiclerooflivery"] = GetRoofLiveryMenu();
+
+            menus["vehiclessavemenu"] = GetGarageSaveMenu();
+            menus["vehiclesloadmenu"] = GetGarageLoadMenu();
+
+            menus["vehiclescolourcustommenu"] = GetCustomColourMenu("vehcolor");
+
+            menus["vehiclescolourbothmenu"] = GetPaintColourMenu("vehboth");
+            menus["vehiclescolourprimarymenu"] = GetPaintColourMenu("vehprimary");
+            menus["vehiclescoloursecondarymenu"] = GetPaintColourMenu("vehsecondary");
+            menus["vehiclescolourpearlescentmenu"] = GetPaintColourMenu("vehpearl");
+            menus["vehiclescolourrimmenu"] = GetPaintColourMenu("vehrim");
+            menus["vehiclescolordashmenu"] = GetPaintColourMenu("vehdashcolour");
+
+            // Populate "parent" fields so the back button works.
+            menus["vehiclesmenu"] = AddParentField("mainmenu", menus["vehiclesmenu"]);
+            menus["vehiclesmodsmenu"] = AddParentField("vehiclesmenu", menus["vehiclesmodsmenu"]);
+            menus["vehiclescolourmenu"] = AddParentField("vehiclesmenu", menus["vehiclescolourmenu"]);
+            menus["vehiclescolourcustommenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourcustommenu"]);
+            menus["vehiclescolourbothmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourbothmenu"]);
+            menus["vehiclescolourprimarymenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourprimarymenu"]);
+            menus["vehiclescoloursecondarymenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescoloursecondarymenu"]);
+            menus["vehiclescolourpearlescentmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourpearlescentmenu"]);
+            menus["vehiclescolourrimmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourrimmenu"]);
+            menus["vehiclescolordashmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolordashmenu"]);
+            menus["vehiclerainbowmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclerainbowmenu"]);
+            menus["vehiclesnumberplatemenu"] = AddParentField("vehiclescolourmenu", menus["vehiclesnumberplatemenu"]);
+            menus["vehiclewindowtintmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclewindowtintmenu"]);
+            menus["vehiclelivery"] = AddParentField("vehiclescolourmenu", menus["vehiclelivery"]);
+            menus["vehiclerooflivery"] = AddParentField("vehiclescolourmenu", menus["vehiclerooflivery"]);
+            menus["vehiclecolourrainbowspeed"] = AddParentField("vehiclerainbowmenu", menus["vehiclecolourrainbowspeed"]);
+            menus["boostpowermenu"] = AddParentField("vehiclesmenu", menus["boostpowermenu"]);
+            menus["vehiclessavemenu"] = AddParentField("vehiclesmenu", menus["vehiclessavemenu"]);
+            menus["vehiclesloadmenu"] = AddParentField("vehiclesmenu", menus["vehiclesloadmenu"]);
+
+            return menus;
+        }
+
+        private List<MenuItem> GetRainbowMenu()
+        {
+            return new List<MenuItem>()
             {
                 new MenuItem()
                 {
-                    text = "Spawn Vehicle",
-                    sub = "vehiclesspawnmenu"
+                    text = "Rainbow Car",
+                    action = "veh rainbowcar",
+                    state = "OFF",
+                    configkey = "RainbowPaint"
                 },
                 new MenuItem()
                 {
-                    text = "Load Vehicle from Garage",
-                    sub = "vehiclesloadmenu"
+                    text = "Rainbow Chrome Car",
+                    action = "veh rainbowchrome",
+                    state = "OFF",
+                    configkey = "RainbowChrome"
                 },
                 new MenuItem()
                 {
-                    text = "Save Vehicle to Garage",
-                    sub = "vehiclessavemenu"
+                    text = "Rainbow Neons",
+                    action = "veh rainbowneon",
+                    state = "OFF",
+                    configkey = "RainbowNeon"
                 },
                 new MenuItem()
                 {
-                    text = "Vehicle Appearance",
-                    sub = "vehiclescolourmenu"
+                    text = "Rainbow Neons (Inverse)",
+                    action = "veh rainbowneoninverse",
+                    state = "OFF",
+                    configkey = "RainbowNeonInverse"
                 },
                 new MenuItem()
                 {
-                    text = "Vehicle Mods",
-                    sub = "vehiclesmodsmenu"
+                    text = "Rainbow Speed",
+                    sub = "vehiclecolourrainbowspeed"
                 },
-                new MenuItem()
-                {
-                    text = "Fix Vehicle",
-                    action = "veh fix"
-                },
-                new MenuItem()
-                {
-                    text = "Clean Vehicle",
-                    action = "veh clean"
-                },
-                new MenuItem()
-                {
-                    text = "Flip Vehicle Onto Wheels",
-                    action = "veh flip"
-                },
-                new MenuItem()
-                {
-                    text = "Invincible Vehicle",
-                    action = "veh invincible",
-                    state = "ON",
-                    configkey = "InvincibleVehicle"
-                },
-                new MenuItem()
-                {
-                    text = "Boost on Horn",
-                    action = "veh boosthorn",
-                    state = "ON",
-                    configkey = "BoostOnHorn"
-                },
-                new MenuItem()
-                {
-                    text = "Boost Power",
-                    sub = "boostpowermenu"
-                },
-
             };
+        }
 
-            menus["vehiclesmodsmenu"] = new List<MenuItem>()
-            {
-                new MenuItem()
-                {
-                    text = "Quick Upgrade",
-                    action = "vehmod quickupgrade"
-                },
-                new MenuItem()
-                {
-                    text = "Neons & Lights",
-                    sub = "vehiclesmodsneonsmenu"
-                },
-                new MenuItem()
-                {
-                    text = "Performance",
-                    sub = "vehiclesmodsperfmenu"
-                },
-                new MenuItem()
-                {
-                    text = "Wheels & Tyres",
-                    sub = "vehiclesmodswheelsmenu"
-                },
-
-            };
-
-            menus["vehiclescolourmenu"] = new List<MenuItem>()
+        private List<MenuItem> GetAppearanceMenu()
+        {
+            return new List<MenuItem>()
             {
                 new MenuItem()
                 {
@@ -163,81 +171,135 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     sub = "vehiclerainbowmenu"
                 },
             };
+        }
 
-            menus["vehiclerainbowmenu"] = new List<MenuItem>()
+        private List<MenuItem> GetModsMenu()
+        {
+            return new List<MenuItem>()
             {
                 new MenuItem()
                 {
-                    text = "Rainbow Car",
-                    action = "veh rainbowcar",
-                    state = "OFF",
-                    configkey = "RainbowPaint"
+                    text = "Quick Upgrade",
+                    action = "vehmod quickupgrade"
                 },
                 new MenuItem()
                 {
-                    text = "Rainbow Chrome Car",
-                    action = "veh rainbowchrome",
-                    state = "OFF",
-                    configkey = "RainbowChrome"
+                    text = "Neons & Lights",
+                    sub = "vehiclesmodsneonsmenu"
                 },
                 new MenuItem()
                 {
-                    text = "Rainbow Neons",
-                    action = "veh rainbowneon",
-                    state = "OFF",
-                    configkey = "RainbowNeon"
+                    text = "Performance",
+                    sub = "vehiclesmodsperfmenu"
                 },
                 new MenuItem()
                 {
-                    text = "Rainbow Neons (Inverse)",
-                    action = "veh rainbowneoninverse",
-                    state = "OFF",
-                    configkey = "RainbowNeonInverse"
-                },
-                new MenuItem()
-                {
-                    text = "Rainbow Speed",
-                    sub = "vehiclecolourrainbowspeed"
+                    text = "Wheels & Tyres",
+                    sub = "vehiclesmodswheelsmenu"
                 },
             };
-
-            menus["vehiclecolourrainbowspeed"] = GetRainbowSpeedMenu();
-            menus["boostpowermenu"] = GetBoostPowerMenu();
-            menus["vehiclesnumberplatemenu"] = GetPlatesMenu();
-            menus["vehiclewindowtintmenu"] = GetWindowTintMenu();
-            menus["vehiclelivery"] = GetLiveryMenu();
-            menus["vehiclerooflivery"] = GetRoofLiveryMenu();
-
-            menus["vehiclescolourcustommenu"] = GetCustomColourMenu("vehcolor");
-
-            menus["vehiclescolourbothmenu"] = GetPaintColourMenu("vehboth");
-            menus["vehiclescolourprimarymenu"] = GetPaintColourMenu("vehprimary");
-            menus["vehiclescoloursecondarymenu"] = GetPaintColourMenu("vehsecondary");
-            menus["vehiclescolourpearlescentmenu"] = GetPaintColourMenu("vehpearl");
-            menus["vehiclescolourrimmenu"] = GetPaintColourMenu("vehrim");
-            menus["vehiclescolordashmenu"] = GetPaintColourMenu("vehdashcolour");
-
-            // Populate "parent" fields so the back button works.
-            menus["vehiclesmenu"] = AddParentField("mainmenu", menus["vehiclesmenu"]);
-            menus["vehiclesmodsmenu"] = AddParentField("vehiclesmenu", menus["vehiclesmodsmenu"]);
-            menus["vehiclescolourmenu"] = AddParentField("vehiclesmenu", menus["vehiclescolourmenu"]);
-            menus["vehiclescolourcustommenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourcustommenu"]);
-            menus["vehiclescolourbothmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourbothmenu"]);
-            menus["vehiclescolourprimarymenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourprimarymenu"]);
-            menus["vehiclescoloursecondarymenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescoloursecondarymenu"]);
-            menus["vehiclescolourpearlescentmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourpearlescentmenu"]);
-            menus["vehiclescolourrimmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourrimmenu"]);
-            menus["vehiclescolordashmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolordashmenu"]);
-            menus["vehiclerainbowmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclerainbowmenu"]);
-            menus["vehiclesnumberplatemenu"] = AddParentField("vehiclescolourmenu", menus["vehiclesnumberplatemenu"]);
-            menus["vehiclewindowtintmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclewindowtintmenu"]);
-            menus["vehiclelivery"] = AddParentField("vehiclescolourmenu", menus["vehiclelivery"]);
-            menus["vehiclerooflivery"] = AddParentField("vehiclescolourmenu", menus["vehiclerooflivery"]);
-            menus["vehiclecolourrainbowspeed"] = AddParentField("vehiclerainbowmenu", menus["vehiclecolourrainbowspeed"]);
-            menus["boostpowermenu"] = AddParentField("vehiclesmenu", menus["boostpowermenu"]);
-
-            return menus;
         }
+
+        private List<MenuItem> GetVehiclesMenu()
+        {
+            return new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "Spawn Vehicle",
+                    sub = "vehiclesspawnmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Load Vehicle from Garage",
+                    sub = "vehiclesloadmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Save Vehicle to Garage",
+                    sub = "vehiclessavemenu"
+                },
+                new MenuItem()
+                {
+                    text = "Vehicle Appearance",
+                    sub = "vehiclescolourmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Vehicle Mods",
+                    sub = "vehiclesmodsmenu"
+                },
+                new MenuItem()
+                {
+                    text = "Fix Vehicle",
+                    action = "veh fix"
+                },
+                new MenuItem()
+                {
+                    text = "Clean Vehicle",
+                    action = "veh clean"
+                },
+                new MenuItem()
+                {
+                    text = "Flip Vehicle Onto Wheels",
+                    action = "veh flip"
+                },
+                new MenuItem()
+                {
+                    text = "Invincible Vehicle",
+                    action = "veh invincible",
+                    state = "ON",
+                    configkey = "InvincibleVehicle"
+                },
+                new MenuItem()
+                {
+                    text = "Boost on Horn",
+                    action = "veh boosthorn",
+                    state = "ON",
+                    configkey = "BoostOnHorn"
+                },
+                new MenuItem()
+                {
+                    text = "Boost Power",
+                    sub = "boostpowermenu"
+                },
+            };
+        }
+
+        private List<MenuItem> GetGarageSaveMenu()
+        {
+            // Big auto-generation candidate
+            var list = new List<MenuItem>(Garage.MaxCarSlots);
+
+            for (var i = 1; i < Garage.MaxCarSlots; i++)
+            {
+                list.Add(new MenuItem()
+                {
+                    text = $"Save in Slot {i}",
+                    action = $"vehsave {i}",
+                });
+            }
+
+            return list;
+        }
+
+        private List<MenuItem> GetGarageLoadMenu()
+        {
+            // Big auto-generation candidate
+            var list = new List<MenuItem>(Garage.MaxCarSlots);
+
+            for (var i = 1; i < Garage.MaxCarSlots; i++)
+            {
+                list.Add(new MenuItem()
+                {
+                    text = $"Load Slot {i}",
+                    action = $"vehload {i}",
+                });
+            }
+
+            return list;
+        }
+
 
         private List<MenuItem> GetLiveryMenu()
         {

@@ -11,6 +11,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 {
     public class Garage
     {
+        public static int MaxCarSlots { get; } = 10;
         private string Sep { get; } = "<||>";
         private Trainer Trainer{ get; }
         private Config Config { get; }
