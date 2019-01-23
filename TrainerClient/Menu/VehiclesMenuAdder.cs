@@ -202,6 +202,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             };
 
             menus["vehiclecolourrainbowspeed"] = GetRainbowSpeedMenu();
+            menus["boostpowermenu"] = GetBoostPowerMenu();
+            menus["vehiclesnumberplatemenu"] = GetPlatesMenu();
 
             menus["vehiclescolourbothmenu"] = GetPaintColourMenu("vehboth");
             menus["vehiclescolourprimarymenu"] = GetPaintColourMenu("vehprimary");
@@ -220,7 +222,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehiclescolourrimmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourrimmenu"]);
             menus["vehiclescolordashmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolordashmenu"]);
             menus["vehiclerainbowmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclerainbowmenu"]);
+            menus["vehiclesnumberplatemenu"] = AddParentField("vehiclescolourmenu", menus["vehiclesnumberplatemenu"]);
             menus["vehiclecolourrainbowspeed"] = AddParentField("vehiclerainbowmenu", menus["vehiclecolourrainbowspeed"]);
+            menus["boostpowermenu"] = AddParentField("vehiclesmenu", menus["boostpowermenu"]);
 
             return menus;
         }
@@ -283,7 +287,87 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             };
         }
 
-        public List<MenuItem> GetPaintColourMenu(string actionPrefix)
+        private List<MenuItem> GetBoostPowerMenu()
+        {
+            // Another one to auto-generate and highlight the current option
+            return new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "25",
+                    action = "boostpower 25"
+                },
+                new MenuItem()
+                {
+                    text = "50",
+                    action = "boostpower 50"
+                },
+                new MenuItem()
+                {
+                    text = "75 (Default)",
+                    action = "boostpower 75"
+                },
+                new MenuItem()
+                {
+                    text = "100",
+                    action = "boostpower 100"
+                },
+                new MenuItem()
+                {
+                    text = "125",
+                    action = "boostpower 125"
+                },
+                new MenuItem()
+                {
+                    text = "150",
+                    action = "boostpower 150"
+                },
+            };
+        }
+
+        private List<MenuItem> GetPlatesMenu()
+        {
+            return new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "Change Text",
+                    action = "vehplatetext"
+                },
+                new MenuItem()
+                {
+                    text = "Style: Blue on White 1",
+                    action = "vehplatesyle 3"
+                },
+                new MenuItem()
+                {
+                    text = "Style: Blue on White 2",
+                    action = "vehplatesyle 0"
+                },
+                new MenuItem()
+                {
+                    text = "Style: Blue on White 3",
+                    action = "vehplatesyle 4"
+                },
+                new MenuItem()
+                {
+                    text = "Style: Yellow on Black",
+                    action = "vehplatesyle 1"
+                },
+                new MenuItem()
+                {
+                    text = "Style: Yellow on Blue",
+                    action = "vehplatesyle 2"
+                },
+                new MenuItem()
+                {
+                    text = "Style: North Yankton",
+                    action = "vehplatesyle 5"
+                },
+            };
+        }
+
+        private List<MenuItem> GetPaintColourMenu(string actionPrefix)
         {
             var list = new List<MenuItem>(150);
 
