@@ -464,9 +464,36 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
         }
 
 
-        private List<MenuItem> GetLiveryMenu()
+        public List<MenuItem> GetLiveryMenu()
         {
-            // Auto-generating this when a car changes would be great
+            var vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                return new List<MenuItem>()
+                {
+                    new MenuItem()
+                    {
+                        text = "Enter a vehicle to view liveries",
+                    }
+                };
+            }
+            var mods = vehicle.Mods;
+
+            mods.InstallModKit();
+
+            if (mods.LiveryCount < 1)
+            {
+                return new List<MenuItem>()
+                {
+                    new MenuItem()
+                    {
+                        text = "This vehicle doesn't support liveries",
+                    }
+                };
+            }
+
+            // Get a list of liveries from the mod collection
             var list = new List<MenuItem>(26)
             {
                 new MenuItem()
@@ -476,11 +503,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 }
             };
 
-            for (var i = 0; i < 25; i++)
+            for (var i = 0; i < mods.LiveryCount; i++)
             {
+                var name = mods.GetLocalizedLiveryName(i);
+
                 list.Add(new MenuItem()
                 {
-                    text = $"Livery {i}",
+                    text = name ?? $"Livery {i}",
                     action = $"vehlivery {i}",
                 });
             }

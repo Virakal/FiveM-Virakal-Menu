@@ -33,9 +33,25 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 new WeaponsMenuAdder(),
             };
 
-            Trainer._EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
+            Trainer._EventHandlers["virakal:allMenusSent"] += new Action(OnMenusSent);
 
             InitialiseMenus();
+        }
+
+        private void OnMenusSent()
+        {
+            // We add these listeners after the menus are sent to avoid them interfering with each other
+            Trainer._EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
+            Trainer._EventHandlers["virakal:newVehicle"] += new Action<int, int>(OnNewVehicle);
+        }
+
+        private void OnNewVehicle(int vehicleHandle, int oldVehicleHandle)
+        {
+            var vehiclesMenuAdder = GetMenuAdderByType<VehiclesMenuAdder>();
+            Menus["vehiclelivery"] = vehiclesMenuAdder.AddParentField("vehiclescolourmenu", vehiclesMenuAdder.GetLiveryMenu());
+            SendMenu("vehiclelivery");
+
+            Trainer.DebugLine("Updated the livery menu because we entered a new vehicle.");
         }
 
         private void OnPlayerSpawn(object spawn)
@@ -58,6 +74,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 SendMenu(kv.Key);
                 await BaseScript.Delay(100);
             }
+
+            BaseScript.TriggerEvent("virakal:allMenusSent");
         }
 
         public void SendMenu(string menuName)
