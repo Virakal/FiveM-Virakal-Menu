@@ -43,6 +43,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             // We add these listeners after the menus are sent to avoid them interfering with each other
             Trainer._EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
             Trainer._EventHandlers["virakal:newVehicle"] += new Action<int, int>(OnNewVehicle);
+            Trainer._EventHandlers["virakal:exitedVehicle"] += new Action<int, int>(OnNewVehicle);
         }
 
         private void OnNewVehicle(int vehicleHandle, int oldVehicleHandle)

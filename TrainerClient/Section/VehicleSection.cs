@@ -99,6 +99,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (vehicle == null)
             {
+                if (LastPlayerVehicle != null)
+                {
+                    BaseScript.TriggerEvent("virakal:exitedVehicle", LastPlayerVehicle.Handle);
+                }
+
                 LastPlayerVehicle = null;
             }
             else if (vehicle != LastPlayerVehicle)
