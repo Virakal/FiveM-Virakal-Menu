@@ -404,6 +404,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         private List<MenuItem> GetPlatesMenu()
         {
+            // Could get this from the enum but seems like too much effort
             return new List<MenuItem>()
             {
                 new MenuItem()
@@ -446,7 +447,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         private List<MenuItem> GetPaintColourMenu(string actionPrefix)
         {
-            var list = new List<MenuItem>(150);
+            var list = new List<MenuItem>(170);
 
             foreach (var colour in Enum.GetValues(typeof(VehicleColor)))
             {
