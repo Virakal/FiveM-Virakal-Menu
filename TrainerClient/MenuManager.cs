@@ -13,6 +13,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
     /// </summary>
     public class MenuManager
     {
+        public List<BaseMenuAdder> MenuAdders { get; }
         private Trainer Trainer { get; }
         private Dictionary<string, List<MenuItem>> Menus = new Dictionary<string, List<MenuItem>>();
 
@@ -20,6 +21,18 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             Trainer = trainer;
             InitialiseMenus();
+            MenuAdders = new List<BaseMenuAdder>()
+            {
+                new MainMenuAdder(),
+                new PlayerMenuAdder(),
+                new TeleportMenuAdder(),
+                new SettingsMenuAdder(),
+                new PoliceMenuAdder(),
+                new UIMenuAdder(),
+                new VehiclesMenuAdder(Trainer.Garage),
+                new AnimationMenuAdder(),
+                new WeaponsMenuAdder(),
+            };
         }
 
         public async void SendAllMenus()
@@ -46,17 +59,25 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             });
         }
 
+        private T GetMenuAdderByType<T>() where T: BaseMenuAdder
+        {
+            foreach (var menuAdder in MenuAdders)
+            {
+                if (menuAdder.GetType() == typeof(T))
+                {
+                    return (T)menuAdder;
+                }
+            }
+
+            throw new KeyNotFoundException($"Searched for missing menu adder type '{typeof(T).Name}'");
+        }
+
         private void InitialiseMenus()
         {
-            Menus = new MainMenuAdder().AddMenus(Menus);
-            Menus = new PlayerMenuAdder().AddMenus(Menus);
-            Menus = new TeleportMenuAdder().AddMenus(Menus);
-            Menus = new SettingsMenuAdder().AddMenus(Menus);
-            Menus = new PoliceMenuAdder().AddMenus(Menus);
-            Menus = new UIMenuAdder().AddMenus(Menus);
-            Menus = new VehiclesMenuAdder(Trainer.Garage).AddMenus(Menus);
-            Menus = new AnimationMenuAdder().AddMenus(Menus);
-            Menus = new WeaponsMenuAdder().AddMenus(Menus);
+            foreach (var menuAdder in MenuAdders) {
+                Menus = menuAdder.AddMenus(Menus);
+            }
+
             Trainer.DebugLine($"Done adding menus: {Menus.Count} menus.");
         }
     }
