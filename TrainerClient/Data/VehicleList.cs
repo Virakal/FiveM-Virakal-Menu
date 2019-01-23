@@ -28,7 +28,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 
             Lists[VehicleClass.Boats] = InitialiseBoats();
             Lists[VehicleClass.Helicopters] = InitialiseHelicopters();
+            Lists[VehicleClass.Motorcycles] = InitialiseMotorcycles();
             Lists[VehicleClass.Planes] = InitialisePlanes();
+
             initialised = true;
         }
 
@@ -320,6 +322,349 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Model = "volatus",
                 },
 
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseMotorcycles()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Akuma",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9a/Akuma-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160127214020",
+                    Model = "akuma",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Avarus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/1a/Avarus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164948",
+                    Model = "avarus",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Bagger",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/10/Bagger-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160121202520",
+                    Model = "bagger",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Bati 801",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d9/Bati801-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160127211358",
+                    Model = "bati",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Bati 801RR",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e3/Bati801RR-GTAV-front-Sprunk.png/revision/latest/scale-to-width-down/350?cb=20160214210359",
+                    Model = "bati2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "BF400",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/00/BF400-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164436",
+                    Model = "bf400",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Blazer",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/35/Blazer-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018175627",
+                    Model = "blazer",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Blazer Aqua",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/05/BlazerAqua-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213201629",
+                    Model = "blazer5",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Blazer Lifeguard",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b4/BlazerLifeguard-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111194438",
+                    Model = "blazer2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Carbon RS",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2d/CarbonRS-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160130214329",
+                    Model = "carbonrs",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Chimera",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8a/Chimera-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164901",
+                    Model = "chimera",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cliffhanger",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/78/Cliffhanger-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164545",
+                    Model = "cliffhanger",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Daemon",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f7/Daemon-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160208212049",
+                    Model = "daemon",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Daemon (Gangless)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6b/Daemon2-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164637",
+                    Model = "daemon2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Deathbike (Apocalypse)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0e/ApocalypseDeathbike-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165020",
+                    Model = "deathbike",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Deathbike (Future Shock)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/ba/FutureShockDeathbike-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165020",
+                    Model = "deathbike2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Deathbike (Nightmare)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6e/NightmareDeathbike-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165021",
+                    Model = "deathbike3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Defiler",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f5/Defiler-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165056",
+                    Model = "defiler",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Diabolus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/47/Diabolus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=201612141852073",
+                    Model = "diablous",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Diabolus Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/11/DiabolusCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202213",
+                    Model = "diablous2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Double T",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8c/DoubleT-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160126212153",
+                    Model = "double",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Enduro",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ef/Enduro-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160302173841",
+                    Model = "enduro",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Esskey",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4e/Esskey-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165149",
+                    Model = "esskey",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Faggio",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/91/Faggio-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160204205826",
+                    Model = "faggio2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Faggio Sport",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/50/FaggioSport-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182412",
+                    Model = "faggio",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Faggio Mod",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/FaggioMod-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182448",
+                    Model = "faggio3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "FCR 1000",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/95/FCR1000-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202343",
+                    Model = "fcr",
+                },
+                new VehicleListItem()
+                {
+                    Name = "FCR 1000 Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/87/FCR1000Custom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202416",
+                    Model = "fcr2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Gargoyle",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ea/Gargoyle-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164757",
+                    Model = "gargoyle",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Hakuchou",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/ab/Hakuchou-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302173513",
+                    Model = "hakuchou",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Hakuchou Drag",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fd/HakuchouDrag-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165253",
+                    Model = "hakuchou2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Hexer",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/64/Hexer-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160211212015",
+                    Model = "hexer",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Hot Rod Blazer",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/05/HotRodBlazer-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160927172000",
+                    Model = "blazer3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Innovation",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/13/Innovation-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302173556",
+                    Model = "innovation",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Lectro",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/de/Lectro-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160302174105",
+                    Model = "lectro",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Manchez",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c6/Manchez-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165403",
+                    Model = "manchez",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Nemesis",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4b/Nemesis-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160126214050",
+                    Model = "nemesis",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Nightblade",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6b/Nightblade-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165516",
+                    Model = "nightblade",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Oppressor",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/16/Oppressor-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143950",
+                    Model = "oppressor",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Oppressor Mk. II",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/85/OppressorMkII-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725181109",
+                    Model = "oppressor2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "PCJ-600",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/74/PCJ600-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160121201111",
+                    Model = "pcj",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Police Bike",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/70/PoliceBike-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20170524183918",
+                    Model = "policeb",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Ruffian",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b5/Ruffian-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160204203142",
+                    Model = "ruffian",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rat Bike",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b5/RatBike-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182129",
+                    Model = "ratbike",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sanctus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/be/Sanctus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182302",
+                    Model = "sanctus",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sanchez",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/93/Sanchez2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160222221404",
+                    Model = "sanchez2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sanchez Livery",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5f/Sanchez-GTAV-front-Shrewsbury.png/revision/latest/scale-to-width-down/350?cb=20160222221201",
+                    Model = "sanchez",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Shotaro",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/df/Shotaro-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182220",
+                    Model = "shotaro",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sovereign",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/98/Sovereign-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302172751",
+                    Model = "sovereign",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Street Blazer",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6e/StreetBlazer-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004180649",
+                    Model = "blazer4",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Thrust",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4e/Thrust-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160917232329",
+                    Model = "thrust",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Vader",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9b/Vader-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160130222000",
+                    Model = "vader",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Vortex",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/71/Vortex-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004181943",
+                    Model = "vortex",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Wolfsbane",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/ff/Wolfsbane-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165611",
+                    Model = "wolfsbane",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Zombie Bobber",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/af/ZombieBobber-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004181721",
+                    Model = "zombiea",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Zombie Chopper",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/70/ZombieChopper-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004181804",
+                    Model = "zombieb",
+                },
             };
         }
 
