@@ -432,9 +432,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
         private List<MenuItem> GetGarageSaveMenu()
         {
             // Big auto-generation candidate
-            var list = new List<MenuItem>(Garage.MaxCarSlots);
+            var list = new List<MenuItem>(Garage.MaxVehicleSlots);
 
-            for (var i = 1; i < Garage.MaxCarSlots; i++)
+            for (var i = 1; i <= Garage.MaxVehicleSlots; i++)
             {
                 list.Add(new MenuItem()
                 {
@@ -449,9 +449,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
         private List<MenuItem> GetGarageLoadMenu()
         {
             // Big auto-generation candidate
-            var list = new List<MenuItem>(Garage.MaxCarSlots);
+            var list = new List<MenuItem>(Garage.MaxVehicleSlots);
 
-            for (var i = 1; i < Garage.MaxCarSlots; i++)
+            for (var i = 1; i <= Garage.MaxVehicleSlots; i++)
             {
                 list.Add(new MenuItem()
                 {
