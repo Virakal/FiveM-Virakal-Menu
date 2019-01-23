@@ -231,6 +231,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         private List<MenuItem> GetRainbowSpeedMenu()
         {
+            //return new List<MenuItem>();
             // We can automate this soon and add a spcifier for the current speed
             return new List<MenuItem>()
             {
@@ -244,6 +245,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     text = "20% Speed",
                     action = "rainbowspeed 0.2"
                 },
+                /*
+                // 30% crashes Mary's PC - wtf?
                 new MenuItem()
                 {
                     text = "30% Speed",
@@ -284,6 +287,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     text = "100% Speed",
                     action = "rainbowspeed 1.0"
                 },
+                */
             };
         }
 
