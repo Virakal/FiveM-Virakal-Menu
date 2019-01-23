@@ -27,6 +27,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }
 
             Lists[VehicleClass.Boats] = InitialiseBoats();
+            Lists[VehicleClass.Cycles] = InitialiseCycles();
             Lists[VehicleClass.Helicopters] = InitialiseHelicopters();
             Lists[VehicleClass.Military] = InitialiseMilitary();
             Lists[VehicleClass.Motorcycles] = InitialiseMotorcycles();
@@ -164,6 +165,55 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Tug",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/44/Tug-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160609144857",
                     Model = "tug",
+                },
+            };
+        }
+
+        private static List<VehicleListItem> InitialiseCycles()
+        {
+            return new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "BMX",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/64/BMX-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018175629",
+                    Model = "bmx",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cruiser",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/bd/Cruiser-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018175937",
+                    Model = "cruiser",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Endurex Race Bike",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/53/EndurexRaceBike-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180230",
+                    Model = "tribike2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Fixter",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/74/Fixter-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180352",
+                    Model = "fixter",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Scorcher",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/be/Scorcher-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018180738",
+                    Model = "scorcher",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tri-Cycles Race Bike",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5d/Tri-CyclesRaceBike-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018181013",
+                    Model = "tribike3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Whippet Race Bike",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3b/WhippetRaceBike-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018181058",
+                    Model = "tribike",
                 },
             };
         }
