@@ -1258,6 +1258,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Hakuchou",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/ab/Hakuchou-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302173513",
                     Model = "hakuchou",
+                    Dlc = Dlc.LastTeamStandingUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1277,6 +1278,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Innovation",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/13/Innovation-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302173556",
                     Model = "innovation",
+                    Dlc = Dlc.LastTeamStandingUpdate,
                 },
                 new VehicleListItem()
                 {
