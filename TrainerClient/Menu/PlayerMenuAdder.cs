@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Virakal.FiveM.Trainer.TrainerClient.Data;
 
 namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 {
@@ -113,7 +114,28 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
+            menus["player.skin.animals"] = ToMenuItems(PedModelList.GetByType(PedModelType.Animal));
+            menus["player.skin.pedestrians"] = ToMenuItems(PedModelList.GetByType(PedModelType.Human));
+
             return menus;
+        }
+
+        private List<MenuItem> ToMenuItems(IEnumerable<PedModelListItem> models)
+        {
+            var menu = new List<MenuItem>();
+            var actionPrefix = "playerskin";
+
+            foreach (var model in models)
+            {
+                menu.Add(new MenuItem()
+                {
+                    text = model.Name,
+                    action = $"{actionPrefix} {model.Model}",
+                    key = model.Model,
+                });
+            }
+
+            return menu;
         }
     }
 }
