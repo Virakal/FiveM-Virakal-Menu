@@ -101,6 +101,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["compactspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["compactspawnmenu"]);
             menus["coupespawnmenu"] = AddParentField("vehiclesspawnmenu", menus["coupespawnmenu"]);
             menus["utilityspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["utilityspawnmenu"]);
+            menus["funspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["funspawnmenu"]);
 
             return menus;
         }
