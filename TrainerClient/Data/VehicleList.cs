@@ -1380,6 +1380,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Sovereign",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/98/Sovereign-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302172751",
                     Model = "sovereign",
+                    Dlc = Dlc.IndependenceDaySpecial,
                 },
                 new VehicleListItem()
                 {
@@ -1623,6 +1624,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e0/Liberator-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929162837",
                     Model = "monster",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.IndependenceDaySpecial,
                 },
                 new VehicleListItem()
                 {
