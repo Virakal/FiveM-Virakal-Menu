@@ -16,7 +16,7 @@
                             :sub="item.sub"
                             :action="item.action"
                             :state="item.state"
-                            :key="item.text">
+                            :key="getItemKey(item)">
                 {{ item.text }}
             </trainer-option>
 

@@ -54,17 +54,34 @@ function resetTrainer() {
 function setMenu(menuName, menuData) {
     console.log(`Receieved menu ${menuName}: ${JSON.stringify(menuData)}`);
     this.menus[menuName] = menuData;
+    if (this.currentMenuKey === menuName && this.currentMenu !== menuData) {
+        // Because the underlying menu has changed, we need to force the update
+        console.log("Forcing the update");
+        this.updateCurrentMenu();
+    }
+}
+// Only use this if the underlying structure for the current menu is changed. Vue doesn't seem to like that.
+function updateCurrentMenu() {
+    const newMenuKey = this.currentMenuKey;
+    // Briefly change the currentMenuKey to force a recompute
+    this.currentMenuKey = 'mainmenu';
+    this.$forceUpdate();
+    this.currentMenuKey = newMenuKey;
+    // If our selection is no longer available on the list, reset to 0
+    if (this.selected >= this.currentMenu.length) {
+        this.page = 0;
+        this.selected = 0;
+    }
 }
 function showMenu(menuName) {
-    if (this.menus[menuName]) {
-        this.selected = 0;
-        this.page = 0;
-        this.currentMenu = this.menus[menuName];
-    }
-    else {
+    if (!this.menus[menuName]) {
         console.log(`No such menu as '${menuName}'`);
         this.showMenu('mainmenu');
+        return;
     }
+    this.selected = 0;
+    this.page = 0;
+    this.currentMenuKey = menuName;
 }
 function handleSelection() {
     let sel = this.currentItem;
@@ -154,6 +171,12 @@ function updateFromConfig(json) {
 function getStateFromConfig(configKey) {
     return this.configState[configKey];
 }
+function getStateText(configKey) {
+    return this.getStateFromConfig(configKey) ? 'ON' : 'OFF';
+}
+function getItemKey(item) {
+    return item.key || item.text;
+}
 /**
  * An individual menu item
  */
@@ -178,14 +201,14 @@ Vue.component('preview-image', {
 let menus = {
     mainmenu: [ /* Loading placeholder */],
 };
-let app = new Vue({
+const app = new Vue({
     el: '#vuecontainer',
     data: {
         trainerTitle,
         maxPageSize,
         showTrainer: false,
         menus: menus,
-        currentMenu: menus.mainmenu,
+        currentMenuKey: 'mainmenu',
         page: 0,
         selected: 0,
         recentSkins: [],
@@ -207,6 +230,9 @@ let app = new Vue({
         currentImage: function () {
             return this.currentItem ? this.currentItem.image : null;
         },
+        currentMenu: function () {
+            return this.menus[this.currentMenuKey];
+        },
     },
     methods: {
         showPage,
@@ -224,6 +250,9 @@ let app = new Vue({
         closeTrainer,
         updateFromConfig,
         getStateFromConfig,
+        getStateText,
+        getItemKey,
+        updateCurrentMenu,
     },
 });
 window.addEventListener('message', function (event) {

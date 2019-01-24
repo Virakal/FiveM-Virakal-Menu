@@ -73,7 +73,6 @@
     <Content Include="nui\trainer.html" />
     <Content Include="nui\Roboto-Black.ttf" />
     <Content Include="nui\Roboto.ttf" />
-    <Content Include="package.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -97,7 +96,6 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="node_modules\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <PropertyGroup>
