@@ -694,6 +694,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/db/RCV-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180513190138",
                     Model = "riot2",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.TheDoomsdayHeist,
                 },
                 new VehicleListItem()
                 {
@@ -719,6 +720,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Akula",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/29/Akula-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218205054",
                     Model = "akula",
+                    Dlc = Dlc.TheDoomsdayHeist,
                 },
                 new VehicleListItem()
                 {
@@ -978,6 +980,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/ba/Barrage-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218202613",
                     Model = "barrage",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.TheDoomsdayHeist,
                 },
                 new VehicleListItem()
                 {
@@ -985,6 +988,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c2/Chernobog-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218202730",
                     Model = "chernobog",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.TheDoomsdayHeist,
                 },
                 new VehicleListItem()
                 {
@@ -1033,6 +1037,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a9/Thruster-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218195041",
                     Model = "thruster",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.TheDoomsdayHeist,
                 },
                 new VehicleListItem()
                 {
@@ -1040,6 +1045,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/97/Khanjali-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218202915",
                     Model = "khanjali",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.TheDoomsdayHeist,
                 },
             };
         }
@@ -1551,6 +1557,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Kamacho",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/47/Kamacho-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218203725",
                     Model = "kamacho",
+                    Dlc = Dlc.TheDoomsdayHeist,
                 },
                 new VehicleListItem()
                 {
@@ -1732,6 +1739,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Avenger",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fe/Avenger-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218204931",
                     Model = "avenger",
+                    Dlc = Dlc.TheDoomsdayHeist,
                 },
                 new VehicleListItem()
                 {
@@ -1948,6 +1956,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Volatol",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/99/Volatol-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218203050",
                     Model = "volatol",
+                    Dlc = Dlc.TheDoomsdayHeist,
                 },
             };
         }
