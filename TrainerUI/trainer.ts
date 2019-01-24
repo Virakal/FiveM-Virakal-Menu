@@ -268,7 +268,7 @@ const app = new Vue({
 	},
 	computed: {
 		pageCount: function (): number {
-			return 1 + Math.floor(this.menus[this.currentMenuKey].length / this.maxPageSize);
+			return Math.ceil(this.menus[this.currentMenuKey].length / this.maxPageSize);
 		},
 		menuPage: function (): MenuItem[] {
 			return this.menus[this.currentMenuKey].slice(this.page * this.maxPageSize, (this.page + 1) * this.maxPageSize);
