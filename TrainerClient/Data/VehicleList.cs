@@ -256,18 +256,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Cerberus (Apocalypse)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0c/ApocalypseCerberus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181213171922",
                     Model = "cerberus",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Cerberus (Future Shock)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e1/FutureShockCerberus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181213171922",
                     Model = "cerberus2",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Cerberus (Nightmare)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3c/NightmareCerberus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181213171923",
                     Model = "cerberus3",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
@@ -404,18 +407,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Issi (Apocalypse)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ea/ApocalypseIssi-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214193634",
                     Model = "issi4",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Issi (Future Shock)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7a/FutureShockIssi-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214193634",
                     Model = "issi5",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Issi (Nightmare)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b0/NightmareIssi-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214193635",
                     Model = "issi6",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
@@ -1001,18 +1007,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Scarab (Apocalypse)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d5/ApocalypseScarab-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214193632",
                     Model = "scarab",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Scarab (Future Shock)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d9/FutureShockScarab-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214193633",
                     Model = "scarab2",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Scarab (Nightmare)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7d/NightmareScarab-GTAO-front.png/revision/latest?cb=20181214193633",
                     Model = "scarab3",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
@@ -1106,18 +1115,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Deathbike (Apocalypse)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0e/ApocalypseDeathbike-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165020",
                     Model = "deathbike",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Deathbike (Future Shock)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/ba/FutureShockDeathbike-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165020",
                     Model = "deathbike2",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Deathbike (Nightmare)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6e/NightmareDeathbike-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165021",
                     Model = "deathbike3",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
@@ -1415,36 +1427,42 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Bruiser (Apocalypse)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c0/ApocalypseBruiser-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214173051",
                     Model = "bruiser",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Bruiser (Future Shock)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f4/FutureShockBruiser-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214173052",
                     Model = "bruiser2",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Bruiser (Nightmare)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/61/NightmareBruiser-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214173052",
                     Model = "bruiser3",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Brutus (Apocalypse)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a0/ApocalypseBrutus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20190106171159",
                     Model = "brutus",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Brutus (Future Shock)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/25/FutureShockBrutus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20190106171159",
                     Model = "brutus2",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Brutus (Nightmare)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2c/NightmareBrutus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20190106171153",
                     Model = "brutus3",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
@@ -1603,6 +1621,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "RC Bandito",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/14/RCBandito-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181217131322",
                     Model = "rcbandito",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
@@ -1665,18 +1684,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Sasquatch (Apocalypse)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/28/ApocalypseSasquatch-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181213201703",
                     Model = "monster3",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Sasquatch (Future Shock)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/44/FutureShockSasquatch-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181213201704",
                     Model = "monster4",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
                     Name = "Sasquatch (Nightmare)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/30/NightmareSasquatch-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181213201704",
                     Model = "monster5",
+                    Dlc = Dlc.ArenaWar,
                 },
                 new VehicleListItem()
                 {
