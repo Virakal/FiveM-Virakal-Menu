@@ -176,14 +176,13 @@ var app = new Vue({
         menuPage: function () {
             return this.menus[this.currentMenuKey].slice(this.page * this.maxPageSize, (this.page + 1) * this.maxPageSize);
         },
-        currentIndex: function () {
-            return this.page * this.maxPageSize + this.selected;
-        },
         currentItem: function () {
-            return this.menus[this.currentMenuKey][this.currentIndex];
+            var currentIndex = this.page * this.maxPageSize + this.selected;
+            return this.menus[this.currentMenuKey][currentIndex];
         },
         currentImage: function () {
-            return this.menus[this.currentMenuKey][this.currentIndex] ? this.menus[this.currentMenuKey][this.currentIndex].image : null;
+            var currentIndex = this.page * this.maxPageSize + this.selected;
+            return this.menus[this.currentMenuKey][currentIndex] ? this.menus[this.currentMenuKey][currentIndex].image : null;
         },
         currentMenu: function () {
             return this.menus[this.currentMenuKey];
