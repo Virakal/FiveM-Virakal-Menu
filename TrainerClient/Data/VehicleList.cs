@@ -2142,6 +2142,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "GP1",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8a/GP1-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170314170715",
                     Model = "gp1",
+                    Dlc = Dlc.CunningStuntsSpecialVehicleCircuit,
                 },
                 new VehicleListItem()
                 {
