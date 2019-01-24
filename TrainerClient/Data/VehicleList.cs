@@ -1072,6 +1072,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Avarus",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/1a/Avarus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164948",
                     Model = "avarus",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1108,6 +1109,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Chimera",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8a/Chimera-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164901",
                     Model = "chimera",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1120,6 +1122,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Daemon",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f7/Daemon-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160208212049",
                     Model = "daemon",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1153,6 +1156,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Defiler",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f5/Defiler-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165056",
                     Model = "defiler",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1185,6 +1189,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Esskey",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4e/Esskey-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165149",
                     Model = "esskey",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1197,12 +1202,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Faggio Sport",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/50/FaggioSport-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182412",
                     Model = "faggio",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
                     Name = "Faggio Mod",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/FaggioMod-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182448",
                     Model = "faggio3",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1235,6 +1242,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Hakuchou Drag",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fd/HakuchouDrag-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165253",
                     Model = "hakuchou2",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1259,6 +1267,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Manchez",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c6/Manchez-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165403",
                     Model = "manchez",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1271,6 +1280,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Nightblade",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6b/Nightblade-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165516",
                     Model = "nightblade",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1311,12 +1321,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Rat Bike",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b5/RatBike-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182129",
                     Model = "ratbike",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
                     Name = "Sanctus",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/be/Sanctus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182302",
                     Model = "sanctus",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1335,6 +1347,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Shotaro",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/df/Shotaro-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182220",
                     Model = "shotaro",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
@@ -1359,24 +1372,28 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Vortex",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/71/Vortex-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004181943",
                     Model = "vortex",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
                     Name = "Wolfsbane",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/ff/Wolfsbane-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014165611",
                     Model = "wolfsbane",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
                     Name = "Zombie Bobber",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/af/ZombieBobber-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004181721",
                     Model = "zombiea",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
                     Name = "Zombie Chopper",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/70/ZombieChopper-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004181804",
                     Model = "zombieb",
+                    Dlc = Dlc.Bikers,
                 },
             };
         }
@@ -1421,6 +1438,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Blazer (Street)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6e/StreetBlazer-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004180649",
                     Model = "blazer4",
+                    Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
