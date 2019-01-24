@@ -231,6 +231,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Tug",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/44/Tug-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160609144857",
                     Model = "tug",
+                    Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
                 },
             };
         }
@@ -533,6 +534,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Windsor Drop",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/31/WindsorDropUp-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160607131007",
                     Model = "windsor2",
+                    Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
                 },
                 new VehicleListItem()
                 {
@@ -866,6 +868,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Volatus",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0e/Volatus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160609144955",
                     Model = "volatus",
+                    Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
                 },
 
             };
@@ -1913,6 +1916,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Nimbus",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/76/Nimbus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160609145048",
                     Model = "nimbus",
+                    Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
                 },
                 new VehicleListItem()
                 {
@@ -2095,6 +2099,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "811",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c7/811A-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014163127",
                     Model = "pfister811",
+                    Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
                 },
                 new VehicleListItem()
                 {
@@ -2158,6 +2163,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "FMJ",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8c/FMJ-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014163347",
                     Model = "fmj",
+                    Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
                 },
                 new VehicleListItem()
                 {
@@ -2333,6 +2339,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "X80 Proto",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b3/X80Proto-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160609144552",
                     Model = "prototipo",
+                    Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
                 },
                 new VehicleListItem()
                 {
