@@ -81,8 +81,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             // Would be nice to just do this on player connect, but we can't.
             var teleportMenuAdder = GetMenuAdderByType<TeleportMenuAdder>();
-            Menus["teleportplayermenu"] = teleportMenuAdder.AddParentField("teleportmenu", teleportMenuAdder.MakePlayerMenu());
-            SendMenu("teleportplayermenu");
+            Menus["teleport.toPlayer"] = teleportMenuAdder.AddParentField("teleport", teleportMenuAdder.MakePlayerMenu());
+            SendMenu("teleport.toPlayer");
 
             Trainer.DebugLine("Updated the teleport to player menu because we had a player spawn.");
         }

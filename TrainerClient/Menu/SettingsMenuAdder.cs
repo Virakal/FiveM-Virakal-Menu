@@ -10,22 +10,22 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
     {
         public override Dictionary<string, List<MenuItem>> AddMenus(Dictionary<string, List<MenuItem>> menus)
         {
-            menus["settingsmenu"] = new List<MenuItem>()
+            menus["settings"] = new List<MenuItem>()
             {
                 new MenuItem()
                 {
                     text = "Change Weather",
-                    sub = "settingsweathermenu"
+                    sub = "settings.weather"
                 },
                 new MenuItem()
                 {
                     text = "Change Time",
-                    sub = "settingstimemenu"
+                    sub = "settings.time"
                 },
             };
 
             // We can build this from the enum in future
-            menus["settingsweathermenu"] = new List<MenuItem>()
+            menus["settings.weather"] = new List<MenuItem>()
             {
                 new MenuItem()
                 {
@@ -99,7 +99,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
-            menus["settingstimemenu"] = new List<MenuItem>()
+            menus["settings.time"] = new List<MenuItem>()
             {
                 new MenuItem()
                 {
@@ -243,9 +243,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
-            menus["settingsmenu"] = AddParentField("mainmenu", menus["settingsmenu"]);
-            menus["settingsweathermenu"] = AddParentField("settingsmenu", menus["settingsweathermenu"]);
-            menus["settingstimemenu"] = AddParentField("settingsmenu", menus["settingstimemenu"]);
+            menus["settings"] = AddParentField("mainmenu", menus["settings"]);
+            menus["settings.weather"] = AddParentField("settings", menus["settings.weather"]);
+            menus["settings.time"] = AddParentField("settings", menus["settings.time"]);
 
             return menus;
         }

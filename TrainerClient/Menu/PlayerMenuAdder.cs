@@ -10,12 +10,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
     {
         public override Dictionary<string, List<MenuItem>> AddMenus(Dictionary<string, List<MenuItem>> menus)
         {
-            menus["playermenu"] = new List<MenuItem>()
+            menus["player"] = new List<MenuItem>()
             {
                 new MenuItem()
                 {
                     text = "Change Skin",
-                    sub = "playerskinmenu"
+                    sub = "player.skin"
                 },
                 new MenuItem()
                 {
@@ -74,32 +74,32 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
-            menus["playerskinmenu"] = new List<MenuItem>()
+            menus["player.skin"] = new List<MenuItem>()
             {
                 new MenuItem()
                 {
                     text = "Recent",
-                    sub = "playerskinrecent"
+                    sub = "player.skin.recent"
                 },
                 new MenuItem()
                 {
                     text = "Animals",
-                    sub = "playerskinanimals"
+                    sub = "player.skin.animals"
                 },
                 new MenuItem()
                 {
                     text = "Main Characters",
-                    sub = "playerskincharacters"
+                    sub = "player.skin.mainCharacters"
                 },
                 new MenuItem()
                 {
                     text = "Pedestrians",
-                    sub = "playerskinpeds"
+                    sub = "player.skin.pedestrians"
                 },
                 new MenuItem()
                 {
                     text = "Custom",
-                    sub = "playerskincustom"
+                    sub = "player.skin.custom"
                 },
                 new MenuItem()
                 {
@@ -113,8 +113,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
-            menus["playermenu"] = AddParentField("mainmenu", menus["playermenu"]);
-            menus["playerskinmenu"] = AddParentField("playermenu", menus["playerskinmenu"]);
+            menus["player"] = AddParentField("mainmenu", menus["player"]);
+            menus["player.skin"] = AddParentField("player", menus["player.skin"]);
 
             return menus;
         }

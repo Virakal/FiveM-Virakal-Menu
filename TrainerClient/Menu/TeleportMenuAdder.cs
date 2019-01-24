@@ -8,7 +8,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
     {
         public override Dictionary<string, List<MenuItem>> AddMenus(Dictionary<string, List<MenuItem>> menus)
         {
-            menus["teleportmenu"] = new List<MenuItem>()
+            menus["teleport"] = new List<MenuItem>()
             {
                 new MenuItem() {
                     text = "Show Coords",
@@ -16,7 +16,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem() {
                     text = "To Player",
-                    sub = "teleportplayermenu"
+                    sub = "teleport.toPlayer"
                 },
                 new MenuItem() {
                     text = "To Last Vehicle",
@@ -52,8 +52,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 }
             };
 
-            menus["teleportmenu"] = AddParentField("mainmenu", menus["teleportmenu"]);
-            menus["teleportplayermenu"] = AddParentField("teleportmenu", MakePlayerMenu());
+            menus["teleport"] = AddParentField("mainmenu", menus["teleport"]);
+            menus["teleport.toPlayer"] = AddParentField("teleport", MakePlayerMenu());
 
             return menus;
         }

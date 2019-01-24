@@ -14,11 +14,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             {
                 new MenuItem() {
                     text = "Player",
-                    sub = "playermenu"
+                    sub = "player"
                 },
                 new MenuItem() {
                     text = "Teleport",
-                    sub = "teleportmenu"
+                    sub = "teleport"
                 },
                 new MenuItem() {
                     text = "Vehicles",
@@ -34,7 +34,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem() {
                     text = "Settings",
-                    sub = "settingsmenu"
+                    sub = "settings"
                 },
                 new MenuItem() {
                     text = "Animate",
