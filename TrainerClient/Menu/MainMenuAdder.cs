@@ -26,11 +26,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem() {
                     text = "Weapons",
-                    sub = "weaponsmenu"
+                    sub = "weapons"
                 },
                 new MenuItem() {
                     text = "Police",
-                    sub = "policemenu"
+                    sub = "police"
                 },
                 new MenuItem() {
                     text = "Settings",
@@ -38,11 +38,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem() {
                     text = "Animate",
-                    sub = "animationmenu"
+                    sub = "animation"
                 },
                 new MenuItem() {
                     text = "UI",
-                    sub = "uimenu"
+                    sub = "ui"
                 },
                 new MenuItem() {
                     text = "Animal Bombs",

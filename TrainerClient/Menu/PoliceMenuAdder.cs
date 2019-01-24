@@ -10,7 +10,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
     {
         public override Dictionary<string, List<MenuItem>> AddMenus(Dictionary<string, List<MenuItem>> menus)
         {
-            menus["policemenu"] = new List<MenuItem>()
+            menus["police"] = new List<MenuItem>()
             {
                 new MenuItem() {
                     text = "Disable Police For You",
@@ -51,7 +51,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
             };
 
-            menus["policemenu"] = AddParentField("mainmenu", menus["policemenu"]);
+            menus["police"] = AddParentField("mainmenu", menus["police"]);
 
             return menus;
         }

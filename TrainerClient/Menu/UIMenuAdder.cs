@@ -10,7 +10,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
     {
         public override Dictionary<string, List<MenuItem>> AddMenus(Dictionary<string, List<MenuItem>> menus)
         {
-            menus["uimenu"] = new List<MenuItem>()
+            menus["ui"] = new List<MenuItem>()
             {
                 new MenuItem()
                 {
@@ -28,7 +28,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
-            menus["uimenu"] = AddParentField("mainmenu", menus["uimenu"]);
+            menus["ui"] = AddParentField("mainmenu", menus["ui"]);
 
             return menus;
         }
