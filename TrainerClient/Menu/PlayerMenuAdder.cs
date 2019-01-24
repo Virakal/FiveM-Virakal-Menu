@@ -115,7 +115,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             };
 
             menus["player.skin.animals"] = ToMenuItems(PedModelList.GetByType(PedModelType.Animal));
+            menus["player.skin.mainCharacters"] = ToMenuItems(PedModelList.GetByType(PedModelType.MainCharacter));
             menus["player.skin.pedestrians"] = ToMenuItems(PedModelList.GetByType(PedModelType.Human));
+            menus["player.skin.custom"] = ToMenuItems(PedModelList.GetByType(PedModelType.Custom));
 
             return menus;
         }

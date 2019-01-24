@@ -10,5 +10,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
     {
         Human,
         Animal,
+        MainCharacter,
+        Custom,
     }
 }

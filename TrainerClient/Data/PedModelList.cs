@@ -3551,6 +3551,64 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Zombie",
                     Model = "u_m_y_zombie_01",
                 },
+
+                // Character
+                new PedModelListItem()
+                {
+                    Name = "Franklin",
+                    Model = "player_one",
+                    Type = PedModelType.MainCharacter,
+                },
+                new PedModelListItem()
+                {
+                    Name = "Michael",
+                    Model = "player_zero",
+                    Type = PedModelType.MainCharacter,
+                },
+                new PedModelListItem()
+                {
+                    Name = "Trevor",
+                    Model = "player_two",
+                    Type = PedModelType.MainCharacter,
+                },
+                new PedModelListItem()
+                {
+                    Name = "Multiplayer (Female)",
+                    Model = "mp_f_freemode_01",
+                    Type = PedModelType.MainCharacter,
+                },
+                new PedModelListItem()
+                {
+                    Name = "Multiplayer (Male)",
+                    Model = "mp_m_freemode_01",
+                    Type = PedModelType.MainCharacter,
+                },
+
+                // Custom
+                new PedModelListItem()
+                {
+                    Name = "Batman",
+                    Model = "batman",
+                    Type = PedModelType.Custom,
+                },
+                new PedModelListItem()
+                {
+                    Name = "Stan Lee",
+                    Model = "stan_lee",
+                    Type = PedModelType.Custom,
+                },
+                new PedModelListItem()
+                {
+                    Name = "Spiderman",
+                    Model = "spiderman",
+                    Type = PedModelType.Custom,
+                },
+                new PedModelListItem()
+                {
+                    Name = "Wonder Woman",
+                    Model = "wonderwoman",
+                    Type = PedModelType.Custom,
+                },
             });
         }
     }
