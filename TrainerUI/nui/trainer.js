@@ -153,16 +153,13 @@ Vue.component('preview-image', {
     props: ['img'],
     template: '<div id="imagecontainer" v-if="img"><img :src="img"></div>'
 });
-var menus = {
-    mainmenu: []
-};
 var app = new Vue({
     el: '#vuecontainer',
     data: {
         trainerTitle: trainerTitle,
         maxPageSize: maxPageSize,
         showTrainer: false,
-        menus: menus,
+        menus: {},
         currentMenuKey: 'mainmenu',
         page: 0,
         selected: 0,

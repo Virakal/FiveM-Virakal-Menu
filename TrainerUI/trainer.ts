@@ -118,7 +118,7 @@ function showMenu(menuName: string): void {
 }
 
 function handleSelection(): void {
-	let sel: MenuItem = this.currentItem;
+	const sel: MenuItem = this.currentItem;
 	
 	if (sel.sub) {
 		this.showMenu(sel.sub);
@@ -138,7 +138,7 @@ function handleSelection(): void {
 		// Not sure why I need this, but state updates no longer pass to the main menu
 		this.$forceUpdate();
 
-		let data: string[] = sel.action.split(' ');
+		const data: string[] = sel.action.split(' ');
 
 		if (data[1] === '*') {
 			console.log("Subdata not implemented");
@@ -253,17 +253,13 @@ Vue.component('preview-image', {
 	template: '<div id="imagecontainer" v-if="img"><img :src="img"></div>',
 });
 
-let menus = {
-	mainmenu: [/* Loading placeholder */],
-};
-
 const app = new Vue({
 	el: '#vuecontainer',
 	data: {
 		trainerTitle,
 		maxPageSize,
 		showTrainer: false,
-		menus: menus,
+		menus: {},
 		currentMenuKey: 'mainmenu',
 		page: 0,
 		selected: 0,
