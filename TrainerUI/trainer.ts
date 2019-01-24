@@ -324,7 +324,7 @@ const app = new Vue({
 });
 
 window.addEventListener('message', function (event) {
-	let item = event.data;
+	const item = event.data;
 
 	if (item.showtrainer) {
 		app.openTrainer();
