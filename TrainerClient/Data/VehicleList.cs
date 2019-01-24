@@ -2112,6 +2112,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Banshee 900R",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0b/Banshee900R-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180513190135",
                     Model = "banshee2",
+                    Dlc = Dlc.January2016Update,
                 },
                 new VehicleListItem()
                 {
@@ -2251,6 +2252,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Sultan RS",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c1/SultanRS-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160128182129",
                     Model = "sultanrs",
+                    Dlc = Dlc.January2016Update,
                 },
                 new VehicleListItem()
                 {
