@@ -1239,12 +1239,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 },
                 new VehicleListItem()
                 {
-                    Name = "Hot Rod Blazer",
-                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/05/HotRodBlazer-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160927172000",
-                    Model = "blazer3",
-                },
-                new VehicleListItem()
-                {
                     Name = "Innovation",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/13/Innovation-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302173556",
                     Model = "innovation",
@@ -1342,12 +1336,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Sovereign",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/98/Sovereign-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302172751",
                     Model = "sovereign",
-                },
-                new VehicleListItem()
-                {
-                    Name = "Street Blazer",
-                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6e/StreetBlazer-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004180649",
-                    Model = "blazer4",
                 },
                 new VehicleListItem()
                 {
