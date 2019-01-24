@@ -719,12 +719,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 },
                 new VehicleListItem()
                 {
-                    Name = "Avenger",
-                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fe/Avenger-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218204931",
-                    Model = "avenger",
-                },
-                new VehicleListItem()
-                {
                     Name = "Buzzard",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/02/Buzzard-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160115184835",
                     Model = "buzzard",
@@ -1076,24 +1070,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "BF400",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/00/BF400-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164436",
                     Model = "bf400",
-                },
-                new VehicleListItem()
-                {
-                    Name = "Blazer",
-                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/35/Blazer-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018175627",
-                    Model = "blazer",
-                },
-                new VehicleListItem()
-                {
-                    Name = "Blazer Aqua",
-                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/05/BlazerAqua-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213201629",
-                    Model = "blazer5",
-                },
-                new VehicleListItem()
-                {
-                    Name = "Blazer Lifeguard",
-                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b4/BlazerLifeguard-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111194438",
-                    Model = "blazer2",
                 },
                 new VehicleListItem()
                 {
