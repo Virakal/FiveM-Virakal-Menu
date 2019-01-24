@@ -47,6 +47,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
             menus["funspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetByTag("fun"));
 
+            menus = AddSpawnByDlcMenus(menus, "vehiclesspawnmenu");
+
             // Add vehicle appearance menus
             menus["vehiclerainbowmenu"] = GetRainbowMenu();
             menus["vehiclecolourrainbowspeed"] = GetRainbowSpeedMenu();
@@ -102,6 +104,38 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["coupespawnmenu"] = AddParentField("vehiclesspawnmenu", menus["coupespawnmenu"]);
             menus["utilityspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["utilityspawnmenu"]);
             menus["funspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["funspawnmenu"]);
+
+            return menus;
+        }
+
+        private Dictionary<string, List<MenuItem>> AddSpawnByDlcMenus(Dictionary<string, List<MenuItem>> menus, string parentName)
+        {
+            List<MenuItem> dlcMenuList = new List<MenuItem>();
+
+            foreach (Dlc dlc in Enum.GetValues(typeof(Dlc)))
+            {
+                string submenuName = $"dlcspawn{dlc.ToString().ToLower()}menu";
+
+                dlcMenuList.Add(new MenuItem()
+                {
+                    text = dlc.GetTitle(),
+                    sub = submenuName,
+                });
+
+                menus[submenuName] = AddVehicleSpawnMenu(VehicleList.GetByDlc(dlc));
+
+                if (menus[submenuName].Count == 0)
+                {
+                    menus[submenuName].Add(new MenuItem()
+                    {
+                        text = "No vehicles added for this DLC yet"
+                    });
+                }
+
+                menus[submenuName] = AddParentField("vehiclesspawndlcmenu", menus[submenuName]);
+            }
+
+            menus["vehiclesspawndlcmenu"] = AddParentField(parentName, dlcMenuList);
 
             return menus;
         }
@@ -212,6 +246,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 {
                     text = "Spawn Vehicle by Name",
                     action = "vehspawn input"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Vehicle by DLC",
+                    sub = "vehiclesspawndlcmenu"
                 },
                 new MenuItem()
                 {
