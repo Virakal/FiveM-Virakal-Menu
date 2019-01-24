@@ -9,43 +9,35 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 {
     public static class VehicleList
     {
-        private static Dictionary<VehicleClass, List<VehicleListItem>> Lists { get; } = new Dictionary<VehicleClass, List<VehicleListItem>>();
+        private static List<VehicleListItem> Vehicles { get; } = new List<VehicleListItem>();
         private static Dictionary<int, VehicleListItem> modelHashCache = new Dictionary<int, VehicleListItem>();
         private static bool initialised = false;
 
-        public static List<VehicleListItem> GetList(VehicleClass listName)
+        public static IEnumerable<VehicleListItem> GetByVehicleClass(VehicleClass vehicleClass)
         {
             Initialise();
 
-            return Lists[listName];
+            return Vehicles
+                .Where((item) => item.VehicleClass == vehicleClass)
+                .OrderBy((x) => x.Name);
         }
 
-        public static List<VehicleListItem> GetByTag(string tag)
+        public static IEnumerable<VehicleListItem> GetByTag(string tag)
         {
-            List<VehicleListItem> list = new List<VehicleListItem>();
+            Initialise();
 
-            foreach (var kv in Lists)
-            {
-                list = list.Concat(kv.Value.Where((item) => item.HasTag(tag))).ToList();
-            }
-
-            list.Sort((x, y) => x.Name.CompareTo(y.Name));
-
-            return list;
+            return Vehicles
+                .Where((item) => item.HasTag(tag))
+                .OrderBy((x) => x.Name);
         }
 
-        public static List<VehicleListItem> GetByDlc(Dlc dlc)
+        public static IEnumerable<VehicleListItem> GetByDlc(Dlc dlc)
         {
-            List<VehicleListItem> list = new List<VehicleListItem>();
+            Initialise();
 
-            foreach (var kv in Lists)
-            {
-                list = list.Concat(kv.Value.Where((item) => item.Dlc == dlc)).ToList();
-            }
-
-            list.Sort((x, y) => x.Name.CompareTo(y.Name));
-
-            return list;
+            return Vehicles
+                .Where((item) => item.Dlc == dlc)
+                .OrderBy((x) => x.Name);
         }
 
         public static VehicleListItem FindItemByHash(int hash)
@@ -57,15 +49,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 
             VehicleListItem result = null;
 
-            foreach (var kv in Lists)
+            foreach (var item in Vehicles)
             {
-                foreach (var item in kv.Value)
+                if (item.ModelHash == hash)
                 {
-                    if (item.ModelHash == hash)
-                    {
-                        result = item;
-                        break;
-                    }
+                    result = item;
+                    break;
                 }
             }
 
@@ -81,30 +70,28 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 return;
             }
 
-            Lists[VehicleClass.Boats] = InitialiseBoats();
-            Lists[VehicleClass.Commercial] = InitialiseCommercial();
-            Lists[VehicleClass.Compacts] = InitialiseCompacts();
-            Lists[VehicleClass.Coupes] = InitialiseCoupes();
-            Lists[VehicleClass.Cycles] = InitialiseCycles();
-            Lists[VehicleClass.Emergency] = InitialiseEmergency();
-            Lists[VehicleClass.Helicopters] = InitialiseHelicopters();
-            Lists[VehicleClass.Industrial] = InitialiseIndustrial();
-            Lists[VehicleClass.Military] = InitialiseMilitary();
-            Lists[VehicleClass.Motorcycles] = InitialiseMotorcycles();
-            Lists[VehicleClass.OffRoad] = InitialiseOffRoad();
-            Lists[VehicleClass.Planes] = InitialisePlanes();
-            Lists[VehicleClass.Service] = InitialiseService();
-            Lists[VehicleClass.Super] = InitialiseSuper();
-            Lists[VehicleClass.Utility] = InitialiseUtility();
-
-            AddVehicleClasses();
+            InitialiseBoats();
+            InitialiseCommercial();
+            InitialiseCompacts();
+            InitialiseCoupes();
+            InitialiseCycles();
+            InitialiseEmergency();
+            InitialiseHelicopters();
+            InitialiseIndustrial();
+            InitialiseMilitary();
+            InitialiseMotorcycles();
+            InitialiseOffRoad();
+            InitialisePlanes();
+            InitialiseService();
+            InitialiseSuper();
+            InitialiseUtility();
 
             initialised = true;
         }
 
-        private static List<VehicleListItem> InitialiseBoats()
+        private static void InitialiseBoats()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Boats, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -240,12 +227,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Model = "tug",
                     Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseCommercial()
+        private static void InitialiseCommercial()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Commercial, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -379,12 +366,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Tags = new HashSet<string>() { "fun" },
                     Dlc = Dlc.AfterHours,
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseCompacts()
+        private static void InitialiseCompacts()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Compacts, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -465,12 +452,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cc/Rhapsody-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302171656",
                     Model = "rhapsody",
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseCoupes()
+        private static void InitialiseCoupes()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Coupes, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -557,12 +544,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cc/Zion-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929171027",
                     Model = "zion2",
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseCycles()
+        private static void InitialiseCycles()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Cycles, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -606,12 +593,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3b/WhippetRaceBike-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018181058",
                     Model = "tribike",
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseEmergency()
+        private static void InitialiseEmergency()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Emergency, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -723,12 +710,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7b/UnmarkedCruiser-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160308181831",
                     Model = "police4",
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseHelicopters()
+        private static void InitialiseHelicopters()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Helicopters, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -887,12 +874,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
                 },
 
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseIndustrial()
+        private static void InitialiseIndustrial()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Industrial, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -961,12 +948,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/11/Tipper-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018181108",
                     Model = "tiptruck2",
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseMilitary()
+        private static void InitialiseMilitary()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Military, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -1075,12 +1062,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Tags = new HashSet<string>() { "fun" },
                     Dlc = Dlc.TheDoomsdayHeist,
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseMotorcycles()
+        private static void InitialiseMotorcycles()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Motorcycles, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -1432,12 +1419,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Model = "zombieb",
                     Dlc = Dlc.Bikers,
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseOffRoad()
+        private static void InitialiseOffRoad()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.OffRoad, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -1793,12 +1780,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Model = "trophytruck",
                     Dlc = Dlc.CunningStunts,
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialisePlanes()
+        private static void InitialisePlanes()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Planes, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -2049,12 +2036,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Model = "volatol",
                     Dlc = Dlc.TheDoomsdayHeist,
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseService()
+        private static void InitialiseService()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Service, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -2132,12 +2119,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e3/Wastelander-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213203148",
                     Model = "wastelander",
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseSuper()
+        private static void InitialiseSuper()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Super, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -2412,12 +2399,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Model = "zentorno",
                     Dlc = Dlc.HighLifeUpdate,
                 },
-            };
+            }));
         }
 
-        private static List<VehicleListItem> InitialiseUtility()
+        private static void InitialiseUtility()
         {
-            return new List<VehicleListItem>()
+            Vehicles.AddRange(AddVehicleClass(VehicleClass.Utility, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -2536,21 +2523,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/10/UtilityTruck3-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626155333",
                     Model = "utillitruck3",
                 },
-            };
+            }));
         }
 
-        private static void AddVehicleClasses()
+        private static List<VehicleListItem> AddVehicleClass(VehicleClass vehicleClass, List<VehicleListItem> list)
         {
-            foreach (var kv in Lists)
-            {
-                kv.Value.ForEach((item) => item.VehicleClass = kv.Key);
-                /*
-                foreach (var item in kv.Value)
-                {
-                    ;
-                }
-                */
-            }
+            list.ForEach((item) => item.VehicleClass = vehicleClass);
+            return list;
         }
     }
 }

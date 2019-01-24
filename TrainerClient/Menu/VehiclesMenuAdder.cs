@@ -28,21 +28,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.mods"] = GetModsMenu();
 
             // Add vehicle spawn menus
-            menus["vehicles.spawn.boats"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Boats));
-            menus["vehicles.spawn.commercial"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Commercial));
-            menus["vehicles.spawn.compacts"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Compacts));
-            menus["vehicles.spawn.coupes"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Coupes));
-            menus["vehicles.spawn.pushbikes"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Cycles));
-            menus["vehicles.spawn.emergency"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Emergency));
-            menus["vehicles.spawn.helicopters"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Helicopters));
-            menus["vehicles.spawn.industrial"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Industrial));
-            menus["vehicles.spawn.military"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Military));
-            menus["vehicles.spawn.motorbikes"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Motorcycles));
-            menus["vehicles.spawn.offRoad"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.OffRoad));
-            menus["vehicles.spawn.planes"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Planes));
-            menus["vehicles.spawn.service"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Service));
-            menus["vehicles.spawn.super"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Super));
-            menus["vehicles.spawn.utility"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Utility));
+            menus["vehicles.spawn.boats"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Boats));
+            menus["vehicles.spawn.commercial"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Commercial));
+            menus["vehicles.spawn.compacts"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Compacts));
+            menus["vehicles.spawn.coupes"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Coupes));
+            menus["vehicles.spawn.pushbikes"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Cycles));
+            menus["vehicles.spawn.emergency"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Emergency));
+            menus["vehicles.spawn.helicopters"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Helicopters));
+            menus["vehicles.spawn.industrial"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Industrial));
+            menus["vehicles.spawn.military"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Military));
+            menus["vehicles.spawn.motorbikes"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Motorcycles));
+            menus["vehicles.spawn.offRoad"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.OffRoad));
+            menus["vehicles.spawn.planes"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Planes));
+            menus["vehicles.spawn.service"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Service));
+            menus["vehicles.spawn.super"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Super));
+            menus["vehicles.spawn.utility"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Utility));
 
             menus["vehicles.spawn.fun"] = AddVehicleSpawnMenu(VehicleList.GetByTag("fun"));
 
@@ -102,9 +102,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             return menus;
         }
 
-        private List<MenuItem> AddVehicleSpawnMenu(List<VehicleListItem> vehicleList)
+        private List<MenuItem> AddVehicleSpawnMenu(IEnumerable<VehicleListItem> vehicleList)
         {
-            List<MenuItem> list = new List<MenuItem>(vehicleList.Count);
+            List<MenuItem> list = new List<MenuItem>();
 
             foreach (var item in vehicleList)
             {
