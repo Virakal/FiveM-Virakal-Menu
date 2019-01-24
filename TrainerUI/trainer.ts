@@ -277,15 +277,15 @@ const app = new Vue({
 		menuPage: function (): MenuItem[] {
 			return this.menus[this.currentMenuKey].slice(this.page * this.maxPageSize, (this.page + 1) * this.maxPageSize);
 		},
-		currentItem: function () {
+		currentItem: function (): MenuItem {
 			const currentIndex = this.page * this.maxPageSize + this.selected;
 			return this.menus[this.currentMenuKey][currentIndex];
 		},
-		currentImage: function () {
+		currentImage: function (): string {
 			const currentIndex = this.page * this.maxPageSize + this.selected;
 			return this.menus[this.currentMenuKey][currentIndex] ? this.menus[this.currentMenuKey][currentIndex].image : null;
 		},
-		currentMenu: function () {
+		currentMenu: function (): MenuItem {
 			return this.menus[this.currentMenuKey];
 		},
 		parentKey: function (): string|boolean {
