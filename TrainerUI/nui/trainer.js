@@ -57,7 +57,7 @@ function setMenu(menuName, menuData) {
     console.log(`Receieved menu ${menuName}`);
     // console.log(JSON.stringify(menuData));
     this.menus[menuName] = menuData;
-    if (this.currentMenuKey === menuName && this.currentMenu !== menuData) {
+    if (this.currentMenuKey === menuName) {
         // Because the underlying menu has changed, we need to force the update
         console.log("Forcing the update");
         this.updateCurrentMenu();
