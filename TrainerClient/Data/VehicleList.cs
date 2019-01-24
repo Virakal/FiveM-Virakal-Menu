@@ -854,6 +854,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Swift",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9c/SwiftClassic-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160117175814",
                     Model = "swift",
+                    Dlc = Dlc.SanAndreasFlightSchoolUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1817,6 +1818,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Besra",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2a/Besra-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160927163752",
                     Model = "besra",
+                    Dlc = Dlc.SanAndreasFlightSchoolUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1934,6 +1936,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Miljet",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/bb/Miljet-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160117181440",
                     Model = "miljet",
+                    Dlc = Dlc.SanAndreasFlightSchoolUpdate,
                 },
                 new VehicleListItem()
                 {
