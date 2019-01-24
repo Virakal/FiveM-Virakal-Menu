@@ -2294,6 +2294,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 },
                 new VehicleListItem()
                 {
+                    Name = "Tyrus",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8f/Tyrus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160712122822",
+                    Model = "tyrus",
+                    Dlc = Dlc.CunningStunts,
+                },
+                new VehicleListItem()
+                {
                     Name = "Vacca",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b4/Vacca-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180331183726",
                     Model = "vacca",
