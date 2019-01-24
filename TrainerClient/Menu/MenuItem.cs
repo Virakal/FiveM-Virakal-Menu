@@ -25,6 +25,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string configkey;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string key;
     }
 
 }
