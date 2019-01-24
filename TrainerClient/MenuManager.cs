@@ -91,11 +91,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             Trainer.DebugLine("Sending all menus");
 
+            await BaseScript.Delay(0);
+
             foreach (var kv in Menus)
             {
                 Trainer.DebugLine($"Sending menu {kv.Key}");
                 SendMenu(kv.Key);
-                await BaseScript.Delay(100);
+                await BaseScript.Delay(10);
             }
 
             BaseScript.TriggerEvent("virakal:allMenusSent");
