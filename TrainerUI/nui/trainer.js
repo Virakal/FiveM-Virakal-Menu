@@ -20,22 +20,24 @@ function showPage(page) {
     this.selected = 0;
 }
 function pageExists(page) {
-    return page >= 0 && page <= this.pageCount;
+    return page >= 0 && page < this.pageCount;
 }
 function nextPage() {
+    console.log(`Current: ${this.page} Next: ${this.page + 1} PageCount: ${this.pageCount} NextExists: ${this.pageExists(this.page + 1)}`);
     if (this.pageExists(this.page + 1)) {
         this.showPage(this.page + 1);
     }
-    else {
+    else if (this.pageCount > 1) {
         this.showPage(0);
     }
     playSound('NAV_UP_DOWN');
 }
 function previousPage() {
+    console.log(`Current: ${this.page} Prev: ${this.page - 1} PageCount: ${this.pageCount} PrevExists: ${this.pageExists(this.page - 1)}`);
     if (this.pageExists(this.page - 1)) {
         this.showPage(this.page - 1);
     }
-    else {
+    else if (this.pageCount > 1) {
         this.showPage(this.pageCount - 1);
     }
     playSound('NAV_UP_DOWN');
@@ -193,7 +195,7 @@ Vue.component('trainer-option', {
  */
 Vue.component('page-indicator', {
     props: ['page', 'pageCount'],
-    template: '<p id="pageindicator">Page {{ page + 1 }} / {{ pageCount + 1 }}</p>',
+    template: '<p id="pageindicator">Page {{ page + 1 }} / {{ pageCount }}</p>',
 });
 /**
  * The floating preview image that shows cars, etc.
@@ -220,19 +222,19 @@ const app = new Vue({
     },
     computed: {
         pageCount: function () {
-            return Math.floor((this.currentMenu.length - 1) / this.maxPageSize);
+            return 1 + Math.floor(this.menus[this.currentMenuKey].length / this.maxPageSize);
         },
         menuPage: function () {
-            return this.currentMenu.slice(this.page * this.maxPageSize, (this.page + 1) * this.maxPageSize);
+            return this.menus[this.currentMenuKey].slice(this.page * this.maxPageSize, (this.page + 1) * this.maxPageSize);
         },
         currentIndex: function () {
             return this.page * this.maxPageSize + this.selected;
         },
         currentItem: function () {
-            return this.currentMenu[this.currentIndex];
+            return this.menus[this.currentMenuKey][this.currentIndex];
         },
         currentImage: function () {
-            return this.currentItem ? this.currentItem.image : null;
+            return this.menus[this.currentMenuKey][this.currentIndex] ? this.menus[this.currentMenuKey][this.currentIndex].image : null;
         },
         currentMenu: function () {
             return this.menus[this.currentMenuKey];
