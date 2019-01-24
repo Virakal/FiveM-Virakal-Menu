@@ -336,6 +336,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/1a/PhantomWedge-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202825",
                     Model = "phantom2",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
@@ -1158,12 +1159,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Diabolus",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/47/Diabolus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=201612141852073",
                     Model = "diablous",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
                     Name = "Diabolus Custom",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/11/DiabolusCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202213",
                     Model = "diablous2",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
@@ -1206,12 +1209,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "FCR 1000",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/95/FCR1000-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202343",
                     Model = "fcr",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
                     Name = "FCR 1000 Custom",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/87/FCR1000Custom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202416",
                     Model = "fcr2",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
@@ -1397,6 +1402,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Blazer (Aqua)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/05/BlazerAqua-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213201629",
                     Model = "blazer5",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
@@ -1609,6 +1615,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/51/RampBuggy-GTAO-FrontQuarter.png/revision/latest/scale-to-width-down/350?cb=20161215155004",
                     Model = "dune4",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
@@ -1616,6 +1623,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/55/RampBuggy2-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202129",
                     Model = "dune5",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
@@ -2143,24 +2151,28 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Itali GTB",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/44/ItaliGTB-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171103095537",
                     Model = "italigtb",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
                     Name = "Itali GTB Custom",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c5/ItaliGTBCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202528",
                     Model = "italigtb2",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
                     Name = "Nero",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5e/Nero-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202624",
                     Model = "nero",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
                     Name = "Nero Custom",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/40/NeroCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180331183629",
                     Model = "nero2",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
@@ -2173,6 +2185,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Penetrator",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9c/Penetrator-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213202741",
                     Model = "penetrator",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
@@ -2224,6 +2237,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Tempesta",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/35/Tempesta-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213203018",
                     Model = "tempesta",
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
@@ -2285,6 +2299,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/95/RocketVoltic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213203222",
                     Model = "voltic2",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.ImportExport,
                 },
                 new VehicleListItem()
                 {
