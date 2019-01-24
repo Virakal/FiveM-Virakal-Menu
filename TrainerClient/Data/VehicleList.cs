@@ -431,6 +431,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9f/IssiClassic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180325152715",
                     Model = "issi3",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
                 },
                 new VehicleListItem()
                 {
@@ -805,9 +806,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 },
                 new VehicleListItem()
                 {
-                    Name = "Seasparrow",
+                    Name = "Sea Sparrow",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5e/SeaSparrow-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180325183202",
                     Model = "seasparrow",
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
                 },
                 new VehicleListItem()
                 {
@@ -1473,6 +1475,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/17/Caracara-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180325152615",
                     Model = "caracara",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
                 },
                 new VehicleListItem()
                 {
@@ -2087,6 +2090,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Entity XXR",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9a/EntityXXR-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180325152709",
                     Model = "entity2",
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
                 },
                 new VehicleListItem()
                 {
@@ -2191,6 +2195,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Taipan",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4c/Taipan-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180328210610",
                     Model = "taipan",
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
                 },
                 new VehicleListItem()
                 {
@@ -2203,6 +2208,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Tezeract",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/ca/Tezeract-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180331183737",
                     Model = "tezeract",
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
                 },
                 new VehicleListItem()
                 {
@@ -2215,6 +2221,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Tyrant",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f7/Tyrant-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20190106193204",
                     Model = "tyrant",
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
                 },
                 new VehicleListItem()
                 {
