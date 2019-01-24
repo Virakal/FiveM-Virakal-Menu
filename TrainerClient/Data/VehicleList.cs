@@ -129,6 +129,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Dinghy (Yacht Version)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b4/Dinghy4-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20170723192358",
                     Model = "dinghy4",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
@@ -171,6 +172,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Seashark (Yacht Version)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/94/Seashark3-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216190935",
                     Model = "seashark3",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
@@ -183,6 +185,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Speeder (Yacht Version)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c2/Speeder2-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216190736",
                     Model = "speeder2",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
@@ -213,6 +216,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Toro (Yacht Version)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ed/Toro2-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216190811",
                     Model = "toro2",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
@@ -225,6 +229,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Tropic (Yacht Version)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/57/Tropic2-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216190857",
                     Model = "tropic2",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
@@ -832,12 +837,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "SuperVolito",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4d/SuperVolito-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216173044",
                     Model = "supervolito",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
                     Name = "SuperVolito Carbon",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/91/SuperVolitoCarbon-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172545",
                     Model = "supervolito2",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
@@ -862,6 +869,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Valkyrie MOD.0",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/77/ValkyrieMOD0-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172704",
                     Model = "valkyrie2",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
