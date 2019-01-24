@@ -105,9 +105,8 @@ function handleSelection() {
     playSound('SELECT');
 }
 function goBack() {
-    var sel = this.currentItem;
-    if (sel.parent) {
-        this.showMenu(sel.parent);
+    if (this.parentKey) {
+        this.showMenu(this.parentKey);
     }
     else {
         this.closeTrainer();
@@ -188,6 +187,16 @@ var app = new Vue({
         },
         currentMenu: function () {
             return this.menus[this.currentMenuKey];
+        },
+        parentKey: function () {
+            if (this.currentMenuKey === "mainmenu") {
+                return false;
+            }
+            var lastDot = this.currentMenuKey.lastIndexOf(".");
+            if (lastDot === -1) {
+                return "mainmenu";
+            }
+            return this.currentMenuKey.substring(0, lastDot);
         }
     },
     methods: {

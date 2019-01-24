@@ -158,10 +158,8 @@ function handleSelection(): void {
 }
 
 function goBack(): void {
-	let sel = this.currentItem;
-
-	if (sel.parent) {
-		this.showMenu(sel.parent);
+	if (this.parentKey) {
+		this.showMenu(this.parentKey);
 	} else {
 		this.closeTrainer();
 	}
@@ -291,6 +289,22 @@ const app = new Vue({
 		currentMenu: function () {
 			return this.menus[this.currentMenuKey];
 		},
+		parentKey: function (): string|boolean {
+			// The main menu has no parent
+			if (this.currentMenuKey === "mainmenu") {
+				return false;
+			}
+
+			const lastDot = this.currentMenuKey.lastIndexOf(".");
+
+			// A key without a dot is a top-level one, so the parent is the main menu
+			if (lastDot === -1) {
+				return "mainmenu";
+			}
+
+			// Get the string up to the last dot, so a.b.c returns a.b
+			return this.currentMenuKey.substring(0, lastDot);
+		}
 	},
 	methods: {
 		showPage,
