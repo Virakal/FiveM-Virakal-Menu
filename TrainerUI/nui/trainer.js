@@ -52,7 +52,8 @@ function resetTrainer() {
     this.showMenu('mainmenu');
 }
 function setMenu(menuName, menuData) {
-    console.log(`Receieved menu ${menuName}: ${JSON.stringify(menuData)}`);
+    console.log(`Receieved menu ${menuName}`);
+    // console.log(JSON.stringify(menuData));
     this.menus[menuName] = menuData;
     if (this.currentMenuKey === menuName && this.currentMenu !== menuData) {
         // Because the underlying menu has changed, we need to force the update
@@ -100,6 +101,8 @@ function handleSelection() {
                 sel.state = "ON";
             }
         }
+        console.log(`Sel: ${sel.state}, Orig: ${this.currentItem.state}`);
+        this.$forceUpdate();
         let data = sel.action.split(' ');
         if (data[1] === '*') {
             console.log("Subdata not implemented");
@@ -109,6 +112,7 @@ function handleSelection() {
             console.log("Recent skins not yet implemented");
             // addToRecentSkins(data[1], item);
         }
+        console.log(`Sending ${data[0]}, action: ${data[1]}, newState: ${newState}`);
         sendData(data[0], { action: data[1], newstate: newState, itemtext: sel.text });
     }
     playSound('SELECT');

@@ -77,7 +77,8 @@ function resetTrainer(): void {
 }
 
 function setMenu(menuName: string, menuData: MenuItem[]): void {
-	console.log(`Receieved menu ${menuName}: ${JSON.stringify(menuData)}`);
+	console.log(`Receieved menu ${menuName}`);
+	// console.log(JSON.stringify(menuData));
 	this.menus[menuName] = menuData;
 
 	if (this.currentMenuKey === menuName && this.currentMenu !== menuData) {
@@ -132,6 +133,9 @@ function handleSelection(): void {
 			}
 		}
 
+		console.log(`Sel: ${sel.state}, Orig: ${this.currentItem.state}`);
+		this.$forceUpdate();
+
 		let data: string[] = sel.action.split(' ');
 
 		if (data[1] === '*') {
@@ -144,6 +148,7 @@ function handleSelection(): void {
 			// addToRecentSkins(data[1], item);
 		}
 
+		console.log(`Sending ${data[0]}, action: ${data[1]}, newState: ${newState}`);
 		sendData(data[0], { action: data[1], newstate: newState, itemtext: sel.text });
 	}
 
