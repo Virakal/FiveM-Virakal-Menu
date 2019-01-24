@@ -284,6 +284,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/54/HaulerCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621151444",
                     Model = "hauler2",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -327,6 +328,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Phantom Custom",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/70/PhantomCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621151532",
                     Model = "phantom3",
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -957,6 +959,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5d/APC-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614144137",
                     Model = "apc",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -1004,6 +1007,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3f/Halftrack-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621144406",
                     Model = "halftrack",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -1275,6 +1279,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/16/Oppressor-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143950",
                     Model = "oppressor",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -1509,6 +1514,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/65/DuneFAV-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143657",
                     Model = "dune3",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -1547,6 +1553,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Insurgent Pick-Up Custom",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/88/InsurgentPickupCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621145807",
                     Model = "insurgent3",
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -1606,6 +1613,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Nightshark",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0c/Nightshark-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143609",
                     Model = "nightshark",
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -1677,6 +1685,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/74/TechnicalCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170621150631",
                     Model = "technical3",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -2258,6 +2267,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Vagner",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/14/Vagner-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171220190908",
                     Model = "vagner",
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -2298,6 +2308,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "XA-21",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/69/XA21-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143529",
                     Model = "xa21",
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
@@ -2324,6 +2335,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0e/Caddy-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018175900",
                     Model = "caddy",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.Gunrunning,
                 },
                 new VehicleListItem()
                 {
