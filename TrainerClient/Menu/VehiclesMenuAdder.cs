@@ -19,91 +19,90 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         public override Dictionary<string, List<MenuItem>> AddMenus(Dictionary<string, List<MenuItem>> menus)
         {
-            menus["vehiclesmenu"] = GetVehiclesMenu();
+            menus["vehicles"] = GetVehiclesMenu();
 
-            menus["vehiclesspawnmenu"] = GetSpawnMenu();
-            menus["vehiclessavemenu"] = GetGarageSaveMenu();
-            menus["vehiclesloadmenu"] = GetGarageLoadMenu();
-            menus["vehiclescolourmenu"] = GetAppearanceMenu();
-            menus["vehiclesmodsmenu"] = GetModsMenu();
-            menus["vehiclescolourmenu"] = GetAppearanceMenu();
+            menus["vehicles.spawn"] = GetSpawnMenu();
+            menus["vehicles.save"] = GetGarageSaveMenu();
+            menus["vehicles.load"] = GetGarageLoadMenu();
+            menus["vehicles.appearance"] = GetAppearanceMenu();
+            menus["vehicles.mods"] = GetModsMenu();
 
             // Add vehicle spawn menus
-            menus["boatspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Boats));
-            menus["commercialspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Commercial));
-            menus["compactspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Compacts));
-            menus["coupespawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Coupes));
-            menus["pushbikespawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Cycles));
-            menus["emergencyspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Emergency));
-            menus["helispawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Helicopters));
-            menus["industrialspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Industrial));
-            menus["militaryspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Military));
-            menus["motorbikespawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Motorcycles));
-            menus["offroadspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.OffRoad));
-            menus["planespawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Planes));
-            menus["servicespawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Service));
-            menus["superspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Super));
-            menus["utilityspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Utility));
+            menus["vehicles.spawn.boats"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Boats));
+            menus["vehicles.spawn.commercial"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Commercial));
+            menus["vehicles.spawn.compacts"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Compacts));
+            menus["vehicles.spawn.coupes"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Coupes));
+            menus["vehicles.spawn.pushbikes"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Cycles));
+            menus["vehicles.spawn.emergency"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Emergency));
+            menus["vehicles.spawn.helicopters"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Helicopters));
+            menus["vehicles.spawn.industrial"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Industrial));
+            menus["vehicles.spawn.military"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Military));
+            menus["vehicles.spawn.motorbikes"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Motorcycles));
+            menus["vehicles.spawn.offRoad"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.OffRoad));
+            menus["vehicles.spawn.planes"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Planes));
+            menus["vehicles.spawn.service"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Service));
+            menus["vehicles.spawn.super"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Super));
+            menus["vehicles.spawn.utility"] = AddVehicleSpawnMenu(VehicleList.GetList(VehicleClass.Utility));
 
-            menus["funspawnmenu"] = AddVehicleSpawnMenu(VehicleList.GetByTag("fun"));
+            menus["vehicles.spawn.fun"] = AddVehicleSpawnMenu(VehicleList.GetByTag("fun"));
 
-            menus = AddSpawnByDlcMenus(menus, "vehiclesspawnmenu");
+            menus = AddSpawnByDlcMenus(menus, "vehicles.spawn");
 
             // Add vehicle appearance menus
-            menus["vehiclerainbowmenu"] = GetRainbowMenu();
-            menus["vehiclecolourrainbowspeed"] = GetRainbowSpeedMenu();
-            menus["boostpowermenu"] = GetBoostPowerMenu();
-            menus["vehiclesnumberplatemenu"] = GetPlatesMenu();
-            menus["vehiclewindowtintmenu"] = GetWindowTintMenu();
-            menus["vehiclelivery"] = GetLiveryMenu();
-            menus["vehiclerooflivery"] = GetRoofLiveryMenu();
+            menus["vehicles.appearance.rainbowSettings"] = GetRainbowMenu();
+            menus["vehicles.appearance.rainbowSettings.speed"] = GetRainbowSpeedMenu();
+            menus["vehicles.boostPower"] = GetBoostPowerMenu();
+            menus["vehicles.appearance.numberPlateSettings"] = GetPlatesMenu();
+            menus["vehicles.appearance.windowTintSettings"] = GetWindowTintMenu();
+            menus["vehicles.appearance.livery"] = GetLiveryMenu();
+            menus["vehicles.appearance.roofLivery"] = GetRoofLiveryMenu();
 
-            menus["vehiclescolourcustommenu"] = GetCustomColourMenu("vehcolor");
+            menus["vehicles.appearance.primaryColour"] = GetCustomColourMenu("vehcolor");
 
-            menus["vehiclescolourbothmenu"] = GetPaintColourMenu("vehboth");
-            menus["vehiclescolourprimarymenu"] = GetPaintColourMenu("vehprimary");
-            menus["vehiclescoloursecondarymenu"] = GetPaintColourMenu("vehsecondary");
-            menus["vehiclescolourpearlescentmenu"] = GetPaintColourMenu("vehpearl");
-            menus["vehiclescolourrimmenu"] = GetPaintColourMenu("vehrim");
-            menus["vehiclescolordashmenu"] = GetPaintColourMenu("vehdashcolour");
+            menus["vehicles.appearance.bothColour"] = GetPaintColourMenu("vehboth");
+            menus["vehicles.appearance.primaryColour"] = GetPaintColourMenu("vehprimary");
+            menus["vehicles.appearance.secondaryColour"] = GetPaintColourMenu("vehsecondary");
+            menus["vehicles.appearance.pearlescentColour"] = GetPaintColourMenu("vehpearl");
+            menus["vehicles.appearance.rimColour"] = GetPaintColourMenu("vehrim");
+            menus["vehicles.appearance.dashColour"] = GetPaintColourMenu("vehdashcolour");
 
             // Populate "parent" fields so the back button works.
-            menus["vehiclesmenu"] = AddParentField("mainmenu", menus["vehiclesmenu"]);
-            menus["vehiclesspawnmenu"] = AddParentField("vehiclesmenu", menus["vehiclesspawnmenu"]);
-            menus["vehiclesmodsmenu"] = AddParentField("vehiclesmenu", menus["vehiclesmodsmenu"]);
-            menus["vehiclescolourmenu"] = AddParentField("vehiclesmenu", menus["vehiclescolourmenu"]);
-            menus["vehiclescolourcustommenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourcustommenu"]);
-            menus["vehiclescolourbothmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourbothmenu"]);
-            menus["vehiclescolourprimarymenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourprimarymenu"]);
-            menus["vehiclescoloursecondarymenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescoloursecondarymenu"]);
-            menus["vehiclescolourpearlescentmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourpearlescentmenu"]);
-            menus["vehiclescolourrimmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolourrimmenu"]);
-            menus["vehiclescolordashmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclescolordashmenu"]);
-            menus["vehiclerainbowmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclerainbowmenu"]);
-            menus["vehiclesnumberplatemenu"] = AddParentField("vehiclescolourmenu", menus["vehiclesnumberplatemenu"]);
-            menus["vehiclewindowtintmenu"] = AddParentField("vehiclescolourmenu", menus["vehiclewindowtintmenu"]);
-            menus["vehiclelivery"] = AddParentField("vehiclescolourmenu", menus["vehiclelivery"]);
-            menus["vehiclerooflivery"] = AddParentField("vehiclescolourmenu", menus["vehiclerooflivery"]);
-            menus["vehiclecolourrainbowspeed"] = AddParentField("vehiclerainbowmenu", menus["vehiclecolourrainbowspeed"]);
-            menus["boostpowermenu"] = AddParentField("vehiclesmenu", menus["boostpowermenu"]);
-            menus["vehiclessavemenu"] = AddParentField("vehiclesmenu", menus["vehiclessavemenu"]);
-            menus["vehiclesloadmenu"] = AddParentField("vehiclesmenu", menus["vehiclesloadmenu"]);
-            menus["boatspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["boatspawnmenu"]);
-            menus["helispawnmenu"] = AddParentField("vehiclesspawnmenu", menus["helispawnmenu"]);
-            menus["militaryspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["militaryspawnmenu"]);
-            menus["motorbikespawnmenu"] = AddParentField("vehiclesspawnmenu", menus["motorbikespawnmenu"]);
-            menus["planespawnmenu"] = AddParentField("vehiclesspawnmenu", menus["planespawnmenu"]);
-            menus["pushbikespawnmenu"] = AddParentField("vehiclesspawnmenu", menus["pushbikespawnmenu"]);
-            menus["industrialspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["industrialspawnmenu"]);
-            menus["superspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["superspawnmenu"]);
-            menus["servicespawnmenu"] = AddParentField("vehiclesspawnmenu", menus["servicespawnmenu"]);
-            menus["emergencyspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["emergencyspawnmenu"]);
-            menus["commercialspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["commercialspawnmenu"]);
-            menus["offroadspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["offroadspawnmenu"]);
-            menus["compactspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["compactspawnmenu"]);
-            menus["coupespawnmenu"] = AddParentField("vehiclesspawnmenu", menus["coupespawnmenu"]);
-            menus["utilityspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["utilityspawnmenu"]);
-            menus["funspawnmenu"] = AddParentField("vehiclesspawnmenu", menus["funspawnmenu"]);
+            menus["vehicles"] = AddParentField("mainmenu", menus["vehicles"]);
+            menus["vehicles.spawn"] = AddParentField("vehicles", menus["vehicles.spawn"]);
+            menus["vehicles.mods"] = AddParentField("vehicles", menus["vehicles.mods"]);
+            menus["vehicles.appearance"] = AddParentField("vehicles", menus["vehicles.appearance"]);
+            menus["vehicles.appearance.primaryColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.primaryColour"]);
+            menus["vehicles.appearance.bothColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.bothColour"]);
+            menus["vehicles.appearance.primaryColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.primaryColour"]);
+            menus["vehicles.appearance.secondaryColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.secondaryColour"]);
+            menus["vehicles.appearance.pearlescentColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.pearlescentColour"]);
+            menus["vehicles.appearance.rimColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.rimColour"]);
+            menus["vehicles.appearance.dashColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.dashColour"]);
+            menus["vehicles.appearance.rainbowSettings"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.rainbowSettings"]);
+            menus["vehicles.appearance.numberPlateSettings"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.numberPlateSettings"]);
+            menus["vehicles.appearance.windowTintSettings"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.windowTintSettings"]);
+            menus["vehicles.appearance.livery"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.livery"]);
+            menus["vehicles.appearance.roofLivery"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.roofLivery"]);
+            menus["vehicles.appearance.rainbowSettings.speed"] = AddParentField("vehicles.appearance.rainbowSettings", menus["vehicles.appearance.rainbowSettings.speed"]);
+            menus["vehicles.boostPower"] = AddParentField("vehicles", menus["vehicles.boostPower"]);
+            menus["vehicles.save"] = AddParentField("vehicles", menus["vehicles.save"]);
+            menus["vehicles.load"] = AddParentField("vehicles", menus["vehicles.load"]);
+            menus["vehicles.spawn.boats"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.boats"]);
+            menus["vehicles.spawn.helicopters"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.helicopters"]);
+            menus["vehicles.spawn.military"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.military"]);
+            menus["vehicles.spawn.motorbikes"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.motorbikes"]);
+            menus["vehicles.spawn.planes"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.planes"]);
+            menus["vehicles.spawn.pushbikes"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.pushbikes"]);
+            menus["vehicles.spawn.industrial"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.industrial"]);
+            menus["vehicles.spawn.super"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.super"]);
+            menus["vehicles.spawn.service"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.service"]);
+            menus["vehicles.spawn.emergency"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.emergency"]);
+            menus["vehicles.spawn.commercial"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.commercial"]);
+            menus["vehicles.spawn.offRoad"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.offRoad"]);
+            menus["vehicles.spawn.compacts"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.compacts"]);
+            menus["vehicles.spawn.coupes"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.coupes"]);
+            menus["vehicles.spawn.utility"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.utility"]);
+            menus["vehicles.spawn.fun"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.fun"]);
 
             return menus;
         }
@@ -114,7 +113,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
             foreach (Dlc dlc in Enum.GetValues(typeof(Dlc)))
             {
-                string submenuName = $"dlcspawn{dlc.ToString().ToLower()}menu";
+                string submenuName = $"vehicles.spawn.dlc.{dlc.ToString().ToLower()}";
 
                 dlcMenuList.Add(new MenuItem()
                 {
@@ -132,13 +131,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     });
                 }
 
-                menus[submenuName] = AddParentField("vehiclesspawndlcmenu", menus[submenuName]);
+                menus[submenuName] = AddParentField("vehicles.spawn.dlc", menus[submenuName]);
             }
 
             // Put the newer DLC at the top since they tend to be more interesting
             dlcMenuList.Reverse();
 
-            menus["vehiclesspawndlcmenu"] = AddParentField(parentName, dlcMenuList);
+            menus["vehicles.spawn.dlc"] = AddParentField(parentName, dlcMenuList);
 
             return menus;
         }
@@ -168,82 +167,82 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Spawn Fun Stuff",
-                    sub = "funspawnmenu"
+                    sub = "vehicles.spawn.fun"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Boat",
-                    sub = "boatspawnmenu"
+                    sub = "vehicles.spawn.boats"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Commercial Vehicles",
-                    sub = "commercialspawnmenu"
+                    sub = "vehicles.spawn.commercial"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Compact Vehicles",
-                    sub = "compactspawnmenu"
+                    sub = "vehicles.spawn.compacts"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Coupés",
-                    sub = "coupespawnmenu"
+                    sub = "vehicles.spawn.coupes"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Emergency Vehicles",
-                    sub = "emergencyspawnmenu"
+                    sub = "vehicles.spawn.emergency"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Helicopter",
-                    sub = "helispawnmenu"
+                    sub = "vehicles.spawn.helicopters"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Industrial",
-                    sub = "industrialspawnmenu"
+                    sub = "vehicles.spawn.industrial"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Military",
-                    sub = "militaryspawnmenu"
+                    sub = "vehicles.spawn.military"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Motorbike",
-                    sub = "motorbikespawnmenu"
+                    sub = "vehicles.spawn.motorbikes"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Off-Road Vehicles",
-                    sub = "offroadspawnmenu"
+                    sub = "vehicles.spawn.offRoad"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Plane",
-                    sub = "planespawnmenu"
+                    sub = "vehicles.spawn.planes"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Pushbike",
-                    sub = "pushbikespawnmenu"
+                    sub = "vehicles.spawn.pushbikes"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Service Vehicles",
-                    sub = "servicespawnmenu"
+                    sub = "vehicles.spawn.service"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Supercar",
-                    sub = "superspawnmenu"
+                    sub = "vehicles.spawn.super"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Utility Vehicles",
-                    sub = "utilityspawnmenu"
+                    sub = "vehicles.spawn.utility"
                 },
                 new MenuItem()
                 {
@@ -253,7 +252,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Spawn Vehicle by DLC",
-                    sub = "vehiclesspawndlcmenu"
+                    sub = "vehicles.spawn.dlc"
                 },
                 new MenuItem()
                 {
@@ -307,7 +306,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Rainbow Speed",
-                    sub = "vehiclecolourrainbowspeed"
+                    sub = "vehicles.appearance.rainbowSettings.speed"
                 },
             };
         }
@@ -319,62 +318,62 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Custom Colour",
-                    sub = "vehiclescolourcustommenu"
+                    sub = "vehicles.appearance.primaryColour"
                 },
                 new MenuItem()
                 {
                     text = "Both Primary & Secondary Colour",
-                    sub = "vehiclescolourbothmenu"
+                    sub = "vehicles.appearance.bothColour"
                 },
                 new MenuItem()
                 {
                     text = "Primary Colour",
-                    sub = "vehiclescolourprimarymenu"
+                    sub = "vehicles.appearance.primaryColour"
                 },
                 new MenuItem()
                 {
                     text = "Secondary Colour",
-                    sub = "vehiclescoloursecondarymenu"
+                    sub = "vehicles.appearance.secondaryColour"
                 },
                 new MenuItem()
                 {
                     text = "Pearlescent Colour",
-                    sub = "vehiclescolourpearlescentmenu"
+                    sub = "vehicles.appearance.pearlescentColour"
                 },
                 new MenuItem()
                 {
                     text = "Rim Colour",
-                    sub = "vehiclescolourrimmenu"
+                    sub = "vehicles.appearance.rimColour"
                 },
                 new MenuItem()
                 {
                     text = "Dashboard Colour",
-                    sub = "vehiclescolordashmenu"
+                    sub = "vehicles.appearance.dashColour"
                 },
                 new MenuItem()
                 {
                     text = "Window Tint",
-                    sub = "vehiclewindowtintmenu"
+                    sub = "vehicles.appearance.windowTintSettings"
                 },
                 new MenuItem()
                 {
                     text = "Vehicle Livery",
-                    sub = "vehiclelivery"
+                    sub = "vehicles.appearance.livery"
                 },
                 new MenuItem()
                 {
                     text = "Roof Livery",
-                    sub = "vehiclerooflivery"
+                    sub = "vehicles.appearance.roofLivery"
                 },
                 new MenuItem()
                 {
                     text = "Number Plates",
-                    sub = "vehiclesnumberplatemenu"
+                    sub = "vehicles.appearance.numberPlateSettings"
                 },
                 new MenuItem()
                 {
                     text = "Rainbow Car Settings",
-                    sub = "vehiclerainbowmenu"
+                    sub = "vehicles.appearance.rainbowSettings"
                 },
             };
         }
@@ -413,27 +412,27 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Spawn Vehicle",
-                    sub = "vehiclesspawnmenu"
+                    sub = "vehicles.spawn"
                 },
                 new MenuItem()
                 {
                     text = "Load Vehicle from Garage",
-                    sub = "vehiclesloadmenu"
+                    sub = "vehicles.load"
                 },
                 new MenuItem()
                 {
                     text = "Save Vehicle to Garage",
-                    sub = "vehiclessavemenu"
+                    sub = "vehicles.save"
                 },
                 new MenuItem()
                 {
                     text = "Vehicle Appearance",
-                    sub = "vehiclescolourmenu"
+                    sub = "vehicles.appearance"
                 },
                 new MenuItem()
                 {
                     text = "Vehicle Mods",
-                    sub = "vehiclesmodsmenu"
+                    sub = "vehicles.mods"
                 },
                 new MenuItem()
                 {
@@ -467,7 +466,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Boost Power",
-                    sub = "boostpowermenu"
+                    sub = "vehicles.boostPower"
                 },
             };
         }

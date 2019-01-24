@@ -60,19 +60,19 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
         private void UpdateGarageMenus()
         {
-            var vehiclesMenuAdder = GetMenuAdderByType<VehiclesMenuAdder>();
-            Menus["vehiclessavemenu"] = vehiclesMenuAdder.AddParentField("vehiclesmenu", vehiclesMenuAdder.GetGarageSaveMenu());
-            Menus["vehiclesloadmenu"] = vehiclesMenuAdder.AddParentField("vehiclesmenu", vehiclesMenuAdder.GetGarageLoadMenu());
+            var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
+            Menus["vehicles.save"] = vehiclesAdder.AddParentField("vehicles", vehiclesAdder.GetGarageSaveMenu());
+            Menus["vehicles.load"] = vehiclesAdder.AddParentField("vehicles", vehiclesAdder.GetGarageLoadMenu());
 
-            SendMenu("vehiclessavemenu");
-            SendMenu("vehiclesloadmenu");
+            SendMenu("vehicles.save");
+            SendMenu("vehicles.load");
         }
 
         private void OnNewVehicle(int vehicleHandle, int oldVehicleHandle)
         {
-            var vehiclesMenuAdder = GetMenuAdderByType<VehiclesMenuAdder>();
-            Menus["vehiclelivery"] = vehiclesMenuAdder.AddParentField("vehiclescolourmenu", vehiclesMenuAdder.GetLiveryMenu());
-            SendMenu("vehiclelivery");
+            var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
+            Menus["vehicles.appearance.livery"] = vehiclesAdder.AddParentField("vehicles.appearance", vehiclesAdder.GetLiveryMenu());
+            SendMenu("vehicles.appearance.livery");
 
             Trainer.DebugLine("Updated the livery menu because we entered a new vehicle.");
         }

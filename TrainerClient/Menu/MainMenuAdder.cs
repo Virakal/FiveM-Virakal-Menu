@@ -22,7 +22,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem() {
                     text = "Vehicles",
-                    sub = "vehiclesmenu"
+                    sub = "vehicles"
                 },
                 new MenuItem() {
                     text = "Weapons",
