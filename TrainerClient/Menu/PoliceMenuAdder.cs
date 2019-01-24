@@ -51,8 +51,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
             };
 
-            menus["police"] = AddParentField("mainmenu", menus["police"]);
-
             return menus;
         }
     }

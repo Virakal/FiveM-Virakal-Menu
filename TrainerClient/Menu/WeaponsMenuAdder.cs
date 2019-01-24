@@ -20,8 +20,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
-            menus["weapons"] = AddParentField("mainmenu", menus["weapons"]);
-
             return menus;
         }
     }

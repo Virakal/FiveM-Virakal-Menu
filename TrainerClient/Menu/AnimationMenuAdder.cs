@@ -19,8 +19,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
-            menus["animation"] = AddParentField("mainmenu", menus["animation"]);
-
             return menus;
         }
     }

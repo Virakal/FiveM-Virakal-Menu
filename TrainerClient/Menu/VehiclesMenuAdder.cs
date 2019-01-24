@@ -66,44 +66,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.appearance.rimColour"] = GetPaintColourMenu("vehrim");
             menus["vehicles.appearance.dashColour"] = GetPaintColourMenu("vehdashcolour");
 
-            // Populate "parent" fields so the back button works.
-            menus["vehicles"] = AddParentField("mainmenu", menus["vehicles"]);
-            menus["vehicles.spawn"] = AddParentField("vehicles", menus["vehicles.spawn"]);
-            menus["vehicles.mods"] = AddParentField("vehicles", menus["vehicles.mods"]);
-            menus["vehicles.appearance"] = AddParentField("vehicles", menus["vehicles.appearance"]);
-            menus["vehicles.appearance.primaryColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.primaryColour"]);
-            menus["vehicles.appearance.bothColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.bothColour"]);
-            menus["vehicles.appearance.primaryColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.primaryColour"]);
-            menus["vehicles.appearance.secondaryColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.secondaryColour"]);
-            menus["vehicles.appearance.pearlescentColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.pearlescentColour"]);
-            menus["vehicles.appearance.rimColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.rimColour"]);
-            menus["vehicles.appearance.dashColour"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.dashColour"]);
-            menus["vehicles.appearance.rainbowSettings"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.rainbowSettings"]);
-            menus["vehicles.appearance.numberPlateSettings"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.numberPlateSettings"]);
-            menus["vehicles.appearance.windowTintSettings"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.windowTintSettings"]);
-            menus["vehicles.appearance.livery"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.livery"]);
-            menus["vehicles.appearance.roofLivery"] = AddParentField("vehicles.appearance", menus["vehicles.appearance.roofLivery"]);
-            menus["vehicles.appearance.rainbowSettings.speed"] = AddParentField("vehicles.appearance.rainbowSettings", menus["vehicles.appearance.rainbowSettings.speed"]);
-            menus["vehicles.boostPower"] = AddParentField("vehicles", menus["vehicles.boostPower"]);
-            menus["vehicles.save"] = AddParentField("vehicles", menus["vehicles.save"]);
-            menus["vehicles.load"] = AddParentField("vehicles", menus["vehicles.load"]);
-            menus["vehicles.spawn.boats"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.boats"]);
-            menus["vehicles.spawn.helicopters"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.helicopters"]);
-            menus["vehicles.spawn.military"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.military"]);
-            menus["vehicles.spawn.motorbikes"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.motorbikes"]);
-            menus["vehicles.spawn.planes"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.planes"]);
-            menus["vehicles.spawn.pushbikes"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.pushbikes"]);
-            menus["vehicles.spawn.industrial"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.industrial"]);
-            menus["vehicles.spawn.super"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.super"]);
-            menus["vehicles.spawn.service"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.service"]);
-            menus["vehicles.spawn.emergency"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.emergency"]);
-            menus["vehicles.spawn.commercial"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.commercial"]);
-            menus["vehicles.spawn.offRoad"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.offRoad"]);
-            menus["vehicles.spawn.compacts"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.compacts"]);
-            menus["vehicles.spawn.coupes"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.coupes"]);
-            menus["vehicles.spawn.utility"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.utility"]);
-            menus["vehicles.spawn.fun"] = AddParentField("vehicles.spawn", menus["vehicles.spawn.fun"]);
-
             return menus;
         }
 
@@ -130,14 +92,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                         text = "No vehicles added for this DLC yet"
                     });
                 }
-
-                menus[submenuName] = AddParentField("vehicles.spawn.dlc", menus[submenuName]);
             }
 
             // Put the newer DLC at the top since they tend to be more interesting
             dlcMenuList.Reverse();
 
-            menus["vehicles.spawn.dlc"] = AddParentField(parentName, dlcMenuList);
+            menus["vehicles.spawn.dlc"] = dlcMenuList;
 
             return menus;
         }

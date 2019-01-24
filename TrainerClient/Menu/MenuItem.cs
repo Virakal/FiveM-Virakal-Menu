@@ -21,9 +21,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
         public string image;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string parent;
-
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string configkey;
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

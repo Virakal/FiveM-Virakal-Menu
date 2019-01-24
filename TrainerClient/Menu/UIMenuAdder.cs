@@ -28,8 +28,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
-            menus["ui"] = AddParentField("mainmenu", menus["ui"]);
-
             return menus;
         }
     }

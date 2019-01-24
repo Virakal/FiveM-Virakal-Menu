@@ -52,8 +52,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 }
             };
 
-            menus["teleport"] = AddParentField("mainmenu", menus["teleport"]);
-            menus["teleport.toPlayer"] = AddParentField("teleport", MakePlayerMenu());
+            menus["teleport.toPlayer"] = MakePlayerMenu();
 
             return menus;
         }

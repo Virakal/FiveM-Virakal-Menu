@@ -61,8 +61,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         private void UpdateGarageMenus()
         {
             var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
-            Menus["vehicles.save"] = vehiclesAdder.AddParentField("vehicles", vehiclesAdder.GetGarageSaveMenu());
-            Menus["vehicles.load"] = vehiclesAdder.AddParentField("vehicles", vehiclesAdder.GetGarageLoadMenu());
+            Menus["vehicles.save"] = vehiclesAdder.GetGarageSaveMenu();
+            Menus["vehicles.load"] = vehiclesAdder.GetGarageLoadMenu();
 
             SendMenu("vehicles.save");
             SendMenu("vehicles.load");
@@ -71,7 +71,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         private void OnNewVehicle(int vehicleHandle, int oldVehicleHandle)
         {
             var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
-            Menus["vehicles.appearance.livery"] = vehiclesAdder.AddParentField("vehicles.appearance", vehiclesAdder.GetLiveryMenu());
+            Menus["vehicles.appearance.livery"] = vehiclesAdder.GetLiveryMenu();
             SendMenu("vehicles.appearance.livery");
 
             Trainer.DebugLine("Updated the livery menu because we entered a new vehicle.");
@@ -81,7 +81,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             // Would be nice to just do this on player connect, but we can't.
             var teleportMenuAdder = GetMenuAdderByType<TeleportMenuAdder>();
-            Menus["teleport.toPlayer"] = teleportMenuAdder.AddParentField("teleport", teleportMenuAdder.MakePlayerMenu());
+            Menus["teleport.toPlayer"] = teleportMenuAdder.MakePlayerMenu();
             SendMenu("teleport.toPlayer");
 
             Trainer.DebugLine("Updated the teleport to player menu because we had a player spawn.");

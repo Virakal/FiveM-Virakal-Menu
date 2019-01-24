@@ -113,9 +113,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
-            menus["player"] = AddParentField("mainmenu", menus["player"]);
-            menus["player.skin"] = AddParentField("player", menus["player.skin"]);
-
             return menus;
         }
     }

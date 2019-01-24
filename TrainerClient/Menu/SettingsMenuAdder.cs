@@ -243,10 +243,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
-            menus["settings"] = AddParentField("mainmenu", menus["settings"]);
-            menus["settings.weather"] = AddParentField("settings", menus["settings.weather"]);
-            menus["settings.time"] = AddParentField("settings", menus["settings.time"]);
-
             return menus;
         }
     }
