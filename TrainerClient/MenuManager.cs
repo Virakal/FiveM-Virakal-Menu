@@ -95,7 +95,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
             foreach (var kv in Menus)
             {
-                Trainer.DebugLine($"Sending menu {kv.Key}");
+                // Trainer.DebugLine($"Sending menu {kv.Key}");
                 SendMenu(kv.Key);
                 await BaseScript.Delay(10);
             }
