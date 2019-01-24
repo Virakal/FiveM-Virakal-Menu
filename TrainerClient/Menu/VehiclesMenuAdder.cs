@@ -135,6 +135,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 menus[submenuName] = AddParentField("vehiclesspawndlcmenu", menus[submenuName]);
             }
 
+            // Put the newer DLC at the top since they tend to be more interesting
+            dlcMenuList.Reverse();
+
             menus["vehiclesspawndlcmenu"] = AddParentField(parentName, dlcMenuList);
 
             return menus;
