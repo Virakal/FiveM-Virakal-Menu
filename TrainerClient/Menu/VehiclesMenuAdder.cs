@@ -561,7 +561,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
                 list.Add(new MenuItem()
                 {
-                    text = name ?? $"Livery {i}",
+                    text = name == "" ? $"Livery {i}" : name,
                     action = $"vehlivery {i}",
                 });
             }
