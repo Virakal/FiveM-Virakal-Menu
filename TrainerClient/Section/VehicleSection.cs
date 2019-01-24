@@ -53,7 +53,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehtint", OnVehTint);
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
             Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
-            Trainer.RegisterNUICallback("vehplatesyle", OnVehPlateStyle);
+            Trainer.RegisterNUICallback("vehplatestyle", OnVehPlateStyle);
             Trainer.RegisterAsyncNUICallback("vehneon", OnVehNeon);
             Trainer.RegisterAsyncNUICallback("vehmod", OnVehMod);
 

@@ -668,45 +668,29 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         private List<MenuItem> GetPlatesMenu()
         {
-            // Could get this from the enum but seems like too much effort
-            return new List<MenuItem>()
+            var list = new List<MenuItem>();
+
+            var plateStyles = new List<string>();
+
+            foreach (var style in Enum.GetValues(typeof(LicensePlateStyle))) {
+                var name = AddSpacesToSentence(style.ToString());
+
+                list.Add(new MenuItem()
+                {
+                    text = $"Style: {name}",
+                    action = $"vehplatestyle {(int)style}",
+                });
+            }
+
+            list.Sort((x, y) => x.text.CompareTo(y.text));
+
+            list.Insert(0, new MenuItem()
             {
-                new MenuItem()
-                {
-                    text = "Change Text",
-                    action = "vehplatetext"
-                },
-                new MenuItem()
-                {
-                    text = "Style: Blue on White 1",
-                    action = "vehplatesyle 3"
-                },
-                new MenuItem()
-                {
-                    text = "Style: Blue on White 2",
-                    action = "vehplatesyle 0"
-                },
-                new MenuItem()
-                {
-                    text = "Style: Blue on White 3",
-                    action = "vehplatesyle 4"
-                },
-                new MenuItem()
-                {
-                    text = "Style: Yellow on Black",
-                    action = "vehplatesyle 1"
-                },
-                new MenuItem()
-                {
-                    text = "Style: Yellow on Blue",
-                    action = "vehplatesyle 2"
-                },
-                new MenuItem()
-                {
-                    text = "Style: North Yankton",
-                    action = "vehplatesyle 5"
-                },
-            };
+                text = "Change Text",
+                action = "vehplatetext"
+            });
+
+            return list;
         }
 
         private List<MenuItem> GetPaintColourMenu(string actionPrefix)
