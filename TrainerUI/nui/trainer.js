@@ -1,15 +1,8 @@
-/// <reference path="./js_refs/index.d.ts" />
-/// <reference path="./js_refs/jquery.d.ts" />
-//// <reference path="./node_modules/vue/types/vue.d.ts" />
-/** The name of the resource on the server */
-const resourceName = 'virakal-trainer';
-/** The maximum number of items on a page */
-const maxPageSize = 12;
-/** Text to show in the title bar */
-const trainerTitle = 'Virakal Trainer';
+var resourceName = 'virakal-trainer';
+var maxPageSize = 12;
+var trainerTitle = 'Virakal Trainer';
 function sendData(name, data) {
-    return $.post(`http://${resourceName}/${name}`, JSON.stringify(data), function (response) {
-        // console.log('Data response: ' + response);
+    return $.post("http://" + resourceName + "/" + name, JSON.stringify(data), function (response) {
     });
 }
 function playSound(sound) {
@@ -23,7 +16,7 @@ function pageExists(page) {
     return page >= 0 && page < this.pageCount;
 }
 function nextPage() {
-    console.log(`Current: ${this.page} Next: ${this.page + 1} PageCount: ${this.pageCount} NextExists: ${this.pageExists(this.page + 1)}`);
+    console.log("Current: " + this.page + " Next: " + (this.page + 1) + " PageCount: " + this.pageCount + " NextExists: " + this.pageExists(this.page + 1));
     if (this.pageExists(this.page + 1)) {
         this.showPage(this.page + 1);
     }
@@ -33,7 +26,7 @@ function nextPage() {
     playSound('NAV_UP_DOWN');
 }
 function previousPage() {
-    console.log(`Current: ${this.page} Prev: ${this.page - 1} PageCount: ${this.pageCount} PrevExists: ${this.pageExists(this.page - 1)}`);
+    console.log("Current: " + this.page + " Prev: " + (this.page - 1) + " PageCount: " + this.pageCount + " PrevExists: " + this.pageExists(this.page - 1));
     if (this.pageExists(this.page - 1)) {
         this.showPage(this.page - 1);
     }
@@ -54,23 +47,18 @@ function resetTrainer() {
     this.showMenu('mainmenu');
 }
 function setMenu(menuName, menuData) {
-    console.log(`Receieved menu ${menuName}`);
-    // console.log(JSON.stringify(menuData));
+    console.log("Receieved menu " + menuName);
     this.menus[menuName] = menuData;
     if (this.currentMenuKey === menuName) {
-        // Because the underlying menu has changed, we need to force the update
         console.log("Forcing the update");
         this.updateCurrentMenu();
     }
 }
-// Only use this if the underlying structure for the current menu is changed. Vue doesn't seem to like that.
 function updateCurrentMenu() {
-    const newMenuKey = this.currentMenuKey;
-    // Briefly change the currentMenuKey to force a recompute
+    var newMenuKey = this.currentMenuKey;
     this.currentMenuKey = 'mainmenu';
     this.$forceUpdate();
     this.currentMenuKey = newMenuKey;
-    // If our selection is no longer available on the list, reset to 0
     if (this.selected >= this.currentMenu.length) {
         this.page = 0;
         this.selected = 0;
@@ -78,7 +66,7 @@ function updateCurrentMenu() {
 }
 function showMenu(menuName) {
     if (!this.menus[menuName]) {
-        console.log(`No such menu as '${menuName}'`);
+        console.log("No such menu as '" + menuName + "'");
         this.showMenu('mainmenu');
         return;
     }
@@ -87,13 +75,13 @@ function showMenu(menuName) {
     this.currentMenuKey = menuName;
 }
 function handleSelection() {
-    let sel = this.currentItem;
+    var sel = this.currentItem;
     if (sel.sub) {
         this.showMenu(sel.sub);
     }
     else if (sel.action) {
-        console.log(`Doing ${sel.action}`);
-        let newState = true;
+        console.log("Doing " + sel.action);
+        var newState = true;
         if (sel.state) {
             if (sel.state === "ON") {
                 newState = false;
@@ -103,24 +91,21 @@ function handleSelection() {
                 sel.state = "ON";
             }
         }
-        console.log(`Sel: ${sel.state}, Orig: ${this.currentItem.state}`);
         this.$forceUpdate();
-        let data = sel.action.split(' ');
+        var data = sel.action.split(' ');
         if (data[1] === '*') {
             console.log("Subdata not implemented");
-            // data[1] = item.parent().attr('data-subdata');
         }
         if (data[0] === 'playerskin') {
             console.log("Recent skins not yet implemented");
-            // addToRecentSkins(data[1], item);
         }
-        console.log(`Sending ${data[0]}, action: ${data[1]}, newState: ${newState}`);
+        console.log("Sending " + data[0] + ", action: " + data[1] + ", newState: " + newState);
         sendData(data[0], { action: data[1], newstate: newState, itemtext: sel.text });
     }
     playSound('SELECT');
 }
 function goBack() {
-    let sel = this.currentItem;
+    var sel = this.currentItem;
     if (sel.parent) {
         this.showMenu(sel.parent);
     }
@@ -142,37 +127,11 @@ function closeTrainer() {
 }
 function updateFromConfig(json) {
     console.log("Not yet implemented");
-    const config = JSON.parse(json);
-    for (const key in config) {
-        let value = config[key];
+    var config = JSON.parse(json);
+    for (var key in config) {
+        var value = config[key];
         this.configState[key] = value;
     }
-    /*
-    // Hunt for menu items with config-key data set, then update them
-    for (const menuName in menus) {
-        let menuData = menus[menuName];
-
-        for (const key in config) {
-            menuData.pages.forEach(function (page) {
-                page.forEach(function (trainerOption) {
-                    const match = trainerOption.is(`.traineroption[data-state][data-config-key="${key}"]`)
-
-                    if (match) {
-                        let value = config[key];
-
-                        if (value === "true") {
-                            trainerOption.attr('data-state', 'ON');
-                        } else if (value === "false") {
-                            trainerOption.attr('data-state', 'OFF');
-                        } else {
-                            console.log(`Unexpected value for a config key: ${value}!`);
-                        }
-                    }
-                });
-            });
-        }
-    }
-    */
 }
 function getStateFromConfig(configKey) {
     return this.configState[configKey];
@@ -183,42 +142,33 @@ function getStateText(configKey) {
 function getItemKey(item) {
     return item.key || item.text;
 }
-/**
- * An individual menu item
- */
 Vue.component('trainer-option', {
     props: ['text', 'sub', 'action', 'state', 'image'],
-    template: '<p class="traineroption" :data-sub="sub" :data-action="action" :data-state="state" :data-image="image"><slot></slot></p>',
+    template: '<p class="traineroption" :data-sub="sub" :data-action="action" :data-state="state" :data-image="image"><slot></slot></p>'
 });
-/**
- * The indicator for the current page
- */
 Vue.component('page-indicator', {
     props: ['page', 'pageCount'],
-    template: '<p id="pageindicator">Page {{ page + 1 }} / {{ pageCount }}</p>',
+    template: '<p id="pageindicator">Page {{ page + 1 }} / {{ pageCount }}</p>'
 });
-/**
- * The floating preview image that shows cars, etc.
- */
 Vue.component('preview-image', {
     props: ['img'],
-    template: '<div id="imagecontainer" v-if="img"><img :src="img"></div>',
+    template: '<div id="imagecontainer" v-if="img"><img :src="img"></div>'
 });
-let menus = {
-    mainmenu: [ /* Loading placeholder */],
+var menus = {
+    mainmenu: []
 };
-const app = new Vue({
+var app = new Vue({
     el: '#vuecontainer',
     data: {
-        trainerTitle,
-        maxPageSize,
+        trainerTitle: trainerTitle,
+        maxPageSize: maxPageSize,
         showTrainer: false,
         menus: menus,
         currentMenuKey: 'mainmenu',
         page: 0,
         selected: 0,
         recentSkins: [],
-        configState: {},
+        configState: {}
     },
     computed: {
         pageCount: function () {
@@ -238,31 +188,31 @@ const app = new Vue({
         },
         currentMenu: function () {
             return this.menus[this.currentMenuKey];
-        },
+        }
     },
     methods: {
-        showPage,
-        nextPage,
-        previousPage,
-        pageExists,
-        selectUp,
-        selectDown,
-        resetTrainer,
-        setMenu,
-        showMenu,
-        handleSelection,
-        goBack,
-        openTrainer,
-        closeTrainer,
-        updateFromConfig,
-        getStateFromConfig,
-        getStateText,
-        getItemKey,
-        updateCurrentMenu,
-    },
+        showPage: showPage,
+        nextPage: nextPage,
+        previousPage: previousPage,
+        pageExists: pageExists,
+        selectUp: selectUp,
+        selectDown: selectDown,
+        resetTrainer: resetTrainer,
+        setMenu: setMenu,
+        showMenu: showMenu,
+        handleSelection: handleSelection,
+        goBack: goBack,
+        openTrainer: openTrainer,
+        closeTrainer: closeTrainer,
+        updateFromConfig: updateFromConfig,
+        getStateFromConfig: getStateFromConfig,
+        getStateText: getStateText,
+        getItemKey: getItemKey,
+        updateCurrentMenu: updateCurrentMenu
+    }
 });
 window.addEventListener('message', function (event) {
-    let item = event.data;
+    var item = event.data;
     if (item.showtrainer) {
         app.openTrainer();
     }

@@ -135,7 +135,7 @@ function handleSelection(): void {
 			}
 		}
 
-		console.log(`Sel: ${sel.state}, Orig: ${this.currentItem.state}`);
+		// Not sure why I need this, but state updates no longer pass to the main menu
 		this.$forceUpdate();
 
 		let data: string[] = sel.action.split(' ');

@@ -73,6 +73,7 @@
     <Content Include="nui\trainer.html" />
     <Content Include="nui\Roboto-Black.ttf" />
     <Content Include="nui\Roboto.ttf" />
+    <Content Include="tsconfig.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
