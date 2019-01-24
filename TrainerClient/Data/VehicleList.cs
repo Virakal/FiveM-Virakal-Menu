@@ -858,6 +858,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Swift Deluxe",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4d/SwiftDeluxe-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160117170332",
                     Model = "swift2",
+                    Dlc = Dlc.IllGottenGainsPart1,
                 },
                 new VehicleListItem()
                 {
@@ -1902,6 +1903,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Luxor Deluxe",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/1f/LuxorDeluxe-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20150614102306",
                     Model = "luxor2",
+                    Dlc = Dlc.IllGottenGainsPart1,
                 },
                 new VehicleListItem()
                 {
@@ -2229,6 +2231,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Osiris",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/53/Osiris-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20150614104749",
                     Model = "osiris",
+                    Dlc = Dlc.IllGottenGainsPart1,
                 },
                 new VehicleListItem()
                 {
