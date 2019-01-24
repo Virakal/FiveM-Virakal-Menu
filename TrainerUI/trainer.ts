@@ -79,13 +79,47 @@ function resetTrainer(): void {
 }
 
 function setMenu(menuName: string, menuData: MenuItem[]): void {
-	console.log(`Receieved menu ${menuName}`);
+	// console.log(`Receieved menu ${menuName}`);
 	// console.log(JSON.stringify(menuData));
+
+	// Grab any initial states that are included and update states on those we already have
+	for (let key in menuData) {
+		let item = menuData[key];
+
+		if (item.state == null) {
+			continue;
+		}
+
+		if (item.configkey !== undefined && item.configkey !== '') {
+			if (item.configkey in this.configKeyActions) {
+				// Grab the config and override the itemState
+				let configState: string = this.configState[this.configkey];
+				let stateText = this.getStateText(configState);
+				console.log(`We know ${item.configkey} is ${this.configKeyActions[item.configkey]}. Setting itemStates[${item.action}] to ${stateText} (${configState})`);
+
+				this.itemStates[item.action] = stateText;
+				item.state = stateText;
+			} else {
+				// We don't know about this, so store it
+				console.log(`We don't know ${item.configkey} so we're storing ${item.action} in the configKeyActions map.`);
+				this.configKeyActions[item.configkey] = item.action;
+				this.configState[this.configkey] = item.state === 'ON';
+			}
+		}
+
+		if (key in this.itemStates) {
+			item.state = this.itemStates[item.action];
+		} else {
+			this.itemStates[item.action] = item.state;
+		}
+	}
+
+	// Update the menus list
 	this.menus[menuName] = menuData;
 
 	if (this.currentMenuKey === menuName) {
 		// Because the underlying menu has changed, we need to force the update
-		console.log("Forcing the update");
+		console.log('Forcing the update');
 		this.updateCurrentMenu();
 	}
 }
@@ -127,12 +161,14 @@ function handleSelection(): void {
 		let newState: boolean = true;
 
 		if (sel.state) {
-			if (sel.state === "ON") {
+			if (sel.state === 'ON') {
 				newState = false;
-				sel.state = "OFF";
+				sel.state = 'OFF';
 			} else {
-				sel.state = "ON";
+				sel.state = 'ON';
 			}
+
+			this.itemStates[sel.action] = sel.state;
 		}
 
 		// Not sure why I need this, but state updates no longer pass to the main menu
@@ -141,12 +177,12 @@ function handleSelection(): void {
 		const data: string[] = sel.action.split(' ');
 
 		if (data[1] === '*') {
-			console.log("Subdata not implemented");
+			console.log('Subdata not implemented');
 			// data[1] = item.parent().attr('data-subdata');
 		}
 
 		if (data[0] === 'playerskin') {
-			console.log("Recent skins not yet implemented");
+			console.log('Recent skins not yet implemented');
 			// addToRecentSkins(data[1], item);
 		}
 
@@ -181,53 +217,118 @@ function closeTrainer(): void {
 }
 
 function updateFromConfig(json: string): void {
-	console.log("Not yet implemented");
+	console.log('We just got our config!');
 	const config: { [key: string]: string; } = JSON.parse(json);
 
 	for (const key in config) {
 		let value = config[key];
-		this.configState[key] = value;
-	}
 
-	/*
-	// Hunt for menu items with config-key data set, then update them
-	for (const menuName in menus) {
-		let menuData = menus[menuName];
+		if (value !== 'true' && value !== 'false') {
+			// We only care about boolean configs from a UI perspective
+			continue;
+		}
 
-		for (const key in config) {
-			menuData.pages.forEach(function (page) {
-				page.forEach(function (trainerOption) {
-					const match = trainerOption.is(`.traineroption[data-state][data-config-key="${key}"]`)
+		console.log(`Setting config[${key}] to ${value}.`);
+		this.configState[key] = value === 'true';
 
-					if (match) {
-						let value = config[key];
-
-						if (value === "true") {
-							trainerOption.attr('data-state', 'ON');
-						} else if (value === "false") {
-							trainerOption.attr('data-state', 'OFF');
-						} else {
-							console.log(`Unexpected value for a config key: ${value}!`);
-						}
-					}
-				});
-			});
+		if (key in this.configKeyActions) {
+			let action = this.configKeyActions[key];
+			this.itemStates[action] = this.getStateText(value);
 		}
 	}
-	*/
+
+	this.$forceUpdate();
+	console.log(`Item States: ${JSON.stringify(this.itemStates)}`);
 }
 
-function getStateFromConfig(configKey: string): boolean|undefined {
-	return this.configState[configKey];
-}
 
-function getStateText(configKey: string): string {
-	return this.getStateFromConfig(configKey) ? 'ON' : 'OFF';
+function getStateText(value: boolean | string): string {
+	if (typeof (value) === 'string') {
+		value = value === 'true';
+	}
+
+	return value ? 'ON' : 'OFF';
 }
 
 function getItemKey(item: MenuItem): string {
 	return item.key || item.text;
 }
+
+function getItemState(action: string): string|undefined {
+	return this.itemStates[action];
+}
+
+const app = new Vue({
+	el: '#vuecontainer',
+	data: {
+		trainerTitle,
+		maxPageSize,
+		showTrainer: false,
+		menus: { 'mainmenu': [] },
+		currentMenuKey: 'mainmenu',
+		page: 0,
+		selected: 0,
+		recentSkins: [],
+		configState: {},
+		itemStates: {},
+		configKeyActions: {},
+	},
+	computed: {
+		pageCount: function (): number {
+			return Math.ceil(this.menus[this.currentMenuKey].length / this.maxPageSize);
+		},
+		menuPage: function (): MenuItem[] {
+			return this.menus[this.currentMenuKey].slice(this.page * this.maxPageSize, (this.page + 1) * this.maxPageSize);
+		},
+		currentItem: function (): MenuItem {
+			const currentIndex = this.page * this.maxPageSize + this.selected;
+			return this.menus[this.currentMenuKey][currentIndex];
+		},
+		currentImage: function (): string {
+			const currentIndex = this.page * this.maxPageSize + this.selected;
+			return this.menus[this.currentMenuKey][currentIndex] ? this.menus[this.currentMenuKey][currentIndex].image : null;
+		},
+		currentMenu: function (): MenuItem {
+			return this.menus[this.currentMenuKey];
+		},
+		parentKey: function (): string|boolean {
+			// The main menu has no parent
+			if (this.currentMenuKey === 'mainmenu') {
+				return false;
+			}
+
+			const lastDot = this.currentMenuKey.lastIndexOf('.');
+
+			// A key without a dot is a top-level one, so the parent is the main menu
+			if (lastDot === -1) {
+				return 'mainmenu';
+			}
+
+			// Get the string up to the last dot, so a.b.c returns a.b
+			return this.currentMenuKey.substring(0, lastDot);
+		}
+	},
+	methods: {
+		showPage,
+		nextPage,
+		previousPage,
+		pageExists,
+		selectUp,
+		selectDown,
+		resetTrainer,
+		setMenu,
+		showMenu,
+		handleSelection,
+		goBack,
+		openTrainer,
+		closeTrainer,
+		updateFromConfig,
+		getStateText,
+		getItemKey,
+		updateCurrentMenu,
+		getItemState,
+	},
+});
 
 /**
  * An individual menu item
@@ -251,76 +352,6 @@ Vue.component('page-indicator', {
 Vue.component('preview-image', {
 	props: ['img'],
 	template: '<div id="imagecontainer" v-if="img"><img :src="img"></div>',
-});
-
-const app = new Vue({
-	el: '#vuecontainer',
-	data: {
-		trainerTitle,
-		maxPageSize,
-		showTrainer: false,
-		menus: {},
-		currentMenuKey: 'mainmenu',
-		page: 0,
-		selected: 0,
-		recentSkins: [],
-		configState: {},
-	},
-	computed: {
-		pageCount: function (): number {
-			return Math.ceil(this.menus[this.currentMenuKey].length / this.maxPageSize);
-		},
-		menuPage: function (): MenuItem[] {
-			return this.menus[this.currentMenuKey].slice(this.page * this.maxPageSize, (this.page + 1) * this.maxPageSize);
-		},
-		currentItem: function (): MenuItem {
-			const currentIndex = this.page * this.maxPageSize + this.selected;
-			return this.menus[this.currentMenuKey][currentIndex];
-		},
-		currentImage: function (): string {
-			const currentIndex = this.page * this.maxPageSize + this.selected;
-			return this.menus[this.currentMenuKey][currentIndex] ? this.menus[this.currentMenuKey][currentIndex].image : null;
-		},
-		currentMenu: function (): MenuItem {
-			return this.menus[this.currentMenuKey];
-		},
-		parentKey: function (): string|boolean {
-			// The main menu has no parent
-			if (this.currentMenuKey === "mainmenu") {
-				return false;
-			}
-
-			const lastDot = this.currentMenuKey.lastIndexOf(".");
-
-			// A key without a dot is a top-level one, so the parent is the main menu
-			if (lastDot === -1) {
-				return "mainmenu";
-			}
-
-			// Get the string up to the last dot, so a.b.c returns a.b
-			return this.currentMenuKey.substring(0, lastDot);
-		}
-	},
-	methods: {
-		showPage,
-		nextPage,
-		previousPage,
-		pageExists,
-		selectUp,
-		selectDown,
-		resetTrainer,
-		setMenu,
-		showMenu,
-		handleSelection,
-		goBack,
-		openTrainer,
-		closeTrainer,
-		updateFromConfig,
-		getStateFromConfig,
-		getStateText,
-		getItemKey,
-		updateCurrentMenu,
-	},
 });
 
 window.addEventListener('message', function (event) {
@@ -352,5 +383,10 @@ window.addEventListener('message', function (event) {
 
 	if (item.setmenu) {
 		app.setMenu(item.menuname, item.menudata);
+	}
+
+	if (item.configupdate) {
+		app.updateFromConfig(item.config);
+		console.log(`Config: ${JSON.stringify(app.configState)}`);
 	}
 });

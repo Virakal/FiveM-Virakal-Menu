@@ -47,10 +47,35 @@ function resetTrainer() {
     this.showMenu('mainmenu');
 }
 function setMenu(menuName, menuData) {
-    console.log("Receieved menu " + menuName);
+    for (var key in menuData) {
+        var item = menuData[key];
+        if (item.state == null) {
+            continue;
+        }
+        if (item.configkey !== undefined && item.configkey !== '') {
+            if (item.configkey in this.configKeyActions) {
+                var configState = this.configState[this.configkey];
+                var stateText = this.getStateText(configState);
+                console.log("We know " + item.configkey + " is " + this.configKeyActions[item.configkey] + ". Setting itemStates[" + item.action + "] to " + stateText + " (" + configState + ")");
+                this.itemStates[item.action] = stateText;
+                item.state = stateText;
+            }
+            else {
+                console.log("We don't know " + item.configkey + " so we're storing " + item.action + " in the configKeyActions map.");
+                this.configKeyActions[item.configkey] = item.action;
+                this.configState[this.configkey] = item.state === 'ON';
+            }
+        }
+        if (key in this.itemStates) {
+            item.state = this.itemStates[item.action];
+        }
+        else {
+            this.itemStates[item.action] = item.state;
+        }
+    }
     this.menus[menuName] = menuData;
     if (this.currentMenuKey === menuName) {
-        console.log("Forcing the update");
+        console.log('Forcing the update');
         this.updateCurrentMenu();
     }
 }
@@ -83,21 +108,22 @@ function handleSelection() {
         console.log("Doing " + sel.action);
         var newState = true;
         if (sel.state) {
-            if (sel.state === "ON") {
+            if (sel.state === 'ON') {
                 newState = false;
-                sel.state = "OFF";
+                sel.state = 'OFF';
             }
             else {
-                sel.state = "ON";
+                sel.state = 'ON';
             }
+            this.itemStates[sel.action] = sel.state;
         }
         this.$forceUpdate();
         var data = sel.action.split(' ');
         if (data[1] === '*') {
-            console.log("Subdata not implemented");
+            console.log('Subdata not implemented');
         }
         if (data[0] === 'playerskin') {
-            console.log("Recent skins not yet implemented");
+            console.log('Recent skins not yet implemented');
         }
         console.log("Sending " + data[0] + ", action: " + data[1] + ", newState: " + newState);
         sendData(data[0], { action: data[1], newstate: newState, itemtext: sel.text });
@@ -125,46 +151,49 @@ function closeTrainer() {
     playSound('NO');
 }
 function updateFromConfig(json) {
-    console.log("Not yet implemented");
+    console.log('We just got our config!');
     var config = JSON.parse(json);
     for (var key in config) {
         var value = config[key];
-        this.configState[key] = value;
+        if (value !== 'true' && value !== 'false') {
+            continue;
+        }
+        console.log("Setting config[" + key + "] to " + value + ".");
+        this.configState[key] = value === 'true';
+        if (key in this.configKeyActions) {
+            var action = this.configKeyActions[key];
+            this.itemStates[action] = this.getStateText(value);
+        }
     }
+    this.$forceUpdate();
+    console.log("Item States: " + JSON.stringify(this.itemStates));
 }
-function getStateFromConfig(configKey) {
-    return this.configState[configKey];
-}
-function getStateText(configKey) {
-    return this.getStateFromConfig(configKey) ? 'ON' : 'OFF';
+function getStateText(value) {
+    if (typeof (value) === 'string') {
+        value = value === 'true';
+    }
+    return value ? 'ON' : 'OFF';
 }
 function getItemKey(item) {
     return item.key || item.text;
 }
-Vue.component('trainer-option', {
-    props: ['text', 'sub', 'action', 'state', 'image'],
-    template: '<p class="traineroption" :data-sub="sub" :data-action="action" :data-state="state" :data-image="image"><slot></slot></p>'
-});
-Vue.component('page-indicator', {
-    props: ['page', 'pageCount'],
-    template: '<p id="pageindicator">Page {{ page + 1 }} / {{ pageCount }}</p>'
-});
-Vue.component('preview-image', {
-    props: ['img'],
-    template: '<div id="imagecontainer" v-if="img"><img :src="img"></div>'
-});
+function getItemState(action) {
+    return this.itemStates[action];
+}
 var app = new Vue({
     el: '#vuecontainer',
     data: {
         trainerTitle: trainerTitle,
         maxPageSize: maxPageSize,
         showTrainer: false,
-        menus: {},
+        menus: { 'mainmenu': [] },
         currentMenuKey: 'mainmenu',
         page: 0,
         selected: 0,
         recentSkins: [],
-        configState: {}
+        configState: {},
+        itemStates: {},
+        configKeyActions: {},
     },
     computed: {
         pageCount: function () {
@@ -185,12 +214,12 @@ var app = new Vue({
             return this.menus[this.currentMenuKey];
         },
         parentKey: function () {
-            if (this.currentMenuKey === "mainmenu") {
+            if (this.currentMenuKey === 'mainmenu') {
                 return false;
             }
-            var lastDot = this.currentMenuKey.lastIndexOf(".");
+            var lastDot = this.currentMenuKey.lastIndexOf('.');
             if (lastDot === -1) {
-                return "mainmenu";
+                return 'mainmenu';
             }
             return this.currentMenuKey.substring(0, lastDot);
         }
@@ -210,11 +239,23 @@ var app = new Vue({
         openTrainer: openTrainer,
         closeTrainer: closeTrainer,
         updateFromConfig: updateFromConfig,
-        getStateFromConfig: getStateFromConfig,
         getStateText: getStateText,
         getItemKey: getItemKey,
-        updateCurrentMenu: updateCurrentMenu
-    }
+        updateCurrentMenu: updateCurrentMenu,
+        getItemState: getItemState,
+    },
+});
+Vue.component('trainer-option', {
+    props: ['text', 'sub', 'action', 'state', 'image'],
+    template: '<p class="traineroption" :data-sub="sub" :data-action="action" :data-state="state" :data-image="image"><slot></slot></p>',
+});
+Vue.component('page-indicator', {
+    props: ['page', 'pageCount'],
+    template: '<p id="pageindicator">Page {{ page + 1 }} / {{ pageCount }}</p>',
+});
+Vue.component('preview-image', {
+    props: ['img'],
+    template: '<div id="imagecontainer" v-if="img"><img :src="img"></div>',
 });
 window.addEventListener('message', function (event) {
     var item = event.data;
@@ -244,6 +285,10 @@ window.addEventListener('message', function (event) {
     }
     if (item.setmenu) {
         app.setMenu(item.menuname, item.menudata);
+    }
+    if (item.configupdate) {
+        app.updateFromConfig(item.config);
+        console.log("Config: " + JSON.stringify(app.configState));
     }
 });
 //# sourceMappingURL=trainer.js.map

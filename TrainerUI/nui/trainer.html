@@ -15,7 +15,7 @@
                             :class="{ selected: index == selected }"
                             :sub="item.sub"
                             :action="item.action"
-                            :state="item.state"
+                            :state="getItemState(item.action)"
                             :key="getItemKey(item)">
                 {{ item.text }}
             </trainer-option>
