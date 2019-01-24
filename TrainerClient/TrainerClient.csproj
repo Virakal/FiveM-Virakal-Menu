@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DlcName.cs" />
     <Compile Include="Data\VehicleList.cs" />
     <Compile Include="Data\VehicleListItem.cs" />
     <Compile Include="Garage.cs" />

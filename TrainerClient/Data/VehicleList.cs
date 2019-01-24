@@ -26,13 +26,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 
             foreach (var kv in Lists)
             {
-                foreach (var item in kv.Value)
-                {
-                    if (item.HasTag(tag))
-                    {
-                        list.Add(item);
-                    }
-                }
+                list = list.Concat(kv.Value.Where((item) => item.HasTag(tag))).ToList();
+            }
+
+            list.Sort((x, y) => x.Name.CompareTo(y.Name));
+
+            return list;
+        }
+
+        public static List<VehicleListItem> GetByDlc(Dlc dlc)
+        {
+            List<VehicleListItem> list = new List<VehicleListItem>();
+
+            foreach (var kv in Lists)
+            {
+                list = list.Concat(kv.Value.Where((item) => item.Dlc == dlc)).ToList();
             }
 
             list.Sort((x, y) => x.Name.CompareTo(y.Name));
@@ -88,6 +96,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             Lists[VehicleClass.Service] = InitialiseService();
             Lists[VehicleClass.Super] = InitialiseSuper();
             Lists[VehicleClass.Utility] = InitialiseUtility();
+
+            AddVehicleClasses();
 
             initialised = true;
         }
@@ -2379,6 +2389,20 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Model = "utillitruck3",
                 },
             };
+        }
+
+        private static void AddVehicleClasses()
+        {
+            foreach (var kv in Lists)
+            {
+                kv.Value.ForEach((item) => item.VehicleClass = kv.Key);
+                /*
+                foreach (var item in kv.Value)
+                {
+                    ;
+                }
+                */
+            }
         }
     }
 }
