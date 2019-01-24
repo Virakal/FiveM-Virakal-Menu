@@ -210,6 +210,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Toro",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/95/Toro-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151212235626",
                     Model = "toro",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
@@ -1466,6 +1467,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Brawler",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6c/Brawler-GTAV-front.png/revision/latest?cb=20160929162450",
                     Model = "brawler",
+                    Dlc = Dlc.IllGottenGainsPart2,
                 },
                 new VehicleListItem()
                 {
@@ -2267,6 +2269,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "T20",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/20/T20-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180331183732",
                     Model = "t20",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
