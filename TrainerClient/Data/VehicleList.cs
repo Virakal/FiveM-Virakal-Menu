@@ -450,6 +450,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Panto",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/ad/Panto-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160406180025",
                     Model = "panto",
+                    Dlc = Dlc.ImNotaHipsterUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1549,6 +1550,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Dubsta 6x6",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/10/Dubsta6x6-GTAV-front.png/revision/latest?cb=20160304215944",
                     Model = "dubsta3",
+                    Dlc = Dlc.ImNotaHipsterUpdate,
                 },
                 new VehicleListItem()
                 {
