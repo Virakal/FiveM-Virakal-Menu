@@ -179,6 +179,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Speeder",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/33/Speeder-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160117175437",
                     Model = "speeder",
+                    Dlc = Dlc.BeachBumContentUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1443,6 +1444,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Bifta",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/Bifta-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302170310",
                     Model = "bifta",
+                    Dlc = Dlc.BeachBumContentUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1613,6 +1615,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Kalahari",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b7/Kalahari-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302170553",
                     Model = "kalahari",
+                    Dlc = Dlc.BeachBumContentUpdate,
                 },
                 new VehicleListItem()
                 {
