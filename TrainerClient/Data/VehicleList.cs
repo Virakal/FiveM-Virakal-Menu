@@ -1385,6 +1385,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 },
                 new VehicleListItem()
                 {
+                    Name = "Vindicator",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5f/Vindicator-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160304215542",
+                    Model = "vindicator",
+                    Dlc = Dlc.Bikers,
+                },
+                new VehicleListItem()
+                {
                     Name = "Vortex",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/71/Vortex-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004181943",
                     Model = "vortex",
