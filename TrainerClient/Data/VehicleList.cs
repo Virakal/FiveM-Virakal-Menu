@@ -308,6 +308,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Mule Custom",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/16/MuleCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180057",
                     Model = "mule4",
+                    Dlc = Dlc.AfterHours,
                 },
                 new VehicleListItem()
                 {
@@ -364,6 +365,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/96/Terrorbyte-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725175825",
                     Model = "terbyte",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.AfterHours,
                 },
             };
         }
@@ -1270,6 +1272,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/85/OppressorMkII-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725181109",
                     Model = "oppressor2",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.AfterHours,
                 },
                 new VehicleListItem()
                 {
@@ -1508,6 +1511,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a4/Freecrawler-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180458",
                     Model = "freecrawler",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.AfterHours,
                 },
                 new VehicleListItem()
                 {
@@ -1565,6 +1569,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a7/Menacer-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180613",
                     Model = "menacer",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.AfterHours,
                 },
                 new VehicleListItem()
                 {
@@ -1730,6 +1735,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "B-11 Strikeforce",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/11/B11Strikeforce-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180742",
                     Model = "strikeforce",
+                    Dlc = Dlc.AfterHours,
                 },
                 new VehicleListItem()
                 {
@@ -1743,6 +1749,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a5/Blimp-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180347",
                     Model = "blimp3",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.AfterHours,
                 },
                 new VehicleListItem()
                 {
@@ -1982,6 +1989,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/88/FestivalBus-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725180922",
                     Model = "pbus2",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.AfterHours,
                 },
                 new VehicleListItem()
                 {
@@ -2164,6 +2172,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3a/Scramjet-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725181214",
                     Model = "scramjet",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.AfterHours,
                 },
                 new VehicleListItem()
                 {
