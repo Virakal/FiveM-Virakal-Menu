@@ -388,6 +388,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Brioso R/A",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/80/BriosoRA-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160712123349",
                     Model = "brioso",
+                    Dlc = Dlc.CunningStunts,
                 },
                 new VehicleListItem()
                 {
@@ -1097,6 +1098,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "BF400",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/00/BF400-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164436",
                     Model = "bf400",
+                    Dlc = Dlc.CunningStunts,
                 },
                 new VehicleListItem()
                 {
@@ -1116,6 +1118,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Cliffhanger",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/78/Cliffhanger-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164545",
                     Model = "cliffhanger",
+                    Dlc = Dlc.CunningStunts,
                 },
                 new VehicleListItem()
                 {
@@ -1230,6 +1233,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Gargoyle",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ea/Gargoyle-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164757",
                     Model = "gargoyle",
+                    Dlc = Dlc.CunningStunts,
                 },
                 new VehicleListItem()
                 {
@@ -1507,6 +1511,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Desert Raid",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6b/DesertRaid-GTAO-front.png/revision/latest?cb=20160712123124",
                     Model = "trophytruck2",
+                    Dlc = Dlc.CunningStunts,
                 },
                 new VehicleListItem()
                 {
@@ -1745,6 +1750,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Trophy Truck",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ec/TrophyTruck-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160712122948",
                     Model = "trophytruck",
+                    Dlc = Dlc.CunningStunts,
                 },
             };
         }
@@ -2031,6 +2037,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Dune",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/46/Dune-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160712123223",
                     Model = "rallytruck",
+                    Dlc = Dlc.CunningStunts,
                 },
                 new VehicleListItem()
                 {
@@ -2144,6 +2151,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "ETR-1",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/76/ETR1-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160712123550",
                     Model = "sheava",
+                    Dlc = Dlc.CunningStunts,
                 },
                 new VehicleListItem()
                 {
@@ -2210,6 +2218,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "RE-7B",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/77/RE7B-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160712123452",
                     Model = "le7b",
+                    Dlc = Dlc.CunningStunts,
                 },
                 new VehicleListItem()
                 {
