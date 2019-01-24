@@ -310,6 +310,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Mule (Heist)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6a/Mule3-GTAO-front.png/revision/latest?cb=20160929163213",
                     Model = "mule3",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -819,6 +820,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Savage",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/36/Savage-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151212171103",
                     Model = "savage",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -865,6 +867,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Valkyrie",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0e/Valkyrie-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151212171243",
                     Model = "valkyrie",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -993,6 +996,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Barracks (Short Canvas)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/91/Barracks3-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160916175322",
                     Model = "barracks3",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1199,6 +1203,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Enduro",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ef/Enduro-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160302173841",
                     Model = "enduro",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1278,6 +1283,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Lectro",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/de/Lectro-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160302174105",
                     Model = "lectro",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1579,12 +1585,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Insurgent",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fb/Insurgent-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160929162538",
                     Model = "insurgent2",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
                     Name = "Insurgent Pick-Up",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/12/InsurgentPickUp-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160929162614",
                     Model = "insurgent",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1711,6 +1719,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Technical",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/41/Technical-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20150530113418",
                     Model = "technical",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -1872,6 +1881,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Hydra",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/Hydra-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151211201554",
                     Model = "hydra",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -2010,6 +2020,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Velum 5-Seater",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/38/Velum5Seater-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160302173740",
                     Model = "velum2",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -2099,6 +2110,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Trashmaster (Heist)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fa/Trashmaster-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160929163342",
                     Model = "trash2",
+                    Dlc = Dlc.HeistsUpdate,
                 },
                 new VehicleListItem()
                 {
