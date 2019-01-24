@@ -2037,6 +2037,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Vestra",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/32/Vestra-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160117175617",
                     Model = "vestra",
+                    Dlc = Dlc.TheBusinessUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -2329,6 +2330,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Turismo R",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/61/TurismoR-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111200407",
                     Model = "turismor",
+                    Dlc = Dlc.TheBusinessUpdate,
                 },
                 new VehicleListItem()
                 {
