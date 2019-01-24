@@ -769,6 +769,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "FH-1 Hunter",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/dd/FH1-Hunter-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171121154009",
                     Model = "hunter",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -787,6 +788,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Havok",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3f/Havok-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902153031",
                     Model = "havok",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -1733,6 +1735,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Alpha-Z1",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/50/AlphaZ1-GTAO-front.png/revision/latest?cb=20170902152931",
                     Model = "alphaz1",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -1781,6 +1784,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Bombushka (No Addons)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/20/RM10-Bombushka-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902151115",
                     Model = "bombushka",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -1811,6 +1815,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Howard NX-25",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/89/Howard-NX25-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902153213",
                     Model = "howard",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -1835,6 +1840,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "LF-22 Starling",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7d/LF22-Starling-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902151441",
                     Model = "starling",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -1871,6 +1877,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Mogul",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/31/Mogul-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902151951",
                     Model = "mogul",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -1883,24 +1890,28 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Pyro",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/92/Pyro-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902153300",
                     Model = "pyro",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
                     Name = "P-45 Nokota",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f7/P45-Nokota-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902151754",
                     Model = "nokota",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
                     Name = "Rogue",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b7/Rogue-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902152244",
                     Model = "rogue",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
                     Name = "Seabreeze",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/77/Seabreeze-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902153349",
                     Model = "seabreeze",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -1919,6 +1930,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Tula",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a9/Tula-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902152810",
                     Model = "tula",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -1926,12 +1938,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b1/Ultralight-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902153122",
                     Model = "microlight",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
                     Name = "V-65 Molotok",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a6/V65-Molotok-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170902152647",
                     Model = "molotok",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -2081,6 +2095,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Cyclone",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/Cyclone-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180331183602",
                     Model = "cyclone",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
@@ -2250,12 +2265,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ec/Vigilante-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180331183732",
                     Model = "vigilante",
                     Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
                     Name = "Visione",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/57/Visione-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170916171115",
                     Model = "visione",
+                    Dlc = Dlc.SmugglersRun,
                 },
                 new VehicleListItem()
                 {
