@@ -1388,6 +1388,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Thrust",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4e/Thrust-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160917232329",
                     Model = "thrust",
+                    Dlc = Dlc.HighLifeUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -2404,6 +2405,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Zentorno",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/60/Zentorno-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302171211",
                     Model = "zentorno",
+                    Dlc = Dlc.HighLifeUpdate,
                 },
             };
         }
