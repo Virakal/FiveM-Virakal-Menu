@@ -23,7 +23,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             MenuAdders = new List<BaseMenuAdder>()
             {
                 new MainMenuAdder(),
-                new PlayerMenuAdder(),
+                new PlayerMenuAdder(Trainer.Config),
                 new TeleportMenuAdder(),
                 new SettingsMenuAdder(),
                 new PoliceMenuAdder(),
@@ -56,6 +56,19 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 UpdateGarageMenus();
             }
+
+            if (key == "RecentSkins")
+            {
+                UpdateRecentSkinsMenu();
+            }
+        }
+
+        private void UpdateRecentSkinsMenu()
+        {
+            var playerAdder = GetMenuAdderByType<PlayerMenuAdder>();
+            Menus["player.skin.recent"] = playerAdder.GetRecentSkinMenu();
+
+            SendMenu("player.skin.recent");
         }
 
         private void UpdateGarageMenus()

@@ -9,6 +9,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
     public static class PedModelList
     {
         private static List<PedModelListItem> Models = new List<PedModelListItem>();
+        private static Dictionary<int, PedModelListItem> modelHashCache = new Dictionary<int, PedModelListItem>();
         private static bool initialised = false;
 
         public static IEnumerable<PedModelListItem> GetByType(PedModelType type)
@@ -18,6 +19,29 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             return Models
                 .Where((item) => item.Type == type)
                 .OrderBy((x) => x.Name);
+        }
+
+        public static PedModelListItem GetItemByHash(int hash)
+        {
+            if (modelHashCache.ContainsKey(hash))
+            {
+                return modelHashCache[hash];
+            }
+
+            PedModelListItem result = null;
+
+            foreach (var item in Models)
+            {
+                if (item.ModelHash == hash)
+                {
+                    result = item;
+                    break;
+                }
+            }
+
+            modelHashCache[hash] = result;
+
+            return result;
         }
 
         private static void Initialise()

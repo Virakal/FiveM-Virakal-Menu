@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Virakal.FiveM.Trainer.TrainerClient.Data;
+using Virakal.FiveM.Trainer.TrainerClient.Section;
 
 namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 {
     class PlayerMenuAdder : BaseMenuAdder
     {
+        private Config Config { get; }
+
+        public PlayerMenuAdder(Config config)
+        {
+            Config = config;
+        }
         public override Dictionary<string, List<MenuItem>> AddMenus(Dictionary<string, List<MenuItem>> menus)
         {
             menus["player"] = new List<MenuItem>()
@@ -114,12 +121,49 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
             };
 
+            menus["player.skin.recent"] = GetRecentSkinMenu();
             menus["player.skin.animals"] = ToMenuItems(PedModelList.GetByType(PedModelType.Animal));
             menus["player.skin.mainCharacters"] = ToMenuItems(PedModelList.GetByType(PedModelType.MainCharacter));
             menus["player.skin.pedestrians"] = ToMenuItems(PedModelList.GetByType(PedModelType.Human));
             menus["player.skin.custom"] = ToMenuItems(PedModelList.GetByType(PedModelType.Custom));
 
             return menus;
+        }
+
+        public List<MenuItem> GetRecentSkinMenu()
+        {
+            var menu = new List<MenuItem>();
+            var actionPrefix = "playerskin";
+
+            if (Config.ContainsKey("RecentSkins"))
+            {
+                List<int> recentSkins = PlayerSection.ParseRecentSkins(Config["RecentSkins"]);
+
+                foreach (var modelHash in recentSkins)
+                {
+                    PedModelListItem info = PedModelList.GetItemByHash(modelHash);
+
+                    if (info != null)
+                    {
+                        menu.Add(new MenuItem()
+                        {
+                            text = info.Name,
+                            key = info.ModelHash.ToString(),
+                            action = $"{actionPrefix} {info.Model}",
+                        });
+                    }
+                }
+            }
+
+            if (menu.Count == 0)
+            {
+                menu.Add(new MenuItem()
+                {
+                    text = "No recent skins yet!",
+                });
+            }
+
+            return menu;
         }
 
         private List<MenuItem> ToMenuItems(IEnumerable<PedModelListItem> models)
