@@ -45,7 +45,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehsecondary", OnVehSecondary);
             Trainer.RegisterNUICallback("vehboth", OnVehBoth);
             Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
-            Trainer.RegisterAsyncNUICallback("vehcolor", OnVehColor);
+            Trainer.RegisterAsyncNUICallback("vehcustomboth", OnVehCustomBoth);
             Trainer.RegisterAsyncNUICallback("vehlivery", OnVehLivery);
             Trainer.RegisterNUICallback("vehrooflivery", OnVehRoofLivery);
             Trainer.RegisterNUICallback("vehrim", OnVehRim);
@@ -115,7 +115,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             await BaseScript.Delay(50);
         }
 
-        private async Task<CallbackDelegate> OnVehColor(IDictionary<string, object> data, CallbackDelegate callback)
+        private async Task<CallbackDelegate> OnVehCustomBoth(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
 
@@ -127,10 +127,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             var action = (string)data["action"];
+            callback("ok");
+            ChangeCustomColours(vehicle, action, true, true);
+
+            return callback;
+        }
+
+        private async void ChangeCustomColours(Vehicle vehicle, string action, bool changePrimary = true, bool changeSecondary = true)
+        {
             VehicleModCollection mods = vehicle.Mods;
             Color colour;
-
-            callback("ok");
 
             if (action == "input")
             {
@@ -144,8 +150,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             mods.CustomPrimaryColor = colour;
             mods.CustomSecondaryColor = colour;
-
-            return callback;
         }
 
         private async Task<CallbackDelegate> OnVehLivery(IDictionary<string, object> data, CallbackDelegate callback)

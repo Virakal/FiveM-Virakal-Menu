@@ -59,7 +59,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.appearance.livery"] = GetLiveryMenu();
             menus["vehicles.appearance.roofLivery"] = GetRoofLiveryMenu();
 
-            menus["vehicles.appearance.customColour"] = GetCustomColourMenu("vehcolor");
+            menus["vehicles.appearance.customColour"] = GetCustomColourMenu("vehcustomboth");
 
             menus["vehicles.appearance.bothColour"] = GetPaintColourMenu("vehboth");
             menus["vehicles.appearance.primaryColour"] = GetPaintColourMenu("vehprimary");
@@ -836,47 +836,47 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Custom (HTML #RRGGBB or R,G,B)",
-                    action = "vehcolor input"
+                    action = $"{actionPrefix} input"
                 },
                 new MenuItem()
                 {
                     text = "Black",
-                    action = "vehcolor 0,0,0"
+                    action = $"{actionPrefix} 0,0,0"
                 },
                 new MenuItem()
                 {
                     text = "Blue",
-                    action = "vehcolor 0,0,255"
+                    action = $"{actionPrefix} 0,0,255"
                 },
                 new MenuItem()
                 {
                     text = "Green",
-                    action = "vehcolor 0,255,0"
+                    action = $"{actionPrefix} 0,255,0"
                 },
                 new MenuItem()
                 {
                     text = "Red",
-                    action = "vehcolor 255,0,0"
+                    action = $"{actionPrefix} 255,0,0"
                 },
                 new MenuItem()
                 {
                     text = "Fuchsia",
-                    action = "vehcolor 255,0,255"
+                    action = $"{actionPrefix} 255,0,255"
                 },
                 new MenuItem()
                 {
                     text = "Yellow",
-                    action = "vehcolor 255,255,0"
+                    action = $"{actionPrefix} 255,255,0"
                 },
                 new MenuItem()
                 {
                     text = "Cyan",
-                    action = "vehcolor 0,255,255"
+                    action = $"{actionPrefix} 0,255,255"
                 },
                 new MenuItem()
                 {
                     text = "White",
-                    action = "vehcolor 255,255,255"
+                    action = $"{actionPrefix} 255,255,255"
                 },
             };
         }
