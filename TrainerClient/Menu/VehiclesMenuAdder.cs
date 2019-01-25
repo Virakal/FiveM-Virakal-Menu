@@ -63,7 +63,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.appearance.customBothColour"] = GetCustomColourMenu("vehcustomboth");
             menus["vehicles.appearance.customPrimaryColour"] = GetCustomColourMenu("vehcustomprimary");
             menus["vehicles.appearance.customSecondaryColour"] = GetCustomColourMenu("vehcustomsecondary");
-            menus["vehicles.mods.lights.neonColour"] = GetCustomColourMenu("vehneon");
 
             menus["vehicles.appearance.bothColour"] = GetPaintColourMenu("vehboth");
             menus["vehicles.appearance.primaryColour"] = GetPaintColourMenu("vehprimary");
@@ -75,8 +74,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
             // Add mods menus
             menus["vehicles.mods.lights"] = GetModLightsMenu();
+            menus["vehicles.mods.lights.neonColour"] = GetCustomColourMenu("vehneon");
             menus["vehicles.mods.performance"] = GetModPerformanceMenu();
             menus["vehicles.mods.wheels"] = GetModWheelsMenu();
+            menus["vehicles.mods.wheels.tyreSmokeColour"] = GetCustomColourMenu("vehtyresmokecolour");
 
             return menus;
         }
@@ -114,8 +115,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem()
                 {
-                    text = "Tyre Smoke Colour (HTML #RRGGBB or R,G,B)",
-                    action = "vehmod tyresmokecolour"
+                    text = "Tyre Smoke Colour",
+                    sub = "vehicles.mods.wheels.tyreSmokeColour"
                 },
             };
         }

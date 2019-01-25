@@ -59,6 +59,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
             Trainer.RegisterNUICallback("vehplatestyle", OnVehPlateStyle);
             Trainer.RegisterAsyncNUICallback("vehneon", OnVehNeon);
+            Trainer.RegisterAsyncNUICallback("vehtyresmokecolour", OnVehTyreSmokeColour);
             Trainer.RegisterAsyncNUICallback("vehmod", OnVehMod);
 
             // Boost
@@ -838,6 +839,41 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
+        private async Task<CallbackDelegate> OnVehTyreSmokeColour(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            var vehicle = Game.PlayerPed.CurrentVehicle;
+
+            callback("ok");
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+            }
+            else
+            {
+                var action = (string)data["action"];
+                var mods = vehicle.Mods;
+
+                if (action == "input")
+                {
+                    mods.TireSmokeColor = await GetInputColour();
+                    Trainer.AddNotification("~g~Tyre smoke colour changed.");
+                }
+                else if (action.IndexOf(',') != -1)
+                {
+                    var colour = Trainer.CommaSeparatedStringToColor(action);
+                    mods.TireSmokeColor = colour;
+                    Trainer.AddNotification("~g~Tyre smoke colour changed.");
+                }
+                else
+                {
+                    Trainer.AddNotification("~r~Invalid tyre smoke colour instruction!");
+                }
+            }
+
+            return callback;
+        }
+
         private async Task<CallbackDelegate> OnVehMod(IDictionary<string, object> data, CallbackDelegate callback)
         {
             var vehicle = Game.PlayerPed.CurrentVehicle;
@@ -897,10 +933,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 {
                     mods[VehicleToggleModType.TireSmoke].IsInstalled = false;
                     Trainer.AddNotification("~g~Disabled tyre smoke.");
-                }
-                else if (action == "tyresmokecolour")
-                {
-                    mods.TireSmokeColor = await GetInputColour();
                 }
             }
 
