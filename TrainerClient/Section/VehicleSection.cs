@@ -825,23 +825,29 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             Color colour;
 
-            if (colourText.Contains(','))
+            try
             {
-                // Assume it's a comma-separated colour
-                // Remove any whitespace
-                colourText = colourText.Replace(" ", "");
-                colour = Trainer.CommaSeparatedStringToColor(colourText);
+                if (colourText.Contains(','))
+                {
+                    // Assume it's a comma-separated colour
+                    // Remove any whitespace
+                    colourText = colourText.Replace(" ", "");
+                    colour = Trainer.CommaSeparatedStringToColor(colourText);
+                }
+                else if (colourText.StartsWith("#") || colourText.StartsWith("0x") || colourText.Length == 6)
+                {
+                    // HTML-style hex colour?
+                    colourText = colourText.Substring(colourText.Length - 6);
+                    colour = Trainer.HexToColor(colourText);
+                } else
+                {
+                    throw new Exception("Invalid colour fallthrough");
+                }
             }
-            else if (colourText.StartsWith("#") || colourText.StartsWith("0x") || colourText.Length == 6)
-            {
-                // HTML-style hex colour?
-                colourText = colourText.Substring(colourText.Length - 6);
-                colour = Trainer.HexToColor(colourText);
-            }
-            else
+            catch (Exception e)
             {
                 Trainer.AddNotification($"~r~Invalid colour {colourText}");
-                return Color.FromArgb(0);
+                colour = Color.FromArgb(0);
             }
 
             // Wait a few frames so that the messagebox doesn't start again immediately
