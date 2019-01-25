@@ -69,6 +69,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.appearance.pearlescentColour"] = GetPaintColourMenu("vehpearl");
             menus["vehicles.appearance.rimColour"] = GetPaintColourMenu("vehrim");
             menus["vehicles.appearance.dashColour"] = GetPaintColourMenu("vehdashcolour");
+            menus["vehicles.appearance.trimColour"] = GetPaintColourMenu("vehtrimcolour");
 
             // Add mods menus
             menus["vehicles.mods.lights"] = GetModLightsMenu();
@@ -440,6 +441,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 {
                     text = "Dashboard Colour",
                     sub = "vehicles.appearance.dashColour"
+                },
+                new MenuItem()
+                {
+                    text = "Trim Colour",
+                    sub = "vehicles.appearance.trimColour"
                 },
                 new MenuItem()
                 {
