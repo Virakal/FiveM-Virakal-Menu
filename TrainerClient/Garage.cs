@@ -223,7 +223,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             if (modList.ContainsKey("WheelType"))
             {
                 Trainer.DebugLine($"Setting wheel type to {modList["WheelType"]}");
-                var wheelType = int.Parse(modList["TrimColour"]);
+                var wheelType = int.Parse(modList["WheelType"]);
                 mods.WheelType = (VehicleWheelType)wheelType;
             }
 
