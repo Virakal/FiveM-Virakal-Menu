@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimalBombMenuAdder.cs" />
     <Compile Include="Data\PedModelType.cs" />
     <Compile Include="Data\DlcName.cs" />
     <Compile Include="Data\PedModelList.cs" />

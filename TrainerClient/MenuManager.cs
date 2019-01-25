@@ -31,6 +31,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 new VehiclesMenuAdder(Trainer.Garage),
                 new AnimationMenuAdder(),
                 new WeaponsMenuAdder(),
+                new AnimalBombMenuAdder(),
             };
 
             Trainer._EventHandlers["virakal:allMenusSent"] += new Action(OnMenusSent);

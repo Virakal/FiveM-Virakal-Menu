@@ -46,7 +46,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem() {
                     text = "Animal Bombs",
-                    sub = "animalbombmenu"
+                    sub = "animalbomb"
                 }
             };
 
