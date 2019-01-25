@@ -831,54 +831,40 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         private List<MenuItem> GetCustomColourMenu(string actionPrefix)
         {
-            return new List<MenuItem>()
+            var list = new List<MenuItem>()
             {
                 new MenuItem()
                 {
                     text = "Custom (HTML #RRGGBB or R,G,B)",
                     action = $"{actionPrefix} input"
                 },
-                new MenuItem()
-                {
-                    text = "Black",
-                    action = $"{actionPrefix} 0,0,0"
-                },
-                new MenuItem()
-                {
-                    text = "Blue",
-                    action = $"{actionPrefix} 0,0,255"
-                },
-                new MenuItem()
-                {
-                    text = "Green",
-                    action = $"{actionPrefix} 0,255,0"
-                },
-                new MenuItem()
-                {
-                    text = "Red",
-                    action = $"{actionPrefix} 255,0,0"
-                },
-                new MenuItem()
-                {
-                    text = "Fuchsia",
-                    action = $"{actionPrefix} 255,0,255"
-                },
-                new MenuItem()
-                {
-                    text = "Yellow",
-                    action = $"{actionPrefix} 255,255,0"
-                },
-                new MenuItem()
-                {
-                    text = "Cyan",
-                    action = $"{actionPrefix} 0,255,255"
-                },
-                new MenuItem()
-                {
-                    text = "White",
-                    action = $"{actionPrefix} 255,255,255"
-                },
             };
+
+            foreach (var kv in CustomColourList.Colours)
+            {
+                string colourName = kv.Key;
+                string colourHex = kv.Value;
+                var colour = CustomColourList.GetByName(colourName);
+                var rgb = $"{colour.R},{colour.G},{colour.B}";
+
+                list.Add(new MenuItem()
+                {
+                    text = AddSpacesToSentence(colourName),
+                    action = $"{actionPrefix} {rgb}",
+                    image = MakeDummyImageUrl(colourHex),
+                });
+            }
+
+            return list;
+        }
+
+        private string MakeDummyImageUrl(string hex)
+        {
+            int width = 350;
+            int height = 200;
+            hex = hex.Substring(1);
+
+            return $"https://dummyimage.com/{width}x{height}/{hex}/{hex}.png&text=Sample";
         }
 
         private string CleanColourName(string colourName)

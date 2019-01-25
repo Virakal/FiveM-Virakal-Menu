@@ -123,7 +123,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         /// </summary>
         /// <param name="colourString">the string representing the colour</param>
         /// <returns>the colour object</returns>
-        public Color CommaSeparatedStringToColor(string colourString)
+        public static Color CommaSeparatedStringToColor(string colourString)
         {
             string[] rgb = colourString.Split(',');
             int r = int.Parse(rgb[0]);
@@ -140,7 +140,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         /// </summary>
         /// <param name="hex">the hex string</param>
         /// <returns>the colour object</returns>
-        public Color HexToColor(string hex)
+        public static Color HexToColor(string hex)
         {
             int r = Convert.ToInt32(hex.Substring(0, 2), 16);
             int g = Convert.ToInt32(hex.Substring(2, 2), 16);
