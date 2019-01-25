@@ -60,7 +60,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehplatestyle", OnVehPlateStyle);
             Trainer.RegisterAsyncNUICallback("vehneon", OnVehNeon);
             Trainer.RegisterAsyncNUICallback("vehtyresmokecolour", OnVehTyreSmokeColour);
-            Trainer.RegisterAsyncNUICallback("vehmod", OnVehMod);
+            Trainer.RegisterNUICallback("vehmod", OnVehMod);
 
             // Boost
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
@@ -874,7 +874,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private async Task<CallbackDelegate> OnVehMod(IDictionary<string, object> data, CallbackDelegate callback)
+        private CallbackDelegate OnVehMod(IDictionary<string, object> data, CallbackDelegate callback)
         {
             var vehicle = Game.PlayerPed.CurrentVehicle;
 
