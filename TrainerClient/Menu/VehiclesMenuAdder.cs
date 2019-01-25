@@ -701,7 +701,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     }
                 };
             }
-
+            
             // Get a list of liveries from the mod collection
             var list = new List<MenuItem>();
 

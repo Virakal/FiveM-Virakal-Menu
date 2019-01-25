@@ -121,6 +121,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             modList["TyreSmoke"] = mods[VehicleToggleModType.TireSmoke].IsInstalled ? "true" : "false";
             modList["Turbo"] = mods[VehicleToggleModType.Turbo].IsInstalled ? "true" : "false";
             modList["XenonHeadlights"] = mods[VehicleToggleModType.XenonHeadlights].IsInstalled ? "true" : "false";
+            modList["TrimColour"] = Convert.ToString((int)mods.TrimColor);
+            modList["ColourCombo"] = Convert.ToString(mods.ColorCombination);
 
             for (var i = 0; i < 4; i++)
             {
@@ -201,6 +203,20 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 Trainer.DebugLine($"Setting RimColour to {modList["RimColour"]}");
                 var rimColour = int.Parse(modList["RimColour"]);
                 mods.RimColor = (VehicleColor)rimColour;
+            }
+
+            if (modList.ContainsKey("TrimColour"))
+            {
+                Trainer.DebugLine($"Setting TrimColour to {modList["TrimColour"]}");
+                var trimColour = int.Parse(modList["TrimColour"]);
+                mods.TrimColor = (VehicleColor)trimColour;
+            }
+
+            if (modList.ContainsKey("ColourCombo"))
+            {
+                Trainer.DebugLine($"Setting Colour Combination to {modList["ColourCombo"]}");
+                var combo = int.Parse(modList["ColourCombo"]);
+                mods.ColorCombination = combo;
             }
 
             // Installing the modkit allows additional mods
