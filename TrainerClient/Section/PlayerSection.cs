@@ -93,7 +93,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             while (!skin.IsLoaded)
             {
                 Trainer.DebugLine("Waiting for skin to load.");
-                await BaseScript.Delay(1);
+                await BaseScript.Delay(100);
             }
 
             var playerPed = Game.PlayerPed;
@@ -225,7 +225,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             Ped playerPed = Game.Player.Character;
             Model model = new Model(modelHash);
-
+            
             if (!playerPed.IsHuman)
             {
                 // This fixes crashes on some animal skins
