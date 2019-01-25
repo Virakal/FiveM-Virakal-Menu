@@ -21,7 +21,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem()
                 {
-                    text = "Large Minimap on Down Arrow",
+                    text = "Large Minimap on Z / D-Pad Down",
                     action = "bigmapondown",
                     state = "ON",
                     configkey = "BigMapOnDown"

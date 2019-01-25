@@ -8,7 +8,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 {
     class UISection : BaseSection
     {
-        private const Control MapKey = Control.PhoneDown;
+        private const Control MapKey = Control.MultiplayerInfo;
         private const int MapShowTime = 2500;
 
         public UISection(Trainer trainer) : base(trainer)
