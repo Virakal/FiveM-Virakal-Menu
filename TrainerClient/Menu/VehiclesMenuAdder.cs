@@ -58,6 +58,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.appearance.windowTintSettings"] = GetWindowTintMenu();
             menus["vehicles.appearance.livery"] = GetLiveryMenu();
             menus["vehicles.appearance.roofLivery"] = GetRoofLiveryMenu();
+            menus["vehicles.appearance.colourCombinations"] = GetColourCombinationsMenu();
 
             menus["vehicles.appearance.customBothColour"] = GetCustomColourMenu("vehcustomboth");
             menus["vehicles.appearance.customPrimaryColour"] = GetCustomColourMenu("vehcustomprimary");
@@ -118,7 +119,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             };
         }
 
-        private List<MenuItem> GetModLightsMenu()
+        public List<MenuItem> GetModLightsMenu()
         {
             // Would be nice to autogen this and update this depending on available lights maybe
             return new List<MenuItem>()
@@ -449,6 +450,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem()
                 {
+                    text = "Colour Combinations",
+                    sub = "vehicles.appearance.colourCombinations"
+                },
+                new MenuItem()
+                {
                     text = "Window Tint",
                     sub = "vehicles.appearance.windowTintSettings"
                 },
@@ -626,6 +632,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     }
                 };
             }
+
             var mods = vehicle.Mods;
 
             mods.InstallModKit();
@@ -659,6 +666,51 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 {
                     text = name == "" ? $"Livery {i}" : name,
                     action = $"vehlivery {i}",
+                });
+            }
+
+            return list;
+        }
+
+        public List<MenuItem> GetColourCombinationsMenu()
+        {
+            var vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                return new List<MenuItem>()
+                {
+                    new MenuItem()
+                    {
+                        text = "Enter a vehicle to view colour combinations",
+                    }
+                };
+            }
+
+            var mods = vehicle.Mods;
+
+            mods.InstallModKit();
+
+            if (mods.ColorCombinationCount < 1)
+            {
+                return new List<MenuItem>()
+                {
+                    new MenuItem()
+                    {
+                        text = "This vehicle doesn't support colour combinations",
+                    }
+                };
+            }
+
+            // Get a list of liveries from the mod collection
+            var list = new List<MenuItem>();
+
+            for (var i = 1; i <= mods.ColorCombinationCount; i++)
+            {
+                list.Add(new MenuItem()
+                {
+                    text = $"Colour Combination {i}",
+                    action = $"vehcolourcombo {i}",
                 });
             }
 

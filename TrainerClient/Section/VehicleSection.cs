@@ -45,15 +45,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehsecondary", OnVehSecondary);
             Trainer.RegisterNUICallback("vehboth", OnVehBoth);
             Trainer.RegisterNUICallback("vehpearl", OnVehPearl);
-            Trainer.RegisterAsyncNUICallback("vehcustomboth", OnVehCustomBoth);
-            Trainer.RegisterAsyncNUICallback("vehcustomprimary", OnVehCustomPrimary);
-            Trainer.RegisterAsyncNUICallback("vehcustomsecondary", OnVehCustomSecondary);
+            Trainer.RegisterNUICallback("vehcustomboth", OnVehCustomBoth);
+            Trainer.RegisterNUICallback("vehcustomprimary", OnVehCustomPrimary);
+            Trainer.RegisterNUICallback("vehcustomsecondary", OnVehCustomSecondary);
             Trainer.RegisterAsyncNUICallback("vehlivery", OnVehLivery);
             Trainer.RegisterNUICallback("vehrooflivery", OnVehRoofLivery);
             Trainer.RegisterNUICallback("vehrim", OnVehRim);
             Trainer.RegisterNUICallback("vehdashcolour", OnVehDashColour);
             Trainer.RegisterNUICallback("vehdashtrimcolour", OnVehTrimColour);
             Trainer.RegisterNUICallback("vehtint", OnVehTint);
+            Trainer.RegisterNUICallback("vehcolourcombo", OnVehColourCombo);
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
             Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
             Trainer.RegisterNUICallback("vehplatestyle", OnVehPlateStyle);
@@ -118,7 +119,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             await BaseScript.Delay(50);
         }
 
-        private async Task<CallbackDelegate> OnVehCustomBoth(IDictionary<string, object> data, CallbackDelegate callback)
+        private CallbackDelegate OnVehCustomBoth(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
 
@@ -136,7 +137,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private async Task<CallbackDelegate> OnVehCustomPrimary(IDictionary<string, object> data, CallbackDelegate callback)
+        private CallbackDelegate OnVehCustomPrimary(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
 
@@ -154,7 +155,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private async Task<CallbackDelegate> OnVehCustomSecondary(IDictionary<string, object> data, CallbackDelegate callback)
+        private CallbackDelegate OnVehCustomSecondary(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
 
@@ -289,6 +290,36 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             Trainer.AddNotification($"~y~Note that very few vehicles support roof livery.");
             Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} roof livery to {iLivery}!");
+
+            callback("ok");
+            return callback;
+        }
+
+        private CallbackDelegate OnVehColourCombo(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+                callback("ok");
+                return callback;
+            }
+
+            string combo = (string)data["action"];
+            bool success = int.TryParse(combo, out int iCombo);
+
+            if (!success)
+            {
+                Trainer.AddNotification($"~r~Invalid colour combination: {combo}!");
+                callback("ok");
+                return callback;
+            }
+
+            var mods = vehicle.Mods;
+            mods.ColorCombination = iCombo;
+
+            Trainer.AddNotification($"~g~Set {vehicle.LocalizedName} colour combination to combination {combo}!");
 
             callback("ok");
             return callback;
@@ -915,7 +946,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     throw new Exception("Invalid colour fallthrough");
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Trainer.AddNotification($"~r~Invalid colour {colourText}");
                 colour = Color.FromArgb(0);

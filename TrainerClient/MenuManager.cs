@@ -85,10 +85,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         private void OnNewVehicle(int vehicleHandle, int oldVehicleHandle)
         {
             var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
-            Menus["vehicles.appearance.livery"] = vehiclesAdder.GetLiveryMenu();
-            SendMenu("vehicles.appearance.livery");
 
-            Trainer.DebugLine("Updated the livery menu because we entered a new vehicle.");
+            Menus["vehicles.appearance.livery"] = vehiclesAdder.GetLiveryMenu();
+            Menus["vehicles.appearance.colourCombinations"] = vehiclesAdder.GetColourCombinationsMenu();
+
+            SendMenu("vehicles.appearance.livery");
+            SendMenu("vehicles.appearance.colourCombinations");
         }
 
         private void OnPlayerSpawn(object spawn)
