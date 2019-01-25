@@ -5,12 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using CitizenFX.Core;
 using CitizenFX.Core.Native;
+using Virakal.FiveM.Trainer.TrainerClient.Data;
 
 namespace Virakal.FiveM.Trainer.TrainerClient.Section
 {
     class PlayerSection : BaseSection
     {
         private bool justRunSpawnHandler = false;
+        private List<int> RecentSkins { get; set; } = new List<int>();
+        private static int maxRecentSkins = 5;
 
         public PlayerSection(Trainer trainer) : base(trainer)
         {
@@ -31,6 +34,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             EventHandlers["virakal:configFetched"] += new Action(OnConfigFetched);
 
             Trainer.AddTick(OnTick);
+        }
+
+        private void LoadRecentSkins()
+        {
+            if (!Config.ContainsKey("RecentSkins") || Config["RecentSkins"] == string.Empty)
+            {
+                return;
+            }
+
+            RecentSkins = ParseRecentSkins(Config["RecentSkins"]);
         }
 
         private CallbackDelegate OnSaveDefaultSkin(IDictionary<string, object> data, CallbackDelegate callback)
@@ -61,6 +74,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async void OnConfigFetched()
         {
+            LoadRecentSkins();
+
             if (Config.ContainsKey("DefaultSkin"))
             {
                 // Wait to allow the game to load more fully
@@ -192,11 +207,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task<CallbackDelegate> OnPlayerSkinChange(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Model model = new Model((string)data["action"]);
+            var modelName = (string)data["action"];
+            Model model = new Model(modelName);
             Ped playerPed = Game.Player.Character;
 
             await ChangePlayerSkin(playerPed, model);
-            Config["CurrentSkin"] = (string)data["action"];
+            Config["CurrentSkin"] = modelName;
 
             callback("ok");
             return callback;
@@ -302,6 +318,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 return false;
             }
 
+            UpdateRecentSkinsList(model);
+
             BaseScript.TriggerEvent("playerSpawned");
             BaseScript.TriggerEvent("virakal:skinChange", model.GetHashCode());
 
@@ -314,6 +332,33 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.AddNotification($"~g~Changed player skin to '{model}'.");
 
             return true;
+        }
+
+        public static List<int> ParseRecentSkins(string skinString)
+        {
+            var skinList = skinString.Split(',');
+            return skinList.Select((x) => int.Parse(x)).ToList();
+        }
+
+        public void UpdateRecentSkinsList(Model model)
+        {
+            var modelInfo = PedModelList.GetItemByHash(model.Hash);
+
+            if (modelInfo == null)
+            {
+                return;
+            }
+
+            RecentSkins.Insert(0, model.Hash);
+            // Remove duplicates
+            RecentSkins = RecentSkins.Union(RecentSkins).ToList();
+
+            if (RecentSkins.Count > maxRecentSkins)
+            {
+                RecentSkins.RemoveRange(maxRecentSkins, RecentSkins.Count - maxRecentSkins);
+            }
+
+            Config["RecentSkins"] = string.Join(",", RecentSkins);
         }
 
         private async Task OnTick()

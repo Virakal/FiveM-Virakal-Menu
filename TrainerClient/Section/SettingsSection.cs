@@ -25,11 +25,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private void ChangeWeather(Weather weatherType)
         {
-            string weather = WeatherList.GetInternalName((int)weatherType);
-            API.SetWeatherTypePersist(weather);
-            API.SetWeatherTypeNowPersist(weather);
-            API.SetWeatherTypeNow(weather);
-            API.SetOverrideWeather(weather);
+            World.Weather = weatherType;
+            World.TransitionToWeather(weatherType, 5.0f);
         }
 
         private CallbackDelegate WeatherCallback(IDictionary<string, object> data, CallbackDelegate callback)
@@ -67,6 +64,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         private void OnSetTime(int h, int m, int s, string name)
         {
             API.NetworkOverrideClockTime(h, m, s);
+            World.CurrentDayTime = new TimeSpan(h, m, s);
 
             if (!string.IsNullOrWhiteSpace(name))
             {

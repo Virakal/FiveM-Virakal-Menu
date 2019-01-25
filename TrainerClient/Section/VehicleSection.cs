@@ -53,7 +53,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("vehtint", OnVehTint);
             Trainer.RegisterNUICallback("rainbowspeed", OnRainbowSpeed);
             Trainer.RegisterAsyncNUICallback("vehplatetext", OnVehPlateText);
-            Trainer.RegisterNUICallback("vehplatesyle", OnVehPlateStyle);
+            Trainer.RegisterNUICallback("vehplatestyle", OnVehPlateStyle);
             Trainer.RegisterAsyncNUICallback("vehneon", OnVehNeon);
             Trainer.RegisterAsyncNUICallback("vehmod", OnVehMod);
 
@@ -99,6 +99,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             if (vehicle == null)
             {
+                if (LastPlayerVehicle != null)
+                {
+                    BaseScript.TriggerEvent("virakal:exitedVehicle", LastPlayerVehicle.Handle);
+                }
+
                 LastPlayerVehicle = null;
             }
             else if (vehicle != LastPlayerVehicle)
