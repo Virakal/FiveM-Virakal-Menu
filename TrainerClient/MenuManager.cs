@@ -28,7 +28,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 new SettingsMenuAdder(),
                 new PoliceMenuAdder(),
                 new UIMenuAdder(),
-                new VehiclesMenuAdder(Trainer.Garage),
+                new VehiclesMenuAdder(Trainer.Config, Trainer.Garage),
                 new AnimationMenuAdder(),
                 new WeaponsMenuAdder(),
                 new AnimalBombMenuAdder(),

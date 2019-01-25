@@ -11,9 +11,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
     class VehiclesMenuAdder : BaseMenuAdder
     {
         private Garage Garage { get; set; }
+        private Config Config { get; set; }
 
-        public VehiclesMenuAdder(Garage garage) : base()
+        public VehiclesMenuAdder(Config config, Garage garage) : base()
         {
+            Config = config;
             Garage = garage;
         }
 
@@ -57,7 +59,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.appearance.livery"] = GetLiveryMenu();
             menus["vehicles.appearance.roofLivery"] = GetRoofLiveryMenu();
 
-            menus["vehicles.appearance.primaryColour"] = GetCustomColourMenu("vehcolor");
+            menus["vehicles.appearance.customColour"] = GetCustomColourMenu("vehcolor");
 
             menus["vehicles.appearance.bothColour"] = GetPaintColourMenu("vehboth");
             menus["vehicles.appearance.primaryColour"] = GetPaintColourMenu("vehprimary");
@@ -395,7 +397,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Custom Colour",
-                    sub = "vehicles.appearance.primaryColour"
+                    sub = "vehicles.appearance.customColour"
                 },
                 new MenuItem()
                 {
