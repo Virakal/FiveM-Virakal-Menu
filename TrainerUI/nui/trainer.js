@@ -16,7 +16,6 @@ function pageExists(page) {
     return page >= 0 && page < this.pageCount;
 }
 function nextPage() {
-    console.log("Current: " + this.page + " Next: " + (this.page + 1) + " PageCount: " + this.pageCount + " NextExists: " + this.pageExists(this.page + 1));
     if (this.pageExists(this.page + 1)) {
         this.showPage(this.page + 1);
     }
@@ -26,7 +25,6 @@ function nextPage() {
     playSound('NAV_UP_DOWN');
 }
 function previousPage() {
-    console.log("Current: " + this.page + " Prev: " + (this.page - 1) + " PageCount: " + this.pageCount + " PrevExists: " + this.pageExists(this.page - 1));
     if (this.pageExists(this.page - 1)) {
         this.showPage(this.page - 1);
     }
@@ -119,12 +117,6 @@ function handleSelection() {
         }
         this.$forceUpdate();
         var data = sel.action.split(' ');
-        if (data[1] === '*') {
-            console.log('Subdata not implemented');
-        }
-        if (data[0] === 'playerskin') {
-            console.log('Recent skins not yet implemented');
-        }
         console.log("Sending " + data[0] + ", action: " + data[1] + ", newState: " + newState);
         sendData(data[0], { action: data[1], newstate: newState, itemtext: sel.text });
     }
@@ -151,7 +143,6 @@ function closeTrainer() {
     playSound('NO');
 }
 function updateFromConfig(json) {
-    console.log('We just got our config!');
     var config = JSON.parse(json);
     for (var key in config) {
         var value = config[key];
@@ -288,7 +279,6 @@ window.addEventListener('message', function (event) {
     }
     if (item.configupdate) {
         app.updateFromConfig(item.config);
-        console.log("Config: " + JSON.stringify(app.configState));
     }
 });
 //# sourceMappingURL=trainer.js.map

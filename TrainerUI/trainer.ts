@@ -43,7 +43,6 @@ function pageExists(page: number): boolean {
 }
 
 function nextPage(): void {
-	console.log(`Current: ${this.page} Next: ${this.page + 1} PageCount: ${this.pageCount} NextExists: ${this.pageExists(this.page + 1)}`);
 	if (this.pageExists(this.page + 1)) {
 		this.showPage(this.page + 1);
 	} else if (this.pageCount > 1) {
@@ -54,7 +53,6 @@ function nextPage(): void {
 }
 
 function previousPage(): void {
-	console.log(`Current: ${this.page} Prev: ${this.page - 1} PageCount: ${this.pageCount} PrevExists: ${this.pageExists(this.page - 1)}`);
 	if (this.pageExists(this.page - 1)) {
 		this.showPage(this.page - 1);
 	} else if (this.pageCount > 1) {
@@ -176,16 +174,6 @@ function handleSelection(): void {
 
 		const data: string[] = sel.action.split(' ');
 
-		if (data[1] === '*') {
-			console.log('Subdata not implemented');
-			// data[1] = item.parent().attr('data-subdata');
-		}
-
-		if (data[0] === 'playerskin') {
-			console.log('Recent skins not yet implemented');
-			// addToRecentSkins(data[1], item);
-		}
-
 		console.log(`Sending ${data[0]}, action: ${data[1]}, newState: ${newState}`);
 		sendData(data[0], { action: data[1], newstate: newState, itemtext: sel.text });
 	}
@@ -217,7 +205,6 @@ function closeTrainer(): void {
 }
 
 function updateFromConfig(json: string): void {
-	console.log('We just got our config!');
 	const config: { [key: string]: string; } = JSON.parse(json);
 
 	for (const key in config) {
@@ -387,6 +374,5 @@ window.addEventListener('message', function (event) {
 
 	if (item.configupdate) {
 		app.updateFromConfig(item.config);
-		console.log(`Config: ${JSON.stringify(app.configState)}`);
 	}
 });
