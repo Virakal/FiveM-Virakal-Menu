@@ -9,7 +9,7 @@ namespace Virakal.FiveM.Trainer.TrainerShared
 {
     public static class WeatherList
     {
-        private static readonly string[] internalNames = {
+        public static readonly string[] internalNames = {
             "EXTRASUNNY",
             "CLEAR",
             "CLOUDS",
@@ -26,7 +26,7 @@ namespace Virakal.FiveM.Trainer.TrainerShared
             "XMAS"
         };
 
-        private static readonly string[] niceNames = {
+        public static readonly string[] niceNames = {
             "Extra Sunny",
             "Clear",
             "Cloudy",

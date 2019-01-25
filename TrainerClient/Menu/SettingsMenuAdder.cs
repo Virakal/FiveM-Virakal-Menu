@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Virakal.FiveM.Trainer.TrainerShared;
 
 namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 {
@@ -25,79 +26,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             };
 
             // We can build this from the enum in future
-            menus["settings.weather"] = new List<MenuItem>()
-            {
-                new MenuItem()
-                {
-                    text = "Extra Sunny",
-                    action = "weather 0"
-                },
-                new MenuItem()
-                {
-                    text = "Clear",
-                    action = "weather 1"
-                },
-                new MenuItem()
-                {
-                    text = "Clouds",
-                    action = "weather 2"
-                },
-                new MenuItem()
-                {
-                    text = "Overcast",
-                    action = "weather 5"
-                },
-                new MenuItem()
-                {
-                    text = "Rain",
-                    action = "weather 6"
-                },
-                new MenuItem()
-                {
-                    text = "Clearing",
-                    action = "weather 8"
-                },
-                new MenuItem()
-                {
-                    text = "Thunder",
-                    action = "weather 7"
-                },
-                new MenuItem()
-                {
-                    text = "Smog",
-                    action = "weather 3"
-                },
-                new MenuItem()
-                {
-                    text = "Foggy",
-                    action = "weather 4"
-                },
-                new MenuItem()
-                {
-                    text = "Christmas",
-                    action = "weather 13"
-                },
-                new MenuItem()
-                {
-                    text = "Light Snow",
-                    action = "weather 12"
-                },
-                new MenuItem()
-                {
-                    text = "Snow",
-                    action = "weather 10"
-                },
-                new MenuItem()
-                {
-                    text = "Blizzard",
-                    action = "weather 11"
-                },
-                new MenuItem()
-                {
-                    text = "Neutral",
-                    action = "weather 9"
-                },
-            };
+            menus["settings.weather"] = GetWeatherMenu();
 
             menus["settings.time"] = new List<MenuItem>()
             {
@@ -244,6 +173,23 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             };
 
             return menus;
+        }
+
+        private List<MenuItem> GetWeatherMenu()
+        {
+            var weathers = WeatherList.internalNames;
+            var list = new List<MenuItem>(weathers.Length);
+
+            for (int i = 0; i < weathers.Length; i++)
+            {
+                list.Add(new MenuItem()
+                {
+                    text = WeatherList.GetNiceName(i),
+                    action = $"weather {i}",
+                });
+            }
+
+            return list;
         }
     }
 }
