@@ -63,6 +63,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.appearance.customBothColour"] = GetCustomColourMenu("vehcustomboth");
             menus["vehicles.appearance.customPrimaryColour"] = GetCustomColourMenu("vehcustomprimary");
             menus["vehicles.appearance.customSecondaryColour"] = GetCustomColourMenu("vehcustomsecondary");
+            menus["vehicles.mods.lights.neonColour"] = GetCustomColourMenu("vehneon");
 
             menus["vehicles.appearance.bothColour"] = GetPaintColourMenu("vehboth");
             menus["vehicles.appearance.primaryColour"] = GetPaintColourMenu("vehprimary");
@@ -122,7 +123,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
         public List<MenuItem> GetModLightsMenu()
         {
             // Would be nice to autogen this and update this depending on available lights maybe
-            return new List<MenuItem>()
+            var list = new List<MenuItem>()
             {
                 new MenuItem()
                 {
@@ -146,50 +147,30 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem()
                 {
-                    text = "Change Neon Colour (HTML or R,G,B)",
-                    action = "vehneon input"
-                },
-                new MenuItem()
-                {
-                    text = "Enable Left Neons",
-                    action = "vehneon on0"
-                },
-                new MenuItem()
-                {
-                    text = "Enable Right Neons",
-                    action = "vehneon on1"
-                },
-                new MenuItem()
-                {
-                    text = "Enable Front Neons",
-                    action = "vehneon on2"
-                },
-                new MenuItem()
-                {
-                    text = "Enable Back Neons",
-                    action = "vehneon on3"
-                },
-                new MenuItem()
-                {
-                    text = "Disable Left Neons",
-                    action = "vehneon off0"
-                },
-                new MenuItem()
-                {
-                    text = "Disable Right Neons",
-                    action = "vehneon off1"
-                },
-                new MenuItem()
-                {
-                    text = "Disable Front Neons",
-                    action = "vehneon off2"
-                },
-                new MenuItem()
-                {
-                    text = "Disable Back Neons",
-                    action = "vehneon off3"
+                    text = "Change Neon Colour",
+                    sub = "vehicles.mods.lights.neonColour"
                 },
             };
+
+            foreach (var light in Enum.GetValues(typeof(VehicleNeonLight)))
+            {
+                list.Add(new MenuItem()
+                {
+                    text = $"Enable {light} Neon",
+                    action = $"vehneon on{(int)light}",
+                });
+            }
+
+            foreach (var light in Enum.GetValues(typeof(VehicleNeonLight)))
+            {
+                list.Add(new MenuItem()
+                {
+                    text = $"Disable {light} Neon",
+                    action = $"vehneon off{(int)light}",
+                });
+            }
+
+            return list;
         }
 
         private Dictionary<string, List<MenuItem>> AddSpawnByDlcMenus(Dictionary<string, List<MenuItem>> menus)

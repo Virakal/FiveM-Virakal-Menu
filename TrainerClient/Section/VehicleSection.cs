@@ -824,6 +824,15 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     mods.SetNeonLightsOn(light, false);
                     Trainer.AddNotification($"~g~Disabled {light} neon.");
                 }
+                else if (action.IndexOf(',') != -1)
+                {
+                    var colour = Trainer.CommaSeparatedStringToColor(action);
+                    mods.NeonLightsColor = colour;
+                }
+                else
+                {
+                    Trainer.AddNotification("~r~Invalid neon instruction!");
+                }
             }
 
             return callback;
