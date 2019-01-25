@@ -83,7 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="nui\trainer.css" />
-    <Content Include="nui\trainer.old.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +90,6 @@
     <TypeScriptCompile Include="js_refs\index.d.ts" />
     <TypeScriptCompile Include="js_refs\jquery.d.ts" />
     <TypeScriptCompile Include="js_refs\natives_universal.d.ts" />
-    <None Include="trainer.ts.old" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
