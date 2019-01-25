@@ -46,7 +46,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
             menus["vehicles.spawn.fun"] = AddVehicleSpawnMenu(VehicleList.GetByTag("fun"));
 
-            menus = AddSpawnByDlcMenus(menus, "vehicles.spawn");
+            menus = AddSpawnByDlcMenus(menus);
 
             // Add vehicle appearance menus
             menus["vehicles.appearance.rainbowSettings"] = GetRainbowMenu();
@@ -186,7 +186,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             };
         }
 
-        private Dictionary<string, List<MenuItem>> AddSpawnByDlcMenus(Dictionary<string, List<MenuItem>> menus, string parentName)
+        private Dictionary<string, List<MenuItem>> AddSpawnByDlcMenus(Dictionary<string, List<MenuItem>> menus)
         {
             List<MenuItem> dlcMenuList = new List<MenuItem>();
 
