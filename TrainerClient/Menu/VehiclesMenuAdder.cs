@@ -59,7 +59,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.appearance.livery"] = GetLiveryMenu();
             menus["vehicles.appearance.roofLivery"] = GetRoofLiveryMenu();
 
-            menus["vehicles.appearance.customColour"] = GetCustomColourMenu("vehcustomboth");
+            menus["vehicles.appearance.customBothColour"] = GetCustomColourMenu("vehcustomboth");
+            menus["vehicles.appearance.customPrimaryColour"] = GetCustomColourMenu("vehcustomprimary");
+            menus["vehicles.appearance.customSecondaryColour"] = GetCustomColourMenu("vehcustomsecondary");
 
             menus["vehicles.appearance.bothColour"] = GetPaintColourMenu("vehboth");
             menus["vehicles.appearance.primaryColour"] = GetPaintColourMenu("vehprimary");
@@ -396,22 +398,32 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             {
                 new MenuItem()
                 {
-                    text = "Custom Colour",
-                    sub = "vehicles.appearance.customColour"
+                    text = "Both Custom Colour",
+                    sub = "vehicles.appearance.customBothColour"
                 },
                 new MenuItem()
                 {
-                    text = "Both Primary & Secondary Colour",
+                    text = "Custom Primary Colour",
+                    sub = "vehicles.appearance.customPrimaryColour"
+                },
+                new MenuItem()
+                {
+                    text = "Custom Secondary Colour",
+                    sub = "vehicles.appearance.customSecondaryColour"
+                },
+                new MenuItem()
+                {
+                    text = "Both Paint Colour",
                     sub = "vehicles.appearance.bothColour"
                 },
                 new MenuItem()
                 {
-                    text = "Primary Colour",
+                    text = "Paint Primary Colour",
                     sub = "vehicles.appearance.primaryColour"
                 },
                 new MenuItem()
                 {
-                    text = "Secondary Colour",
+                    text = "Paint Secondary Colour",
                     sub = "vehicles.appearance.secondaryColour"
                 },
                 new MenuItem()
