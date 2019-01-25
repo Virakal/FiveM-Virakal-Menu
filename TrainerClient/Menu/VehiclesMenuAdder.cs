@@ -66,7 +66,124 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.appearance.rimColour"] = GetPaintColourMenu("vehrim");
             menus["vehicles.appearance.dashColour"] = GetPaintColourMenu("vehdashcolour");
 
+            // Add mods menus
+            menus["vehicles.mods.lights"] = GetModLightsMenu();
+            menus["vehicles.mods.performance"] = GetModPerformanceMenu();
+            menus["vehicles.mods.wheels"] = GetModWheelsMenu();
+
             return menus;
+        }
+
+        private List<MenuItem> GetModPerformanceMenu()
+        {
+            return new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "Add Turbo",
+                    action = "vehmod turboon"
+                },
+                new MenuItem()
+                {
+                    text = "Remove Turbo",
+                    action = "vehmod turbooff"
+                },
+            };
+        }
+
+        private List<MenuItem> GetModWheelsMenu()
+        {
+            return new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "Enable Tyre Smoke",
+                    action = "vehmod tyresmokeon"
+                },
+                new MenuItem()
+                {
+                    text = "Disable Tyre Smoke",
+                    action = "vehmod tyresmokeoff"
+                },
+                new MenuItem()
+                {
+                    text = "Tyre Smoke Colour (HTML #RRGGBB or R,G,B)",
+                    action = "vehmod tyresmokecolour"
+                },
+            };
+        }
+
+        private List<MenuItem> GetModLightsMenu()
+        {
+            // Would be nice to autogen this and update this depending on available lights maybe
+            return new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "Enable Xenon Headlights",
+                    action = "vehmod xenonon"
+                },
+                new MenuItem()
+                {
+                    text = "Disable Xenon Headlights",
+                    action = "vehmod xenonoff"
+                },
+                new MenuItem()
+                {
+                    text = "All Neons On",
+                    action = "vehneon allon"
+                },
+                new MenuItem()
+                {
+                    text = "All Neons Off",
+                    action = "vehneon alloff"
+                },
+                new MenuItem()
+                {
+                    text = "Change Neon Colour (HTML or R,G,B)",
+                    action = "vehneon input"
+                },
+                new MenuItem()
+                {
+                    text = "Enable Left Neons",
+                    action = "vehneon on0"
+                },
+                new MenuItem()
+                {
+                    text = "Enable Right Neons",
+                    action = "vehneon on1"
+                },
+                new MenuItem()
+                {
+                    text = "Enable Front Neons",
+                    action = "vehneon on2"
+                },
+                new MenuItem()
+                {
+                    text = "Enable Back Neons",
+                    action = "vehneon on3"
+                },
+                new MenuItem()
+                {
+                    text = "Disable Left Neons",
+                    action = "vehneon off0"
+                },
+                new MenuItem()
+                {
+                    text = "Disable Right Neons",
+                    action = "vehneon off1"
+                },
+                new MenuItem()
+                {
+                    text = "Disable Front Neons",
+                    action = "vehneon off2"
+                },
+                new MenuItem()
+                {
+                    text = "Disable Back Neons",
+                    action = "vehneon off3"
+                },
+            };
         }
 
         private Dictionary<string, List<MenuItem>> AddSpawnByDlcMenus(Dictionary<string, List<MenuItem>> menus, string parentName)
@@ -350,17 +467,17 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Neons & Lights",
-                    sub = "vehiclesmodsneonsmenu"
+                    sub = "vehicles.mods.lights"
                 },
                 new MenuItem()
                 {
                     text = "Performance",
-                    sub = "vehiclesmodsperfmenu"
+                    sub = "vehicles.mods.performance"
                 },
                 new MenuItem()
                 {
                     text = "Wheels & Tyres",
-                    sub = "vehiclesmodswheelsmenu"
+                    sub = "vehicles.mods.wheels"
                 },
             };
         }
