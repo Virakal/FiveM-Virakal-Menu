@@ -144,6 +144,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             var modList = JsonConvert.DeserializeObject<Dictionary<string, string>>(modString);
             VehicleModCollection mods = vehicle.Mods;
 
+            if (modList.ContainsKey("ColourCombo"))
+            {
+                Trainer.DebugLine($"Setting Colour Combination to {modList["ColourCombo"]}");
+                var combo = int.Parse(modList["ColourCombo"]);
+                mods.ColorCombination = combo;
+            }
+
             if (modList.ContainsKey("CustomPrimary"))
             {
                 Trainer.DebugLine($"Setting CustomPrimary to {modList["CustomPrimary"]}");
@@ -211,13 +218,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 Trainer.DebugLine($"Setting TrimColour to {modList["TrimColour"]}");
                 var trimColour = int.Parse(modList["TrimColour"]);
                 mods.TrimColor = (VehicleColor)trimColour;
-            }
-
-            if (modList.ContainsKey("ColourCombo"))
-            {
-                Trainer.DebugLine($"Setting Colour Combination to {modList["ColourCombo"]}");
-                var combo = int.Parse(modList["ColourCombo"]);
-                mods.ColorCombination = combo;
             }
 
             if (modList.ContainsKey("WheelType"))
