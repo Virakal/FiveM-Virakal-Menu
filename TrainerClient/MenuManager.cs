@@ -57,11 +57,23 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 UpdateGarageMenus();
             }
-
-            if (key == "RecentSkins")
+            else if (key == "RecentSkins")
             {
                 UpdateRecentSkinsMenu();
             }
+            else if (key == "RainbowSpeed")
+            {
+                UpdateRainbowSpeedMenu();
+            }
+        }
+
+        private void UpdateRainbowSpeedMenu()
+        {
+            var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
+
+            Menus["vehicles.appearance.rainbowSettings.speed"] = vehiclesAdder.GetRainbowSpeedMenu();
+
+            SendMenu("vehicles.appearance.rainbowSettings.speed");
         }
 
         private void UpdateRecentSkinsMenu()

@@ -738,63 +738,49 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             return list;
         }
 
-        private List<MenuItem> GetRainbowSpeedMenu()
+        public List<MenuItem> GetRainbowSpeedMenu()
         {
-            //return new List<MenuItem>();
-            // We can automate this soon and add a spcifier for the current speed
-            return new List<MenuItem>()
+            var list = new List<MenuItem>(10);
+            bool success = false;
+            double current = -1;
+
+            if (Config.ContainsKeyOrHasDefault("RainbowSpeed"))
             {
-                new MenuItem()
+                success = double.TryParse(Config["RainbowSpeed"], out current);
+            }
+
+            if (!success || current == 0)
+            {
+                current = 50;
+            }
+            else
+            {
+                current *= 100;
+            }
+
+            for (var speed = 0.1; speed <= 1; speed += 0.1)
+            {
+                var percentage = Math.Round(speed * 100);
+                var name = $"{percentage}% Speed";
+
+                Debug.WriteLine($"Comparing {current} to {percentage}.");
+                if (percentage == current)
                 {
-                    text = "10% Speed",
-                    action = "rainbowspeed 0.1"
-                },
-                new MenuItem()
+                    name += " (Current)";
+                }
+                else if (percentage == 50)
                 {
-                    text = "20% Speed",
-                    action = "rainbowspeed 0.2"
-                },
-                new MenuItem()
+                    name += " (Default)";
+                }
+
+                list.Add(new MenuItem()
                 {
-                    text = "30% Speed",
-                    action = "rainbowspeed 0.3"
-                },
-                new MenuItem()
-                {
-                    text = "40% Speed",
-                    action = "rainbowspeed 0.4"
-                },
-                new MenuItem()
-                {
-                    text = "50% Speed (Default)",
-                    action = "rainbowspeed 0.5"
-                },
-                new MenuItem()
-                {
-                    text = "60% Speed",
-                    action = "rainbowspeed 0.6"
-                },
-                new MenuItem()
-                {
-                    text = "70% Speed",
-                    action = "rainbowspeed 0.7"
-                },
-                new MenuItem()
-                {
-                    text = "80% Speed",
-                    action = "rainbowspeed 0.8"
-                },
-                new MenuItem()
-                {
-                    text = "90% Speed",
-                    action = "rainbowspeed 0.9"
-                },
-                new MenuItem()
-                {
-                    text = "100% Speed",
-                    action = "rainbowspeed 1.0"
-                },
-            };
+                    text = name,
+                    action = $"rainbowspeed {speed}",
+                });
+            }
+
+            return list;
         }
 
         private List<MenuItem> GetBoostPowerMenu()
