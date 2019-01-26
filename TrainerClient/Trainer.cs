@@ -175,9 +175,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             new Section.AnimationSection(this);
             new Section.AnimalBombSection(this);
 
-            // Send menus to frontend
-            MenuManager.SendAllMenus();
-
             RegisterNUICallback("trainerclose", TrainerClose);
             RegisterNUICallback("playsound", PlaySound);
 

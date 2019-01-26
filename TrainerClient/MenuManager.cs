@@ -35,8 +35,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             };
 
             Trainer._EventHandlers["virakal:allMenusSent"] += new Action(OnMenusSent);
+            Trainer._EventHandlers["virakal:configFetched"] += new Action(OnConfigFetched);
+        }
 
+        private void OnConfigFetched()
+        {
             InitialiseMenus();
+            SendAllMenus();
         }
 
         private void OnMenusSent()

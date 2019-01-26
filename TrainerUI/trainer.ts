@@ -251,7 +251,7 @@ const app = new Vue({
 		trainerTitle,
 		maxPageSize,
 		showTrainer: false,
-		menus: { 'mainmenu': [] },
+		menus: { 'mainmenu': [{ text: "Waiting for menus to download..." }] },
 		currentMenuKey: 'mainmenu',
 		page: 0,
 		selected: 0,

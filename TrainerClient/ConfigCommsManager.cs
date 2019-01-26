@@ -16,10 +16,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             BaseScript.TriggerServerEvent("virakal:getConfig");
         }
 
-        private void OnReturnConfig(string config)
+        private async void OnReturnConfig(string config)
         {
             Config.FromJson(config);
             Trainer.SendUIMessage(new { configupdate = true, config });
+
+            await BaseScript.Delay(1);
+
             BaseScript.TriggerEvent("virakal:configFetched");
         }
     }
