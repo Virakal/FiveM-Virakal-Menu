@@ -80,16 +80,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             }
         }
 
-        private void UpdateVehicleSpawnSearchMenu()
-        {
-            var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
-            UpdateAndSend("vehicles.spawn.search", vehiclesAdder.GetSpawnSearchMenu());
-        }
-
         public void UpdateAndSend(string key, List<MenuItem> menu)
         {
             Menus[key] = menu;
             SendMenu(key);
+        }
+
+        private void UpdateVehicleSpawnSearchMenu()
+        {
+            var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
+            UpdateAndSend("vehicles.spawn.search", vehiclesAdder.GetSpawnSearchMenu());
         }
 
         private void UpdateDefaultRadioMenu()
@@ -101,49 +101,34 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         private void UpdateRainbowSpeedMenu()
         {
             var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
-
-            Menus["vehicles.appearance.rainbowSettings.speed"] = vehiclesAdder.GetRainbowSpeedMenu();
-
-            SendMenu("vehicles.appearance.rainbowSettings.speed");
+            UpdateAndSend("vehicles.appearance.rainbowSettings.speed", vehiclesAdder.GetRainbowSpeedMenu());
         }
 
         private void UpdateRecentSkinsMenu()
         {
             var playerAdder = GetMenuAdderByType<PlayerMenuAdder>();
-            Menus["player.skin.recent"] = playerAdder.GetRecentSkinMenu();
-
-            SendMenu("player.skin.recent");
+            UpdateAndSend("player.skin.recent", playerAdder.GetRecentSkinMenu());
         }
 
         private void UpdateGarageMenus()
         {
             var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
-            Menus["vehicles.save"] = vehiclesAdder.GetGarageSaveMenu();
-            Menus["vehicles.load"] = vehiclesAdder.GetGarageLoadMenu();
-
-            SendMenu("vehicles.save");
-            SendMenu("vehicles.load");
+            UpdateAndSend("vehicles.save", vehiclesAdder.GetGarageSaveMenu());
+            UpdateAndSend("vehicles.load", vehiclesAdder.GetGarageLoadMenu());
         }
 
         private void OnNewVehicle(int vehicleHandle, int oldVehicleHandle)
         {
             var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
-
-            Menus["vehicles.appearance.livery"] = vehiclesAdder.GetLiveryMenu();
-            Menus["vehicles.appearance.colourCombinations"] = vehiclesAdder.GetColourCombinationsMenu();
-
-            SendMenu("vehicles.appearance.livery");
-            SendMenu("vehicles.appearance.colourCombinations");
+            UpdateAndSend("vehicles.appearance.livery", vehiclesAdder.GetLiveryMenu());
+            UpdateAndSend("vehicles.appearance.colourCombinations", vehiclesAdder.GetColourCombinationsMenu());
         }
 
         private void OnPlayerSpawn(object spawn)
         {
             // Would be nice to just do this on player connect, but we can't.
             var teleportMenuAdder = GetMenuAdderByType<TeleportMenuAdder>();
-            Menus["teleport.toPlayer"] = teleportMenuAdder.MakePlayerMenu();
-            SendMenu("teleport.toPlayer");
-
-            Trainer.DebugLine("Updated the teleport to player menu because we had a player spawn.");
+            UpdateAndSend("teleport.toPlayer", teleportMenuAdder.MakePlayerMenu());
         }
 
         public async void SendAllMenus()
