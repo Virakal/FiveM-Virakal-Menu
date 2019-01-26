@@ -25,7 +25,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 new MainMenuAdder(),
                 new PlayerMenuAdder(Trainer.Config),
                 new TeleportMenuAdder(),
-                new SettingsMenuAdder(),
+                new SettingsMenuAdder(Trainer.Config),
                 new PoliceMenuAdder(),
                 new UIMenuAdder(),
                 new VehiclesMenuAdder(Trainer.Config, Trainer.Garage),
@@ -65,6 +65,22 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 UpdateRainbowSpeedMenu();
             }
+            else if (key == "DefaultRadioStation")
+            {
+                UpdateDefaultRadioMenu();
+            }
+        }
+
+        public void UpdateAndSend(string key, List<MenuItem> menu)
+        {
+            Menus[key] = menu;
+            SendMenu(key);
+        }
+
+        private void UpdateDefaultRadioMenu()
+        {
+            var settingsAdder = GetMenuAdderByType<SettingsMenuAdder>();
+            UpdateAndSend("settings.defaultRadio", settingsAdder.GetDefaultRadioMenu());
         }
 
         private void UpdateRainbowSpeedMenu()

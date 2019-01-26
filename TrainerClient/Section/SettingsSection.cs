@@ -18,9 +18,55 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             EventHandlers["playerSpawned"] += new Action<object>(OnFirstSpawn);
             EventHandlers["virakal:setWeather"] += new Action<int, string>(OnSetWeather);
             EventHandlers["virakal:setTime"] += new Action<int, int, int, string>(OnSetTime);
+            EventHandlers["virakal:newVehicle"] += new Action<int, int>(OnNewVehicle);
 
             Trainer.RegisterNUICallback("weather", WeatherCallback);
             Trainer.RegisterNUICallback("time", TimeCallback);
+            Trainer.RegisterNUICallback("defaultradio", OnDefaultRadio);
+        }
+
+        private void OnNewVehicle(int vehicleHandle, int oldVehicle)
+        {
+            if (Config.ContainsKey("DefaultRadioStation"))
+            {
+                string action = Config["DefaultRadioStation"];
+                int stationIndex = int.Parse(action);
+
+                // -1 means no default, so don't change the current station
+                if (stationIndex != -1)
+                {
+                    var vehicle = Game.PlayerPed.CurrentVehicle;
+
+                    if (vehicle != null)
+                    {
+                        var station = (RadioStation)stationIndex;
+                        vehicle.RadioStation = station;
+                    }
+                }
+            }
+        }
+
+        private CallbackDelegate OnDefaultRadio(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            string action = (string)data["action"];
+            int stationIndex = int.Parse(action);
+
+            // -1 means no default, so don't change the current station
+            if (stationIndex != -1)
+            {
+                var vehicle = Game.PlayerPed.CurrentVehicle;
+
+                if (vehicle != null)
+                {
+                    var station = (RadioStation)stationIndex;
+                    vehicle.RadioStation = station;
+                }
+            }
+
+            Config["DefaultRadioStation"] = action;
+
+            callback("ok");
+            return callback;
         }
 
         private void ChangeWeather(Weather weatherType)

@@ -828,7 +828,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             var plateStyles = new List<string>();
 
             foreach (var style in Enum.GetValues(typeof(LicensePlateStyle))) {
-                var name = AddSpacesToSentence(style.ToString());
+                var name = Trainer.AddSpacesToSentence(style.ToString());
 
                 list.Add(new MenuItem()
                 {
@@ -884,7 +884,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
                 list.Add(new MenuItem()
                 {
-                    text = AddSpacesToSentence(colourName),
+                    text = Trainer.AddSpacesToSentence(colourName),
                     action = $"{actionPrefix} {rgb}",
                     image = MakeDummyImageUrl(colourHex),
                 });
@@ -906,41 +906,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
         {
             colourName = colourName.Replace("Util", "Utility");
             colourName = colourName.Replace("Metallic", "");
-            colourName = AddSpacesToSentence(colourName);
+            colourName = Trainer.AddSpacesToSentence(colourName);
 
             return colourName;
-        }
-
-        private string AddSpacesToSentence(string text)
-        {
-            var preserveAcronyms = false;
-
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                return string.Empty;
-            }
-
-            StringBuilder newText = new StringBuilder(text.Length * 2);
-
-            newText.Append(text[0]);
-
-            for (int i = 1; i < text.Length; i++)
-            {
-                if (char.IsUpper(text[i]))
-                {
-
-                    if (
-                        (text[i - 1] != ' ' && !char.IsUpper(text[i - 1])) ||
-                        (preserveAcronyms && char.IsUpper(text[i - 1]) &&
-                         i < text.Length - 1 && !char.IsUpper(text[i + 1])))
-                    {
-                        newText.Append(' ');
-                    }
-                }
-
-                newText.Append(text[i]);
-            }
-            return newText.ToString();
         }
     }
 }
