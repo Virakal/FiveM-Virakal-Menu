@@ -28,35 +28,17 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.load"] = GetGarageLoadMenu();
             menus["vehicles.appearance"] = GetAppearanceMenu();
             menus["vehicles.mods"] = GetModsMenu();
+            menus["vehicles.boostPower"] = GetBoostPowerMenu();
 
             // Add vehicle spawn menus
-            menus["vehicles.spawn.boats"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Boats));
-            menus["vehicles.spawn.commercial"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Commercial));
-            menus["vehicles.spawn.compacts"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Compacts));
-            menus["vehicles.spawn.coupes"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Coupes));
-            menus["vehicles.spawn.pushbikes"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Cycles));
-            menus["vehicles.spawn.emergency"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Emergency));
-            menus["vehicles.spawn.helicopters"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Helicopters));
-            menus["vehicles.spawn.industrial"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Industrial));
-            menus["vehicles.spawn.military"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Military));
-            menus["vehicles.spawn.motorbikes"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Motorcycles));
-            menus["vehicles.spawn.offRoad"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.OffRoad));
-            menus["vehicles.spawn.planes"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Planes));
-            menus["vehicles.spawn.sedans"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Sedans));
-            menus["vehicles.spawn.service"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Service));
-            menus["vehicles.spawn.super"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Super));
-            menus["vehicles.spawn.utility"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Utility));
-
-            menus["vehicles.spawn.fun"] = GetVehicleSpawnMenu(VehicleList.GetByTag("fun"));
-
             menus["vehicles.spawn.search"] = GetSpawnSearchMenu();
-
+            menus = AddSpawnByTypeMenus(menus);
             menus = AddSpawnByDlcMenus(menus);
+            menus["vehicles.spawn.fun"] = GetVehicleSpawnMenu(VehicleList.GetByTag("fun"));
 
             // Add vehicle appearance menus
             menus["vehicles.appearance.rainbowSettings"] = GetRainbowMenu();
             menus["vehicles.appearance.rainbowSettings.speed"] = GetRainbowSpeedMenu();
-            menus["vehicles.boostPower"] = GetBoostPowerMenu();
             menus["vehicles.appearance.numberPlateSettings"] = GetPlatesMenu();
             menus["vehicles.appearance.windowTintSettings"] = GetWindowTintMenu();
             menus["vehicles.appearance.livery"] = GetLiveryMenu();
@@ -232,6 +214,38 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             return menus;
         }
 
+        private Dictionary<string, List<MenuItem>> AddSpawnByTypeMenus(Dictionary<string, List<MenuItem>> menus)
+        {
+            var typeMenuList = new List<MenuItem>();
+
+            foreach (VehicleClass vehicleClass in Enum.GetValues(typeof(VehicleClass)))
+            {
+                string submenuName = $"vehicles.spawn.type.{vehicleClass.ToString().ToLower()}";
+
+                typeMenuList.Add(new MenuItem()
+                {
+                    text = Trainer.AddSpacesToSentence(vehicleClass.ToString()),
+                    sub = submenuName,
+                });
+
+                menus[submenuName] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(vehicleClass));
+
+                if (menus[submenuName].Count == 0)
+                {
+                    menus[submenuName].Add(new MenuItem()
+                    {
+                        text = "No vehicles of this type added yet",
+                    });
+                }
+            }
+
+            typeMenuList = typeMenuList.OrderBy(x => x.text).ToList();
+
+            menus["vehicles.spawn.type"] = typeMenuList;
+
+            return menus;
+        }
+
         private List<MenuItem> GetVehicleSpawnMenu(IEnumerable<VehicleListItem> vehicleList)
         {
             List<MenuItem> list = new List<MenuItem>();
@@ -266,93 +280,18 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem()
                 {
-                    text = "Spawn Boat",
-                    sub = "vehicles.spawn.boats"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Commercial Vehicles",
-                    sub = "vehicles.spawn.commercial"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Compact Vehicles",
-                    sub = "vehicles.spawn.compacts"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Coupés",
-                    sub = "vehicles.spawn.coupes"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Emergency Vehicles",
-                    sub = "vehicles.spawn.emergency"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Helicopter",
-                    sub = "vehicles.spawn.helicopters"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Industrial",
-                    sub = "vehicles.spawn.industrial"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Military",
-                    sub = "vehicles.spawn.military"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Motorbike",
-                    sub = "vehicles.spawn.motorbikes"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Off-Road Vehicles",
-                    sub = "vehicles.spawn.offRoad"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Plane",
-                    sub = "vehicles.spawn.planes"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Pushbike",
-                    sub = "vehicles.spawn.pushbikes"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Sedans",
-                    sub = "vehicles.spawn.sedans"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Service Vehicles",
-                    sub = "vehicles.spawn.service"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Supercar",
-                    sub = "vehicles.spawn.super"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Utility Vehicles",
-                    sub = "vehicles.spawn.utility"
-                },
-                new MenuItem()
-                {
-                    text = "Spawn Vehicle by Name",
-                    action = "vehspawn input"
+                    text = "Spawn by Type",
+                    sub = "vehicles.spawn.type"
                 },
                 new MenuItem()
                 {
                     text = "Spawn Vehicle by DLC",
                     sub = "vehicles.spawn.dlc"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Vehicle by Internal Name",
+                    action = "vehspawn input"
                 },
                 new MenuItem()
                 {
