@@ -47,16 +47,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 return modelHashCache[hash];
             }
 
-            VehicleListItem result = null;
-
-            foreach (var item in Vehicles)
-            {
-                if (item.ModelHash == hash)
-                {
-                    result = item;
-                    break;
-                }
-            }
+            VehicleListItem result = Vehicles
+                .Where(item => item.ModelHash == hash)
+                .FirstOrDefault();
 
             modelHashCache[hash] = result;
 
