@@ -42,6 +42,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 
         public static VehicleListItem FindItemByHash(int hash)
         {
+            Initialise();
+
             if (modelHashCache.ContainsKey(hash))
             {
                 return modelHashCache[hash];
