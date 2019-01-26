@@ -740,6 +740,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Cargobob Drop Zone",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/84/Cargobob4-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172624",
                     Model = "cargobob4",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
@@ -1185,16 +1186,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 },
                 new VehicleListItem()
                 {
-                    Name = "Faggio Sport",
-                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/50/FaggioSport-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182412",
-                    Model = "faggio",
+                    Name = "Faggio Mod",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/FaggioMod-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182448",
+                    Model = "faggio3",
                     Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
                 {
-                    Name = "Faggio Mod",
-                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/FaggioMod-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182448",
-                    Model = "faggio3",
+                    Name = "Faggio Sport",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/50/FaggioSport-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004182412",
+                    Model = "faggio",
                     Dlc = Dlc.Bikers,
                 },
                 new VehicleListItem()
@@ -1293,12 +1294,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "PCJ-600",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/74/PCJ600-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160121201111",
                     Model = "pcj",
-                },
-                new VehicleListItem()
-                {
-                    Name = "Police Bike",
-                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/70/PoliceBike-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20170524183918",
-                    Model = "policeb",
                 },
                 new VehicleListItem()
                 {
