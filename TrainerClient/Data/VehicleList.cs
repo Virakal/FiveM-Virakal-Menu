@@ -18,8 +18,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             Initialise();
 
             return Vehicles
-                .Where((item) => item.VehicleClass == vehicleClass)
-                .OrderBy((x) => x.Name);
+                .Where(item => item.VehicleClass == vehicleClass)
+                .OrderBy(x => x.Name);
         }
 
         public static IEnumerable<VehicleListItem> GetByTag(string tag)
@@ -27,8 +27,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             Initialise();
 
             return Vehicles
-                .Where((item) => item.HasTag(tag))
-                .OrderBy((x) => x.Name);
+                .Where(item => item.HasTag(tag))
+                .OrderBy(x => x.Name);
         }
 
         public static IEnumerable<VehicleListItem> GetByDlc(Dlc dlc)
@@ -36,8 +36,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             Initialise();
 
             return Vehicles
-                .Where((item) => item.Dlc == dlc)
-                .OrderBy((x) => x.Name);
+                .Where(item => item.Dlc == dlc)
+                .OrderBy(x => x.Name);
         }
 
         public static VehicleListItem FindItemByHash(int hash)
