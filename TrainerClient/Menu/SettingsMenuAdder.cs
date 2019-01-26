@@ -84,6 +84,19 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 });
             }
 
+            // Temporary workaround for missing stations
+            list.Add(new MenuItem()
+            {
+                text = "Blonded FM" + (currentDefaultStation == 100 ? " (Current)" : ""),
+                action = "defaultradio 100",
+            });
+
+            list.Add(new MenuItem()
+            {
+                text = "Los Santos Underground" + (currentDefaultStation == 101 ? " (Current)" : ""),
+                action = "defaultradio 101",
+            });
+
             return list;
         }
 

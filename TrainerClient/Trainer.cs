@@ -320,6 +320,37 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             return newText.ToString();
         }
 
+        public void ChangeCurrentRadioStation(int stationIndex)
+        {
+            var vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                return;
+            }
+
+            if (Enum.IsDefined(typeof(RadioStation), stationIndex))
+            {
+                var station = (RadioStation)stationIndex;
+                vehicle.RadioStation = station;
+            }
+            else
+            {
+                // This is one that isn't in the game DLL yet
+                int handle = vehicle.Handle;
+                API.SetVehicleRadioEnabled(handle, true);
+
+                if (stationIndex == 100)
+                {
+                    API.SetVehRadioStation(handle, "RADIO_21_DLC_XM17");
+                }
+                else if (stationIndex == 101)
+                {
+                    API.SetVehRadioStation(handle, "RADIO_22_DLC_BATTLE_MIX1_RADIO");
+                }
+            }
+        }
+
         private CallbackDelegate TrainerClose(IDictionary<string, object> data, CallbackDelegate callback)
         {
             ShowTrainer = false;

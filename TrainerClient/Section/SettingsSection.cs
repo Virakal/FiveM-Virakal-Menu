@@ -29,40 +29,25 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             if (Config.ContainsKey("DefaultRadioStation"))
             {
-                string action = Config["DefaultRadioStation"];
-                int stationIndex = int.Parse(action);
+                ChangeRadioStationByString(Config["DefaultRadioStation"]);
+            }
+        }
 
-                // -1 means no default, so don't change the current station
-                if (stationIndex != -1)
-                {
-                    var vehicle = Game.PlayerPed.CurrentVehicle;
+        private void ChangeRadioStationByString(string stationString)
+        {
+            int stationIndex = int.Parse(stationString);
 
-                    if (vehicle != null)
-                    {
-                        var station = (RadioStation)stationIndex;
-                        vehicle.RadioStation = station;
-                    }
-                }
+            // -1 means no default, so don't change the current station
+            if (stationIndex != -1)
+            {
+                Trainer.ChangeCurrentRadioStation(stationIndex);
             }
         }
 
         private CallbackDelegate OnDefaultRadio(IDictionary<string, object> data, CallbackDelegate callback)
         {
             string action = (string)data["action"];
-            int stationIndex = int.Parse(action);
-
-            // -1 means no default, so don't change the current station
-            if (stationIndex != -1)
-            {
-                var vehicle = Game.PlayerPed.CurrentVehicle;
-
-                if (vehicle != null)
-                {
-                    var station = (RadioStation)stationIndex;
-                    vehicle.RadioStation = station;
-                }
-            }
-
+            ChangeRadioStationByString(action);
             Config["DefaultRadioStation"] = action;
 
             callback("ok");
