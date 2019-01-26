@@ -30,24 +30,24 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.mods"] = GetModsMenu();
 
             // Add vehicle spawn menus
-            menus["vehicles.spawn.boats"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Boats));
-            menus["vehicles.spawn.commercial"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Commercial));
-            menus["vehicles.spawn.compacts"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Compacts));
-            menus["vehicles.spawn.coupes"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Coupes));
-            menus["vehicles.spawn.pushbikes"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Cycles));
-            menus["vehicles.spawn.emergency"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Emergency));
-            menus["vehicles.spawn.helicopters"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Helicopters));
-            menus["vehicles.spawn.industrial"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Industrial));
-            menus["vehicles.spawn.military"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Military));
-            menus["vehicles.spawn.motorbikes"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Motorcycles));
-            menus["vehicles.spawn.offRoad"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.OffRoad));
-            menus["vehicles.spawn.planes"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Planes));
-            menus["vehicles.spawn.sedans"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Sedans));
-            menus["vehicles.spawn.service"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Service));
-            menus["vehicles.spawn.super"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Super));
-            menus["vehicles.spawn.utility"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Utility));
+            menus["vehicles.spawn.boats"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Boats));
+            menus["vehicles.spawn.commercial"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Commercial));
+            menus["vehicles.spawn.compacts"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Compacts));
+            menus["vehicles.spawn.coupes"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Coupes));
+            menus["vehicles.spawn.pushbikes"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Cycles));
+            menus["vehicles.spawn.emergency"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Emergency));
+            menus["vehicles.spawn.helicopters"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Helicopters));
+            menus["vehicles.spawn.industrial"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Industrial));
+            menus["vehicles.spawn.military"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Military));
+            menus["vehicles.spawn.motorbikes"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Motorcycles));
+            menus["vehicles.spawn.offRoad"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.OffRoad));
+            menus["vehicles.spawn.planes"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Planes));
+            menus["vehicles.spawn.sedans"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Sedans));
+            menus["vehicles.spawn.service"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Service));
+            menus["vehicles.spawn.super"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Super));
+            menus["vehicles.spawn.utility"] = GetVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Utility));
 
-            menus["vehicles.spawn.fun"] = AddVehicleSpawnMenu(VehicleList.GetByTag("fun"));
+            menus["vehicles.spawn.fun"] = GetVehicleSpawnMenu(VehicleList.GetByTag("fun"));
 
             menus["vehicles.spawn.search"] = GetSpawnSearchMenu();
 
@@ -101,7 +101,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 var term = Config["VehicleSpawnSearchTerm"];
                 term = term.ToLower();
 
-                list.AddRange(AddVehicleSpawnMenu(VehicleList.GetBySearchTerm(term)));
+                list.AddRange(GetVehicleSpawnMenu(VehicleList.GetBySearchTerm(term)));
             }
 
             return list;
@@ -213,7 +213,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     sub = submenuName,
                 });
 
-                menus[submenuName] = AddVehicleSpawnMenu(VehicleList.GetByDlc(dlc));
+                menus[submenuName] = GetVehicleSpawnMenu(VehicleList.GetByDlc(dlc));
 
                 if (menus[submenuName].Count == 0)
                 {
@@ -232,7 +232,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             return menus;
         }
 
-        private List<MenuItem> AddVehicleSpawnMenu(IEnumerable<VehicleListItem> vehicleList)
+        private List<MenuItem> GetVehicleSpawnMenu(IEnumerable<VehicleListItem> vehicleList)
         {
             List<MenuItem> list = new List<MenuItem>();
 
