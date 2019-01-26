@@ -19,18 +19,24 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             EventHandlers["virakal:setWeather"] += new Action<int, string>(OnSetWeather);
             EventHandlers["virakal:setTime"] += new Action<int, int, int, string>(OnSetTime);
             EventHandlers["virakal:newVehicle"] += new Action<int, int>(OnNewVehicle);
+            EventHandlers["virakal:configFetched"] += new Action(OnConfigFetched);
 
             Trainer.RegisterNUICallback("weather", WeatherCallback);
             Trainer.RegisterNUICallback("time", TimeCallback);
             Trainer.RegisterNUICallback("defaultradio", OnDefaultRadio);
         }
 
-        private void OnNewVehicle(int vehicleHandle, int oldVehicle)
+        private void OnConfigFetched()
         {
             if (Config.ContainsKey("DefaultRadioStation"))
             {
                 ChangeRadioStationByString(Config["DefaultRadioStation"]);
             }
+        }
+
+        private void OnNewVehicle(int vehicleHandle, int oldVehicle)
+        {
+            OnConfigFetched();
         }
 
         private void ChangeRadioStationByString(string stationString)
