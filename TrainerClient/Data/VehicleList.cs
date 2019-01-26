@@ -66,6 +66,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             InitialiseSedans(list);
             InitialiseService(list);
             InitialiseSport(list);
+            InitialiseSportClassics(list);
             InitialiseSuper(list);
             InitialiseSuvs(list);
             InitialiseUtility(list);
@@ -2308,6 +2309,268 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Wastelander",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e3/Wastelander-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213203148",
                     Model = "wastelander",
+                },
+            }));
+        }
+
+        private static void InitialiseSportClassics(List<VehicleListItem> list)
+        {
+            list.AddRange(AddVehicleClass(VehicleClass.SportsClassics, new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "190z",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/be/190z-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218203545",
+                    Model = "z190",
+                    Dlc = Dlc.TheDoomsdayHeist,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Ardent",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/80/Ardent-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143447",
+                    Model = "ardent",
+                    Dlc = Dlc.Gunrunning,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Casco",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/86/Casco-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160304220406",
+                    Model = "casco",
+                    Dlc = Dlc.HeistsUpdate,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cheburek",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8e/Cheburek-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180720130340",
+                    Model = "cheburek",
+                    Dlc = Dlc.SanAndreasFlightSchoolUpdate,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cheetah Classic",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/38/CheetahClassic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143349",
+                    Model = "cheetah2",
+                    Dlc = Dlc.Gunrunning,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Coquette Classic",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0b/CoquetteClassic-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160117175931",
+                    Model = "coquette2",
+                    Dlc = Dlc.SanAndreasFlightSchoolUpdate,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Deluxo",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/15/Deluxo-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218191259",
+                    Model = "deluxo",
+                    Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.TheDoomsdayHeist,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Fagaloa",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/14/Fagaloa-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180325162804",
+                    Model = "fagaloa",
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
+                },
+                new VehicleListItem()
+                {
+                    Name = "GT500",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/25/GT500-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218203343",
+                    Model = "gt500",
+                    Dlc = Dlc.TheDoomsdayHeist,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Infernus Classic",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/73/InfernusClassic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170314170313",
+                    Model = "infernus2",
+                    Dlc = Dlc.CunningStuntsSpecialVehicleCircuit,
+                },
+                new VehicleListItem()
+                {
+                    Name = "JB 700",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/70/JB700-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160409201623",
+                    Model = "jb700",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Mamba",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d4/Mamba-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117195426",
+                    Model = "mamba",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Manana",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d4/Mamba-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117195426",
+                    Model = "manana",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Michelli GT",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e0/MichelliGT-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180720130555",
+                    Model = "michelli",
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Monroe",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/44/Monroe-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160529141803",
+                    Model = "monroe",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Peyote",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c8/Peyote-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160409202014",
+                    Model = "peyote",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Pigalle",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d4/Pigalle-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302171416",
+                    Model = "pigalle",
+                    Dlc = Dlc.ImNotaHipsterUpdate,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rapid GT Classic",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/13/RapidGTClassic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170916171351",
+                    Model = "rapidgt3",
+                    Dlc = Dlc.SmugglersRun,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Retinue",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b8/Retinue-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171220192309",
+                    Model = "retinue",
+                    Dlc = Dlc.SmugglersRun,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Roosevelt",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b4/Roosevelt-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160214204307",
+                    Model = "btype",
+                    Dlc = Dlc.ValentinesDayMassacreSpecial,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Fränken Stange",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/63/Fr%C3%A4nkenStange-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161014163938",
+                    Model = "btype2",
+                    Dlc = Dlc.HalloweenSurprise,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Roosevelt Valor",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2a/RooseveltValor-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160214204109",
+                    Model = "btype3",
+                    Dlc = Dlc.BeMyValentine,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Savestra",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d6/Savestra-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218204635",
+                    Model = "savestra",
+                    Dlc = Dlc.TheDoomsdayHeist,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Stinger",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/41/Stinger-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160917231452",
+                    Model = "stinger",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Stinger GT",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c5/StingerGT-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160606121633",
+                    Model = "stingergt",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Stirling GT",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d2/StirlingGT-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20150614114322",
+                    Model = "feltzer3",
+                    Dlc = Dlc.IllGottenGainsPart1,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Stromberg",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c4/Stromberg-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218192145",
+                    Model = "stromberg",
+                    Dlc = Dlc.TheDoomsdayHeist,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Swinger",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f8/Swinger-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725175156",
+                    Model = "swinger",
+                    Dlc = Dlc.AfterHours,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Torero",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/47/Torero-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614143234",
+                    Model = "torero",
+                    Dlc = Dlc.Gunrunning,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tornado",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2f/Tornado-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180331183746",
+                    Model = "tornado",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tornado (Convertible)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/86/Tornado2Down-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180331183741",
+                    Model = "tornado2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tornado (Beater)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/74/Tornado3-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180331183744",
+                    Model = "tornado3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tornado (Mariachi)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/66/Tornado4-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160318213005",
+                    Model = "tornado4",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tornado Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/69/TornadoCustomUp-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160316181637",
+                    Model = "tornado5",
+                    Dlc = Dlc.LowridersCustomClassics,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tornado Rat Rod",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/79/TornadoRatRod-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164052",
+                    Model = "tornado6",
+                    Dlc = Dlc.Bikers,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Turismo Classic",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9a/TurismoClassic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170314170520",
+                    Model = "turismo2",
+                    Dlc = Dlc.CunningStuntsSpecialVehicleCircuit,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Viseris",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b2/Viseris-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218193459",
+                    Model = "viseris",
+                    Dlc = Dlc.TheDoomsdayHeist,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Z-Type",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9d/Z-Type-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160917231447",
+                    Model = "ztype",
                 },
             }));
         }
