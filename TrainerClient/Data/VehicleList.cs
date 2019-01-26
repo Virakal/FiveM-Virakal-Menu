@@ -2052,24 +2052,28 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Cognoscenti",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/ff/Cognoscenti-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117195014",
                     Model = "cognoscenti",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
                     Name = "Cognoscenti (Armored)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/30/CognoscentiArmored-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117195043",
                     Model = "cognoscenti2",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
                     Name = "Cognoscenti 55",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b4/Cognoscenti55-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117195125",
                     Model = "cog55",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
                     Name = "Cognoscenti 55 (Armored)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b0/Cognoscenti55Armored-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117195143",
                     Model = "cog552",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
@@ -2100,6 +2104,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Glendale",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/47/Glendale-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20150530113232",
                     Model = "glendale",
+                    Dlc = Dlc.ImNotaHipsterUpdate,
                 },
                 new VehicleListItem()
                 {
@@ -2130,6 +2135,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Primo Custom",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/ca/PrimoCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151021162950",
                     Model = "primo2",
+                    Dlc = Dlc.Lowriders,
                 },
                 new VehicleListItem()
                 {
@@ -2148,30 +2154,35 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Schafter LWB",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/22/SchafterLWB-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172307",
                     Model = "schafter4",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
                     Name = "Schafter LWB (Armoured)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c3/SchafterLWBArmored-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172313",
                     Model = "schafter6",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
                     Name = "Schafter V12",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a6/SchafterV12-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172122",
                     Model = "schafter3",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
                     Name = "Schafter V12 (Armoured)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7c/SchafterV12Armored-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172126",
                     Model = "schafter5",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
                     Name = "Stafford",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/38/Stafford-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725175405",
                     Model = "stafford",
+                    Dlc = Dlc.AfterHours,
                 },
                 new VehicleListItem()
                 {
@@ -2208,13 +2219,15 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Name = "Turreted Limo",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/39/TurretedLimo-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160119163948",
                     Model = "limo2",
-                    Tags = new HashSet<string>() { "fun" }
+                    Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
                 },
                 new VehicleListItem()
                 {
                     Name = "Warrener",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3c/Warrener-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302171843",
                     Model = "warrener",
+                    Dlc = Dlc.ImNotaHipsterUpdate,
                 },
                 new VehicleListItem()
                 {
