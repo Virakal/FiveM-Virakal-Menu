@@ -523,7 +523,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 new VehicleListItem()
                 {
                     Name = "Zion Cabrio",
-                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cc/Zion-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929171027",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cb/ZionCabrioDown-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929171022",
                     Model = "zion2",
                 },
             }));
