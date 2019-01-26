@@ -283,11 +283,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             Debug.WriteLine($"[VT] {format}", args);
         }
 
-        public static void DebugLine(string format)
-        {
-            DebugLine(format, new object[] { });
-        }
-
         public static string AddSpacesToSentence(string text)
         {
             var preserveAcronyms = false;
