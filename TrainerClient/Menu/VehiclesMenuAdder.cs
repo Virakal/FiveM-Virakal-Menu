@@ -49,6 +49,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
             menus["vehicles.spawn.fun"] = AddVehicleSpawnMenu(VehicleList.GetByTag("fun"));
 
+            menus["vehicles.spawn.search"] = GetSpawnSearchMenu();
+
             menus = AddSpawnByDlcMenus(menus);
 
             // Add vehicle appearance menus
@@ -81,6 +83,28 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.mods.wheels.tyreSmokeColour"] = GetCustomColourMenu("vehtyresmokecolour");
 
             return menus;
+        }
+
+        public List<MenuItem> GetSpawnSearchMenu()
+        {
+            var list = new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = "Search for a name...",
+                    action = "vehsearch",
+                }
+            };
+            
+            if (Config.ContainsKey("VehicleSpawnSearchTerm"))
+            {
+                var term = Config["VehicleSpawnSearchTerm"];
+                term = term.ToLower();
+
+                list.AddRange(AddVehicleSpawnMenu(VehicleList.GetBySearchTerm(term)));
+            }
+
+            return list;
         }
 
         private List<MenuItem> GetModPerformanceMenu()
@@ -230,6 +254,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             // Another auto-generated one for the future
             return new List<MenuItem>()
             {
+                new MenuItem()
+                {
+                    text = "Spawn by Searching",
+                    sub = "vehicles.spawn.search"
+                },
                 new MenuItem()
                 {
                     text = "Spawn Fun Stuff",

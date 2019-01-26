@@ -74,6 +74,16 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 UpdateDefaultRadioMenu();
             }
+            else if (key == "VehicleSpawnSearchTerm")
+            {
+                UpdateVehicleSpawnSearchMenu();
+            }
+        }
+
+        private void UpdateVehicleSpawnSearchMenu()
+        {
+            var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
+            UpdateAndSend("vehicles.spawn.search", vehiclesAdder.GetSpawnSearchMenu());
         }
 
         public void UpdateAndSend(string key, List<MenuItem> menu)

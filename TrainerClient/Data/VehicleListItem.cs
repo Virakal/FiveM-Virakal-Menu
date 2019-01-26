@@ -27,5 +27,15 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
         public bool HasTag(string tag) => Tags != null && Tags.Contains(tag);
 
         private int GetModelHashCode() => API.GetHashKey(Model);
+
+        internal bool MatchesSearchTerm(string term)
+        {
+            term.Replace(" ", "");
+
+            return
+                Model.Contains(term)
+                || Name.ToLower().Replace(" ", "").Contains(term)
+            ;
+        }
     }
 }

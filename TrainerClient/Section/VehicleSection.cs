@@ -35,6 +35,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             // General
             Trainer.RegisterNUICallback("veh", OnVeh);
             Trainer.RegisterAsyncNUICallback("vehspawn", OnVehSpawn);
+            Trainer.RegisterAsyncNUICallback("vehsearch", OnVehSearch);
 
             // Garage
             Trainer.RegisterNUICallback("vehsave", OnVehSave);
@@ -74,6 +75,27 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             var success = double.TryParse(Config["RainbowSpeed"], out double rainbowSpeed);
             RainbowSpeed = success ? rainbowSpeed : 0.5;
+        }
+
+        private async Task<CallbackDelegate> OnVehSearch(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Trainer.BlockInput = true;
+
+            string searchTerm = await Game.GetUserInput(
+                WindowTitle.FMMC_KEY_TIP8,
+                64
+            );
+            
+            if (searchTerm != null)
+            {
+                Config["VehicleSpawnSearchTerm"] = searchTerm;
+            }
+
+            // Wait a few frames so that the messagebox doesn't start again immediately
+            await BaseScript.Delay(10);
+            Trainer.BlockInput = false;
+
+            return callback;
         }
 
         private async void OnNewVehicle(int vehicleHandle, int oldVehicleHandle)

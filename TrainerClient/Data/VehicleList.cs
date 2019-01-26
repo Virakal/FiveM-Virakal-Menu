@@ -33,6 +33,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 .OrderBy(x => x.Name);
         }
 
+        public static IEnumerable<VehicleListItem> GetBySearchTerm(string term)
+        {
+            return Vehicles
+                .Where(item => item.MatchesSearchTerm(term))
+                .OrderBy(x => x.Name);
+        }
+
         public static VehicleListItem FindItemByHash(int hash)
         {
             return Vehicles
