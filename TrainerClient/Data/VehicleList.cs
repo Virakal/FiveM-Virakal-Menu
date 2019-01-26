@@ -67,6 +67,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             InitialiseService(list);
             InitialiseSport(list);
             InitialiseSuper(list);
+            InitialiseSuvs(list);
             InitialiseUtility(list);
 
             return list;
@@ -3009,6 +3010,196 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/60/Zentorno-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302171211",
                     Model = "zentorno",
                     Dlc = Dlc.HighLifeUpdate,
+                },
+            }));
+        }
+
+        private static void InitialiseSuvs(List<VehicleListItem> list)
+        {
+            list.AddRange(AddVehicleClass(VehicleClass.SUVs, new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Baller",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ef/Baller2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929171011",
+                    Model = "baller2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Baller LE",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/71/BallerLE-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117194728",
+                    Model = "baller3",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Baller LE (Armoured)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6c/BallerLEArmored-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117194741",
+                    Model = "baller5",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Baller LE LWB",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3c/BallerLELWB-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117194751",
+                    Model = "baller4",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Baller LE LWB (Armoured)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7d/BallerLELWBArmored-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117194801",
+                    Model = "baller6",
+                },
+                new VehicleListItem()
+                {
+                    Name = "BeeJay XL",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/da/BeeJayXL-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929171015",
+                    Model = "bjxl",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cavalcade",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c5/Cavalcade-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111195103",
+                    Model = "cavalcade",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Cavalcade (Variant)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/08/Cavalcade2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160304225018",
+                    Model = "cavalcade2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Contender",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c6/Contender-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160712124055",
+                    Model = "contender",
+                    Dlc = Dlc.CunningStunts,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dubsta",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c0/Dubsta-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160409171730",
+                    Model = "dubsta",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dubsta (Variant)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fa/Dubsta2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160318211333",
+                    Model = "dubsta2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "FQ 2",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6e/FQ2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160305185537",
+                    Model = "fq2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Granger",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/de/Granger-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626144333",
+                    Model = "granger",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Gresley",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/ff/Gresley-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160308180844",
+                    Model = "gresley",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Habanero",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c9/Habanero-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160125183045",
+                    Model = "habanero",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Huntley S",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2f/HuntleyS-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160125184521",
+                    Model = "huntley",
+                    Dlc = Dlc.HighLifeUpdate,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Landstalker",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/77/Landstalker-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160406180655",
+                    Model = "landstalker",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Mesa",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/97/Mesa-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626145559",
+                    Model = "mesa",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Mesa (Snow-covered)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/ac/Mesa2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160916164929",
+                    Model = "mesa2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Mesa (Merryweather)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fd/Mesa3-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929163600",
+                    Model = "mesa3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Patriot",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/90/Patriot-GTAV-front.PNG/revision/latest/scale-to-width-down/350?cb=20181011083156",
+                    Model = "patriot",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Patriot Stretch",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4b/PatriotStretch-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725175620",
+                    Model = "patriot2",
+                    Dlc = Dlc.AfterHours,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Radius",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b6/Radius-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160409181754",
+                    Model = "radi",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rocoto",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/28/Rocoto-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160213013426",
+                    Model = "rocoto",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Seminole",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a0/Seminole-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160211192105",
+                    Model = "seminole",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Serrano",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3d/Serrano-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160409182018",
+                    Model = "serrano",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Toros",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d3/Toros-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214174204",
+                    Model = "toros",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "XLS",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8c/XLS-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164212",
+                    Model = "xls",
+                    Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
+                },
+                new VehicleListItem()
+                {
+                    Name = "XLS (Armoured)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e3/XLSArmored-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160609145239",
+                    Model = "xls2",
+                    Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
                 },
             }));
         }
