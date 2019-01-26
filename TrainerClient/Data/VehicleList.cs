@@ -10,7 +10,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
     public static class VehicleList
     {
         private static List<VehicleListItem> Vehicles { get; } = new List<VehicleListItem>();
-        private static Dictionary<int, VehicleListItem> modelHashCache = new Dictionary<int, VehicleListItem>();
         private static bool initialised = false;
 
         public static IEnumerable<VehicleListItem> GetByVehicleClass(VehicleClass vehicleClass)
@@ -44,18 +43,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
         {
             Initialise();
 
-            if (modelHashCache.ContainsKey(hash))
-            {
-                return modelHashCache[hash];
-            }
-
-            VehicleListItem result = Vehicles
+            return Vehicles
                 .Where(item => item.ModelHash == hash)
                 .FirstOrDefault();
-
-            modelHashCache[hash] = result;
-
-            return result;
         }
 
         private static void Initialise()
