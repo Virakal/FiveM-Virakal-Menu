@@ -45,6 +45,9 @@ namespace TrainerServer
             if (!File.Exists(path))
             {
                 Debug.WriteLine($"{source.Name} requested a config from file {path} but it doesn't exist yet.");
+
+                // Send a dummy so we trigger sending the menus to the UI
+                TriggerClientEvent(source, "virakal:returnConfig", "{}");
                 return;
             }
 
