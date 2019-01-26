@@ -9,13 +9,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 {
     public static class VehicleList
     {
-        private static List<VehicleListItem> Vehicles { get; } = new List<VehicleListItem>();
-        private static bool initialised = false;
+        private static List<VehicleListItem> Vehicles => lazyList.Value;
+        private static Lazy<List<VehicleListItem>> lazyList = new Lazy<List<VehicleListItem>>(InitialiseList);
 
         public static IEnumerable<VehicleListItem> GetByVehicleClass(VehicleClass vehicleClass)
         {
-            Initialise();
-
             return Vehicles
                 .Where(item => item.VehicleClass == vehicleClass)
                 .OrderBy(x => x.Name);
@@ -23,8 +21,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 
         public static IEnumerable<VehicleListItem> GetByTag(string tag)
         {
-            Initialise();
-
             return Vehicles
                 .Where(item => item.HasTag(tag))
                 .OrderBy(x => x.Name);
@@ -32,8 +28,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 
         public static IEnumerable<VehicleListItem> GetByDlc(Dlc dlc)
         {
-            Initialise();
-
             return Vehicles
                 .Where(item => item.Dlc == dlc)
                 .OrderBy(x => x.Name);
@@ -41,43 +35,38 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 
         public static VehicleListItem FindItemByHash(int hash)
         {
-            Initialise();
-
             return Vehicles
                 .Where(item => item.ModelHash == hash)
                 .FirstOrDefault();
         }
 
-        private static void Initialise()
+        private static List<VehicleListItem> InitialiseList()
         {
-            if (initialised)
-            {
-                return;
-            }
+            var list = new List<VehicleListItem>();
 
-            InitialiseBoats();
-            InitialiseCommercial();
-            InitialiseCompacts();
-            InitialiseCoupes();
-            InitialiseCycles();
-            InitialiseEmergency();
-            InitialiseHelicopters();
-            InitialiseIndustrial();
-            InitialiseMilitary();
-            InitialiseMotorcycles();
-            InitialiseOffRoad();
-            InitialisePlanes();
-            InitialiseSedans();
-            InitialiseService();
-            InitialiseSuper();
-            InitialiseUtility();
+            InitialiseBoats(list);
+            InitialiseCommercial(list);
+            InitialiseCompacts(list);
+            InitialiseCoupes(list);
+            InitialiseCycles(list);
+            InitialiseEmergency(list);
+            InitialiseHelicopters(list);
+            InitialiseIndustrial(list);
+            InitialiseMilitary(list);
+            InitialiseMotorcycles(list);
+            InitialiseOffRoad(list);
+            InitialisePlanes(list);
+            InitialiseSedans(list);
+            InitialiseService(list);
+            InitialiseSuper(list);
+            InitialiseUtility(list);
 
-            initialised = true;
+            return list;
         }
 
-        private static void InitialiseBoats()
+        private static void InitialiseBoats(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Boats, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Boats, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -216,9 +205,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseCommercial()
+        private static void InitialiseCommercial(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Commercial, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Commercial, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -355,9 +344,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseCompacts()
+        private static void InitialiseCompacts(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Compacts, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Compacts, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -441,9 +430,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseCoupes()
+        private static void InitialiseCoupes(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Coupes, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Coupes, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -533,9 +522,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseCycles()
+        private static void InitialiseCycles(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Cycles, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Cycles, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -582,9 +571,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseEmergency()
+        private static void InitialiseEmergency(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Emergency, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Emergency, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -699,9 +688,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseHelicopters()
+        private static void InitialiseHelicopters(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Helicopters, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Helicopters, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -863,9 +852,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseIndustrial()
+        private static void InitialiseIndustrial(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Industrial, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Industrial, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -937,9 +926,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseMilitary()
+        private static void InitialiseMilitary(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Military, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Military, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -1051,9 +1040,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseMotorcycles()
+        private static void InitialiseMotorcycles(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Motorcycles, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Motorcycles, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -1408,9 +1397,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseOffRoad()
+        private static void InitialiseOffRoad(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.OffRoad, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.OffRoad, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -1769,9 +1758,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialisePlanes()
+        private static void InitialisePlanes(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Planes, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Planes, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -2025,9 +2014,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseSedans()
+        private static void InitialiseSedans(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Sedans, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Sedans, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -2250,9 +2239,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseService()
+        private static void InitialiseService(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Service, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Service, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -2333,9 +2322,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseSuper()
+        private static void InitialiseSuper(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Super, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Super, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
@@ -2613,9 +2602,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             }));
         }
 
-        private static void InitialiseUtility()
+        private static void InitialiseUtility(List<VehicleListItem> list)
         {
-            Vehicles.AddRange(AddVehicleClass(VehicleClass.Utility, new List<VehicleListItem>()
+            list.AddRange(AddVehicleClass(VehicleClass.Utility, new List<VehicleListItem>()
             {
                 new VehicleListItem()
                 {
