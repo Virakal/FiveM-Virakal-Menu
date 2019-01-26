@@ -42,6 +42,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.spawn.motorbikes"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Motorcycles));
             menus["vehicles.spawn.offRoad"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.OffRoad));
             menus["vehicles.spawn.planes"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Planes));
+            menus["vehicles.spawn.sedans"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Sedans));
             menus["vehicles.spawn.service"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Service));
             menus["vehicles.spawn.super"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Super));
             menus["vehicles.spawn.utility"] = AddVehicleSpawnMenu(VehicleList.GetByVehicleClass(VehicleClass.Utility));
@@ -293,6 +294,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 {
                     text = "Spawn Pushbike",
                     sub = "vehicles.spawn.pushbikes"
+                },
+                new MenuItem()
+                {
+                    text = "Spawn Sedans",
+                    sub = "vehicles.spawn.sedans"
                 },
                 new MenuItem()
                 {

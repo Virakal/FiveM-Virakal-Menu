@@ -2072,13 +2072,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 {
                     Name = "Cognoscenti (Armored)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/30/CognoscentiArmored-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117195043",
-                    Model = "cog55",
+                    Model = "cognoscenti2",
                 },
                 new VehicleListItem()
                 {
                     Name = "Cognoscenti 55",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b4/Cognoscenti55-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117195125",
-                    Model = "cognoscenti2",
+                    Model = "cog55",
                 },
                 new VehicleListItem()
                 {
@@ -2160,9 +2160,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 },
                 new VehicleListItem()
                 {
+                    Name = "Schafter LWB",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/22/SchafterLWB-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172307",
+                    Model = "schafter4",
+                },
+                new VehicleListItem()
+                {
                     Name = "Schafter LWB (Armoured)",
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c3/SchafterLWBArmored-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172313",
                     Model = "schafter6",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Schafter V12",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a6/SchafterV12-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172122",
+                    Model = "schafter3",
                 },
                 new VehicleListItem()
                 {
