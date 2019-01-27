@@ -223,13 +223,13 @@
         }
 
         handleSelection(): void {
-            const sel: MenuItem = this.currentItem;
+            const sel = this.currentItem;
 
             if (sel.sub) {
                 this.showMenu(sel.sub);
             } else if (sel.action) {
                 console.log(`Doing ${sel.action}`);
-                let newState: boolean = true;
+                let newState = true;
 
                 if (sel.state) {
                     if (sel.state === 'ON') {
@@ -245,7 +245,7 @@
                 // Not sure why I need this, but state updates no longer pass to the main menu
                 this.$forceUpdate();
 
-                const data: string[] = sel.action.split(' ');
+                const data = sel.action.split(' ');
 
                 console.log(`Sending ${data[0]}, action: ${data[1]}, newState: ${newState}`);
                 this.sendData(data[0], { action: data[1], newstate: newState, itemtext: sel.text });
@@ -255,7 +255,7 @@
         }
 
         goBack(): void {
-            if (typeof(this.parentKey) === 'undefined') {
+            if (typeof this.parentKey === 'undefined') {
                 this.closeTrainer();
             } else {
                 this.showMenu(this.parentKey);
@@ -300,7 +300,6 @@
             this.$forceUpdate();
             console.log(`Item States: ${JSON.stringify(this.itemStates)}`);
         }
-
 
         getStateText(value: boolean | string): string {
             if (typeof value === 'string') {
