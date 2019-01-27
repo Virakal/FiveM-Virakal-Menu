@@ -62,6 +62,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterAsyncNUICallback("vehneon", OnVehNeon);
             Trainer.RegisterAsyncNUICallback("vehtyresmokecolour", OnVehTyreSmokeColour);
             Trainer.RegisterNUICallback("vehmod", OnVehMod);
+            Trainer.RegisterNUICallback("vehmodother", OnVehModOther);
 
             // Boost
             Trainer.RegisterNUICallback("boostpower", OnBoostPower);
@@ -958,6 +959,28 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 }
             }
 
+            return callback;
+        }
+
+        private CallbackDelegate OnVehModOther(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle != null)
+            {
+                VehicleModCollection mods = vehicle.Mods;
+                var action = (string)data["action"];
+                var split = action.Split('=');
+                var iModType = int.Parse(split[0]);
+                var iModIndex = int.Parse(split[1]);
+
+                mods.InstallModKit();
+
+                mods[(VehicleModType)iModType].Index = iModIndex;
+                BaseScript.TriggerEvent("virakal:vehicleModsChanged", iModType, iModIndex);
+            }
+
+            callback("ok");
             return callback;
         }
 

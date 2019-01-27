@@ -63,6 +63,81 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.mods.performance"] = GetModPerformanceMenu();
             menus["vehicles.mods.wheels"] = GetModWheelsMenu();
             menus["vehicles.mods.wheels.tyreSmokeColour"] = GetCustomColourMenu("vehtyresmokecolour");
+            menus = AddOtherModsMenus(menus);
+
+            return menus;
+        }
+
+        public Dictionary<string, List<MenuItem>> AddOtherModsMenus(Dictionary<string, List<MenuItem>> menus)
+        {
+            foreach (var kv in GetOtherModsMenus())
+            {
+                menus[kv.Key] = kv.Value;
+            }
+
+            return menus;
+        }
+
+        public Dictionary<string, List<MenuItem>> GetOtherModsMenus()
+        {
+            var menus = new Dictionary<string, List<MenuItem>>();
+
+            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                menus["vehicles.mods.other"] = new List<MenuItem>()
+                {
+                    new MenuItem()
+                    {
+                        text = "Please enter a vehicle to view mods",
+                    }
+                };
+            }
+            else
+            {
+                VehicleModCollection mods = vehicle.Mods;
+
+                var modTypeMenu = new List<MenuItem>();
+
+                foreach (var mod in mods.GetAllMods())
+                {
+                    var modMenu = new List<MenuItem>();
+
+                    for (var i = -1; i < mod.ModCount; i++)
+                    {
+                        var name = mod.GetLocalizedModName(i);
+
+                        if (name == string.Empty)
+                        {
+                            name = $"{mod.LocalizedModTypeName} {i}";
+                        }
+
+                        if (mod.Index == i)
+                        {
+                            name += " (Current)";
+                        }
+
+                        modMenu.Add(new MenuItem()
+                        {
+                            text = name,
+                            action = $"vehmodother {(int)mod.ModType}={i}",
+                        });
+                    }
+
+                    menus[$"vehicles.mods.other.{mod.ModType}"] = modMenu;
+
+                    modTypeMenu.Add(new MenuItem()
+                    {
+                        text = mod.LocalizedModTypeName,
+                        sub = $"vehicles.mods.other.{mod.ModType}",
+                    });
+                }
+
+                modTypeMenu.Sort((x, y) => x.text.CompareTo(y.text));
+
+                menus["vehicles.mods.other"] = modTypeMenu;
+            }
 
             return menus;
         }
@@ -461,6 +536,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     text = "Wheels & Tyres",
                     sub = "vehicles.mods.wheels"
                 },
+                new MenuItem()
+                {
+                    text = "Other Mods",
+                    sub = "vehicles.mods.other",
+                }
             };
         }
 

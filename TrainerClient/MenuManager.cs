@@ -50,6 +50,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             Trainer._EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
             Trainer._EventHandlers["virakal:newVehicle"] += new Action<int, int>(OnNewVehicle);
             Trainer._EventHandlers["virakal:exitedVehicle"] += new Action<int, int>(OnNewVehicle);
+            Trainer._EventHandlers["virakal:vehicleModsChanged"] += new Action<int, int>(OnNewVehicleMods);
             Trainer._EventHandlers["virakal:configChanged"] += new Action<string, string>(OnConfigChanged);
 
             // This doesn't load properly so early
@@ -122,6 +123,18 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
             UpdateAndSend("vehicles.appearance.livery", vehiclesAdder.GetLiveryMenu());
             UpdateAndSend("vehicles.appearance.colourCombinations", vehiclesAdder.GetColourCombinationsMenu());
+            OnNewVehicleMods(-1, -1);
+        }
+
+        private void OnNewVehicleMods(int modTypeIndex, int modIndex)
+        {
+            var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
+            var modMenus = vehiclesAdder.GetOtherModsMenus();
+
+            foreach (var kv in modMenus)
+            {
+                UpdateAndSend(kv.Key, kv.Value);
+            }
         }
 
         private void OnPlayerSpawn(object spawn)
