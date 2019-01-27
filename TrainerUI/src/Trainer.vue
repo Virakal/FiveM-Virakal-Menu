@@ -1,5 +1,5 @@
 <template>
-    <div id="trainer-root" v-on:message.passive="handleMessage($event)">
+    <div id="trainer-root">
         <div id="trainercontainer" v-if="showTrainer">
             <p class="traineroption trainertitle">{{ trainerTitle }}</p>
             <TrainerOption v-for="(item, index) in menuPage"
@@ -91,6 +91,12 @@
 
             // Get the string up to the last dot, so a.b.c returns a.b
             return this.currentMenuKey.substring(0, lastDot);
+        }
+
+        created() {
+            window.addEventListener("message", this.handleMessage, {
+                passive: true,
+            });
         }
 
         sendData(name: string, data: any): JQueryXHR {

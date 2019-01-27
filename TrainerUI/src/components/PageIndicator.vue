@@ -1,5 +1,5 @@
 ﻿<template>
-    <p class="pageindicator">Page {{ page + 1 }} / {{ pageCount }}</p>
+    <p class="pageindicator">Page {{ page + 1 }} of {{ pageCount }}</p>
 </template>
 
 <script lang="ts">
