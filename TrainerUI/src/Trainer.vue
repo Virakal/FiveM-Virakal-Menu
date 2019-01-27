@@ -6,7 +6,7 @@
                :class="{ traineroption: true, selected: index == selected, sub: item.sub != null }"
                :sub="item.sub"
                :action="item.action"
-               :data-state="getItemState(item.action)"
+               :data-state="getItemStateString(item.action)"
                :key="getItemKey(item)">
                 {{ item.text }}
             </p>
@@ -47,9 +47,8 @@
         currentMenuKey = 'mainmenu';
         page = 0;
         selected = 0;
-        configState: { [configKey: string]: boolean } = {};
-        itemStates: { [action: string]: string } = {};
-        configKeyActions: { [configKey: string]: string } = {};
+        config: { [configKey: string]: boolean } = {};
+        itemStates: { [action: string]: boolean } = {};
 
         get pageCount(): number {
             return Math.ceil(this.menus[this.currentMenuKey].length / this.maxPageSize);
@@ -96,7 +95,7 @@
             });
         }
 
-        sendData(name: string, data: any): JQueryXHR {
+        sendData(name: string, data: any = {}): JQueryXHR {
             return $.post(`http://${this.resourceName}/${name}`, JSON.stringify(data), function (response) {
                 // console.log('Data response: ' + response);
             });
@@ -161,28 +160,14 @@
                     continue;
                 }
 
-                if (item.configkey !== undefined && item.configkey !== '') {
-                    if (item.configkey in this.configKeyActions) {
-                        // Grab the config and override the itemState
-                        let configState: boolean = this.configState[item.configkey];
-                        let stateText = this.getStateText(configState);
-                        console.log(`We know ${item.configkey} is ${this.configKeyActions[item.configkey]}. Setting itemStates[${item.action}] to ${stateText} (${configState})`);
-
-                        this.itemStates[item.action] = stateText;
-                        item.state = stateText;
-                    } else {
-                        // We don't know about this, so store it
-                        console.log(`We don't know ${item.configkey} so we're storing ${item.action} in the configKeyActions map.`);
-                        this.configKeyActions[item.configkey] = item.action;
-                        this.configState[item.configkey] = item.state === 'ON';
-                    }
+                if (item.action in this.itemStates) {
+                    item.state = this.getStateText(this.itemStates[item.action]);
+                } else if (item.configkey != null && item.configkey in this.config) {
+                    this.itemStates[item.action] = this.config[item.configkey];
+                    item.state = this.getStateText(this.config[item.configkey]);
                 }
 
-                if (key in this.itemStates) {
-                    item.state = this.itemStates[item.action];
-                } else {
-                    this.itemStates[item.action] = item.state;
-                }
+                menuData[key] = item;
             }
 
             // Update the menus list
@@ -231,19 +216,13 @@
                 console.log(`Doing ${sel.action}`);
                 let newState = true;
 
-                if (sel.state) {
-                    if (sel.state === 'ON') {
-                        newState = false;
-                        sel.state = 'OFF';
-                    } else {
-                        sel.state = 'ON';
-                    }
-
-                    this.itemStates[sel.action] = sel.state;
+                if (sel.action in this.itemStates) {
+                    newState = !this.itemStates[sel.action];
+                    this.itemStates[sel.action] = newState;
+                    this.$forceUpdate();
                 }
 
                 // Not sure why I need this, but state updates no longer pass to the main menu
-                this.$forceUpdate();
 
                 const data = sel.action.split(' ');
 
@@ -273,7 +252,7 @@
         closeTrainer(): void {
             this.resetTrainer();
             this.showTrainer = false;
-            this.sendData('trainerclose', {});
+            this.sendData('trainerclose');
             this.playSound('NO');
         }
 
@@ -289,16 +268,10 @@
                 }
 
                 console.log(`Setting config[${key}] to ${value}.`);
-                this.configState[key] = value === 'true';
-
-                if (key in this.configKeyActions) {
-                    let action = this.configKeyActions[key];
-                    this.itemStates[action] = this.getStateText(value);
-                }
+                this.config[key] = value === 'true';
             }
 
-            this.$forceUpdate();
-            console.log(`Item States: ${JSON.stringify(this.itemStates)}`);
+            console.log(`Config: ${JSON.stringify(this.config)}`);
         }
 
         getStateText(value: boolean | string): string {
@@ -313,8 +286,10 @@
             return item.key || item.action || item.text;
         }
 
-        getItemState(action: string): string | undefined {
-            return this.itemStates[action];
+        getItemStateString(action: string): string | undefined {
+            if (action in this.itemStates) {
+                return this.itemStates[action] ? 'ON' : 'OFF';
+            }
         }
 
         handleMessage(event: MessageEvent): void {
