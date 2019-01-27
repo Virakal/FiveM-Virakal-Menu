@@ -1,5 +1,5 @@
 ﻿<template>
-    <p class="traineroption" :data-sub="sub" :data-action="action" :data-state="state" :data-image="image">
+    <p class="traineroption" :data-state="state">
         <slot></slot>
     </p>
 </template>
