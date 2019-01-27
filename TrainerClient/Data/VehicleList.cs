@@ -70,6 +70,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             InitialiseSuper(list);
             InitialiseSuvs(list);
             InitialiseUtility(list);
+            InitialiseVans(list);
 
             return list;
         }
@@ -3590,10 +3591,217 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                 },
             }));
         }
+        private static void InitialiseVans(List<VehicleListItem> list)
+        {
+            list.AddRange(AddVehicleClass(VehicleClass.Vans, new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Bison",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/69/Bison-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160406172803",
+                    Model = "bison",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Bison (McGill-Olsen)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/24/Bison2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018175636",
+                    Model = "bison2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Bison (Mighty Bush)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d9/Bison3-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160406172900",
+                    Model = "bison3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Bobcat XL",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/37/BobcatXL-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161019154520",
+                    Model = "bobcatxl",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Boxville (LSWP)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/01/LSDWPBoxville-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180512151841",
+                    Model = "boxville",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Boxville (Go Postal)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2d/Boxville2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180512151838",
+                    Model = "boxville2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Boxville (Humane Labs)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a5/Boxville3-GTAV-FrontQuarter.jpg/revision/latest/scale-to-width-down/350?cb=20180512151410",
+                    Model = "boxville3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Boxville (Post OP)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a5/Boxville3-GTAV-FrontQuarter.jpg/revision/latest/scale-to-width-down/350?cb=20180512151410",
+                    Model = "boxville4",
+                    Dlc = Dlc.HeistsUpdate,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Boxville (Armoured)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6c/ArmoredBoxville-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161213201707",
+                    Model = "boxville5",
+                    Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.ImportExport,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Taco Van",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/37/TacoVan-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180513190133",
+                    Model = "taco",
+                    Tags = new HashSet<string>() { "fun" },
+                },
+                new VehicleListItem()
+                {
+                    Name = "Burrito",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/33/LSWPBurrito-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929164147",
+                    Model = "burrito",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Burrito (Bugstars)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/00/Burrito2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929164142",
+                    Model = "burrito2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Burrito (Civilian)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/80/Burrito3-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929164143",
+                    Model = "burrito3",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Gang Burrito",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d0/GangBurrito-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160311205524",
+                    Model = "gburrito",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Gang Burrito (Gangless)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4f/GangBurrito2-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117194400",
+                    Model = "gburrito2",
+                    Dlc = Dlc.ImportExport,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Camper",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0b/Camper-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161018175917",
+                    Model = "camper",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Journey",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8d/Journey-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626144337",
+                    Model = "journey",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Minivan",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/16/Minivan-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160304223738",
+                    Model = "minivan",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Minivan Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/ff/MinivanCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160316181614",
+                    Model = "minivan2",
+                    Dlc = Dlc.LowridersCustomClassics,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Pony",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e9/SunsetBleachPony-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180608153229",
+                    Model = "pony",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Pony (Smoke on the Water)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/40/Pony2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20161111195822",
+                    Model = "pony2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rumpo",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d3/Rumpo-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160606122422",
+                    Model = "rumpo",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rumpo (Deludamol)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/10/Rumpo2-GTAV-FrontQuarter.png/revision/latest/scale-to-width-down/350?cb=20180609112615",
+                    Model = "rumpo2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rumpo Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7b/RumpoCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014163518",
+                    Model = "rumpo3",
+                    Dlc = Dlc.FurtherAdventuresinFinanceandFelony,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Paradise",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d6/Paradise-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302170024",
+                    Model = "paradise",
+                    Dlc = Dlc.BeachBumContentUpdate,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Speedo",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fd/Speedo-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626150713",
+                    Model = "speedo",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Clown Van",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0d/ClownVan-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151222204023",
+                    Model = "speedo2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Speedo Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/35/SpeedoCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180725175930",
+                    Model = "speedo4",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Surfer",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/ac/Surfer-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160409182213",
+                    Model = "surfer",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Surfer (Beater)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a6/Surfer2-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160626153853",
+                    Model = "surfer2",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Youga",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/dc/Youga-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160414212010",
+                    Model = "youga",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Youga Classic",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b7/YougaClassic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161014164331",
+                    Model = "youga2",
+                    Dlc = Dlc.Bikers,
+                },
+            }));
+        }
 
         private static List<VehicleListItem> AddVehicleClass(VehicleClass vehicleClass, List<VehicleListItem> list)
         {
-            list.ForEach((item) => item.VehicleClass = vehicleClass);
+            list.ForEach(item => item.VehicleClass = vehicleClass);
             return list;
         }
     }
