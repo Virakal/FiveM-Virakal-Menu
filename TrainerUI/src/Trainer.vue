@@ -2,14 +2,14 @@
     <div id="trainer-root">
         <div id="trainercontainer" v-if="showTrainer">
             <p class="traineroption trainertitle">{{ trainerTitle }}</p>
-            <TrainerOption v-for="(item, index) in menuPage"
-                           :class="{ selected: index == selected, sub: item.sub != null }"
-                           :sub="item.sub"
-                           :action="item.action"
-                           :state="getItemState(item.action)"
-                           :key="getItemKey(item)">
+            <p v-for="(item, index) in menuPage"
+               :class="{ traineroption: true, selected: index == selected, sub: item.sub != null }"
+               :sub="item.sub"
+               :action="item.action"
+               :state="getItemState(item.action)"
+               :key="getItemKey(item)">
                 {{ item.text }}
-            </TrainerOption>
+            </p>
             <PageIndicator :page="page" :page-count="pageCount"></PageIndicator>
         </div>
 
@@ -20,7 +20,6 @@
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
     import PreviewImage from './components/PreviewImage.vue';
-    import TrainerOption from './components/TrainerOption.vue';
     import PageIndicator from './components/PageIndicator.vue';
 
     interface MenuItem {
@@ -36,7 +35,6 @@
     @Component({
         components: {
             PreviewImage,
-            TrainerOption,
             PageIndicator,
         }
     })
@@ -45,11 +43,10 @@
         resourceName = 'virakal-trainer';
         maxPageSize = 12;
         showTrainer = false;
-        menus: any = { 'mainmenu': [{ text: "Waiting for menus to download..." }] };
+        menus: { [menuName: string]: MenuItem[] } = { 'mainmenu': [{ text: "Waiting for menus to download..." }] };
         currentMenuKey = 'mainmenu';
         page = 0;
         selected = 0;
-        recentSkins = []; // Don't think we need this
         configState: { [configKey: string]: boolean } = {};
         itemStates: { [action: string]: string } = {};
         configKeyActions: { [configKey: string]: string } = {};
@@ -67,9 +64,9 @@
             return this.menus[this.currentMenuKey][currentIndex];
         };
 
-        get currentImage(): string {
+        get currentImage(): string | undefined {
             const currentIndex = this.page * this.maxPageSize + this.selected;
-            return this.menus[this.currentMenuKey][currentIndex] ? this.menus[this.currentMenuKey][currentIndex].image : null;
+            return this.menus[this.currentMenuKey][currentIndex] ? this.menus[this.currentMenuKey][currentIndex].image : undefined;
         };
 
         get currentMenu(): MenuItem[] {
@@ -94,7 +91,7 @@
         }
 
         created() {
-            window.addEventListener("message", this.handleMessage, {
+            window.addEventListener('message', this.handleMessage, {
                 passive: true,
             });
         }
@@ -306,7 +303,7 @@
 
 
         getStateText(value: boolean | string): string {
-            if (typeof (value) === 'string') {
+            if (typeof value === 'string') {
                 value = value === 'true';
             }
 
@@ -321,7 +318,7 @@
             return this.itemStates[action];
         }
 
-        handleMessage(event: any): void {
+        handleMessage(event: MessageEvent): void {
             const item = event.data;
 
             if (item.showtrainer) {
