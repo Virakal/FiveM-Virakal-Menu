@@ -61,6 +61,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
             InitialiseIndustrial(list);
             InitialiseMilitary(list);
             InitialiseMotorcycles(list);
+            InitialiseMuscle(list);
             InitialiseOffRoad(list);
             InitialisePlanes(list);
             InitialiseSedans(list);
@@ -1399,6 +1400,443 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
                     Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/70/ZombieChopper-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161004181804",
                     Model = "zombieb",
                     Dlc = Dlc.Bikers,
+                },
+            }));
+        }
+
+        private static void InitialiseMuscle(List<VehicleListItem> list)
+        {
+            list.AddRange(AddVehicleClass(VehicleClass.Muscle, new List<VehicleListItem>()
+            {
+                new VehicleListItem()
+                {
+                    Name = "Blade",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f3/Blade-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160410132747",
+                    Model = "blade",
+                    Dlc = Dlc.ImNotaHipsterUpdate,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Buccaneer",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9f/Buccaneer-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160406175914",
+                    Model = "buccaneer",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Buccaneer Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/a2/BuccaneerCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160502170017",
+                    Model = "buccaneer2",
+                    Dlc = Dlc.Lowriders,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Lurcher",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/0d/Lurcher-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151021163349",
+                    Model = "lurcher",
+                    Dlc = Dlc.HalloweenSurprise,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Chino",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/17/Chino-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151209200837",
+                    Model = "chino",
+                    Dlc = Dlc.IllGottenGainsPart2,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Chino Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3f/ChinoCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160502170102",
+                    Model = "chino2",
+                    Dlc = Dlc.Lowriders,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Clique",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c6/Clique-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214181626",
+                    Model = "clique",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Coquette BlackFin",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/df/CoquetteBlackFin-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20180331183558",
+                    Model = "coquette3",
+                    Dlc = Dlc.IllGottenGainsPart2,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Deviant",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/01/Deviant-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214181627",
+                    Model = "deviant",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dominator",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/78/Dominator-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160702195350",
+                    Model = "dominator",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dominator (Pißwasser)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cf/PisswasserDominator-GTAVPC-front.png/revision/latest/scale-to-width-down/350?cb=20150529175704",
+                    Model = "dominator2",
+                    Dlc = Dlc.CunningStunts,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dominator GTX",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8b/DominatorGTX-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180328210557",
+                    Model = "dominator3",
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dominator (Apocalypse)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2b/ApocalypseDominator-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181219160805",
+                    Model = "dominator4",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dominator (Future Shock)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d6/FutureShockDominator-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20190106171151",
+                    Model = "dominator5",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dominator (Nightmare)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/8b/NightmareDominator-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181219160806",
+                    Model = "dominator6",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Dukes",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/53/Dukes-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20150530114053",
+                    Model = "dukes",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Duke O'Death",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4d/DukeODeath-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160115200929",
+                    Model = "dukes2",
+                    Dlc = Dlc.CunningStuntsSpecialVehicleCircuit,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Ellie",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/6b/Ellie-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20180329205441",
+                    Model = "ellie",
+                    Dlc = Dlc.SouthernSanAndreasSuperSportSeries,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Faction",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/Faction-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160502165840",
+                    Model = "faction",
+                    Dlc = Dlc.Lowriders,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Faction Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f0/FactionCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160502165927",
+                    Model = "faction2",
+                    Dlc = Dlc.Lowriders,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Faction Custom Donk",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/80/FactionCustomDonk-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160316181542",
+                    Model = "faction3",
+                    Dlc = Dlc.LowridersCustomClassics,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Gauntlet",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/dd/Gauntlet-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160304225154",
+                    Model = "gauntlet",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Gauntlet (Redwood)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/05/RedwoodGauntlet-GTAVPC-front.png/revision/latest/scale-to-width-down/350?cb=20150529175454",
+                    Model = "gauntlet2",
+                    Dlc = Dlc.CunningStunts,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Hermes",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/9b/Hermes-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218203929",
+                    Model = "hermes",
+                    Dlc = Dlc.TheDoomsdayHeist,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Hotknife",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/07/Hotknife-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20170530185811",
+                    Model = "hotknife",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Hustler",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f1/Hustler-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218204121",
+                    Model = "hustler",
+                    Dlc = Dlc.TheDoomsdayHeist,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Impaler",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/43/Impaler-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214181627",
+                    Model = "impaler",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Impaler (Apocalypse)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/19/ApocalypseImpaler-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20190106171150",
+                    Model = "impaler2",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Impaler (Future Shock)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/78/FutureShockImpaler-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20190106171150",
+                    Model = "impaler3",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Impaler (Nightmare)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/71/NightmareImpaler-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20190106171149",
+                    Model = "impaler4",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Imperator (Apocalypse)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/f2/ApocalypseImperator-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165021",
+                    Model = "imperator",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Imperator (Future Shock)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/40/FutureShockImperator-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165022",
+                    Model = "imperator2",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Imperator (Nightmare)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/8/82/NightmareImperator-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165022",
+                    Model = "imperator3",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Moonbeam",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/b/b3/Moonbeam-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160502165704",
+                    Model = "moonbeam",
+                    Dlc = Dlc.Lowriders,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Moonbeam Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/94/MoonbeamCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160502165739",
+                    Model = "moonbeam2",
+                    Dlc = Dlc.Lowriders,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Nightshade",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/3e/Nightshade-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151216172405",
+                    Model = "nightshade",
+                    Dlc = Dlc.ExecutivesandOtherCriminals,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Phoenix",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/af/Phoenix-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160304230504",
+                    Model = "phoenix",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Picador",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/5/5a/Picador-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160304225738",
+                    Model = "picador",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rat-Loader",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cd/Rat-Loader-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160304220227",
+                    Model = "ratloader",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Rat-Truck",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/7a/Rat-Truck-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160304220101",
+                    Model = "ratloader2",
+                    Dlc = Dlc.FestiveSurprise,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Ruiner",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/67/Ruiner-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160409181927",
+                    Model = "ruiner",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Ruiner 2000",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/4/4c/Ruiner2000-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20161215193507",
+                    Model = "ruiner2",
+                    Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.ImportExport,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sabre Turbo",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/e6/SabreTurbo-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160308180541",
+                    Model = "sabregt",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Sabre Turbo Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/18/SabreTurboCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160316181730",
+                    Model = "sabregt2",
+                    Dlc = Dlc.LowridersCustomClassics,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Slamvan",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/cb/Slamvan-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20151212234539",
+                    Model = "slamvan",
+                    Dlc = Dlc.FestiveSurprise,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Slamvan (Lost)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/6/61/LostSlamvan2-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20151212170523",
+                    Model = "slamvan2",
+                    Dlc = Dlc.HeistsUpdate,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Slamvan Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/9/96/SlamvanCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160316181523",
+                    Model = "slamvan3",
+                    Dlc = Dlc.LowridersCustomClassics,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Slamvan (Apocalypse)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/7/75/ApocalypseSlamvan-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165018",
+                    Model = "slamvan4",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Slamvan (Future Shock)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/dc/FutureShockSlamvan-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165019",
+                    Model = "slamvan5",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Slamvan (Nightmare)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fe/NightmareSlamvan-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181215165019",
+                    Model = "slamvan6",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Stallion",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/00/Stallion-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160702194827",
+                    Model = "stalion",
+                    Dlc = Dlc.CunningStunts,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Stallion (Burger Shot)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/3/36/BurgerShotStallion-GTAVPC-front.png/revision/latest/scale-to-width-down/350?cb=20150529175256",
+                    Model = "stalion2",
+                    Dlc = Dlc.CunningStunts,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tampa",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/d/d8/Tampa-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160117200133",
+                    Model = "tampa",
+                    Dlc = Dlc.FestiveSurprise2015,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tampa (Weaponised)",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/e/ea/WeaponizedTampa-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20170614144105",
+                    Model = "tampa3",
+                    Tags = new HashSet<string>() { "fun" },
+                    Dlc = Dlc.Gunrunning,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Tulip",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/2b/Tulip-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214182016",
+                    Model = "tulip",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Vamos",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/a/ac/Vamos-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20181214201710",
+                    Model = "vamos",
+                    Dlc = Dlc.ArenaWar,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Vigero",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/c4/Vigero-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160305172506",
+                    Model = "vigero",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Virgo",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/2/24/Virgo-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160302174203",
+                    Model = "virgo",
+                    Dlc = Dlc.IllGottenGainsPart1,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Virgo Classic",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/1b/VirgoClassic-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160316181420",
+                    Model = "virgo3",
+                    Dlc = Dlc.LowridersCustomClassics,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Virgo Classic Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/c/ca/VirgoClassicCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160410123917",
+                    Model = "virgo2",
+                    Dlc = Dlc.LowridersCustomClassics,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Voodoo",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/1/15/Voodoo-GTAV-front.png/revision/latest/scale-to-width-down/350?cb=20160929171018",
+                    Model = "voodoo",
+                },
+                new VehicleListItem()
+                {
+                    Name = "Voodoo Custom",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/f/fc/VoodooCustom-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20160502170144",
+                    Model = "voodoo2",
+                    Dlc = Dlc.Lowriders,
+                },
+                new VehicleListItem()
+                {
+                    Name = "Yosemite",
+                    Image = "https://vignette.wikia.nocookie.net/gtawiki/images/0/09/Yosemite-GTAO-front.png/revision/latest/scale-to-width-down/350?cb=20171218204237",
+                    Model = "yosemite",
+                    Dlc = Dlc.TheDoomsdayHeist,
                 },
             }));
         }
