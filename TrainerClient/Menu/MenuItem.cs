@@ -14,6 +14,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string action;
+
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string state;
 
