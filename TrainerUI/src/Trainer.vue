@@ -6,7 +6,7 @@
                :class="{ traineroption: true, selected: index == selected, sub: item.sub != null }"
                :sub="item.sub"
                :action="item.action"
-               :state="getItemState(item.action)"
+               :data-state="getItemState(item.action)"
                :key="getItemKey(item)">
                 {{ item.text }}
             </p>
@@ -41,7 +41,7 @@
     export default class Trainer extends Vue {
         trainerTitle = 'Virakal Trainer';
         resourceName = 'virakal-trainer';
-        maxPageSize = 12;
+        maxPageSize = 15;
         showTrainer = false;
         menus: { [menuName: string]: MenuItem[] } = { 'mainmenu': [{ text: "Waiting for menus to download..." }] };
         currentMenuKey = 'mainmenu';
@@ -310,7 +310,7 @@
         }
 
         getItemKey(item: MenuItem): string {
-            return item.key || item.text;
+            return item.key || item.action || item.text;
         }
 
         getItemState(action: string): string | undefined {
