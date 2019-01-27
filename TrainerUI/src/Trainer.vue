@@ -3,7 +3,7 @@
         <div id="trainercontainer" v-if="showTrainer">
             <p class="traineroption trainertitle">{{ trainerTitle }}</p>
             <TrainerOption v-for="(item, index) in menuPage"
-                           :class="{ selected: index == selected, sub: index.sub != null }"
+                           :class="{ selected: index == selected, sub: item.sub != null }"
                            :sub="item.sub"
                            :action="item.action"
                            :state="getItemState(item.action)"
