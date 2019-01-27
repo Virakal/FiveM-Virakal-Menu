@@ -15,14 +15,17 @@
 
 <style scoped>
     .imagecontainer {
+        opacity: 0.7;
         position: absolute;
-        top: 100px;
         right: 650px;
-        border: 1px solid black;
+        top: 100px;
     }
 
     img {
-        width: 200px;
-        max-width: 200px;
+        border: 1px solid black;
+        margin: 0;
+        max-width: 350px;
+        padding: 0;
+        width: 350px;
     }
 </style>
