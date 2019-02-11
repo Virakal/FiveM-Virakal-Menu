@@ -837,42 +837,43 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             return list;
         }
 
-        private List<MenuItem> GetBoostPowerMenu()
+        public List<MenuItem> GetBoostPowerMenu()
         {
-            // Another one to auto-generate and highlight the current option
-            return new List<MenuItem>()
+            var list = new List<MenuItem>();
+            int current = 0;
+            bool success = false;
+
+            if (Config.ContainsKeyOrHasDefault("BoostPower"))
             {
-                new MenuItem()
+                success = int.TryParse(Config["BoostPower"], out current);
+            }
+
+            if (!success || current == 0)
+            {
+                current = 75;
+            }
+
+            for (var power = 25; power <= 150; power += 25)
+            {
+                var name = $"Power {power}";
+
+                if (power == current)
                 {
-                    text = "25",
-                    action = "boostpower 25"
-                },
-                new MenuItem()
+                    name += " (Current)";
+                }
+                else if (power == 75)
                 {
-                    text = "50",
-                    action = "boostpower 50"
-                },
-                new MenuItem()
+                    name += " (Default)";
+                }
+
+                list.Add(new MenuItem()
                 {
-                    text = "75 (Default)",
-                    action = "boostpower 75"
-                },
-                new MenuItem()
-                {
-                    text = "100",
-                    action = "boostpower 100"
-                },
-                new MenuItem()
-                {
-                    text = "125",
-                    action = "boostpower 125"
-                },
-                new MenuItem()
-                {
-                    text = "150",
-                    action = "boostpower 150"
-                },
-            };
+                    text = name,
+                    action = $"boostpower {power}",
+                });
+            }
+
+            return list;
         }
 
         private List<MenuItem> GetPlatesMenu()

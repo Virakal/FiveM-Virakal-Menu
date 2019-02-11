@@ -79,6 +79,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             {
                 UpdateVehicleSpawnSearchMenu();
             }
+            else if (key == "BoostPower")
+            {
+                UpdateBoostPowerMenu();
+            }
         }
 
         public void UpdateAndSend(string key, List<MenuItem> menu)
@@ -91,6 +95,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
             UpdateAndSend("vehicles.spawn.search", vehiclesAdder.GetSpawnSearchMenu());
+        }
+
+        private void UpdateBoostPowerMenu()
+        {
+            var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
+            UpdateAndSend("vehicles.boostPower", vehiclesAdder.GetBoostPowerMenu());
         }
 
         private void UpdateDefaultRadioMenu()
