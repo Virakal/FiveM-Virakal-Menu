@@ -119,6 +119,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     text = "Change to Default Skin",
                     action = "loaddefaultskin"
                 },
+                new MenuItem()
+                {
+                    text = "Autoload Default Skin",
+                    action = "autoloaddefaultskin",
+                    state = "ON",
+                    configkey = "AutoLoadDefaultSkin"
+                },
             };
 
             menus["player.skin.recent"] = GetRecentSkinMenu();

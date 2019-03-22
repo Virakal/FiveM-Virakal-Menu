@@ -23,11 +23,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("InfiniteAmmo", "true");
             Config.SetDefault("InfiniteClip", "true");
             Config.SetDefault("AutoGiveParachute", "true");
+            Config.SetDefault("AutoLoadDefaultSkin", "true");
 
             Trainer.RegisterNUICallback("player", OnPlayer);
             Trainer.RegisterAsyncNUICallback("playerskin", OnPlayerSkinChange);
             Trainer.RegisterNUICallback("savedefaultskin", OnSaveDefaultSkin);
             Trainer.RegisterNUICallback("loaddefaultskin", OnLoadDefaultSkin);
+            Trainer.RegisterNUICallback("autoloaddefaultskin", OnAutoLoadDefaultSkin);
 
             EventHandlers["virakal:skinChange"] += new Action<int>(OnVirakalSkinChange);
             EventHandlers["playerSpawned"] += new Action(OnPlayerSpawnedRestoreSkin);
@@ -72,11 +74,20 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
+        private CallbackDelegate OnAutoLoadDefaultSkin(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            bool state = (bool)data["newstate"];
+            Config["AutoLoadDefaultSkin"] = state ? "true" : "false";
+
+            callback("ok");
+            return callback;
+        }
+
         private async void OnConfigFetched()
         {
             LoadRecentSkins();
 
-            if (Config.ContainsKey("DefaultSkin"))
+            if (Config.ContainsKey("DefaultSkin") && Config["AutoLoadDefaultSkin"] == "true")
             {
                 // Wait to allow the game to load more fully
                 await BaseScript.Delay(5000);
