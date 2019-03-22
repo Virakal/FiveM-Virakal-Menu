@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Virakal.FiveM.Trainer.TrainerClient.Data;
-using Virakal.FiveM.Trainer.TrainerClient.Menu;
 
-namespace Virakal.FiveM.Trainer.TrainerClient
+namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 {
     public class AnimalBombMenuAdder : BaseMenuAdder
     {
@@ -18,7 +17,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             var actionPrefix = "anibomb";
             var menu = new List<MenuItem>();
-            var animalModelInfo = PedModelList.GetByType(PedModelType.Animal);
+            IEnumerable<PedModelListItem> animalModelInfo = PedModelList.GetByType(PedModelType.Animal);
 
             foreach (var info in animalModelInfo)
             {
