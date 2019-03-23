@@ -817,7 +817,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 var percentage = Math.Round(speed * 100);
                 var name = $"{percentage}% Speed";
 
-                Debug.WriteLine($"Comparing {current} to {percentage}.");
                 if (percentage == current)
                 {
                     name += " (Current)";
