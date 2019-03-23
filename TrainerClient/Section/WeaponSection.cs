@@ -121,7 +121,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         /// </summary>
         private void GiveAllWeapons()
         {
-            var playerPed = Game.PlayerPed;
+            var weaponCollection = Game.PlayerPed.Weapons;
 
             // Randomly select a weapon to give last so that the user doesn't end up with the same one every time
             var randomWeapon = Weapons[random.Next(Weapons.Count)];
@@ -130,12 +130,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             {
                 if (weapon != randomWeapon)
                 {
-                    playerPed.Weapons.Give(weapon, 9999, true, true);
+                    weaponCollection.Give(weapon, 9999, true, true);
                 }
             }
 
             // Give the randomly selected weapon last
-            playerPed.Weapons.Give(randomWeapon, 9999, true, true);
+            weaponCollection.Give(randomWeapon, 9999, true, true);
         }
 
         private async void OnPlayerSpawn(object spawn)
