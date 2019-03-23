@@ -101,23 +101,33 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return Task.FromResult(0);
         }
 
+        /// <summary>
+        /// Give every available weapon from the weapons list to the player
+        /// </summary>
+        private void GiveAllWeapons()
+        {
+            var playerPed = Game.PlayerPed;
+
+            // Randomly select a weapon to give last so that the user doesn't end up with the same one every time
+            var randomWeapon = Weapons[random.Next(Weapons.Count)];
+
+            foreach (WeaponHash weapon in Weapons)
+            {
+                if (weapon != randomWeapon)
+                {
+                    playerPed.Weapons.Give(weapon, 9999, true, true);
+                }
+            }
+
+            // Give the randomly selected weapon last
+            playerPed.Weapons.Give(randomWeapon, 9999, true, true);
+        }
+
         private async void OnPlayerSpawn(object spawn)
         {
             if (Config["SpawnGiveAllWeapons"] == "true")
             {
-                var playerPed = Game.PlayerPed;
-                var randomWeapon = Weapons[random.Next(Weapons.Count)];
-
-                foreach (WeaponHash weapon in Weapons)
-                {
-                    if (weapon != randomWeapon)
-                    {
-                        playerPed.Weapons.Give(weapon, 9999, true, true);
-                    }
-                }
-
-                // Give a random weapon so the player doesn't always spawn with the same thing
-                playerPed.Weapons.Give(randomWeapon, 9999, true, true);
+                GiveAllWeapons();
             }
 
             await Task.FromResult(0);
