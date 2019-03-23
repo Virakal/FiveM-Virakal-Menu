@@ -15,8 +15,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 new MenuItem()
                 {
                     text = "Spawn With All Weapons",
-                    action = "giveallweapons",
+                    action = "spawngiveallweapons",
                     state = "ON",
+                    configkey = "SpawnGiveAllWeapons"
                 },
             };
 

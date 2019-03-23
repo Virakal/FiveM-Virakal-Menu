@@ -17,13 +17,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             Config.SetDefault("ExplosiveAmmo", "false");
             Config.SetDefault("FireAmmo", "false");
-            Config.SetDefault("GiveAllWeapons", "true");
+            Config.SetDefault("SpawnGiveAllWeapons", "true");
 
             Trainer.RegisterNUICallback("wepgive", GiveWeapon);
             Trainer.RegisterNUICallback("wepremove", RemoveWeapon);
             Trainer.RegisterNUICallback("explosiveammo", ToggleExplosiveAmmo);
             Trainer.RegisterNUICallback("fireammo", ToggleFireAmmo);
-            Trainer.RegisterNUICallback("allweapons", ToggleAllWeapons);
+            Trainer.RegisterNUICallback("spawngiveallweapons", ToggleSpawnGiveAllWeapons);
 
             WeaponHash[] weaponList = (WeaponHash[])Enum.GetValues(typeof(WeaponHash));
             EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
@@ -77,10 +77,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
-        private CallbackDelegate ToggleAllWeapons(IDictionary<string, object> data, CallbackDelegate callback)
+        private CallbackDelegate ToggleSpawnGiveAllWeapons(IDictionary<string, object> data, CallbackDelegate callback)
         {
             bool state = (bool)data["newstate"];
-            Config["GiveAllWeapons"] = state ? "true" : "false";
+            Config["SpawnGiveAllWeapons"] = state ? "true" : "false";
 
             callback("ok");
             return callback;
@@ -103,7 +103,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async void OnPlayerSpawn(object spawn)
         {
-            if (Config["GiveAllWeapons"] == "true")
+            if (Config["SpawnGiveAllWeapons"] == "true")
             {
                 var playerPed = Game.PlayerPed;
                 var randomWeapon = Weapons[random.Next(Weapons.Count)];
