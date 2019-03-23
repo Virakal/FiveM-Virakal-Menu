@@ -10,16 +10,49 @@ using Newtonsoft.Json;
 
 namespace Virakal.FiveM.Trainer.TrainerClient
 {
+    /// <summary>
+    /// The main entry point for the whole trainer
+    /// </summary>
     public class Trainer : BaseScript
     {
-        public Control MenuKey { get; } = Control.SelectCharacterFranklin; // F6
-        public bool ShowTrainer { get; private set; } = false;
-        public Config Config { get; } = new Config();
-        public Garage Garage { get; }
-        public new EventHandlerDictionary EventHandlers { get { return base.EventHandlers; } }
-        public bool BlockInput { get; internal set; } = false;
-        private MenuManager MenuManager { get; }
+        /// <summary>
+        /// The key to press to view the menu (F6 - the keyboard shortcut for Franklin)
+        /// </summary>
+        public Control MenuKey { get; } = Control.SelectCharacterFranklin;
 
+        /// <summary>
+        /// Whether the trainer is currently shown on screen
+        /// </summary>
+        public bool ShowTrainer { get; private set; } = false;
+
+        /// <summary>
+        /// The user configuration
+        /// </summary>
+        public Config Config { get; } = new Config();
+
+        /// <summary>
+        /// The user's vehicle garage
+        /// </summary>
+        public Garage Garage { get; }
+
+        /// <summary>
+        /// Public access to the event handler dictionary
+        /// </summary>
+        public new EventHandlerDictionary EventHandlers { get { return base.EventHandlers; } }
+
+        /// <summary>
+        /// Whether to ignore user input (useful for showing input boxes, for example)
+        /// </summary>
+        public bool BlockInput { get; internal set; } = false;
+
+        /// <summary>
+        /// The menu manager
+        /// </summary>
+        internal MenuManager MenuManager { get; }
+
+        /// <summary>
+        /// Create and initialise a new trainer
+        /// </summary>
         public Trainer()
         {
             Garage = new Garage(this);
@@ -29,12 +62,24 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             Tick += HandleMenuKeys;
         }
 
+        /// <summary>
+        /// Send a message ot the NUI user interface
+        /// </summary>
+        /// <param name="message">The message contents</param>
+        /// <returns></returns>
         public bool SendUIMessage(dynamic message)
         {
             string converted = JsonConvert.SerializeObject(message);
             return API.SendNuiMessage(converted);
         }
 
+        /// <summary>
+        /// Add a pop-up notification to the game UI
+        /// </summary>
+        /// 
+        /// This can include control codes, like <code>~r~</code> which changes the text to red.
+        /// 
+        /// <param name="message">The message on the notification</param>
         public void AddNotification(string message)
         {
             API.SetNotificationTextEntry("STRING");
@@ -42,11 +87,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             API.DrawNotification(false, false);
         }
 
+        /// <summary>
+        /// Add a callback for each game tick
+        /// </summary>
+        /// <param name="tickFunction">The method to call on each tick</param>
         public void AddTick(Func<Task> tickFunction)
         {
             Tick += tickFunction;
         }
 
+        /// <summary>
+        /// Spawn a vehicle in the game world
+        /// </summary>
+        /// <param name="model">The model of the vehicle to spawn</param>
+        /// <param name="position">The current player position</param>
+        /// <returns>The created vehicle</returns>
         public async Task<Vehicle> SpawnVehicle(Model model, Vector3 position)
         {
             var playerPed = Game.PlayerPed;
@@ -99,7 +154,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                     }
 
                     // Try to move other passengers over
-                    foreach (var passenger in playerVeh.Passengers)
+                    foreach (Ped passenger in playerVeh.Passengers)
                     {
                         passenger.SetIntoVehicle(vehicle, VehicleSeat.Any);
                     }
@@ -119,8 +174,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         /// <summary>
         /// Convert a comma-separated string of numbers (e.g. 255,128,0) to a Color object
         /// </summary>
-        /// <param name="colourString">the string representing the colour</param>
-        /// <returns>the colour object</returns>
+        /// <param name="colourString">The string representing the colour</param>
+        /// <returns>The Color object represented by the string</returns>
         public static Color CommaSeparatedStringToColor(string colourString)
         {
             string[] rgb = colourString.Split(',');
@@ -133,11 +188,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient
 
         /// <summary>
         /// Convert a six-letter hexadecimal string to a Color
-        ///
-        /// Does not strip any prefixes
         /// </summary>
-        /// <param name="hex">the hex string</param>
-        /// <returns>the colour object</returns>
+        /// 
+        /// Does not strip any prefixes
+        ///
+        /// <param name="hex">The hex string</param>
+        /// <returns>The Color object represented by the string</returns>
         public static Color HexToColor(string hex)
         {
             int r = Convert.ToInt32(hex.Substring(0, 2), 16);
@@ -150,10 +206,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         /// <summary>
         /// Convert a color into an R,G,B string for config storage
         /// </summary>
-        /// <param name="color">the color to convert</param>
-        /// <returns>the R,G,B string</returns>
+        /// <param name="color">The Color to convert</param>
+        /// <returns>The R,G,B string</returns>
         public string ColorToRgbString(Color color) => $"{color.R},{color.G},{color.B}";
 
+        /// <summary>
+        /// Perform initialisation tasks on the first tick and immediately deregisters itself
+        /// </summary>
+        /// <returns></returns>
         private Task OnLoad()
         {
             // Unsubscribe this event immediately so the event only runs once
@@ -182,6 +242,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             return Task.FromResult(0);
         }
 
+        /// <summary>
+        /// Set the current player's stats to their maximums
+        /// </summary>
         private void MaxPlayerStats()
         {
             API.StatSetInt((uint)API.GetHashKey("MP0_STAMINA"), 100, true);
@@ -193,6 +256,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             API.StatSetInt((uint)API.GetHashKey("MP0_STEALTH_ABILITY"), 100, true);
         }
 
+        /// <summary>
+        /// Check if the trainer should handle the given control for this frame
+        /// </summary>
+        /// <param name="control">The control to check</param>
+        /// <param name="CheckShowTrainer">Whether to check if the trainer is currently shown or not</param>
+        /// <returns>Whether this control is currently pressed and should be handled</returns>
         private bool ShouldHandleControl(Control control, bool CheckShowTrainer = true)
         {
             // Make sure input is enabled
@@ -210,6 +279,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             return Game.IsControlJustReleased(1, control);
         }
 
+        /// <summary>
+        /// Handle keypresses for the trainer and update the UI
+        /// </summary>
+        /// <returns></returns>
         private async Task HandleMenuKeys()
         {
             // Check if the show key is pressed (F6)
@@ -260,6 +333,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             await Task.FromResult(0);
         }
 
+        /// <summary>
+        /// Register a callback for messages from the NUI user interface
+        /// </summary>
+        /// <param name="name">The name of the message to listen for</param>
+        /// <param name="callback">The method that handles the message</param>
         public void RegisterNUICallback(string name, Func<IDictionary<string, object>, CallbackDelegate, CallbackDelegate> callback)
         {
             API.RegisterNuiCallbackType(name);
@@ -270,6 +348,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             });
         }
 
+        /// <summary>
+        /// Register an asynchronous callback for messages from the NUI user interface
+        /// </summary>
+        /// <param name="name">The name of the message to listen for</param>
+        /// <param name="callback">The method that handles the message</param>
         public void RegisterAsyncNUICallback(string name, Func<IDictionary<string, object>, CallbackDelegate, Task<CallbackDelegate>> callback)
         {
             API.RegisterNuiCallbackType(name);
@@ -280,11 +363,21 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             });
         }
 
+        /// <summary>
+        /// Write debug output to the FiveM console
+        /// </summary>
+        /// <param name="format">The text to write</param>
+        /// <param name="args">Arguments to fill message palceholders with</param>
         public static void DebugLine(string format, params object[] args)
         {
             Debug.WriteLine($"[VT] {format}", args);
         }
 
+        /// <summary>
+        /// Turn a camelCase sentence into a regular sentence with spaces
+        /// </summary>
+        /// <param name="text">The text to transform</param>
+        /// <returns>The given text with spaces instead of camelcasing</returns>
         public static string AddSpacesToSentence(string text)
         {
             var preserveAcronyms = false;
@@ -317,6 +410,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             return newText.ToString();
         }
 
+        /// <summary>
+        /// Change the current vehicle's radio to the given station
+        /// </summary>
+        /// <param name="stationIndex">The internal station index</param>
         public void ChangeCurrentRadioStation(int stationIndex)
         {
             var vehicle = Game.PlayerPed.CurrentVehicle;
@@ -348,6 +445,12 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             }
         }
 
+        /// <summary>
+        /// Close the trainer, hiding the UI and ignoring keypresses
+        /// </summary>
+        /// <param name="data">The message data</param>
+        /// <param name="callback">The callback method</param>
+        /// <returns>The callback</returns>
         private CallbackDelegate TrainerClose(IDictionary<string, object> data, CallbackDelegate callback)
         {
             ShowTrainer = false;
@@ -355,6 +458,15 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             return callback;
         }
 
+        /// <summary>
+        /// Play a sound on the user's game
+        /// </summary>
+        /// 
+        /// Expects a "name" key in the data with the internal name of the sound file to play.
+        /// 
+        /// <param name="data">The message data</param>
+        /// <param name="callback">The callback method</param>
+        /// <returns>The callback</returns>
         private CallbackDelegate PlaySound(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Game.PlaySound((string)data["name"], "HUD_FRONTEND_DEFAULT_SOUNDSET");
