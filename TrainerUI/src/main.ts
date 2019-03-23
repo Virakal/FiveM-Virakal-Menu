@@ -6,4 +6,3 @@ Vue.config.productionTip = true;
 new Vue({
     render: h => h(Trainer)
 }).$mount('#app');
-

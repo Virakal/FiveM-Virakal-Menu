@@ -149,9 +149,6 @@
         }
 
         setMenu(menuName: string, menuData: MenuItem[]): void {
-            // console.log(`Receieved menu ${menuName}`);
-            // console.log(JSON.stringify(menuData));
-
             // Grab any initial states that are included and update states on those we already have
             for (let key in menuData) {
                 let item = menuData[key];
@@ -175,7 +172,6 @@
 
             if (this.currentMenuKey === menuName) {
                 // Because the underlying menu has changed, we need to force the update
-                console.log('Forcing the update');
                 this.updateCurrentMenu();
             }
         }
@@ -213,7 +209,6 @@
             if (sel.sub) {
                 this.showMenu(sel.sub);
             } else if (sel.action) {
-                console.log(`Doing ${sel.action}`);
                 let newState = true;
 
                 if (sel.action in this.itemStates) {
@@ -222,11 +217,9 @@
                     this.$forceUpdate();
                 }
 
-                // Not sure why I need this, but state updates no longer pass to the main menu
-
                 const data = sel.action.split(' ');
 
-                console.log(`Sending ${data[0]}, action: ${data[1]}, newState: ${newState}`);
+                console.log(`Sending message to server: ${data[0]}, action: ${data[1]}, newState: ${newState}`);
                 this.sendData(data[0], { action: data[1], newstate: newState, itemtext: sel.text });
             }
 
@@ -267,11 +260,8 @@
                     continue;
                 }
 
-                console.log(`Setting config[${key}] to ${value}.`);
                 this.config[key] = value === 'true';
             }
-
-            console.log(`Config: ${JSON.stringify(this.config)}`);
         }
 
         getStateText(value: boolean | string): string {
