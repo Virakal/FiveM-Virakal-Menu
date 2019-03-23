@@ -16,11 +16,14 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         public WeaponSection(Trainer trainer) : base(trainer)
         {
             Config.SetDefault("SpawnGiveAllWeapons", "true");
+            Config.SetDefault("InfiniteAmmo", "true");
+            Config.SetDefault("InfiniteClip", "true");
 
             Trainer.RegisterNUICallback("wepgive", GiveWeapon);
             Trainer.RegisterNUICallback("wepremove", RemoveWeapon);
             Trainer.RegisterNUICallback("spawngiveallweapons", ToggleSpawnGiveAllWeapons);
             Trainer.RegisterNUICallback("giveallweapons", OnGiveAllWeapons);
+            Trainer.RegisterNUICallback("weaponconfig", OnWeaponConfig);
 
             WeaponHash[] weaponList = (WeaponHash[])Enum.GetValues(typeof(WeaponHash));
             EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
@@ -77,6 +80,66 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             return callback;
         }
 
+        private CallbackDelegate OnWeaponConfig(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            string action = (string)data["action"];
+            bool newState = (bool)data["newstate"];
+            string newStateString = newState ? "true" : "false";
+
+            switch (action)
+            {
+                case "ammo":
+                    Config["InfiniteAmmo"] = newStateString;
+
+                    SetInfiniteAmmo(newState);
+
+                    if (newState)
+                    {
+                        Trainer.AddNotification("~g~Infinite ammo enabled.");
+                    }
+                    else
+                    {
+                        Trainer.AddNotification("~g~Infinite ammo disabled.");
+                    }
+                    break;
+                case "clip":
+                    Config["InfiniteClip"] = newStateString;
+
+                    SetInfiniteClip(newState);
+
+                    if (newState)
+                    {
+                        Trainer.AddNotification("~g~Infinite clip enabled.");
+                    }
+                    else
+                    {
+                        Trainer.AddNotification("~g~Infinite clip disabled.");
+                    }
+                    break;
+            }
+
+            callback("ok");
+            return callback;
+        }
+
+        /// <summary>
+        /// Set infinite ammo for the current player to the given state
+        /// </summary>
+        /// <param name="state">Whether the player should have infinite ammo</param>
+        private void SetInfiniteAmmo(bool state)
+        {
+            API.SetPedInfiniteAmmo(Game.PlayerPed.Handle, state, 0);
+        }
+
+        /// <summary>
+        /// Set infinite ammo clip for the current player to the given state
+        /// </summary>
+        /// <param name="state">Whether the player should have an infinite clip</param>
+        private void SetInfiniteClip(bool state)
+        {
+            API.SetPedInfiniteAmmoClip(Game.PlayerPed.Handle, state);
+        }
+
         /// <summary>
         /// Give every available weapon from the weapons list to the player
         /// </summary>
@@ -105,6 +168,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             {
                 GiveAllWeapons();
             }
+
+            SetInfiniteAmmo(Config["InfiniteAmmo"] == "true");
+            SetInfiniteClip(Config["InfiniteClip"] == "true");
 
             await Task.FromResult(0);
         }

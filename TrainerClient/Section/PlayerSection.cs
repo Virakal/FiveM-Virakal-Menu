@@ -20,8 +20,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Config.SetDefault("GodMode", "true");
             Config.SetDefault("InfiniteStamina", "false");
             Config.SetDefault("CurrentSkin", "");
-            Config.SetDefault("InfiniteAmmo", "true");
-            Config.SetDefault("InfiniteClip", "true");
             Config.SetDefault("AutoGiveParachute", "true");
             Config.SetDefault("AutoLoadDefaultSkin", "true");
 
@@ -125,7 +123,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnPlayer(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Ped playerPed = Game.Player.Character;
+            Ped playerPed = Game.PlayerPed;
             string action = (string)data["action"];
             bool newState = (bool)data["newstate"];
             string newStateString = newState ? "true" : "false";
@@ -166,34 +164,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                     else
                     {
                         Trainer.AddNotification("~g~Infinite stamina disabled.");
-                    }
-                    break;
-                case "ammo":
-                    Config["InfiniteAmmo"] = newStateString;
-
-                    API.SetPedInfiniteAmmo(playerPed.Handle, newState, 0);
-
-                    if (newState)
-                    {
-                        Trainer.AddNotification("~g~Infinite ammo enabled.");
-                    }
-                    else
-                    {
-                        Trainer.AddNotification("~g~Infinite ammo disabled.");
-                    }
-                    break;
-                case "clip":
-                    Config["InfiniteClip"] = newStateString;
-
-                    API.SetPedInfiniteAmmoClip(playerPed.Handle, newState);
-
-                    if (newState)
-                    {
-                        Trainer.AddNotification("~g~Infinite clip enabled.");
-                    }
-                    else
-                    {
-                        Trainer.AddNotification("~g~Infinite clip disabled.");
                     }
                     break;
                 case "autochute":

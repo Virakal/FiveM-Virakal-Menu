@@ -41,20 +41,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem()
                 {
-                    text = "Infinite Ammo",
-                    action = "player ammo",
-                    state = "ON",
-                    configkey = "InfiniteAmmo"
-                },
-                new MenuItem()
-                {
-                    text = "Infinite Clip",
-                    action = "player clip",
-                    state = "ON",
-                    configkey = "InfiniteClip"
-                },
-                new MenuItem()
-                {
                     text = "Heal Player",
                     action = "player heal"
                 },
