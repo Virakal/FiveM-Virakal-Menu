@@ -24,6 +24,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("explosiveammo", ToggleExplosiveAmmo);
             Trainer.RegisterNUICallback("fireammo", ToggleFireAmmo);
             Trainer.RegisterNUICallback("spawngiveallweapons", ToggleSpawnGiveAllWeapons);
+            Trainer.RegisterNUICallback("giveallweapons", OnGiveAllWeapons);
 
             WeaponHash[] weaponList = (WeaponHash[])Enum.GetValues(typeof(WeaponHash));
             EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
@@ -81,6 +82,20 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             bool state = (bool)data["newstate"];
             Config["SpawnGiveAllWeapons"] = state ? "true" : "false";
+
+            callback("ok");
+            return callback;
+        }
+
+        /// <summary>
+        /// Give all available weapons to the current user
+        /// </summary>
+        /// <param name="data">The message data</param>
+        /// <param name="callback">The callback method</param>
+        /// <returns>The callback</returns>
+        private CallbackDelegate OnGiveAllWeapons(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            GiveAllWeapons();
 
             callback("ok");
             return callback;
