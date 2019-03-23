@@ -193,16 +193,27 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             API.StatSetInt((uint)API.GetHashKey("MP0_STEALTH_ABILITY"), 100, true);
         }
 
-        private Task HandleMenuKeys()
+        private bool ShouldHandleControl(Control control, bool CheckShowTrainer = true)
         {
             // Make sure input is enabled
             if (BlockInput)
             {
-                return Task.FromResult(0);
+                return false;
             }
 
+            // If the trainer is hidden, don't handle keypresses, unless we explicitly want to
+            if (CheckShowTrainer && !ShowTrainer)
+            {
+                return false;
+            }
+
+            return Game.IsControlJustReleased(1, control);
+        }
+
+        private async Task HandleMenuKeys()
+        {
             // Check if the show key is pressed (F6)
-            if (Game.IsControlJustReleased(1, MenuKey))
+            if (ShouldHandleControl(MenuKey, false))
             {
                 ShowTrainer = !ShowTrainer;
 
@@ -216,43 +227,37 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 }
             }
 
-            // If the trainer is hidden, no point parsing anything else
-            if (!ShowTrainer)
-            {
-                return Task.FromResult(0);
-            }
-
             // Enter / Back
-            if (Game.IsControlJustReleased(1, Control.PhoneSelect))
+            if (ShouldHandleControl(Control.PhoneSelect))
             {
                 SendUIMessage(new { trainerenter = true });
             }
-            else if (Game.IsControlJustReleased(1, Control.PhoneCancel))
+            else if (ShouldHandleControl(Control.PhoneCancel))
             {
                 SendUIMessage(new { trainerback = true });
             }
 
             // Up / Down
-            if (Game.IsControlJustReleased(1, Control.PhoneUp))
+            if (ShouldHandleControl(Control.PhoneUp))
             {
                 SendUIMessage(new { trainerup = true });
             }
-            else if (Game.IsControlJustReleased(1, Control.PhoneDown))
+            else if (ShouldHandleControl(Control.PhoneDown))
             {
                 SendUIMessage(new { trainerdown = true });
             }
 
             // Left / Right
-            if (Game.IsControlJustReleased(1, Control.PhoneLeft))
+            if (ShouldHandleControl(Control.PhoneLeft))
             {
                 SendUIMessage(new { trainerleft = true });
             }
-            else if (Game.IsControlJustReleased(1, Control.PhoneRight))
+            else if (ShouldHandleControl(Control.PhoneRight))
             {
                 SendUIMessage(new { trainerright = true });
             }
 
-            return Task.FromResult(0);
+            await Task.FromResult(0);
         }
 
         public void RegisterNUICallback(string name, Func<IDictionary<string, object>, CallbackDelegate, CallbackDelegate> callback)
