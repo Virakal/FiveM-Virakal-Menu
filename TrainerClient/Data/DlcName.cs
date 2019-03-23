@@ -40,7 +40,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
     static class DlcMethods
     {
         // Would be nice to be able to get this from the game
-        private static List<string> nameList = new List<string>()
+        private static readonly List<string> nameList = new List<string>()
         {
             "Base Game",
             "Beach Bum Content Update",

@@ -12,7 +12,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             Trainer = trainer;
             Config = trainer.Config;
-            EventHandlers = trainer._EventHandlers;
+            EventHandlers = trainer.EventHandlers;
 
             Trainer.DebugLine($"Loading {this.GetType().Name}.");
         }

@@ -8,8 +8,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
 {
     public static class PedModelList
     {
-        private static List<PedModelListItem> Models = new List<PedModelListItem>();
-        private static Dictionary<int, PedModelListItem> modelHashCache = new Dictionary<int, PedModelListItem>();
+        private static readonly List<PedModelListItem> Models = new List<PedModelListItem>();
+        private static readonly Dictionary<int, PedModelListItem> modelHashCache = new Dictionary<int, PedModelListItem>();
         private static bool initialised = false;
 
         public static IEnumerable<PedModelListItem> GetByType(PedModelType type)

@@ -68,7 +68,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             SetBigMap(Config["BigMap"] == "true");
         }
 
-        private void SetBigMap(bool state, bool showFullMap = false)
+        private void SetBigMap(bool state)
         {
             API.SetRadarBigmapEnabled(state, false);
         }

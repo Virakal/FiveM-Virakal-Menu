@@ -34,8 +34,8 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                 new AnimalBombMenuAdder(),
             };
 
-            Trainer._EventHandlers["virakal:allMenusSent"] += new Action(OnMenusSent);
-            Trainer._EventHandlers["virakal:configFetched"] += new Action(OnConfigFetched);
+            Trainer.EventHandlers["virakal:allMenusSent"] += new Action(OnMenusSent);
+            Trainer.EventHandlers["virakal:configFetched"] += new Action(OnConfigFetched);
         }
 
         private void OnConfigFetched()
@@ -47,11 +47,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         private void OnMenusSent()
         {
             // We add these listeners after the menus are sent to avoid them interfering with each other
-            Trainer._EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
-            Trainer._EventHandlers["virakal:newVehicle"] += new Action<int, int>(OnNewVehicle);
-            Trainer._EventHandlers["virakal:exitedVehicle"] += new Action<int, int>(OnNewVehicle);
-            Trainer._EventHandlers["virakal:vehicleModsChanged"] += new Action<int, int>(OnNewVehicleMods);
-            Trainer._EventHandlers["virakal:configChanged"] += new Action<string, string>(OnConfigChanged);
+            Trainer.EventHandlers["playerSpawned"] += new Action<object>(OnPlayerSpawn);
+            Trainer.EventHandlers["virakal:newVehicle"] += new Action<int, int>(OnNewVehicle);
+            Trainer.EventHandlers["virakal:exitedVehicle"] += new Action<int, int>(OnNewVehicle);
+            Trainer.EventHandlers["virakal:vehicleModsChanged"] += new Action<int, int>(OnNewVehicleMods);
+            Trainer.EventHandlers["virakal:configChanged"] += new Action<string, string>(OnConfigChanged);
 
             // This doesn't load properly so early
             UpdateGarageMenus();

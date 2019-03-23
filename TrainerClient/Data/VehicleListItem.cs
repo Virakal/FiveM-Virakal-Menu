@@ -17,7 +17,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
         public VehicleClass VehicleClass { get; set; }
         public Dlc Dlc { get; set; } = Dlc.BaseGame;
         public int ModelHash => lazyHash.Value;
-        private Lazy<int> lazyHash;
+        private readonly Lazy<int> lazyHash;
 
         public VehicleListItem()
         {

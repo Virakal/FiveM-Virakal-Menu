@@ -17,7 +17,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
         public HashSet<string> Tags { get; set; }
         
         public int ModelHash => lazyHash.Value;
-        private Lazy<int> lazyHash;
+        private readonly Lazy<int> lazyHash;
 
         public PedModelListItem()
         {

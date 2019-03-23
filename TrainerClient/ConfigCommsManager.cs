@@ -12,7 +12,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
     { 
         public ConfigCommsManager(Trainer trainer) : base(trainer)
         {
-            Trainer._EventHandlers["virakal:returnConfig"] += new Action<string>(OnReturnConfig);
+            Trainer.EventHandlers["virakal:returnConfig"] += new Action<string>(OnReturnConfig);
             BaseScript.TriggerServerEvent("virakal:getConfig");
         }
 

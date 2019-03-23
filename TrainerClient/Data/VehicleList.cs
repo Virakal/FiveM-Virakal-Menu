@@ -10,7 +10,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Data
     public static class VehicleList
     {
         private static List<VehicleListItem> Vehicles => lazyList.Value;
-        private static Lazy<List<VehicleListItem>> lazyList = new Lazy<List<VehicleListItem>>(InitialiseList);
+        private static readonly Lazy<List<VehicleListItem>> lazyList = new Lazy<List<VehicleListItem>>(InitialiseList);
 
         public static IEnumerable<VehicleListItem> GetByVehicleClass(VehicleClass vehicleClass)
         {

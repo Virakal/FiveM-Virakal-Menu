@@ -13,7 +13,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
     {
         private bool justRunSpawnHandler = false;
         private List<int> RecentSkins { get; set; } = new List<int>();
-        private static int maxRecentSkins = 5;
+        private static readonly int maxRecentSkins = 5;
 
         public PlayerSection(Trainer trainer) : base(trainer)
         {

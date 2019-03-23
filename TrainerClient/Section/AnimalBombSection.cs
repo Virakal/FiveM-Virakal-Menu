@@ -9,7 +9,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 {
     class AnimalBombSection : BaseSection
     {
-        private int bombCount = 10;
+        private readonly int bombCount = 10;
 
         public AnimalBombSection(Trainer trainer) : base(trainer)
         {
@@ -54,7 +54,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 // Stagger spawns
                 await BaseScript.Delay(rand.Next(15));
 
-                var ped = await World.CreatePed(model, position, heading);
+                _ = await World.CreatePed(model, position, heading);
             }
 
             return callback;

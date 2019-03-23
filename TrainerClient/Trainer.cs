@@ -16,7 +16,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public bool ShowTrainer { get; private set; } = false;
         public Config Config { get; } = new Config();
         public Garage Garage { get; }
-        public EventHandlerDictionary _EventHandlers { get { return EventHandlers; } }
+        public new EventHandlerDictionary EventHandlers { get { return base.EventHandlers; } }
         public bool BlockInput { get; internal set; } = false;
         private MenuManager MenuManager { get; }
 
@@ -264,7 +264,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             API.RegisterNuiCallbackType(name);
 
-            EventHandlers[$"__cfx_nui:{name}"] += new Action<ExpandoObject, CallbackDelegate>((body, resultCallback) =>
+            base.EventHandlers[$"__cfx_nui:{name}"] += new Action<ExpandoObject, CallbackDelegate>((body, resultCallback) =>
             {
                 CallbackDelegate err = callback.Invoke(body, resultCallback);
             });
@@ -274,7 +274,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         {
             API.RegisterNuiCallbackType(name);
 
-            EventHandlers[$"__cfx_nui:{name}"] += new Action<ExpandoObject, CallbackDelegate>(async (body, resultCallback) =>
+            base.EventHandlers[$"__cfx_nui:{name}"] += new Action<ExpandoObject, CallbackDelegate>(async (body, resultCallback) =>
             {
                 CallbackDelegate err = await callback.Invoke(body, resultCallback);
             });

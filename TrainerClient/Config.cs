@@ -15,7 +15,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
     public class Config
     {
         private IDictionary<string, string> store = new Dictionary<string, string>();
-        private IDictionary<string, string> defaults = new Dictionary<string, string>();
+        private readonly IDictionary<string, string> defaults = new Dictionary<string, string>();
 
         public string this[string key]
         {
