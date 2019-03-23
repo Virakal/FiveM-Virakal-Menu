@@ -15,14 +15,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         public WeaponSection(Trainer trainer) : base(trainer)
         {
-            Config.SetDefault("ExplosiveAmmo", "false");
-            Config.SetDefault("FireAmmo", "false");
             Config.SetDefault("SpawnGiveAllWeapons", "true");
 
             Trainer.RegisterNUICallback("wepgive", GiveWeapon);
             Trainer.RegisterNUICallback("wepremove", RemoveWeapon);
-            Trainer.RegisterNUICallback("explosiveammo", ToggleExplosiveAmmo);
-            Trainer.RegisterNUICallback("fireammo", ToggleFireAmmo);
             Trainer.RegisterNUICallback("spawngiveallweapons", ToggleSpawnGiveAllWeapons);
             Trainer.RegisterNUICallback("giveallweapons", OnGiveAllWeapons);
 
@@ -36,8 +32,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 (WeaponHash)Game.GenerateHash(@"weapon_raycarbine"),
                 (WeaponHash)Game.GenerateHash(@"weapon_rayminigun"),
             };
-
-            Trainer.AddTick(OnTick);
         }
 
         private CallbackDelegate GiveWeapon(IDictionary<string, object> data, CallbackDelegate callback)
@@ -55,24 +49,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             string weapon = (string)data["action"];
 
             Game.Player.Character.Weapons.Remove((WeaponHash)API.GetHashKey(weapon));
-
-            callback("ok");
-            return callback;
-        }
-
-        private CallbackDelegate ToggleExplosiveAmmo(IDictionary<string, object> data, CallbackDelegate callback)
-        {
-            bool state = (bool)data["newstate"];
-            Config["ExplosiveAmmo"] = state ? "true" : "false";
-
-            callback("ok");
-            return callback;
-        }
-
-        private CallbackDelegate ToggleFireAmmo(IDictionary<string, object> data, CallbackDelegate callback)
-        {
-            bool state = (bool)data["newstate"];
-            Config["FireAmmo"] = state ? "true" : "false";
 
             callback("ok");
             return callback;
@@ -99,21 +75,6 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             callback("ok");
             return callback;
-        }
-
-        private Task OnTick()
-        {
-            if (Config["ExplosiveAmmo"] == "true")
-            {
-                Game.Player.SetExplosiveAmmoThisFrame();
-            }
-
-            if (Config["FireAmmo"] == "true")
-            {
-                Game.Player.SetFireAmmoThisFrame();
-            }
-
-            return Task.FromResult(0);
         }
 
         /// <summary>
