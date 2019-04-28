@@ -13,7 +13,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
     public class Garage
     {
         public const string ConfigKeyPrefix = "VehicleSlot";
-        public const int MaxVehicleSlots = 10;
+        public const int MaxVehicleSlots = 30;
         private const string Sep = "<||>";
         private const int CurrentSerialVersion = 2;
 
