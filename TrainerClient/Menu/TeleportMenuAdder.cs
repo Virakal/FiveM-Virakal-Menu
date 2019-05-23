@@ -19,6 +19,10 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     sub = "teleport.toPlayer"
                 },
                 new MenuItem() {
+                    text = "To Waypoint",
+                    action = "telewaypoint"
+                },
+                new MenuItem() {
                     text = "To Last Vehicle",
                     action = "telelastcar"
                 },

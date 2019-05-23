@@ -15,6 +15,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("coords", DisplayCoords);
             Trainer.RegisterNUICallback("teleplayer", TeleportToPlayer);
             Trainer.RegisterNUICallback("telelastcar", TeleportToLastCar);
+            Trainer.RegisterAsyncNUICallback("telewaypoint", TeleportToWaypoint);
             Trainer.RegisterNUICallback("teleport", TeleportToCoords);
         }
 
@@ -117,6 +118,52 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             callback("ok");
+            return callback;
+        }
+
+        private async Task<CallbackDelegate> TeleportToWaypoint(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Blip waypoint = World.GetWaypointBlip();
+
+            callback("ok");
+
+            if (waypoint != null && waypoint.Exists())
+            {
+                Ped playerPed = Game.PlayerPed;
+                Entity entity = playerPed;
+                Vector3 position = waypoint.Position;
+
+                // If the player is driving a vehicle, take it with them
+                if (playerPed.IsInVehicle() && playerPed.CurrentVehicle.Driver == playerPed)
+                {
+                    entity = playerPed.CurrentVehicle;
+                }
+
+                entity.Position = position;
+                await BaseScript.Delay(0);
+
+                // Make sure position is above ground
+                float zCoords = 0f;
+
+                while (zCoords == 0f)
+                {
+                    await BaseScript.Delay(40);
+                    zCoords = World.GetGroundHeight(entity.Position);
+                }
+
+                zCoords += 2.5f;
+
+                entity.Position = new Vector3(entity.Position.X, entity.Position.Y, zCoords);
+                await BaseScript.Delay(0);
+
+                Trainer.DebugLine($"Telported to {position.X},{position.Y},{position.Z} ({zCoords})");
+                Trainer.AddNotification("~g~Teleported to waypoint");
+            }
+            else
+            {
+                Trainer.AddNotification("~r~No waypoint is set!");
+            }
+
             return callback;
         }
 
