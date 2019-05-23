@@ -53,8 +53,17 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             Trainer.EventHandlers["virakal:vehicleModsChanged"] += new Action<int, int>(OnNewVehicleMods);
             Trainer.EventHandlers["virakal:configChanged"] += new Action<string, string>(OnConfigChanged);
 
+            Trainer.AddTick(OnPeriodicUpdate);
+
             // This doesn't load properly so early
             UpdateGarageMenus();
+        }
+
+        private async Task OnPeriodicUpdate()
+        {
+            await BaseScript.Delay(10000);
+
+            UpdateTeleportMenu();
         }
 
         private void OnConfigChanged(string key, string value)
@@ -150,6 +159,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         private void OnPlayerSpawn(object spawn)
         {
             // Would be nice to just do this on player connect, but we can't.
+            UpdateTeleportMenu();
+        }
+
+        private void UpdateTeleportMenu()
+        {
             var teleportMenuAdder = GetMenuAdderByType<TeleportMenuAdder>();
             UpdateAndSend("teleport.toPlayer", teleportMenuAdder.MakePlayerMenu());
         }
