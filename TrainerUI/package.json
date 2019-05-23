@@ -17,10 +17,10 @@
     "vue-property-decorator": "7.0.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "3.3.0",
-    "@vue/cli-plugin-typescript": "3.3.0",
-    "@vue/cli-service": "3.3.0",
-    "typescript": "3.3",
+    "@vue/cli-plugin-babel": "3.7.0",
+    "@vue/cli-plugin-typescript": "3.7.0",
+    "@vue/cli-service": "3.7.0",
+    "typescript": "3.4.5",
     "vue-template-compiler": "2.5.22"
   },
   "postcss": {
