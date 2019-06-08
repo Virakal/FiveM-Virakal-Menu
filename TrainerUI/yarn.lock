@@ -862,10 +862,10 @@
     babel-loader "^8.0.5"
     webpack ">=4 < 4.29"
 
-"@vue/cli-plugin-typescript@3.8.0":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-3.8.0.tgz#f305edcc2c9b3471cf13287d0d85ec05eaa9343c"
-  integrity sha512-DNYXPIALVz56Am1j5/w0xMHvpJOryNTTK7saq/n5MzWpyCiSAe8qsdFFB/3aBueBIolNiz4+AJ2QAcZPSNUUaQ==
+"@vue/cli-plugin-typescript@3.8.1":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-typescript/-/cli-plugin-typescript-3.8.1.tgz#fbe1298710ed0f6feecba61640c3aab29bcc35b2"
+  integrity sha512-CAD19+Z46OtUHYkZaLFeDJPuQWVLFJ+1rSL3PdESVQ9Pm0ZVVsCCZYGeQAGyAbHNWtvY7Gt0CbxsZTj+5ChSpw==
   dependencies:
     "@types/webpack-env" "^1.13.9"
     "@vue/cli-shared-utils" "^3.8.0"
