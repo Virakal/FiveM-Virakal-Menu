@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CitizenFX.Core;
+using CitizenFX.Core.Native;
 using Virakal.FiveM.Trainer.TrainerClient.Data;
 using Virakal.FiveM.Trainer.TrainerClient.Section;
 
@@ -16,6 +18,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
         {
             Config = config;
         }
+
         public override Dictionary<string, List<MenuItem>> AddMenus(Dictionary<string, List<MenuItem>> menus)
         {
             menus["player"] = new List<MenuItem>()
@@ -97,6 +100,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 },
                 new MenuItem()
                 {
+                    text = "Customise Skin",
+                    sub = "player.skin.customise"
+                },
+                new MenuItem()
+                {
                     text = "Save Current Skin as Default",
                     action = "savedefaultskin"
                 },
@@ -119,6 +127,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["player.skin.mainCharacters"] = ToMenuItems(PedModelList.GetByType(PedModelType.MainCharacter));
             menus["player.skin.pedestrians"] = ToMenuItems(PedModelList.GetByType(PedModelType.Human));
             menus["player.skin.custom"] = ToMenuItems(PedModelList.GetByType(PedModelType.Custom));
+            menus = AddCustomiseSkinMenus(menus);
 
             return menus;
         }
@@ -153,6 +162,61 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 menu.Add(new MenuItem()
                 {
                     text = "No recent skins yet!",
+                });
+            }
+
+            return menu;
+        }
+
+        public Dictionary<string, List<MenuItem>> AddCustomiseSkinMenus(Dictionary<string, List<MenuItem>> menus)
+        {
+            var menu = new List<MenuItem>();
+
+            foreach (var component in Enum.GetValues(typeof(PedComponents)).Cast<PedComponents>())
+            {
+                var subkey = $"player.skin.customise.{component.ToString()}";
+
+                menu.Add(new MenuItem()
+                {
+                    text = component.ToString(),
+                    sub = subkey,
+                });
+
+                menus[subkey] = GetCustomiseSkinMenuForComponent(component);
+                menus[$"{subkey}.variation"] = GetVariationSubmenuForComponent(component);
+            }
+
+            menus["player.skin.customise"] = menu;
+
+            return menus;
+        }
+
+        private List<MenuItem> GetCustomiseSkinMenuForComponent(PedComponents component)
+        {
+            var menu = new List<MenuItem>();
+            var subkey = $"player.skin.customise.{component.ToString()}";
+
+            menu.Add(new MenuItem()
+            {
+                text = $"{component} Variation",
+                sub = $"{subkey}.variation"
+            });
+
+            return menu;
+        }
+
+        private List<MenuItem> GetVariationSubmenuForComponent(PedComponents component)
+        {
+            var menu = new List<MenuItem>();
+            var subkey = $"player.skin.customise.{component.ToString()}.variation";
+            var action = "setplayerpeddrawable";
+
+            for (var i = 0; i <= API.GetNumberOfPedDrawableVariations(Game.PlayerPed.Handle, (int)component); i++)
+            {
+                menu.Add(new MenuItem()
+                {
+                    text = $"{component} Variation {i}",
+                    action = $"{action} {(int)component}={i}"
                 });
             }
 

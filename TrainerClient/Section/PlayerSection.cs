@@ -28,6 +28,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("savedefaultskin", OnSaveDefaultSkin);
             Trainer.RegisterNUICallback("loaddefaultskin", OnLoadDefaultSkin);
             Trainer.RegisterNUICallback("autoloaddefaultskin", OnAutoLoadDefaultSkin);
+            Trainer.RegisterAsyncNUICallback("setplayerpeddrawable", OnPlayerPedDrawable);
 
             EventHandlers["virakal:skinChange"] += new Action<int>(OnVirakalSkinChange);
             EventHandlers["playerSpawned"] += new Action(OnPlayerSpawnedRestoreSkin);
@@ -206,7 +207,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
             Ped playerPed = Game.Player.Character;
             Model model = new Model(modelHash);
-            
+
             if (!playerPed.IsHuman)
             {
                 // This fixes crashes on some animal skins
@@ -340,6 +341,22 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             Config["RecentSkins"] = string.Join(",", RecentSkins);
+        }
+
+        private async Task<CallbackDelegate> OnPlayerPedDrawable(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            callback("ok");
+            await BaseScript.Delay(0);
+            Ped playerPed = Game.PlayerPed;
+            string action = (string)data["action"];
+            // Debug.WriteLine($"Got player ped drawable {action}");
+            var segments = action.Split('=');
+            var component = int.Parse(segments[0]);
+            var variation = int.Parse(segments[1]);
+
+            API.SetPedComponentVariation(playerPed.Handle, component, variation, 0, 0);
+
+            return callback;
         }
 
         private async Task OnTick()
