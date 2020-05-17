@@ -56,7 +56,13 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             if (Config["PoliceDisable"] == "true")
             {
-                Game.Player.WantedLevel = 0;
+                var vehicle = Game.PlayerPed.CurrentVehicle;
+
+                // Don't run this if there's multiple people in the car and you're not one of them
+                if (vehicle == null|| Game.PlayerPed.SeatIndex == 0 || vehicle.PassengerCount == 1)
+                {
+                    Game.Player.WantedLevel = 0;
+                }
             }
 
             Game.Player.IgnoredByPolice = Config["PoliceIgnore"] == "true";
