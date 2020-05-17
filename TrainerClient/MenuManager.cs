@@ -142,6 +142,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
             var vehiclesAdder = GetMenuAdderByType<VehiclesMenuAdder>();
             UpdateAndSend("vehicles.appearance.livery", vehiclesAdder.GetLiveryMenu());
             UpdateAndSend("vehicles.appearance.colourCombinations", vehiclesAdder.GetColourCombinationsMenu());
+            UpdateAndSend("vehicles.seats", vehiclesAdder.GetSeatsMenu());
             OnNewVehicleMods(-1, -1);
         }
 

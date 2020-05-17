@@ -1,5 +1,6 @@
 ﻿using CitizenFX.Core;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             menus["vehicles.load"] = GetGarageLoadMenu();
             menus["vehicles.appearance"] = GetAppearanceMenu();
             menus["vehicles.mods"] = GetModsMenu();
+            menus["vehicles.seats"] = GetSeatsMenu();
             menus["vehicles.boostPower"] = GetBoostPowerMenu();
 
             // Add vehicle spawn menus
@@ -544,6 +546,49 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
             };
         }
 
+        public List<MenuItem> GetSeatsMenu()
+        {
+            var vehicle = Game.PlayerPed.CurrentVehicle;
+
+            if (vehicle == null)
+            {
+                return new List<MenuItem>()
+                {
+                    new MenuItem()
+                    {
+                        text = "Enter a vehicle to change seats",
+                    }
+                };
+            }
+
+            var seatCount = vehicle.PassengerCapacity;
+            var items = new List<MenuItem>()
+            {
+                new MenuItem()
+                {
+                    text = $"Driver Seat",
+                    action = $"vehseat -1"
+                }
+            };
+
+            for (var i = 0; i < seatCount; i++)
+            {
+                items.Add(new MenuItem()
+                {
+                    text = $"Seat {i + 1} ({Enum.GetName(typeof(VehicleSeat), i)})",
+                    action = $"vehseat {i}"
+                });
+            }
+
+            items.Add(new MenuItem()
+            {
+                text = $"Any Seat",
+                action = $"vehseat -2"
+            });
+
+            return items;
+        }
+
         private List<MenuItem> GetVehiclesMenu()
         {
             return new List<MenuItem>()
@@ -572,6 +617,11 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                 {
                     text = "Vehicle Mods",
                     sub = "vehicles.mods"
+                },
+                new MenuItem()
+                {
+                    text = "Change Seats",
+                    sub = "vehicles.seats"
                 },
                 new MenuItem()
                 {

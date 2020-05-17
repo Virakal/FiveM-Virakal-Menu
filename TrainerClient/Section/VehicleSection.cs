@@ -36,6 +36,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Trainer.RegisterNUICallback("veh", OnVeh);
             Trainer.RegisterAsyncNUICallback("vehspawn", OnVehSpawn);
             Trainer.RegisterAsyncNUICallback("vehsearch", OnVehSearch);
+            Trainer.RegisterNUICallback("vehseat", OnVehSeat);
 
             // Garage
             Trainer.RegisterNUICallback("vehsave", OnVehSave);
@@ -96,6 +97,26 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             await BaseScript.Delay(10);
             Trainer.BlockInput = false;
 
+            return callback;
+        }
+
+        private CallbackDelegate OnVehSeat(IDictionary<string, object> data, CallbackDelegate callback)
+        {
+            Ped playerPed = Game.PlayerPed;
+            Vehicle vehicle = playerPed.CurrentVehicle;
+            var action = (string)data["action"];
+            var actionInt = int.Parse(action);
+
+            if (vehicle == null)
+            {
+                Trainer.AddNotification("~r~Not in a vehicle!");
+                callback("ok");
+                return callback;
+            }
+
+            playerPed.SetIntoVehicle(vehicle, (VehicleSeat)actionInt);
+
+            callback("ok");
             return callback;
         }
 
