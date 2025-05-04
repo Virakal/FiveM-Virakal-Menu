@@ -84,7 +84,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
         {
             var menus = new Dictionary<string, List<MenuItem>>();
 
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -548,7 +548,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         public List<MenuItem> GetSeatsMenu()
         {
-            var vehicle = Game.PlayerPed.CurrentVehicle;
+            var vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -706,7 +706,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         public List<MenuItem> GetLiveryMenu()
         {
-            var vehicle = Game.PlayerPed.CurrentVehicle;
+            var vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -760,7 +760,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
         public List<MenuItem> GetColourCombinationsMenu()
         {
-            var vehicle = Game.PlayerPed.CurrentVehicle;
+            var vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {

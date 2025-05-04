@@ -103,7 +103,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         private CallbackDelegate OnVehSeat(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Ped playerPed = Game.PlayerPed;
-            Vehicle vehicle = playerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(playerPed);
             var action = (string)data["action"];
             var actionInt = int.Parse(action);
 
@@ -144,7 +144,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task CheckChangedCar()
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -166,7 +166,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehCustomBoth(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -184,7 +184,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehCustomPrimary(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -202,7 +202,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehCustomSecondary(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -246,7 +246,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task<CallbackDelegate> OnVehLivery(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -311,7 +311,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehRoofLivery(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -342,7 +342,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehColourCombo(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -372,7 +372,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehBoth(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
             int iColour = Convert.ToInt32(data["action"]);
             var colour = (VehicleColor)iColour;
 
@@ -395,7 +395,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehPrimary(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
             int iColour = Convert.ToInt32(data["action"]);
             var colour = (VehicleColor)iColour;
 
@@ -416,7 +416,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehSecondary(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
             int iColour = Convert.ToInt32(data["action"]);
             var colour = (VehicleColor)iColour;
 
@@ -437,7 +437,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehPearl(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
             int iColour = Convert.ToInt32(data["action"]);
             var colour = (VehicleColor)iColour;
 
@@ -457,7 +457,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehRim(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
             int iColour = Convert.ToInt32(data["action"]);
             var colour = (VehicleColor)iColour;
 
@@ -477,7 +477,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehDashColour(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
             int iColour = Convert.ToInt32(data["action"]);
             var colour = (VehicleColor)iColour;
 
@@ -498,7 +498,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehTrimColour(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
             int iColour = Convert.ToInt32(data["action"]);
             var colour = (VehicleColor)iColour;
 
@@ -519,7 +519,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehTint(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
             int iTint = Convert.ToInt32(data["action"]);
             var tint = (VehicleWindowTint)iTint;
 
@@ -542,7 +542,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         private CallbackDelegate OnVeh(IDictionary<string, object> data, CallbackDelegate callback)
         {
             Ped ped = Game.PlayerPed;
-            Vehicle veh = ped.CurrentVehicle;
+            Vehicle veh = Trainer.GetPedVehicle(ped);
             bool state = (bool)data["newstate"];
 
             switch ((string)data["action"])
@@ -704,7 +704,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             var slot = (string)data["action"];
 
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -771,7 +771,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task<CallbackDelegate> OnVehPlateText(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            var vehicle = Game.PlayerPed.CurrentVehicle;
+            var vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -801,7 +801,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehPlateStyle(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            var vehicle = Game.PlayerPed.CurrentVehicle;
+            var vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -819,7 +819,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task<CallbackDelegate> OnVehNeon(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            var vehicle = Game.PlayerPed.CurrentVehicle;
+            var vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             callback("ok");
 
@@ -885,7 +885,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task<CallbackDelegate> OnVehTyreSmokeColour(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            var vehicle = Game.PlayerPed.CurrentVehicle;
+            var vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             callback("ok");
 
@@ -920,7 +920,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehMod(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            var vehicle = Game.PlayerPed.CurrentVehicle;
+            var vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             callback("ok");
 
@@ -985,7 +985,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private CallbackDelegate OnVehModOther(IDictionary<string, object> data, CallbackDelegate callback)
         {
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle != null)
             {
@@ -1081,7 +1081,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
 
             Ped ped = Game.PlayerPed;
-            Vehicle vehicle = ped.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(ped);
 
             if (vehicle == null || vehicle.Driver != ped)
             {
@@ -1115,7 +1115,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             if (Config["BoostOnHorn"] == "true")
             {
                 Ped playerPed = Game.PlayerPed;
-                Vehicle vehicle = playerPed.CurrentVehicle;
+                Vehicle vehicle = Trainer.GetPedVehicle(playerPed);
 
                 if (vehicle != null)
                 {
@@ -1151,7 +1151,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         private async Task InvincibleCarTick()
         {
             bool invincible = Config["InvincibleVehicle"] == "true";
-            Vehicle vehicle = Game.PlayerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle != null)
             {

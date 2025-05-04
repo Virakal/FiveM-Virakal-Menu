@@ -271,7 +271,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
 
         private async Task<bool> ChangePlayerSkin(Ped playerPed, Model model)
         {
-            Vehicle vehicle = playerPed.CurrentVehicle;
+            Vehicle vehicle = Trainer.GetPedVehicle(playerPed);
             VehicleSeat playerSeat = VehicleSeat.None;
 
             // If in a vehicle, remember their seat so we can put them back in it

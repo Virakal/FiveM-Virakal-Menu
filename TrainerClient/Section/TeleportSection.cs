@@ -64,7 +64,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Vector3 newPosition = new Vector3(otherPos.X, otherPos.Y, otherPos.Z + 2.5f);
             playerPed.Position = newPosition;
 
-            Vehicle otherVehicle = otherPed.CurrentVehicle;
+            Vehicle otherVehicle = Trainer.GetPedVehicle(otherPed);
 
             if (otherVehicle != null && API.AreAnyVehicleSeatsFree(otherVehicle.Handle))
             {
@@ -134,9 +134,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
                 Vector3 position = waypoint.Position;
 
                 // If the player is driving a vehicle, take it with them
-                if (playerPed.IsInVehicle() && playerPed.CurrentVehicle.Driver == playerPed)
+                if (playerPed.IsInVehicle() && Trainer.GetPedVehicle(playerPed)?.Driver == playerPed)
                 {
-                    entity = playerPed.CurrentVehicle;
+                    entity = Trainer.GetPedVehicle(playerPed);
                 }
 
                 entity.Position = position;
@@ -181,9 +181,9 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             Entity entity = playerPed;
 
             // If the player is driving a vehicle, take it with them
-            if (playerPed.IsInVehicle() && playerPed.CurrentVehicle.Driver == playerPed)
+            if (playerPed.IsInVehicle() && Trainer.GetPedVehicle(playerPed)?.Driver == playerPed)
             {
-                entity = playerPed.CurrentVehicle;
+                entity = Trainer.GetPedVehicle(playerPed);
             }
 
             entity.Position = position;

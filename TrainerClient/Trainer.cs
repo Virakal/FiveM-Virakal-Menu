@@ -105,7 +105,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         public async Task<Vehicle> SpawnVehicle(Model model, Vector3 position)
         {
             var playerPed = Game.PlayerPed;
-            var playerVeh = playerPed.CurrentVehicle;
+            var playerVeh = GetPedVehicle(playerPed);
 
             if (Config["SpawnInVehicle"] == "false")
             {
@@ -416,7 +416,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient
         /// <param name="stationIndex">The internal station index</param>
         public void ChangeCurrentRadioStation(int stationIndex)
         {
-            var vehicle = Game.PlayerPed.CurrentVehicle;
+            var vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
             if (vehicle == null)
             {
@@ -443,6 +443,41 @@ namespace Virakal.FiveM.Trainer.TrainerClient
                     API.SetVehRadioStation(handle, "RADIO_22_DLC_BATTLE_MIX1_RADIO");
                 }
             }
+        }
+
+        /// <summary>
+        /// Get the vehicle a ped is in, falling back to API methods if the C# class is broken
+        /// </summary>
+        /// <param name="ped">the ped to check for</param>
+        /// <returns>the vehicle if it exists</returns>
+        public static Vehicle GetPedVehicle(Ped ped)
+        {
+            if (ped == null)
+            {
+                return null;
+            }
+
+            if (ped.CurrentVehicle != null)
+            {
+                return ped.CurrentVehicle;
+            }
+
+            // If we get here it's because the currentvehicle API is broken somehow
+            int vehicleId = API.GetVehiclePedIsIn(ped.Handle, false);
+
+            if (vehicleId == 0)
+            {
+                return null;
+            }
+
+            var entity = Entity.FromHandle(vehicleId);
+
+            if (entity is Vehicle)
+            {
+                return (Vehicle)entity;
+            }
+
+            return null;
         }
 
         /// <summary>

@@ -56,7 +56,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
         {
             if (Config["PoliceDisable"] == "true")
             {
-                var vehicle = Game.PlayerPed.CurrentVehicle;
+                var vehicle = Trainer.GetPedVehicle(Game.PlayerPed);
 
                 // Don't run this if there's multiple people in the car and you're not one of them
                 if (vehicle == null|| Game.PlayerPed.SeatIndex == 0 || vehicle.PassengerCount == 1)
