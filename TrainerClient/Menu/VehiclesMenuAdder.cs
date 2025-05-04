@@ -131,7 +131,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
 
                     modTypeMenu.Add(new MenuItem()
                     {
-                        text = mod.LocalizedModTypeName,
+                        text = mod.LocalizedModTypeName ?? $"Unknown mod type [{mod.GetHashCode()}]",
                         sub = $"vehicles.mods.other.{mod.ModType}",
                     });
                 }
