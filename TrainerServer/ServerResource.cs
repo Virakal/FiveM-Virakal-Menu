@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Virakal.FiveM.Trainer.TrainerShared;
+using CitizenFX.Core.Native;
 
 namespace TrainerServer
 {
@@ -32,8 +33,20 @@ namespace TrainerServer
 
         private string GetConfigPathForPlayer(Player player)
         {
-            var handle = player.Identifiers.Where((identifier) => identifier.StartsWith("license:")).First();
-            handle = handle.Replace(':', '_');
+            var handle = player.Identifiers.Where((identifier) => identifier.StartsWith("license:")).FirstOrDefault();
+
+            if (API.GetConvar("sv_fxdkMode", "0") == "1")
+            {
+                handle = "developer";
+            }
+            else if (handle == null)
+            {
+                handle = "default";
+            }
+            else
+            {
+                handle = handle.Replace(':', '_');
+            }
 
             return $"{ConfigPath}{handle}.json";
         }
