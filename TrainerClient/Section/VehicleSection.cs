@@ -150,6 +150,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             {
                 if (LastPlayerVehicle != null)
                 {
+                    Trainer.DebugLine($"Left vehicle {LastPlayerVehicle.GetHashCode()}");
                     BaseScript.TriggerEvent("virakal:exitedVehicle", LastPlayerVehicle.Handle);
                 }
 
@@ -157,6 +158,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Section
             }
             else if (vehicle != LastPlayerVehicle)
             {
+                Trainer.DebugLine($"Got new vehicle {vehicle.GetHashCode()} instead of {LastPlayerVehicle?.GetHashCode()}");
                 BaseScript.TriggerEvent("virakal:newVehicle", vehicle.Handle, LastPlayerVehicle == null ? -1 : LastPlayerVehicle.Handle);
                 LastPlayerVehicle = vehicle;
             }
