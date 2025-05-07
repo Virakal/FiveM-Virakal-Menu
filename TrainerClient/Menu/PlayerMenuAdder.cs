@@ -171,6 +171,7 @@ namespace Virakal.FiveM.Trainer.TrainerClient.Menu
                     text = model.Name,
                     action = $"{actionPrefix} {model.Model}",
                     key = model.Model,
+                    image = model.Image,
                 });
             }
 
